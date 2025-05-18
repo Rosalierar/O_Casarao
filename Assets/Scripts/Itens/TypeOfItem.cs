@@ -1,13 +1,16 @@
-    public enum TipoDeItem : byte
-    {
+public enum TipoDeItem : byte
+{
     ChaveCircular,
     PeDeCabra,
     Alicate,
     GrampoDeCabelo,
-    Carne, 
+    Carne,
     Porta,
     PortaCapela,
     GavetaChave,
-    Gaveta
+    Gaveta,
+    ChaveVermelha,
+    ChaveAmarela,
+    ChaveVerde,
     }
 

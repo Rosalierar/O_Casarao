@@ -495,6 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  informationAboutItem: {fileID: 425882833}
   itemNecessario: 0
   tipoDeObjeto: 6
   unlocked: 0
@@ -1311,7 +1312,7 @@ Transform:
   m_GameObject: {fileID: 118345718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.000002, y: 1.6255, z: 43.2075}
+  m_LocalPosition: {x: -1.3099995, y: 1.6255, z: 0.20749998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4440,7 +4441,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 140}
+  m_SizeDelta: {x: 900, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425882833
 MonoBehaviour:
@@ -5530,6 +5531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6342a9ce5b0e44d44a217c42c06e5c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  informationAboutItem: {fileID: 425882833}
   spriteItem:
   - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
@@ -5723,6 +5725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  informationAboutItem: {fileID: 0}
   itemNecessario: 5
   tipoDeObjeto: 5
   unlocked: 1
@@ -8469,8 +8472,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+      - m_Target: {fileID: 1820893866}
+        m_TargetAssemblyTypeName: OptionsController, Assembly-CSharp
         m_MethodName: ChangeLanguage
         m_Mode: 3
         m_Arguments:
@@ -10034,6 +10037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  informationAboutItem: {fileID: 0}
   itemNecessario: 7
   tipoDeObjeto: 7
   unlocked: 0
@@ -10226,7 +10230,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.000002, y: 1.6255, z: 43.3}
+  m_LocalPosition: {x: -1.3099995, y: 1.6255, z: 0.3000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16239,8 +16243,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ButtonsController, Assembly-CSharp
+      - m_Target: {fileID: 1820893866}
+        m_TargetAssemblyTypeName: OptionsController, Assembly-CSharp
         m_MethodName: ChangeLanguage
         m_Mode: 3
         m_Arguments:
@@ -16300,7 +16304,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a578014b51d8d544ea5a622c47d5f83a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26
+      value: -1.31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a578014b51d8d544ea5a622c47d5f83a,
         type: 3}
@@ -16310,7 +16314,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a578014b51d8d544ea5a622c47d5f83a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a578014b51d8d544ea5a622c47d5f83a,
         type: 3}
@@ -17390,7 +17394,7 @@ Transform:
   m_GameObject: {fileID: 1428279407}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.493744, y: -6.466496, z: -28.581116}
+  m_LocalPosition: {x: -37.49374, y: -6.466496, z: -28.58112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17514,6 +17518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  informationAboutItem: {fileID: 0}
   itemNecessario: 1
   tipoDeObjeto: 0
   unlocked: 0
@@ -17741,7 +17746,7 @@ Transform:
   m_GameObject: {fileID: 1449546053}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6499672, y: 2.4999998, z: -2.9287453}
+  m_LocalPosition: {x: 1.1095676, y: 2.4999998, z: 2.7872682}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19302,7 +19307,7 @@ Transform:
   m_GameObject: {fileID: 1637721204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8363533, y: 2.4999998, z: -2.8810616}
+  m_LocalPosition: {x: 1.1095276, y: 2.4999998, z: 2.7872834}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19701,7 +19706,7 @@ Transform:
   m_GameObject: {fileID: 1679003549}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2858315, y: 2.4999998, z: -1.9429321}
+  m_LocalPosition: {x: 1.1095505, y: 2.4999998, z: 2.7872748}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20771,8 +20776,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16d02a0552ec924584c8a94edace33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sliderSensibility: {fileID: 251974390}
   painelOptions: {fileID: 765348158}
-  tmpConfig: []
+  tmpConfig:
+  - {fileID: 1175555893}
+  - {fileID: 441614534}
+  - {fileID: 1144638135}
+  - {fileID: 1703554670}
+  cameraTouchController: {fileID: 499161655}
 --- !u!1 &1823714529
 GameObject:
   m_ObjectHideFlags: 0
@@ -21313,6 +21324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  informationAboutItem: {fileID: 0}
   itemNecessario: 8
   tipoDeObjeto: 8
   unlocked: 1
