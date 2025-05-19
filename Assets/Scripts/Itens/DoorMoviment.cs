@@ -5,15 +5,15 @@ using UnityEngine;
 public class DoorMoviment : MonoBehaviour
 {
     public Transform doorTransform;
-    public float openAngle = -90f;
-    public float openSpeed = 2f;
+    [SerializeField] float openAngle = -90f;
+    [SerializeField] float openSpeed = 2f;
 
-    private bool isOpen = false;
-    private bool isMoving = false;
-    private bool playerNear = false;
+    [SerializeField]private bool isOpen = false;
+    [SerializeField]private bool isMoving = false;
+    //private bool playerNear = false;
 
-    private Quaternion closedRot;
-    private Quaternion openRot;
+    [SerializeField]private Quaternion closedRot;
+    [SerializeField]private Quaternion openRot;
 
     void Awake()
     {
@@ -21,18 +21,20 @@ public class DoorMoviment : MonoBehaviour
         openRot = Quaternion.Euler(doorTransform.eulerAngles + Vector3.up * openAngle);
     }
 
-    void Update()
+    public void TryActiveDoor()
     {
-        StartCoroutine(ToggleDoor());
+        if (!isMoving)
+            StartCoroutine(ToggleDoor());
     }
 
-    private System.Collections.IEnumerator ToggleDoor()
+    private IEnumerator ToggleDoor()
     {
         isMoving = true;
         Quaternion targetRot = isOpen ? closedRot : openRot;
         Quaternion startRot = doorTransform.rotation;
 
         float elapsed = 0f;
+
         while (elapsed < 1f)
         {
             elapsed += Time.deltaTime * openSpeed;

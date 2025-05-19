@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InteractiveObject : MonoBehaviour
 {
+    GameObject[] cadeado = new GameObject[3];
+
     [SerializeField] private TextMeshProUGUI informationAboutItem;
     int language;
+
+    bool[] progressionGame = new bool[3];
 
     private ParentObjectReference parent;
     public TipoDeItem itemNecessario;  // Tipo de item necessário para interagir com o objeto
@@ -27,10 +32,11 @@ public class InteractiveObject : MonoBehaviour
 
         if (parent.inventory.TemItem(itemNecessario) && !unlocked) // Verifica se o inventário tem o item necessário        
         {
-            if (itemNecessario == TipoDeItem.ChaveCircular)
+            if (itemNecessario == TipoDeItem.ChaveCircular) 
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
+                doorMoviment.TryActiveDoor();
 
                 /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
                 parent.useTheObject.enabled = false; // Desabilita o script de usar
@@ -38,6 +44,7 @@ public class InteractiveObject : MonoBehaviour
 
                 Debug.Log("Porta Aberta!");
             }
+            
             else if (itemNecessario == TipoDeItem.PeDeCabra)
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
@@ -50,39 +57,92 @@ public class InteractiveObject : MonoBehaviour
 
                 Debug.Log("Corrente Quebrada!");
             }
+
             else if (itemNecessario == TipoDeItem.GavetaChave)
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 drawerMoviment.enabled = true;
+                drawerMoviment.TryActiveDrawer();
 
                 //gameObject.SetActive(false); // Desativa o objeto do mundo
 
                 Debug.Log("Gaveta Aberta!");
             }
 
+            else if (itemNecessario == TipoDeItem.ChaveVermelha)
+            {
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                progressionGame[0] = true;
+
+                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+                {
+                    GameObject portaEntrada = GameObject.Find("PortaEntrada");
+                    BoxCollider collider = portaEntrada.GetComponentInChildren<BoxCollider>();
+                    collider.enabled = true;
+                    doorMoviment.TryActiveDoor();
+                }
+            }
+
+            else if (itemNecessario == TipoDeItem.ChaveAmarela)
+            {
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                progressionGame[1] = true;
+
+                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+                {
+                    GameObject portaEntrada = GameObject.Find("PortaEntrada");
+                    BoxCollider collider = portaEntrada.GetComponentInChildren<BoxCollider>();
+                    collider.enabled = true;
+                    doorMoviment.TryActiveDoor();
+                }
+            }
+
+            else if (itemNecessario == TipoDeItem.ChaveVerde)
+            {
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                progressionGame[2] = true;
+
+                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+                {
+                    GameObject portaEntrada = GameObject.Find("PortaEntrada");
+                    BoxCollider collider = portaEntrada.GetComponentInChildren<BoxCollider>();
+                    collider.enabled = true;
+                    doorMoviment.TryActiveDoor();
+                }
+            }
+
             parent.grabTheObject.enabled = true; // Habilita o script de pegar
             parent.useTheObject.enabled = false; // Desabilita o script de usar
-            parent.dropTheObject.enabled = false; // Desabilita o script de soltar
-
+            parent.dropTheObject.enabled = false; // Desabilita o script de solt
             parent.grabTheObject.isHolding = false; // Define que o objeto n�o est� mais sendo segurado
             unlocked = true; // Define que o objeto foi desbloqueado
         }
+
         else if (unlocked) // Verifica se o objeto já foi desbloqueado
         {
             switch (tipoDeObjeto)
             {
                 case TipoDeItem.Gaveta:
                     drawerMoviment.enabled = true; // Habilita o script de movimentação da gaveta
+                    drawerMoviment.TryActiveDrawer();
                     break;
+
                 case TipoDeItem.GavetaChave:
                     drawerMoviment.enabled = true; // Habilita o script de movimentação da gaveta
+                    drawerMoviment.TryActiveDrawer();
                     break;
+
                 case TipoDeItem.Porta:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
+                    doorMoviment.TryActiveDoor();
+
                     break;
+
                 case TipoDeItem.PortaCapela:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
+                    doorMoviment.TryActiveDoor();
                     break;
+
                 default:
                     break;
             }
@@ -95,7 +155,7 @@ public class InteractiveObject : MonoBehaviour
 
             if (language == 0)
             {
-                StartCoroutine(TimerForShowInformation("Você precisa de " + itemNecessario.ParaNomeLegivel()+ " para interagir com este objeto."));
+                StartCoroutine(TimerForShowInformation("Você precisa de " + itemNecessario.ParaNomeLegivel() + " para interagir com este objeto."));
             }
             else
             {

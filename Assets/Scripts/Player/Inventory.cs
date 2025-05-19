@@ -99,7 +99,6 @@ public class Inventory : MonoBehaviour
 
     public void UsarItem()
     {
-
         itens.Remove(itemCarregado);
 
         Destroy(itemCarregado.gameObject);

@@ -12,5 +12,5 @@ public enum TipoDeItem : byte
     ChaveVermelha,
     ChaveAmarela,
     ChaveVerde,
-    }
+}
 

@@ -10,7 +10,7 @@ public class DrawerMoviment : MonoBehaviour
 
     private bool isOpen = false;
     private bool isMoving = false;
-    private bool playerNear = false;
+    //private bool playerNear = false;
 
     private Vector3 closedPos;
     private Vector3 openPos;
@@ -21,10 +21,10 @@ public class DrawerMoviment : MonoBehaviour
         openPos = closedPos + -drawerTransform.forward * openDistance;
     }
 
-    void Update()
+    public void TryActiveDrawer()
     {
-        
-        StartCoroutine(ToggleDoor());
+        if (!isMoving)
+            StartCoroutine(ToggleDoor());
     }
 
     private System.Collections.IEnumerator ToggleDoor()

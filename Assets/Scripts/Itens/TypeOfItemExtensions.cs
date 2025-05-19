@@ -12,7 +12,7 @@ public static class TypeOfItemExtensions
         { TipoDeItem.Carne, "Carne" },
         { TipoDeItem.Porta, "Porta" },
         { TipoDeItem.PortaCapela, "Porta da Capela" },
-        { TipoDeItem.GavetaChave, "Gaveta com Chave" },
+        { TipoDeItem.GavetaChave, "Chave Quadrado" },
         { TipoDeItem.Gaveta, "Gaveta" }
     };
 
@@ -25,7 +25,7 @@ public static class TypeOfItemExtensions
         { TipoDeItem.Carne, "Meat" },
         { TipoDeItem.Porta, "Door" },
         { TipoDeItem.PortaCapela, "Chapel Door" },
-        { TipoDeItem.GavetaChave, "Locked Drawer" },
+        { TipoDeItem.GavetaChave, "Square Hey" },
         { TipoDeItem.Gaveta, "Drawer" }
     };
 
