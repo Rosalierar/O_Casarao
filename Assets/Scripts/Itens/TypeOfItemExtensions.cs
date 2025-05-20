@@ -5,27 +5,35 @@ public static class TypeOfItemExtensions
 {
     private static readonly Dictionary<TipoDeItem, string> nomesPortugues = new Dictionary<TipoDeItem, string>
     {
+        { TipoDeItem.ChaveAmarela, "Chave Amarela" },
+        { TipoDeItem.ChaveVerde, "Chave Verde" },
+        { TipoDeItem.ChaveVermelha, "Chave Vermelha" },
         { TipoDeItem.ChaveCircular, "Chave Circular" },
         { TipoDeItem.PeDeCabra, "Pé de Cabra" },
         { TipoDeItem.Alicate, "Alicate" },
         { TipoDeItem.GrampoDeCabelo, "Grampo de Cabelo" },
         { TipoDeItem.Carne, "Carne" },
+        { TipoDeItem.Carne, "Amaciante" },
         { TipoDeItem.Porta, "Porta" },
-        { TipoDeItem.PortaCapela, "Porta da Capela" },
-        { TipoDeItem.GavetaChave, "Chave Quadrado" },
+        { TipoDeItem.Crucifixo, "Crucifixo" },
+        { TipoDeItem.ChaveQuadrada, "Chave Quadrada" },
         { TipoDeItem.Gaveta, "Gaveta" }
     };
 
     private static readonly Dictionary<TipoDeItem, string> nomesIngles = new Dictionary<TipoDeItem, string>
     {
+        { TipoDeItem.ChaveAmarela, "Yellow Key" },
+        { TipoDeItem.ChaveVerde, "Green Key" },
+        { TipoDeItem.ChaveVermelha, "Red Key" },
         { TipoDeItem.ChaveCircular, "Round Key" },
         { TipoDeItem.PeDeCabra, "Crowbar" },
         { TipoDeItem.Alicate, "Pliers" },
         { TipoDeItem.GrampoDeCabelo, "Hairpin" },
         { TipoDeItem.Carne, "Meat" },
+        { TipoDeItem.Carne, "softener" },
         { TipoDeItem.Porta, "Door" },
-        { TipoDeItem.PortaCapela, "Chapel Door" },
-        { TipoDeItem.GavetaChave, "Square Hey" },
+        { TipoDeItem.Crucifixo, "Crucifix" },
+        { TipoDeItem.ChaveQuadrada, "Square Hey" },
         { TipoDeItem.Gaveta, "Drawer" }
     };
 

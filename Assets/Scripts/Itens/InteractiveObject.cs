@@ -58,7 +58,7 @@ public class InteractiveObject : MonoBehaviour
                 Debug.Log("Corrente Quebrada!");
             }
 
-            else if (itemNecessario == TipoDeItem.GavetaChave)
+            else if (itemNecessario == TipoDeItem.ChaveQuadrada)
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 drawerMoviment.enabled = true;
@@ -127,7 +127,7 @@ public class InteractiveObject : MonoBehaviour
                     drawerMoviment.TryActiveDrawer();
                     break;
 
-                case TipoDeItem.GavetaChave:
+                case TipoDeItem.ChaveQuadrada:
                     drawerMoviment.enabled = true; // Habilita o script de movimentação da gaveta
                     drawerMoviment.TryActiveDrawer();
                     break;
@@ -138,7 +138,7 @@ public class InteractiveObject : MonoBehaviour
 
                     break;
 
-                case TipoDeItem.PortaCapela:
+                case TipoDeItem.Crucifixo:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
                     break;
