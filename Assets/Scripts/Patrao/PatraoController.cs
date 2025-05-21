@@ -11,7 +11,7 @@ public class PatraoController : MonoBehaviour
     /// <summary>
     /// Perseguição
     /// </summary>
-    
+
     [SerializeField] private bool seePlayer = false; // Verifica se o patrão viu o jogador
     [SerializeField] float timerToStopPersecution;
 
@@ -19,7 +19,7 @@ public class PatraoController : MonoBehaviour
     /// <summary>
     /// Rotacao de Patrulha
     /// </summary>
-    
+
     public float rotationPatraoAngle = 90f;
     public float openSpeed = 5f;
 
@@ -29,7 +29,7 @@ public class PatraoController : MonoBehaviour
     //[SerializeField] private bool isFinishRot = false;
     [SerializeField] private bool isRotate = false, isWalking;
 
-    private Quaternion startRot, openRotRight,openRotLeft;
+    private Quaternion startRot, openRotRight, openRotLeft;
 
     /// <summary>
     /// Patrulha
@@ -148,8 +148,8 @@ public class PatraoController : MonoBehaviour
                     print("Patrão pegou o jogador!"); // Exibe mensagem de que o patrão pegou o jogador
 
                     StartCoroutine(ContinueGame()); // Inicia a contagem para continuar o jogo
-                     // Para o agente NavMesh
-                    //isPatrol = true; // Define que o patrão está patrulhando
+                                                    // Para o agente NavMesh
+                                                    //isPatrol = true; // Define que o patrão está patrulhando
 
                     //StartCoroutine(TimerPatrol()); // Inicia a patrulha
 
@@ -159,8 +159,9 @@ public class PatraoController : MonoBehaviour
                     //////////  Chamar script de controle de jogo para coisar as janelas aqui ////////////
                 }
             }
-            else if (seePlayer && !patraoHit.collider.CompareTag("Player")){
-                  
+            else if (seePlayer && !patraoHit.collider.CompareTag("Player"))
+            {
+
                 seePlayer = false; // Define que o patrão não viu o jogador
                 StartCoroutine(TimerStopPersecution()); // Inicia a contagem para parar a perseguição
             }
@@ -169,7 +170,7 @@ public class PatraoController : MonoBehaviour
                 PersecutionPlayer();
             }
         }
-        else 
+        else
         {
             Debug.Log("Patrão não viu o jogador!"); // Exibe mensagem de que o patrão não viu o jogador
         }
@@ -178,10 +179,11 @@ public class PatraoController : MonoBehaviour
     IEnumerator ContinueGame()
     {
         agent.isStopped = true;
+        transform.position = new Vector3(-11.42f, 7.13f, -7.51f);
 
         yield return new WaitForSeconds(5f); // Aguarda 2 segundos antes de continuar o jogo
 
-        agent.isStopped = false; // Ativa o agente NavMesh
+        //agent.isStopped = false; // Ativa o agente NavMesh
         isPatrol = true; // Define que o patrão está patrulhando
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
@@ -273,7 +275,7 @@ public class PatraoController : MonoBehaviour
     void StopAndRotate()
     {
         if (seePlayer) return; // Se o patrão viu o jogador, não faz nada
-        
+
         if (isPatrol && !isRotate && isWalking) // Verifica se o patrão está patrulhando
         {
             print("Parou Para Olhar para os lADOS");
@@ -301,7 +303,7 @@ public class PatraoController : MonoBehaviour
         print("rOTACIONANDO");
 
         isRotate = true;
-        
+
         print("Rotacionando para a direita");
         float elapsed = 0f;
         // Rotaciona para a direita
@@ -311,7 +313,7 @@ public class PatraoController : MonoBehaviour
             patraoTransform.rotation = Quaternion.Slerp(startRot, openRotRight, elapsed);
             yield return null;
         }
-        
+
         elapsed = 0f;
         print("Rotacionando para a Frente");
         // Rotaciona para a Frente
@@ -337,7 +339,7 @@ public class PatraoController : MonoBehaviour
         elapsed = 0f;
         // Rotaciona para a Frente
         while (elapsed < 1f)
-        {            
+        {
             elapsed += Time.deltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(openRotLeft, startRot, elapsed);
             yield return null;
@@ -352,5 +354,12 @@ public class PatraoController : MonoBehaviour
 
     #endregion Rotacao da Patrulha
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            playerTransform = collision.gameObject.transform;
+        }
+    }
 }
 
