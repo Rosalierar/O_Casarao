@@ -5,7 +5,6 @@ using TMPro;
 
 public class PasswordController : MonoBehaviour
 {
-    
     [SerializeField] TextMeshProUGUI textPassword;
     [SerializeField] int correctPassword;
 

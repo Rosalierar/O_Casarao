@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class InteractiveObject : MonoBehaviour
 {
     GameObject[] cadeado = new GameObject[3];
+    [SerializeField] GameObject passwordPainel;
 
     [SerializeField] private TextMeshProUGUI informationAboutItem;
     int language;
@@ -32,7 +33,7 @@ public class InteractiveObject : MonoBehaviour
 
         if (parent.inventory.TemItem(itemNecessario) && !unlocked) // Verifica se o inventário tem o item necessário        
         {
-            if (itemNecessario == TipoDeItem.ChaveCircular)
+            if (itemNecessario == TipoDeItem.ChaveCircular) /////////////////////////////////////////// CHAVE CIRCULAR
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
@@ -45,7 +46,7 @@ public class InteractiveObject : MonoBehaviour
                 Debug.Log("Porta Aberta!");
             }
 
-            else if (itemNecessario == TipoDeItem.PeDeCabra)
+            else if (itemNecessario == TipoDeItem.PeDeCabra) /////////////////////////////////////////// PE DE CABRA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
 
@@ -58,7 +59,7 @@ public class InteractiveObject : MonoBehaviour
                 Debug.Log("Corrente Quebrada!");
             }
 
-            else if (itemNecessario == TipoDeItem.ChaveQuadrada)
+            else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 drawerMoviment.enabled = true;
@@ -69,7 +70,7 @@ public class InteractiveObject : MonoBehaviour
                 Debug.Log("Gaveta Aberta!");
             }
 
-            else if (itemNecessario == TipoDeItem.ChaveVermelha)
+            else if (itemNecessario == TipoDeItem.ChaveVermelha) /////////////////////////////////////////// CHAVE VERMELHA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[0] = true;
@@ -83,7 +84,7 @@ public class InteractiveObject : MonoBehaviour
                 }
             }
 
-            else if (itemNecessario == TipoDeItem.ChaveAmarela)
+            else if (itemNecessario == TipoDeItem.ChaveAmarela) /////////////////////////////////////////// CHAVE AMARELA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[1] = true;
@@ -97,7 +98,7 @@ public class InteractiveObject : MonoBehaviour
                 }
             }
 
-            else if (itemNecessario == TipoDeItem.ChaveVerde)
+            else if (itemNecessario == TipoDeItem.ChaveVerde) /////////////////////////////////////////// CHAVE VERDE
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[2] = true;
@@ -111,9 +112,9 @@ public class InteractiveObject : MonoBehaviour
                 }
             }
 
-            else if (tipoDeObjeto == TipoDeItem.Porta)
+            else if (tipoDeObjeto == TipoDeItem.Senha) /////////////////////////////////////////// GELADEIRA
             {
-                
+                passwordPainel.SetActive(true);
             }
 
             parent.grabTheObject.enabled = true; // Habilita o script de pegar

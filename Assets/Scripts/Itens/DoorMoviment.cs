@@ -5,6 +5,8 @@ using UnityEngine;
 public class DoorMoviment : MonoBehaviour
 {
     public Transform doorTransform;
+    [SerializeField] byte posForOpenDoor;
+    Vector3[] posOpen = new Vector3[2] { Vector3.up , Vector3.down};
     [SerializeField] private float openAngle = -90f;
     [SerializeField] float openSpeed = 2f;
 
@@ -18,7 +20,7 @@ public class DoorMoviment : MonoBehaviour
     void Awake()
     {
         closedRot = doorTransform.rotation;
-        openRot = Quaternion.Euler(doorTransform.eulerAngles + Vector3.down * openAngle);
+        openRot = Quaternion.Euler(doorTransform.eulerAngles + posOpen[posForOpenDoor] * openAngle);
     }
 
     public void TryActiveDoor()
