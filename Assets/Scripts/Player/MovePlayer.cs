@@ -152,7 +152,8 @@ public class MovePlayer : MonoBehaviour
 
         if (collision.CompareTag("Enemy")) //verifica se o objeto colidido tem a tag "Enemy"
         {
-            GetComponent<PatraoController>().StartCoroutine(ContinueGame());
+            FindAnyObjectByType<PatraoController>().ContinueGame();
+            
             StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
             print("Touch Enemy");
         }

@@ -11,6 +11,7 @@ public enum TipoDeItem : byte
     ChaveCircular,
     ChaveQuadrada,
     Crucifixo,
+    Senha,
     Porta,
     Gaveta,
 }

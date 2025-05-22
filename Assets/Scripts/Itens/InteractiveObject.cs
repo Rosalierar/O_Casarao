@@ -32,7 +32,7 @@ public class InteractiveObject : MonoBehaviour
 
         if (parent.inventory.TemItem(itemNecessario) && !unlocked) // Verifica se o inventário tem o item necessário        
         {
-            if (itemNecessario == TipoDeItem.ChaveCircular) 
+            if (itemNecessario == TipoDeItem.ChaveCircular)
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
@@ -44,7 +44,7 @@ public class InteractiveObject : MonoBehaviour
 
                 Debug.Log("Porta Aberta!");
             }
-            
+
             else if (itemNecessario == TipoDeItem.PeDeCabra)
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
@@ -109,6 +109,11 @@ public class InteractiveObject : MonoBehaviour
                     collider.enabled = true;
                     doorMoviment.TryActiveDoor();
                 }
+            }
+
+            else if (tipoDeObjeto == TipoDeItem.Porta)
+            {
+                
             }
 
             parent.grabTheObject.enabled = true; // Habilita o script de pegar

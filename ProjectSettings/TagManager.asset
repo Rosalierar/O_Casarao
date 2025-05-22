@@ -8,6 +8,7 @@ TagManager:
   - Itens
   - Enemy
   - LocalHide
+  - Porta
   layers:
   - Default
   - TransparentFX

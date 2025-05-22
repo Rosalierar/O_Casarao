@@ -89,7 +89,6 @@ public class PatraoController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>(); // Obtém o componente NavMeshAgent do objeto
-
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
 
@@ -121,6 +120,21 @@ public class PatraoController : MonoBehaviour
         }
     }
     #region RayCast
+    public void ContinueGame()
+    {
+        agent.isStopped = true;
+
+        print("Continue Game foi chamado" + agent.isStopped);
+        isPatrol = true; // Define que o patrão está patrulhando
+        isRotate = false;
+        isWalking = false;
+
+        agent.Warp(new Vector3(-11.42f, 7.13f, -7.51f));
+
+        StartCoroutine(TimerStopPersecution()); // Inicia a contagem para parar a perseguição
+        //StartCoroutine(TimerPatrol()); // Inicia a patrulha
+    }
+
     void PatraoVision()
     {
         ray = new Ray(visionPos.position, transform.forward); // Cria um raio a partir da posição do objeto em direção à frente
@@ -147,9 +161,10 @@ public class PatraoController : MonoBehaviour
                 {
                     print("Patrão pegou o jogador!"); // Exibe mensagem de que o patrão pegou o jogador
 
-                    StartCoroutine(ContinueGame()); // Inicia a contagem para continuar o jogo
-                                                    // Para o agente NavMesh
-                                                    //isPatrol = true; // Define que o patrão está patrulhando
+                    //StartCoroutine(
+                    ///ContinueGame(); // Inicia a contagem para continuar o jogo
+                                    // Para o agente NavMesh
+                                    //isPatrol = true; // Define que o patrão está patrulhando
 
                     //StartCoroutine(TimerPatrol()); // Inicia a patrulha
 
@@ -161,31 +176,29 @@ public class PatraoController : MonoBehaviour
             }
             else if (seePlayer && !patraoHit.collider.CompareTag("Player"))
             {
-
                 seePlayer = false; // Define que o patrão não viu o jogador
                 StartCoroutine(TimerStopPersecution()); // Inicia a contagem para parar a perseguição
             }
-            else if (!seePlayer && !agent.isStopped && !isPatrol)
+            else if (!seePlayer && !agent.isStopped && !isPatrol && playerTransform != null)
             {
                 PersecutionPlayer();
+            }
+
+            if (patraoHit.collider.CompareTag("Porta"))
+            {
+                if (patraoHit.distance <= 0.8)
+                {
+                    DoorMoviment doorMoviment = patraoHit.collider.gameObject.GetComponentInParent<DoorMoviment>();
+
+                    if (!doorMoviment.isOpen)
+                        doorMoviment.TryActiveDoor();
+                }
             }
         }
         else
         {
             Debug.Log("Patrão não viu o jogador!"); // Exibe mensagem de que o patrão não viu o jogador
         }
-    }
-
-    IEnumerator ContinueGame()
-    {
-        agent.isStopped = true;
-        transform.position = new Vector3(-11.42f, 7.13f, -7.51f);
-
-        yield return new WaitForSeconds(5f); // Aguarda 2 segundos antes de continuar o jogo
-
-        //agent.isStopped = false; // Ativa o agente NavMesh
-        isPatrol = true; // Define que o patrão está patrulhando
-        StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
     #endregion RayCast
 
@@ -194,6 +207,8 @@ public class PatraoController : MonoBehaviour
     {
         if (!isPatrol)
         {
+            print("player: " + playerTransform.position);
+
             agent.transform.LookAt(playerTransform.position); // Faz o patrão olhar para o jogador
             agent.SetDestination(player.position); // Define a posição de destino do agente como a posição do jogador
 
@@ -205,6 +220,8 @@ public class PatraoController : MonoBehaviour
 
     IEnumerator TimerStopPersecution()
     {
+        //StopCoroutine(ContinueGame());
+
         print("Contagem iniciada para parar a perseguição pois parou de ver o player");
 
         if (seePlayer) yield break; // Se o patrão viu o jogador, sai do método
@@ -213,6 +230,7 @@ public class PatraoController : MonoBehaviour
 
         agent.isStopped = true; // Para o agente NavMesh
         isPatrol = true; // Define que o patrão está patrulhando
+        
 
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
@@ -230,23 +248,6 @@ public class PatraoController : MonoBehaviour
         agent.isStopped = false; // Volta a ativa o agente NavMesh
         agent.speed = 1.5f; // Define a velocidade do agente NavMesh
         GoToPatrol(); // Chama o método para ir para o ponto de patrulha
-    }
-
-    void Patrolling()
-    {
-        if (isPatrol)
-        {
-            print("Indo par Novo ponto");
-
-            agent.SetDestination(patrolPoints[currentPatrolIndex]); // Define o ponto de patrulha atual como destino do agent   
-
-            if (Vector3.Distance(patraoTransform.position, patrolPoints[currentPatrolIndex]) <= 1f) // Verifica se o patrão chegou ao ponto de patrulha
-            {
-                print("Cheguei no Ponto");
-                //currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // Atualiza o índice do ponto de patrulha atual
-                StopAndRotate();
-            }
-        }
     }
 
     void GoToPatrol()
@@ -267,6 +268,23 @@ public class PatraoController : MonoBehaviour
             currentPatrolIndex = randomPatrolIndex;
 
             Patrolling(); // Inicia a patrulha
+        }
+    }
+
+    void Patrolling()
+    {
+        if (isPatrol)
+        {
+            print("Indo par Novo ponto");
+
+            agent.SetDestination(patrolPoints[currentPatrolIndex]); // Define o ponto de patrulha atual como destino do agent   
+
+            if (Vector3.Distance(patraoTransform.position, patrolPoints[currentPatrolIndex]) <= 1f) // Verifica se o patrão chegou ao ponto de patrulha
+            {
+                print("Cheguei no Ponto");
+                //currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // Atualiza o índice do ponto de patrulha atual
+                StopAndRotate();
+            }
         }
     }
     #endregion Patrulha
@@ -300,7 +318,7 @@ public class PatraoController : MonoBehaviour
 
     private System.Collections.IEnumerator ToggleDoor()
     {
-        print("rOTACIONANDO");
+        //print("rOTACIONANDO");
 
         isRotate = true;
 
@@ -353,13 +371,5 @@ public class PatraoController : MonoBehaviour
     }
 
     #endregion Rotacao da Patrulha
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            playerTransform = collision.gameObject.transform;
-        }
-    }
 }
 

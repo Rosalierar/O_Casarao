@@ -8,7 +8,7 @@ public class DoorMoviment : MonoBehaviour
     [SerializeField] private float openAngle = -90f;
     [SerializeField] float openSpeed = 2f;
 
-    [SerializeField] private bool isOpen = false;
+    [SerializeField] public bool isOpen = false;
     [SerializeField] private bool isMoving = false;
     //private bool playerNear = false;
 
