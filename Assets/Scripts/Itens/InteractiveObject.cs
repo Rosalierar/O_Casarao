@@ -16,8 +16,9 @@ public class InteractiveObject : MonoBehaviour
     [Header("Geladeira")]
     [SerializeField] GameObject passwordPainel;
 
-    [Header("Item Controller")]
     private ParentObjectReference parent;
+
+    [Header("Item Controller")]
     bool[] progressionGame = new bool[3];
     public TipoDeItem itemNecessario;  // Tipo de item necessário para interagir com o objeto
     public TipoDeItem tipoDeObjeto;
@@ -114,16 +115,32 @@ public class InteractiveObject : MonoBehaviour
                     doorMoviment.TryActiveDoor();
                 }
             }
+
+            else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
+            {
+                GetComponent<Animation>().Play("GotOutKey");
+
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+            }
+
+            else if (itemNecessario == TipoDeItem.Desinfetante) /////////////////////////////////////////// MAQUINA DE LAVAR
+            {
+                GetComponent<WashingMachineController>().StartTime();
+
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+            }
+
             parent.grabTheObject.enabled = true; // Habilita o script de pegar
             parent.useTheObject.enabled = false; // Desabilita o script de usar
             parent.dropTheObject.enabled = false; // Desabilita o script de solt
             parent.grabTheObject.isHolding = false; // Define que o objeto n�o est� mais sendo segurado
             unlocked = true; // Define que o objeto foi desbloqueado
         }
+        
         else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
-            {
-                passwordPainel.SetActive(true);
-            }
+        {
+            passwordPainel.SetActive(true);
+        }
 
         else if (unlocked) // Verifica se o objeto já foi desbloqueado
         {
@@ -142,7 +159,6 @@ public class InteractiveObject : MonoBehaviour
                 case TipoDeItem.Porta:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
-
                     break;
 
                 case TipoDeItem.Crucifixo:
@@ -150,6 +166,10 @@ public class InteractiveObject : MonoBehaviour
                     doorMoviment.TryActiveDoor();
                     break;
                 case TipoDeItem.Senha:
+                    doorMoviment.enabled = true; // Habilita o script de movimentação da porta
+                    doorMoviment.TryActiveDoor();
+                    break;
+                case TipoDeItem.Desinfetante:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
                     break;
@@ -173,6 +193,7 @@ public class InteractiveObject : MonoBehaviour
             }
         }
     }
+
     public void SetParentReference(ParentObjectReference parent)
     {
         this.parent = parent;
