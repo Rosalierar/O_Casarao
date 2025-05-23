@@ -13,11 +13,13 @@ public static class TypeOfItemExtensions
         { TipoDeItem.Alicate, "Alicate" },
         { TipoDeItem.GrampoDeCabelo, "Grampo de Cabelo" },
         { TipoDeItem.Carne, "Carne" },
-        { TipoDeItem.Carne, "Amaciante" },
+        { TipoDeItem.Desinfetante, "Amaciante" },
         { TipoDeItem.Porta, "Porta" },
         { TipoDeItem.Crucifixo, "Crucifixo" },
         { TipoDeItem.ChaveQuadrada, "Chave Quadrada" },
-        { TipoDeItem.Gaveta, "Gaveta" }
+        { TipoDeItem.Gaveta, "Gaveta" },
+        { TipoDeItem.Senha, "Senha" }
+        
     };
 
     private static readonly Dictionary<TipoDeItem, string> nomesIngles = new Dictionary<TipoDeItem, string>
@@ -30,11 +32,12 @@ public static class TypeOfItemExtensions
         { TipoDeItem.Alicate, "Pliers" },
         { TipoDeItem.GrampoDeCabelo, "Hairpin" },
         { TipoDeItem.Carne, "Meat" },
-        { TipoDeItem.Carne, "softener" },
+        { TipoDeItem.Desinfetante, "softener" },
         { TipoDeItem.Porta, "Door" },
         { TipoDeItem.Crucifixo, "Crucifix" },
         { TipoDeItem.ChaveQuadrada, "Square Hey" },
-        { TipoDeItem.Gaveta, "Drawer" }
+        { TipoDeItem.Gaveta, "Drawer" },
+        { TipoDeItem.Senha, "Password" }
     };
 
     public static string ParaNomeLegivel(this TipoDeItem tipo)

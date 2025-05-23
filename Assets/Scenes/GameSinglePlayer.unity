@@ -569,13 +569,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passwordPainel: {fileID: 0}
   informationAboutItem: {fileID: 425882833}
+  passwordPainel: {fileID: 0}
   itemNecessario: 0
   tipoDeObjeto: 6
-  unlocked: 0
   doorMoviment: {fileID: 1576168580}
   drawerMoviment: {fileID: 0}
+  unlocked: 0
 --- !u!114 &56278825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7840,13 +7840,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passwordPainel: {fileID: 0}
   informationAboutItem: {fileID: 0}
+  passwordPainel: {fileID: 0}
   itemNecessario: 12
   tipoDeObjeto: 12
-  unlocked: 1
   doorMoviment: {fileID: 849400560}
   drawerMoviment: {fileID: 0}
+  unlocked: 1
 --- !u!114 &515736268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14027,13 +14027,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passwordPainel: {fileID: 0}
   informationAboutItem: {fileID: 425882833}
+  passwordPainel: {fileID: 0}
   itemNecessario: 7
   tipoDeObjeto: 7
-  unlocked: 0
   doorMoviment: {fileID: 0}
   drawerMoviment: {fileID: 955740548}
+  unlocked: 0
 --- !u!114 &955740550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16138,14 +16138,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087239159}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.339996, y: 2.2799997, z: 7.620002}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -14.04, y: 8.99, z: -11.5}
   m_LocalScale: {x: 0.089815, y: 3.694753, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1592370743}
   m_Father: {fileID: 796943662}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1087239161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16159,7 +16159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorTransform: {fileID: 1087239160}
-  posForOpenDoor: 0
+  posForOpenDoor: 1
   openAngle: -90
   openSpeed: 2
   isOpen: 0
@@ -17345,6 +17345,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a578014b51d8d544ea5a622c47d5f83a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a578014b51d8d544ea5a622c47d5f83a,
         type: 3}
@@ -23541,13 +23546,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passwordPainel: {fileID: 0}
   informationAboutItem: {fileID: 0}
+  passwordPainel: {fileID: 0}
   itemNecessario: 1
   tipoDeObjeto: 0
-  unlocked: 0
   doorMoviment: {fileID: 0}
   drawerMoviment: {fileID: 0}
+  unlocked: 0
 --- !u!114 &1428668151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24390,6 +24395,7 @@ GameObject:
   - component: {fileID: 1517225299}
   - component: {fileID: 1517225298}
   - component: {fileID: 1517225300}
+  - component: {fileID: 1517225301}
   m_Layer: 5
   m_Name: PanelGeladeira
   m_TagString: Untagged
@@ -24482,7 +24488,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPassword: {fileID: 1122443513}
-  correctPassword: 0
+  correctPassword: 1234
+--- !u!82 &1517225301
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517225296}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: cbd55ae62463eba4c9aafbd8d7446169, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1517944630
 GameObject:
   m_ObjectHideFlags: 0
@@ -25436,7 +25538,7 @@ Transform:
   m_GameObject: {fileID: 1592370742}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5461}
+  m_LocalPosition: {x: -0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1.0922}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25454,13 +25556,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passwordPainel: {fileID: 0}
   informationAboutItem: {fileID: 425882833}
-  itemNecessario: 0
-  tipoDeObjeto: 6
-  unlocked: 0
+  passwordPainel: {fileID: 1517225296}
+  itemNecessario: 11
+  tipoDeObjeto: 11
   doorMoviment: {fileID: 1087239161}
   drawerMoviment: {fileID: 0}
+  unlocked: 0
 --- !u!114 &1592370745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28269,13 +28371,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passwordPainel: {fileID: 0}
   informationAboutItem: {fileID: 425882833}
+  passwordPainel: {fileID: 0}
   itemNecessario: 8
   tipoDeObjeto: 8
-  unlocked: 1
   doorMoviment: {fileID: 0}
   drawerMoviment: {fileID: 1871349482}
+  unlocked: 1
 --- !u!114 &1871349484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29583,13 +29685,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passwordPainel: {fileID: 0}
   informationAboutItem: {fileID: 0}
+  passwordPainel: {fileID: 0}
   itemNecessario: 12
   tipoDeObjeto: 12
-  unlocked: 1
   doorMoviment: {fileID: 1532782214}
   drawerMoviment: {fileID: 0}
+  unlocked: 1
 --- !u!114 &2017111511
 MonoBehaviour:
   m_ObjectHideFlags: 0

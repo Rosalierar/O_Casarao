@@ -6,24 +6,27 @@ using UnityEngine.UIElements;
 
 public class InteractiveObject : MonoBehaviour
 {
-    GameObject[] cadeado = new GameObject[3];
-    [SerializeField] GameObject passwordPainel;
-
+    [Header("UI Sobre Itens")]
     [SerializeField] private TextMeshProUGUI informationAboutItem;
     int language;
 
-    bool[] progressionGame = new bool[3];
+    [Header("Porta Principal")]
+    GameObject[] cadeado = new GameObject[3];
 
+    [Header("Geladeira")]
+    [SerializeField] GameObject passwordPainel;
+
+    [Header("Item Controller")]
     private ParentObjectReference parent;
+    bool[] progressionGame = new bool[3];
     public TipoDeItem itemNecessario;  // Tipo de item necessário para interagir com o objeto
     public TipoDeItem tipoDeObjeto;
-    //private Inventory inventory;  // Referência ao inventário do jogador
-    [SerializeField] private bool unlocked; // Variável para verificar se o objeto está bloqueado
-
     /// <Controle dos Objetos, Abrir, Fechar, Quebrar>
     [SerializeField] DoorMoviment doorMoviment;
     [SerializeField] DrawerMoviment drawerMoviment;
+    public bool unlocked; // Variável para verificar se o objeto está bloqueado
 
+    //private Inventory inventory;  // Referência ao inventário do jogador
 
     public void TentarInteragir()
     {
@@ -111,18 +114,16 @@ public class InteractiveObject : MonoBehaviour
                     doorMoviment.TryActiveDoor();
                 }
             }
-
-            else if (tipoDeObjeto == TipoDeItem.Senha) /////////////////////////////////////////// GELADEIRA
-            {
-                passwordPainel.SetActive(true);
-            }
-
             parent.grabTheObject.enabled = true; // Habilita o script de pegar
             parent.useTheObject.enabled = false; // Desabilita o script de usar
             parent.dropTheObject.enabled = false; // Desabilita o script de solt
             parent.grabTheObject.isHolding = false; // Define que o objeto n�o est� mais sendo segurado
             unlocked = true; // Define que o objeto foi desbloqueado
         }
+        else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
+            {
+                passwordPainel.SetActive(true);
+            }
 
         else if (unlocked) // Verifica se o objeto já foi desbloqueado
         {
@@ -148,7 +149,10 @@ public class InteractiveObject : MonoBehaviour
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
                     break;
-
+                case TipoDeItem.Senha:
+                    doorMoviment.enabled = true; // Habilita o script de movimentação da porta
+                    doorMoviment.TryActiveDoor();
+                    break;
                 default:
                     break;
             }
