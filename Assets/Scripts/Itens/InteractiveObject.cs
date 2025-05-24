@@ -11,7 +11,10 @@ public class InteractiveObject : MonoBehaviour
     int language;
 
     [Header("Porta Principal")]
-    GameObject[] cadeado = new GameObject[3];
+    [SerializeField] private GameObject[] cadeado = new GameObject[3];
+    AudioSource audioSource;
+
+    Animator animFinal;
 
     [Header("Geladeira")]
     [SerializeField] GameObject passwordPainel;
@@ -76,44 +79,50 @@ public class InteractiveObject : MonoBehaviour
 
             else if (itemNecessario == TipoDeItem.ChaveVermelha) /////////////////////////////////////////// CHAVE VERMELHA
             {
+                audioSource = GetComponent<AudioSource>();
+                audioSource.Play();
+
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[0] = true;
 
                 if (progressionGame[0] && progressionGame[1] && progressionGame[2])
                 {
-                    GameObject portaEntrada = GameObject.Find("PortaEntrada");
-                    BoxCollider collider = portaEntrada.GetComponentInChildren<BoxCollider>();
-                    collider.enabled = true;
-                    doorMoviment.TryActiveDoor();
+                  //  GoToWin();
                 }
+
+                StartCoroutine(ToDisableDelayed(1, 0.5f));
             }
 
             else if (itemNecessario == TipoDeItem.ChaveAmarela) /////////////////////////////////////////// CHAVE AMARELA
             {
+                audioSource = GetComponent<AudioSource>();
+                audioSource.Play();
+
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[1] = true;
 
                 if (progressionGame[0] && progressionGame[1] && progressionGame[2])
                 {
-                    GameObject portaEntrada = GameObject.Find("PortaEntrada");
-                    BoxCollider collider = portaEntrada.GetComponentInChildren<BoxCollider>();
-                    collider.enabled = true;
-                    doorMoviment.TryActiveDoor();
+                    //GoToWin();
                 }
+
+                StartCoroutine(ToDisableDelayed(0, 0.5f));
             }
 
             else if (itemNecessario == TipoDeItem.ChaveVerde) /////////////////////////////////////////// CHAVE VERDE
             {
+                audioSource = GetComponent<AudioSource>();
+                audioSource.Play();
+
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[2] = true;
 
                 if (progressionGame[0] && progressionGame[1] && progressionGame[2])
                 {
-                    GameObject portaEntrada = GameObject.Find("PortaEntrada");
-                    BoxCollider collider = portaEntrada.GetComponentInChildren<BoxCollider>();
-                    collider.enabled = true;
-                    doorMoviment.TryActiveDoor();
+                   // GoToWin();
                 }
+
+                StartCoroutine(ToDisableDelayed(2, 0.5f));
             }
 
             else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
@@ -189,11 +198,29 @@ public class InteractiveObject : MonoBehaviour
             }
             else
             {
-                StartCoroutine(TimerForShowInformation("You need a: " + itemNecessario.ParaNomeLegivel() + "to interact with this object"));
+                StartCoroutine(TimerForShowInformation("You need a: " + itemNecessario.ParaNomeLegivel() + " to interact with this object"));
             }
         }
     }
 
+   /* void GoToWin()
+    {
+        GameObject portaEntrada = GameObject.FindWithTag("PortaEntrada");
+                    
+        BoxCollider collider = portaEntrada.GetComponent<BoxCollider>();
+        FinalController finalController = portaEntrada.GetComponent<FinalController>();
+
+        collider.enabled = true;
+        finalController.enabled = true;
+
+        finalController.DesableCams();
+    }*/
+
+    IEnumerator ToDisableDelayed(int index, float delay)
+{
+    yield return new WaitForSeconds(delay);
+    cadeado[index].SetActive(false);
+}
     public void SetParentReference(ParentObjectReference parent)
     {
         this.parent = parent;
