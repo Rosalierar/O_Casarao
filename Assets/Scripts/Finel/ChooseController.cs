@@ -99,7 +99,7 @@ public class ChooseController : MonoBehaviour
     string[] fourthTextEn = new string[2]
     {
      ///0
-        "And now I'm here, with my eatery in town, there aren't many around here, so a lot of people end up buying from me, " +
+        "And now I'm here, with my eatery in town. There aren't many around here, so a lot of people end up buying from me, " +
         "I have a stable life now, with my own little house. I'm very proud of what I do, and my mother is proud of me too.",
 
      ///1
@@ -159,7 +159,28 @@ public class ChooseController : MonoBehaviour
         foreach (string line in texts)
         {
             dialogueText.text = line;
-            yield return new WaitForSeconds(25f);
+            //yield return new WaitForSeconds(25f);
+
+            float timer = 0f;
+            bool avancar = false;
+
+            // Espera até o jogador tocar/clicar ou passar o tempo limite
+            while (!avancar)
+            {
+                timer += Time.deltaTime;
+
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    avancar = true;
+                }
+
+                if (timer >= 30f)
+                {
+                    avancar = true;
+                }
+
+                yield return null;
+            }
         }
 
         // (Opcional) Limpar o texto no final
