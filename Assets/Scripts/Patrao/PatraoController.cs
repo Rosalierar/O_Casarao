@@ -92,6 +92,11 @@ public class PatraoController : MonoBehaviour
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
 
+    public NavMeshAgent Agent()
+    {
+        return agent;
+    }
+
     // Update is called once per frame
     void Update()
     {

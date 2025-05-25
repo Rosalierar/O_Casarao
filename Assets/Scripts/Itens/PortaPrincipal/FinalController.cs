@@ -1,9 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class FinalController : MonoBehaviour
 {
+    [SerializeField] GameObject player;
+    Animator animCam;
     Camera camMain;
     bool isOpenDoor = false;
     [SerializeField] DoorMoviment doorMovimentSecond;
@@ -16,21 +19,39 @@ public class FinalController : MonoBehaviour
         camMain = GameObject.FindWithTag("Cam").GetComponent<Camera>();
         camMain.enabled = false;
 
+        animCam = camMain.GetComponent<Animator>();
+        animCam.enabled = false;
+
         //this.enabled = false;
     }
 
     void Update()
     {
-        if (!cadeado[0].activeSelf && !cadeado[1].activeSelf && !cadeado[2].activeSelf && !isOpenDoor)
+        try
         {
-            isOpenDoor = true;
-
-            DesableCams();
-
-            for (int i = 0; i < cadeado.Length; i++)
+            if (!cadeado[0].activeSelf && !cadeado[1].activeSelf && !cadeado[2].activeSelf && !isOpenDoor)
             {
-                Destroy(cadeado[i]);
+                isOpenDoor = true;
+
+                DesableCams();
+
+                for (int i = 0; i < cadeado.Length; i++)
+                {
+                    Destroy(cadeado[i]);
+                }
             }
+        }
+        catch
+        {
+            print("Todos os Cadeados ja foram Destruidos");
+        }
+
+        Animator anim = camMain.GetComponent<Animator>();
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("SeeAround") && stateInfo.normalizedTime >= 1f)
+        {
+            SceneManager.LoadScene(6);
         }
     }
 
@@ -66,10 +87,17 @@ public class FinalController : MonoBehaviour
         doorMoviment.TryActiveDoor();
         doorMovimentSecond.enabled = true;
         doorMovimentSecond.TryActiveDoor();
+
+        NavMeshAgent agentEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<PatraoController>().Agent();
+        agentEnemy.isStopped = true;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        
+        if (animCam == null)
+            print("animCam é null");
+
+        animCam.enabled = true;
+        player.SetActive(false);
     }
 }

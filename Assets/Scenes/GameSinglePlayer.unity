@@ -3532,7 +3532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorTransform: {fileID: 270731436}
-  posForOpenDoor: 1
+  posForOpenDoor: 0
   openAngle: -90
   openSpeed: 2
   isOpen: 0
@@ -6658,7 +6658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Language
+  m_text: Idioma
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8586,6 +8586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5990e3988e4d6294da6aa240b4a75763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1796458766}
   doorMovimentSecond: {fileID: 1411177817}
   doorMoviment: {fileID: 270731437}
   conclusion: 000000
@@ -19932,6 +19933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1192786831}
   - component: {fileID: 1192786830}
+  - component: {fileID: 1192786832}
   m_Layer: 0
   m_Name: FinalCam
   m_TagString: Cam
@@ -19998,13 +20000,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192786828}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.588644, y: 8.483787, z: -3.107463}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -19.41, y: 8.9155, z: -3.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!95 &1192786832
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192786828}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9bcfc84334dfb5943acfa2053e1ad75e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1203893308
 GameObject:
   m_ObjectHideFlags: 0
@@ -33158,6 +33181,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1192786831}
   - {fileID: 705507995}
   - {fileID: 299875247}
   - {fileID: 159230342}
@@ -33170,4 +33194,3 @@ SceneRoots:
   - {fileID: 1189613403}
   - {fileID: 1761719914}
   - {fileID: 1096074083}
-  - {fileID: 1192786831}
