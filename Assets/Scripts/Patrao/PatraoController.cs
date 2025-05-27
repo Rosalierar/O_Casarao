@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class PatraoController : MonoBehaviour
 {
+    Animator animPatrao;
     NavMeshAgent agent; // Referência ao agente NavMesh
 
     /// <summary>
@@ -88,6 +89,7 @@ public class PatraoController : MonoBehaviour
 
     void Start()
     {
+        animPatrao = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>(); // Obtém o componente NavMeshAgent do objeto
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
@@ -105,6 +107,9 @@ public class PatraoController : MonoBehaviour
 
         if (FindObjectOfType<ControllerPlayer>().blackPainel.activeSelf)
         {
+            animPatrao.SetBool("isWalking", false);
+            animPatrao.SetBool("isRunning", false);
+
             agent.isStopped = true; // Para o agente NavMesh
             isPatrol = false; // Define que o patrão não está patrulhando
         }
@@ -127,6 +132,9 @@ public class PatraoController : MonoBehaviour
     #region RayCast
     public void ContinueGame()
     {
+        animPatrao.SetBool("isWalking", false);
+        animPatrao.SetBool("isRunning", false);
+
         agent.isStopped = true;
 
         print("Continue Game foi chamado" + agent.isStopped);
@@ -152,6 +160,9 @@ public class PatraoController : MonoBehaviour
             if (patraoHit.collider.CompareTag("Player"))
             { // Verifica se o raio atingiu algo
                 playerTransform = patraoHit.transform; // Atribui o objeto atingido à variável playerTransform
+
+                animPatrao.SetBool("isRunning", true);
+                animPatrao.SetBool("isWalking", false);
 
                 agent.speed = 2.5f; // Define a velocidade do agente NavMesh
                 isPatrol = false; // Define que o patrão não está patrulhando
@@ -233,6 +244,9 @@ public class PatraoController : MonoBehaviour
 
         yield return new WaitForSeconds(timerToStopPersecution); // Aguarda 2 segundos antes de parar a perseguição
 
+        animPatrao.SetBool("isWalking", false);
+        animPatrao.SetBool("isRunning", false);
+        
         agent.isStopped = true; // Para o agente NavMesh
         isPatrol = true; // Define que o patrão está patrulhando
         
@@ -249,6 +263,10 @@ public class PatraoController : MonoBehaviour
         yield return new WaitForSeconds(2f); // Aguarda 2 segundos antes de iniciar a patrulha
 
         agent.transform.LookAt(patrolPoints[currentPatrolIndex]); // Faz o patrão olhar para o ponto de patrulha atual
+
+        animPatrao.SetBool("isWalking", true);
+        animPatrao.SetBool("isRunning", false);
+
         isWalking = true; // Define que o patrão está andando
         agent.isStopped = false; // Volta a ativa o agente NavMesh
         agent.speed = 1.5f; // Define a velocidade do agente NavMesh
@@ -302,6 +320,10 @@ public class PatraoController : MonoBehaviour
         if (isPatrol && !isRotate && isWalking) // Verifica se o patrão está patrulhando
         {
             print("Parou Para Olhar para os lADOS");
+
+            animPatrao.SetBool("isWalking", false);
+            animPatrao.SetBool("isRunning", false);
+
             agent.isStopped = true; // Para o agente NavMesh
             isWalking = false; // Define que o patrão não está andando
 
@@ -368,6 +390,8 @@ public class PatraoController : MonoBehaviour
             yield return null;
         }
 
+        animPatrao.SetBool("isWalking", true);
+        animPatrao.SetBool("isRunning", false);
 
         agent.isStopped = false; // Volta a ativa o agente NavMesh
         isRotate = false;
@@ -376,5 +400,6 @@ public class PatraoController : MonoBehaviour
     }
 
     #endregion Rotacao da Patrulha
+
 }
 

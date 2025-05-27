@@ -71,14 +71,17 @@ public class MovePlayer : MonoBehaviour
        
         if (dir != Vector3.zero)
         {
+            anim.SetBool("isWalking", true);
             dir = transform.TransformDirection(dir); 
             rb.velocity = new Vector3(dir.x * velocity * Time.deltaTime, rb.velocity.y, dir.z * velocity * Time.deltaTime);
             //transform.LookAt(transform.position + dir);
+            anim.SetFloat("Blend", 1);
         }
         else
         {
             // Se não houver movimento, mantém a velocidade vertical
-             rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            anim.SetBool("isWalking", false);
         }
     }
 
@@ -91,7 +94,7 @@ public class MovePlayer : MonoBehaviour
             playerCollider.radius = 0.45f; //muda o raio do capsule collider para o tamanho do jogador agachado
             playerCollider.center = new Vector3(0, 0.695f, 0); //muda o centro do capsule collider para o meio do jogador
  
-            View.localPosition = new Vector3(0, 0.904f, 0.421f); //muda a posição da câmera para o meio do jogador
+            View.localPosition = new Vector3(0, 0.957f, 0.594f); //muda a posição da câmera para o meio do jogador
 
             velocity = crounchVelocity;
             
@@ -106,7 +109,7 @@ public class MovePlayer : MonoBehaviour
             playerCollider.radius = 0.2f; //muda o raio do capsule collider para o tamanho do jogador agachado
             playerCollider.center = new Vector3(0, 1f, 0f);
 
-            View.localPosition = new Vector3(0, 1.6255f, 0.2075f);
+            View.localPosition = new Vector3(0, 1.431f, 0.35f);
 
             velocity = originalSpeed;
 

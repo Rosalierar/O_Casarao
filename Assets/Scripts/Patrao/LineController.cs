@@ -77,4 +77,27 @@ public class LineController : MonoBehaviour
             text4AllPlayerSee.text = "";
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (!isPatrão)
+        {
+            if (other.CompareTag("Player"))
+            {
+                // Posição do outro objeto no sistema local deste objeto
+                Vector3 localPos = transform.InverseTransformPoint(other.transform.position);
+
+                // Se saiu pela frente (Z positivo local)
+                if (localPos.z > 0f)
+                {
+                    Debug.Log("enrtou pela frente (Z+)");
+                }
+                else
+                {
+                    Invoke("RandomLine", 5);
+                    Debug.Log("enrtou por trás (Z-)");
+                }
+            }
+        }
+    }
 }
