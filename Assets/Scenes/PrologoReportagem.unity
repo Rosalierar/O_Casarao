@@ -205,78 +205,6 @@ Transform:
   - {fileID: 1118498160}
   m_Father: {fileID: 644202887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &85605306
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 85605308}
-  - component: {fileID: 85605307}
-  m_Layer: 0
-  m_Name: CameraTV
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &85605307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85605306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ExcludedPropertiesInInspector:
-  - m_Script
-  m_LockStageInInspector: 
-  m_StreamingVersion: 20170927
-  m_Priority: 10
-  m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
-  m_Lens:
-    FieldOfView: 60.000004
-    OrthographicSize: 5
-    NearClipPlane: 0.04
-    FarClipPlane: 1000
-    Dutch: 0
-    ModeOverride: 0
-    LensShift: {x: 0, y: 0}
-    GateFit: 2
-    FocusDistance: 10
-    m_SensorSize: {x: 1, y: 1}
-  m_Transitions:
-    m_BlendHint: 0
-    m_InheritPosition: 0
-    m_OnCameraLive:
-      m_PersistentCalls:
-        m_Calls: []
-  m_LegacyBlendHint: 0
-  m_ComponentOwner: {fileID: 149476508}
---- !u!4 &85605308
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85605306}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -10.900001, y: 9.289999, z: -7.08}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 149476508}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &94580075
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,101 +310,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94580075}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &149476507
-GameObject:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 149476508}
-  - component: {fileID: 149476511}
-  - component: {fileID: 149476510}
-  - component: {fileID: 149476509}
-  m_Layer: 0
-  m_Name: cm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &149476508
-Transform:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149476507}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 85605308}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &149476509
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149476507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -10}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
-  m_AngularDampingMode: 0
-  m_PitchDamping: 0
-  m_YawDamping: 0
-  m_RollDamping: 0
-  m_AngularDamping: 0
---- !u!114 &149476510
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149476507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
-  m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
-  m_ScreenX: 0.5
-  m_ScreenY: 0.5
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
-  m_BiasX: 0
-  m_BiasY: 0
-  m_CenterOnActivate: 1
---- !u!114 &149476511
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149476507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &155815350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,22 +1645,13 @@ GameObject:
   m_Component:
   - component: {fileID: 470058606}
   - component: {fileID: 470058605}
-  - component: {fileID: 470058604}
   m_Layer: 0
   m_Name: PatraoCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!81 &470058604
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470058603}
-  m_Enabled: 1
+  m_IsActive: 1
 --- !u!20 &470058605
 Camera:
   m_ObjectHideFlags: 0
@@ -2114,7 +1938,6 @@ GameObject:
   m_Component:
   - component: {fileID: 507642957}
   - component: {fileID: 507642956}
-  - component: {fileID: 507642955}
   - component: {fileID: 507642958}
   m_Layer: 0
   m_Name: ForSeeTvCam
@@ -2122,15 +1945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!81 &507642955
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507642954}
-  m_Enabled: 1
+  m_IsActive: 1
 --- !u!20 &507642956
 Camera:
   m_ObjectHideFlags: 0
@@ -2190,13 +2005,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507642954}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.102592, y: 2.219251, z: -2.43354}
+  m_LocalRotation: {x: 0.4772593, y: 0.5217505, z: -0.4772593, w: 0.5217505}
+  m_LocalPosition: {x: -1.81, y: 2.05, z: -2.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 839652593}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 75.09, y: 90, z: 0}
 --- !u!95 &507642958
 Animator:
   serializedVersion: 5
@@ -3515,171 +3330,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721810871}
   m_CullTransparentMesh: 1
---- !u!1 &748317229
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 748317230}
-  - component: {fileID: 748317237}
-  - component: {fileID: 748317236}
-  - component: {fileID: 748317235}
-  - component: {fileID: 748317234}
-  - component: {fileID: 748317233}
-  - component: {fileID: 748317232}
-  - component: {fileID: 748317231}
-  m_Layer: 0
-  m_Name: Vision
-  m_TagString: Itens
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &748317230
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748317229}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6255, z: 0.2075}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1416258917}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &748317231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748317229}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1518dda95be66e7469e0ebe0bdafd0a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useBtn: {fileID: 0}
---- !u!114 &748317232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748317229}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37caa5a476dfaa545a646c0e6baf1e32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropBtn: {fileID: 0}
-  dropPressed: 0
-  isDroping: 0
---- !u!114 &748317233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748317229}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a224be742d71c7647a65fee4db696fbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interectBtn: {fileID: 0}
-  holdPressed: 0
-  isHolding: 0
---- !u!114 &748317234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748317229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 440a99eab28ef8e42a5be69b274d085a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionObjects: {fileID: 0}
-  dropTheObject: {fileID: 0}
-  grabTheObject: {fileID: 0}
-  useTheObject: {fileID: 0}
-  inventory: {fileID: 0}
---- !u!114 &748317235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748317229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6342a9ce5b0e44d44a217c42c06e5c46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  spriteItem:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  imagePainelItem: {fileID: 0}
-  localDeDrop: {fileID: 1528618013}
-  itemCarregado: {fileID: 0}
-  itens: []
---- !u!114 &748317236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748317229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b60a3a646107b8242a6430750d6d318f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  item: {fileID: 0}
-  interactiveObject: {fileID: 0}
-  rayObjOrigin: {fileID: 748317230}
-  layerObject:
-    serializedVersion: 2
-    m_Bits: 17536
-  distanceRay: 1
-  isCollidingItem: 0
-  isCollidingInteractiveObj: 0
---- !u!114 &748317237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748317229}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60c8a44dc7f2514c90964ae9f7f65e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 0}
-  rb: {fileID: 1416258919}
-  cameraSensitivity: 10
-  moveSpeed: 0
-  moveInputDeadZone: 0
-  lookDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &759196512
 GameObject:
   m_ObjectHideFlags: 0
@@ -7980,15 +7630,7 @@ PrefabInstance:
     - {fileID: 8622548115676267771, guid: a578014b51d8d544ea5a622c47d5f83a, type: 3}
     - {fileID: 6409409211516016568, guid: a578014b51d8d544ea5a622c47d5f83a, type: 3}
     - {fileID: 6507346442333638635, guid: a578014b51d8d544ea5a622c47d5f83a, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61470e15dcad9c4468aed38cf97b7b70,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 748317230}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61470e15dcad9c4468aed38cf97b7b70,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1528618013}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
         type: 3}
@@ -8002,18 +7644,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1416258919}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1416258922}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1416258921}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1416258920}
   m_SourcePrefab: {fileID: 100100000, guid: 61470e15dcad9c4468aed38cf97b7b70, type: 3}
 --- !u!4 &1416258917 stripped
 Transform:
@@ -8054,80 +7684,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1416258920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416258918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bc0ec607e1b56418fe2c81d3d6367d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {x: 0, y: 0, z: 0}
-  blackPainel: {fileID: 0}
-  tmpSpeaks: {fileID: 0}
-  crunchBtn: {fileID: 0}
-  interectBtn: {fileID: 0}
-  moveJoy: {fileID: 0}
-  textLostLifePt:
-  - "Eu n\xE3o sou o problema aqui. Isso vai al\xE9m de mim... Eu preciso sair daqui
-    antes que me apaguem por completo."
-  - "Por que tudo sempre recai sobre mim? N\xE3o importa o quanto eu me esforce,
-    eu sou sempre a suspeita."
-  - "Talvez... se eu fizer tudo certo, ele pare de me tratar assim. Eu s\xF3 preciso
-    provar que sou confi\xE1vel."
-  textLostLifeEn:
-  - Maybe... if I do everything right, he'll stop treating me like this. I just need
-    to prove that I can be trusted.
-  - Why does everything always fall on me? No matter how hard I try, I'm always the
-    suspect.
-  - I'm not the problem here. This is beyond me... I need to get out of here before
-    they erase me completely.
-  textPtLost: 
-  textEnLost: 
-  textPtWin: "No fim, aquela reportagem p\xF4de me libertar dessa casa e do meu pensamento,
-    fico feliz. Eu mere\xE7o algo melhor, o que aqui n\xE3o tem."
-  textEnWin: In the end, that report was able to free me from this house and my thoughts,
-    I'm glad. I deserve something better, which is not here.
---- !u!114 &1416258921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416258918}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea66b38e4cf7b0e4f9d3bc8d51f5fe37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  maxStepHight: 0.4
---- !u!114 &1416258922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416258918}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fffdf6f88f6acf545938ffff11ba670a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  View: {fileID: 748317230}
-  rb: {fileID: 0}
-  anim: {fileID: 0}
-  velocity: 120
-  moveH: 0
-  moveV: 0
-  originalSpeed: 120
-  crounchVelocity: 50
 --- !u!136 &1416258923
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8813,7 +8369,6 @@ GameObject:
   - component: {fileID: 1482928953}
   - component: {fileID: 1482928957}
   - component: {fileID: 1482928956}
-  - component: {fileID: 1482928954}
   - component: {fileID: 1482928958}
   m_Layer: 0
   m_Name: PlayerCam
@@ -8821,7 +8376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1482928953
 Transform:
   m_ObjectHideFlags: 0
@@ -8831,72 +8386,12 @@ Transform:
   m_GameObject: {fileID: 1482928952}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.9137077, y: 2.2138147, z: -2.3175678}
+  m_LocalPosition: {x: -2.19, y: 2.2138147, z: -2.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 839652593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1482928954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482928952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1482928953}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!81 &1482928956
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9216,37 +8711,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527758252}
   m_CullTransparentMesh: 1
---- !u!1 &1528618012
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1528618013}
-  m_Layer: 0
-  m_Name: LocalDrop
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1528618013
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528618012}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.289, z: 0.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1416258917}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1599157275
 GameObject:
   m_ObjectHideFlags: 0
@@ -9772,107 +9236,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656876103}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1700956826
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1700956827}
-  - component: {fileID: 1700956828}
-  m_Layer: 0
-  m_Name: TVController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1700956827
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700956826}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.76, y: 7.73, z: -5.96}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1700956828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700956826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 861d3d9235d5ea64a81886f6e904f5c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialoguePtTV:
-  - "Regi\xE3o sofre aumento na taxa de agress\xE3o contra trabalhadores dom\xE9sticos
-    que est\xE3o sofrendo agress\xF5es continuamente na regi\xE3o, entenda o caso."
-  - "Pesquisas mostram que a taxa de viol\xEAncia verbal e n\xE3o verbal aumentaram
-    cerca de 70%, para os trabalhadores dom\xE9sticos, sendo 98% dos casos tendo
-    como v\xEDtimas pessoas negras."
-  - "Ocorreram entrevistas com as pessoas que sofreram essas agress\xF5es e em sua
-    maioria foram violentadas pelos pr\xF3prios patr\xF5es."
-  - "A defesa desses donos da propriedade foram alegados que esses empregados estavam
-    roubando da sua casa. A pol\xEDcia investiga essas situa\xE7\xF5es."
-  - "J\xE1 as v\xEDtimas alegam n\xE3o ter cometido esses crimes, mas sim, que seus
-    chefes t\xEAm preconceito com sua cor, e antes das agress\xF5es f\xEDsicas foram
-    informadas que haviam agress\xF5es verbais para os mesmos."
-  dialogueEnTV:
-  - Region suffers an increase in the rate of aggression against domestic workers
-    who are continuously suffering aggression in the region, understand the case.
-  - Research shows that the rate of verbal and non-verbal violence has increased
-    by around 70%, for domestic workers, with 98% of the cases having black people
-    as victims.
-  - Interviews with the people who suffered these aggressions took place and most
-    of them were raped by their own bosses.
-  - The defense of these property owners was alleged that these employees were stealing
-    from their home. The police are investigating these situations.
-  - The victims, on the other hand, claim that they didn't commit these crimes, but
-    that their bosses are prejudiced against their color, and before the physical
-    attacks, they were informed that there were verbal attacks against them.
-  dialoguePtCharacter:
-  - "Isso significa que o que eu tenho\u2026 o que eu vivo\u2026 n\xE3o \xE9 \u201Cnormal\u201D?\u2026"
-  - "Meu Patr\xE3o n\xE3o me trata t\xE3o bem quanto os outros, eu achava que s\xF3
-    era o jeito dele."
-  - "mas\u2026 sempre que desaparece algo, ele sempre me culpa, s\xF3 que eu trabalho
-    aqui\u2026 eu deveria prestar aten\xE7\xE3o e tomar conta dos bens dele, para
-    que essas coisas n\xE3o aconte\xE7am."
-  - "Ele pensa assim de mim, s\xF3 por causa da minha cor?"
-  - "Minha m\xE3e disse que se um branco se dispusesse a me dar um emprego eu tinha
-    que agradecer\u2026 e meu pr\xF3prio Patr\xE3o, concorda com isso."
-  - "Mas se aquela reportagem for verdade, eu preciso merecer algo melhor do que
-    isso, e se algo de ruim acontecer por aqui\u2026 comigo?"
-  - "A forma que ele fala comigo, n\xE3o \xE9 agressiva, mas eu sinto que \xE9 diferente."
-  - "Eu\u2026 eu conseguiria um outro trabalho?"
-  - "Tenho que tentar, n\xE3o posso deixar que meu Patr\xE3o descubra, n\xE3o sei
-    se ele aceitaria tranquilamente, preciso encontrar um jeito."
-  dialogueEnCharacter:
-  - "Does that mean that what I have... what I live... isn't \u201Cnormal\u201D?..."
-  - My boss doesn't treat me as well as the others, I thought it was just his way.
-  - 'But... whenever something goes missing, he always blames me, but I work here...
-    I should pay attention and take care of his property, so that these things don''t
-    happen. '
-  - Does he think that about me, just because of my color?
-  - My mother said that if a white man was willing to give me a job, I'd have to
-    say thank you... and my own boss agrees with that.
-  - 'But if that report is true, I need to deserve better than that, what if something
-    bad happens here... to me? '
-  - The way he talks to me isn't aggressive, but I feel it's different.
-  - Could I get another job?
-  - I have to try, I can't let my boss find out, I don't know if he'd accept it quietly,
-    I have to find a way.
 --- !u!1 &1725869417
 GameObject:
   m_ObjectHideFlags: 0
@@ -10440,7 +9803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderSensibility: {fileID: 0}
-  painelOptions: {fileID: 1849323835}
+  painelOptions: {fileID: 0}
   tmpConfig: []
   cameraTouchController: {fileID: 0}
 --- !u!1 &1826853971
@@ -10653,8 +10016,10 @@ GameObject:
   - component: {fileID: 1846256211}
   - component: {fileID: 1846256213}
   - component: {fileID: 1846256212}
+  - component: {fileID: 1846256215}
+  - component: {fileID: 1846256214}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TextForCutScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10676,8 +10041,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1140, y: 179}
+  m_AnchoredPosition: {x: -115, y: 0}
+  m_SizeDelta: {x: 1610, y: 179}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1846256212
 MonoBehaviour:
@@ -10727,15 +10092,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -10763,7 +10128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -263.27643, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10777,6 +10142,139 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846256210}
   m_CullTransparentMesh: 1
+--- !u!114 &1846256214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846256210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: c07de0f326ab4b34eb5420fa4cd4f622, type: 2}
+    - {fileID: 11400000, guid: 2d67996b1d9cbe941a7173f627c54471, type: 2}
+    - {fileID: 11400000, guid: 042e0da59ba0f4543bb4a84598486e51, type: 2}
+    - {fileID: 11400000, guid: 59721171b7a09e849b837501049fa6ad, type: 2}
+    - {fileID: 11400000, guid: b14364c5bc54cc046a87039f2827b13b, type: 2}
+    - {fileID: 11400000, guid: 75da77d0a215fd04dace4f6c59d5ba1a, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1846256215}
+          m_TargetAssemblyTypeName: TextForSignalController, Assembly-CSharp
+          m_MethodName: SeeText
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1846256215}
+          m_TargetAssemblyTypeName: TextForSignalController, Assembly-CSharp
+          m_MethodName: SeeText
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1846256215}
+          m_TargetAssemblyTypeName: TextForSignalController, Assembly-CSharp
+          m_MethodName: SeeText
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1846256215}
+          m_TargetAssemblyTypeName: TextForSignalController, Assembly-CSharp
+          m_MethodName: SeeText
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1846256215}
+          m_TargetAssemblyTypeName: TextForSignalController, Assembly-CSharp
+          m_MethodName: SeeText
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1846256215}
+          m_TargetAssemblyTypeName: TextForSignalController, Assembly-CSharp
+          m_MethodName: SeeText
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+--- !u!114 &1846256215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846256210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c884b615bdda2043a3d8c14f0352ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textForSignal: {fileID: 1846256212}
+  textForSignalStringPt:
+  - Boa Noite! Eu sou Pedro Carvalho, e agora iniciamos o Jornal da Noite.
+  - "Regi\xE3o sofre aumento na taxa de agress\xE3o contra trabalhadores dom\xE9sticos
+    que est\xE3o sofrendo agress\xF5es continuamente na regi\xE3o, entenda o caso."
+  - "Pesquisas mostram que a taxa de viol\xEAncia verbal e n\xE3o verbal aumentaram
+    cerca de 70%, para os trabalhadores dom\xE9sticos, sendo 98% dos casos tendo
+    como v\xEDtimas pessoas negras."
+  - "Ocorreram entrevistas com as pessoas que sofreram essas agress\xF5es e em sua
+    maioria foram violentadas pelos pr\xF3prios patr\xF5es."
+  - "A defesa desses donos da propriedade foram alegados que esses empregados estavam
+    roubando da sua casa. A pol\xEDcia investiga essas situa\xE7\xF5es."
+  - "J\xE1 as v\xEDtimas alegam n\xE3o ter cometido esses crimes, mas sim, que seus
+    chefes t\xEAm preconceito com sua cor, e antes das agress\xF5es f\xEDsicas foram
+    informadas que haviam agress\xF5es verbais para os mesmos."
+  textForSignalStringEn: []
 --- !u!1 &1849323835
 GameObject:
   m_ObjectHideFlags: 0
@@ -11747,12 +11245,14 @@ PlayableDirector:
     value: {fileID: 507642954}
   - key: {fileID: 8609473803865363041, guid: efe0e48ebed1fa94b8dab0fa6c3a5241, type: 2}
     value: {fileID: 470058603}
-  - key: {fileID: 6810671531762768654, guid: efe0e48ebed1fa94b8dab0fa6c3a5241, type: 2}
-    value: {fileID: 1482928958}
   - key: {fileID: 7334584803232861755, guid: efe0e48ebed1fa94b8dab0fa6c3a5241, type: 2}
     value: {fileID: 507642958}
   - key: {fileID: 5554690472587480082, guid: efe0e48ebed1fa94b8dab0fa6c3a5241, type: 2}
-    value: {fileID: 1846256210}
+    value: {fileID: 2112013781}
+  - key: {fileID: 5095740713919688965, guid: efe0e48ebed1fa94b8dab0fa6c3a5241, type: 2}
+    value: {fileID: 1482928958}
+  - key: {fileID: -6141200992038824322, guid: efe0e48ebed1fa94b8dab0fa6c3a5241, type: 2}
+    value: {fileID: 1846256214}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &2074328456
@@ -11860,99 +11360,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074328456}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2074405762
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2074405765}
-  - component: {fileID: 2074405764}
-  - component: {fileID: 2074405763}
-  m_Layer: 0
-  m_Name: Terrain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!154 &2074405763
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074405762}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 8e64936e4ed553f40bc8f4af53af3f24, type: 2}
-  m_EnableTreeColliders: 1
---- !u!218 &2074405764
-Terrain:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074405762}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 8e64936e4ed553f40bc8f4af53af3f24, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
-  m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
-  m_HeightmapMinimumLODSimplification: 0
-  m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
-  m_DrawHeightmap: 1
-  m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
-  m_StaticShadowCaster: 0
-  m_IgnoreQualitySettings: 0
-  m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
-  m_BakeLightProbesForTrees: 1
-  m_PreserveTreePrototypeLayers: 0
-  m_DeringLightProbesForTrees: 1
-  m_ReceiveGI: 1
-  m_ScaleInLightmap: 0.0256
-  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
-  m_GroupingID: 0
-  m_RenderingLayerMask: 1
-  m_AllowAutoConnect: 1
-  m_EnableHeightmapRayTracing: 1
-  m_EnableTreesAndDetailsRayTracing: 0
-  m_TreeMotionVectorModeOverride: 3
---- !u!4 &2074405765
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074405762}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.37, y: 0, z: -8.48}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2076152110
 GameObject:
   m_ObjectHideFlags: 0
@@ -12013,7 +11420,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7d053aa8be246984f938bbda3a96e95d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12180,7 +11587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2112013782
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12198,8 +11605,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 122.20001}
-  m_SizeDelta: {x: 1180, y: 183.4}
+  m_AnchoredPosition: {x: 0, y: 190}
+  m_SizeDelta: {x: 1900, y: 218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112013783
 MonoBehaviour:
@@ -12214,7 +11621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.9411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12247,8 +11654,5 @@ SceneRoots:
   - {fileID: 644202887}
   - {fileID: 1019914893}
   - {fileID: 2076152114}
-  - {fileID: 85605308}
-  - {fileID: 1700956827}
-  - {fileID: 2074405765}
   - {fileID: 2064842791}
   - {fileID: 839652593}
