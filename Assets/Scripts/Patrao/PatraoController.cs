@@ -164,7 +164,7 @@ public class PatraoController : MonoBehaviour
                 animPatrao.SetBool("isRunning", true);
                 animPatrao.SetBool("isWalking", false);
 
-                agent.speed = 2.5f; // Define a velocidade do agente NavMesh
+                agent.speed = 2f; // Define a velocidade do agente NavMesh
                 isPatrol = false; // Define que o patrão não está patrulhando
                 isRotate = false; // Define que o patrão não está rotacionando
                 seePlayer = true; // Define que o patrão viu o jogador

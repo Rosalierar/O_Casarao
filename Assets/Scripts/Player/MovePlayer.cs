@@ -5,7 +5,6 @@ using System;
 
 public class MovePlayer : MonoBehaviour
 {
-    
     public static event Action OnLifeLost;
     //GameObjects do player
     ControllerPlayer controllerPlayer; //Referencia do controller do jogador
