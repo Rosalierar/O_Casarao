@@ -160,7 +160,7 @@ public class MovePlayer : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Hide"); //define a layer do jogador como "Hide"
         }
 
-        if (collision.CompareTag("Enemy")) //verifica se o objeto colidido tem a tag "Enemy"
+        if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
         {
             FindAnyObjectByType<PatraoController>().ContinueGame();
             
