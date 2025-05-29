@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MovePlayer : MonoBehaviour
 {
+    
+    public static event Action OnLifeLost;
     //GameObjects do player
     ControllerPlayer controllerPlayer; //Referencia do controller do jogador
     //public MyButton crunchBtn; //Botão de agachar
@@ -138,6 +141,10 @@ public class MovePlayer : MonoBehaviour
     {
         controllerPlayer.blackPainel.SetActive(true); //ativa o painel preto
         controllerPlayer.PlayerHealth -= 1; //diminui a vida do jogador
+
+        // Disparar o evento para as janelas ligarem a grade
+        OnLifeLost?.Invoke();
+
         print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
         transform.localPosition = controllerPlayer.spawnPoint;
 
