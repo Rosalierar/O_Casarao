@@ -6,18 +6,24 @@ using TMPro;
 
 public class OptionsController : MonoBehaviour
 {
+    [SerializeField] private GameObject tutorial;
+
     [SerializeField] private Slider sliderSensibility;
 
     [SerializeField] private GameObject painelOptions;
 
     public TextMeshProUGUI[] tmpConfig;
-    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Volume" };
-    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Volume" };
+    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial" };
+    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial" };
 
     [SerializeField] private CameraTouchController cameraTouchController;
 
     bool isOptionsOpen = false;
 
+    void Start()
+    {
+        Time.timeScale = 0f;
+    }
     public void ChangeSensibility()
     {
         cameraTouchController.cameraSensitivity = sliderSensibility.value;
@@ -36,18 +42,18 @@ public class OptionsController : MonoBehaviour
             isOptionsOpen = true;
         }
     }
-    
+
     public void ChangeLanguage(int language)
     {
         switch (language)
         {
             case 0:
                 Debug.Log("Language: Portuguese");
-                PlayerPrefs.SetInt("Language", 0);  
-            
+                PlayerPrefs.SetInt("Language", 0);
+
                 for (int i = 0; i < tmpConfig.Length; i++)
                 {
-                        tmpConfig[i].text = textPtConfig[i];
+                    tmpConfig[i].text = textPtConfig[i];
                 }
                 break;
             case 1:
@@ -56,20 +62,32 @@ public class OptionsController : MonoBehaviour
 
                 for (int i = 0; i < tmpConfig.Length; i++)
                 {
-                        tmpConfig[i].text = textEnConfig[i];
+                    tmpConfig[i].text = textEnConfig[i];
                 }
 
                 break;
             default:
                 Debug.Log("Language: Portuguese");
-                
+
                 PlayerPrefs.SetInt("Language", 0);
 
                 for (int i = 0; i < tmpConfig.Length; i++)
                 {
-                        tmpConfig[i].text = textPtConfig[i];
+                    tmpConfig[i].text = textPtConfig[i];
                 }
                 break;
         }
+    }
+
+    public void OpenTutorial()
+    {
+        Time.timeScale = 0f;
+        tutorial.SetActive(true);
+    }
+
+    public void CloseTutorial()
+    {
+        Time.timeScale = 1f;
+        tutorial.SetActive(false);
     }
 }
