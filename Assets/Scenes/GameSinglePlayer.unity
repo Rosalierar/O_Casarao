@@ -15824,6 +15824,76 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.74
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.13
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.51
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_Name
+      value: Inimigo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -8113662451844533969, guid: a578014b51d8d544ea5a622c47d5f83a,
         type: 3}
       propertyPath: m_RootBone
@@ -16439,76 +16509,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a3144b4a7ec8954448fb0d3b40984956, type: 2}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.74
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.13
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.51
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_Name
-      value: Inimigo
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5322205586786856616, guid: a578014b51d8d544ea5a622c47d5f83a, type: 3}
@@ -29868,9 +29868,7 @@ SceneRoots:
   - {fileID: 796943662}
   - {fileID: 2096444275}
   - {fileID: 313266506}
-  - {fileID: 1943491176}
   - {fileID: 1141594770}
-  - {fileID: 1189613403}
   - {fileID: 1761719914}
   - {fileID: 1096074083}
   - {fileID: 776363004}
@@ -29878,3 +29876,5 @@ SceneRoots:
   - {fileID: 288261775}
   - {fileID: 1495146185}
   - {fileID: 1222875183}
+  - {fileID: 1189613403}
+  - {fileID: 1943491176}
