@@ -53,7 +53,7 @@ public class InteractiveObject : MonoBehaviour
                 Debug.Log("Porta Aberta!");
             }
 
-            else if (itemNecessario == TipoDeItem.PeDeCabra) /////////////////////////////////////////// PE DE CABRA
+            if (itemNecessario == TipoDeItem.Alicate)
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
 
@@ -66,11 +66,34 @@ public class InteractiveObject : MonoBehaviour
                 Debug.Log("Corrente Quebrada!");
             }
 
+            else if (itemNecessario == TipoDeItem.PeDeCabra) /////////////////////////////////////////// PE DE CABRA
+            {
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                doorMoviment.enabled = true;
+                doorMoviment.TryActiveDoor();
+
+                //gameObject.SetActive(false); // Desativa o objeto do mundo
+
+                Debug.Log("Porta Aberta!");
+            }
+            else if (itemNecessario == TipoDeItem.Crucifixo)
+            {
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                doorMoviment.enabled = true;
+                doorMoviment.TryActiveDoor();
+
+                //gameObject.SetActive(false); // Desativa o objeto do mundo
+
+                Debug.Log("Porta Aberta!");
+            }
+
             else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                drawerMoviment.enabled = true;
-                drawerMoviment.TryActiveDrawer();
+                                             //drawerMoviment.enabled = true;
+                                             //drawerMoviment.TryActiveDrawer();
+                doorMoviment.enabled = true;
+                doorMoviment.TryActiveDoor();
 
                 //gameObject.SetActive(false); // Desativa o objeto do mundo
 
@@ -87,7 +110,7 @@ public class InteractiveObject : MonoBehaviour
 
                 if (progressionGame[0] && progressionGame[1] && progressionGame[2])
                 {
-                  //  GoToWin();
+                    //  GoToWin();
                 }
 
                 StartCoroutine(ToDisableDelayed(1, 0.5f));
@@ -119,7 +142,7 @@ public class InteractiveObject : MonoBehaviour
 
                 if (progressionGame[0] && progressionGame[1] && progressionGame[2])
                 {
-                   // GoToWin();
+                    // GoToWin();
                 }
 
                 StartCoroutine(ToDisableDelayed(2, 0.5f));
@@ -170,10 +193,10 @@ public class InteractiveObject : MonoBehaviour
                     doorMoviment.TryActiveDoor();
                     break;
 
-                case TipoDeItem.Crucifixo:
+                /*case TipoDeItem.Crucifixo:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
-                    break;
+                    break;*/
                 case TipoDeItem.Senha:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
