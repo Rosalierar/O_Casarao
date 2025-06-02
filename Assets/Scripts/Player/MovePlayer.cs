@@ -93,8 +93,8 @@ public class MovePlayer : MonoBehaviour
             anim.SetBool("isCrounch", true);
 
             playerCollider.height = 1.39f; //muda a altura do capsule collider para o tamanho do jogador agachado
-            playerCollider.radius = 0.45f; //muda o raio do capsule collider para o tamanho do jogador agachado
-            playerCollider.center = new Vector3(0, 0.695f, 0); //muda o centro do capsule collider para o meio do jogador
+            playerCollider.radius = 0.28f; //muda o raio do capsule collider para o tamanho do jogador agachado
+            playerCollider.center = new Vector3(0.1f, 0.67f, 0.13f); //muda o centro do capsule collider para o meio do jogador
  
             View.localPosition = new Vector3(0, 0.957f, 0.594f); //muda a posição da câmera para o meio do jogador
 

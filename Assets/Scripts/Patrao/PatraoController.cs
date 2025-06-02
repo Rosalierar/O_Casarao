@@ -205,8 +205,9 @@ public class PatraoController : MonoBehaviour
                 if (patraoHit.distance <= 0.8)
                 {
                     DoorMoviment doorMoviment = patraoHit.collider.gameObject.GetComponentInParent<DoorMoviment>();
+                    InteractiveObject interactivedoor = doorMoviment.gameObject.GetComponentInChildren<InteractiveObject>();
 
-                    if (!doorMoviment.isOpen)
+                    if (!doorMoviment.isOpen && interactivedoor.unlocked)
                         doorMoviment.TryActiveDoor();
                 }
             }

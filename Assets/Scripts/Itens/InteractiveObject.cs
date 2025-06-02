@@ -161,8 +161,8 @@ public class InteractiveObject : MonoBehaviour
                     break;
 
                 case TipoDeItem.ChaveQuadrada:
-                    drawerMoviment.enabled = true; // Habilita o script de movimentação da gaveta
-                    drawerMoviment.TryActiveDrawer();
+                    doorMoviment.enabled = true; // Habilita o script de movimentação da gaveta
+                    doorMoviment.TryActiveDoor();
                     break;
 
                 case TipoDeItem.Porta:

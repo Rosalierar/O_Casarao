@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorTransform: {fileID: 0}
+  doorTransform: {fileID: 6439634872839132153}
   posForOpenDoor: 0
   openAngle: -90
   openSpeed: 2
@@ -208,3 +208,9 @@ MonoBehaviour:
   isMoving: 0
   closedRot: {x: 0, y: 0, z: 0, w: 0}
   openRot: {x: 0, y: 0, z: 0, w: 0}
+--- !u!4 &6439634872839132153 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6220df7bd45c7314d9a6e8aaf54153f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6833250023236842514}
+  m_PrefabAsset: {fileID: 0}
