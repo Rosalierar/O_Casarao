@@ -392,7 +392,7 @@ MonoBehaviour:
     m_Start: 145.66666666666666
     m_ClipIn: 1.2166666666666686
     m_Asset: {fileID: -3856548481135593373}
-    m_Duration: 36.94999999999999
+    m_Duration: 44.96666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2575774808708893303}
     m_EaseInDuration: 0
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
   m_Clip: {fileID: 7400000, guid: 6f5eea6285e635d4794c48f24b89183d, type: 2}
-  m_Position: {x: 8.43, y: 1.9009, z: 6.0496}
+  m_Position: {x: 5.3, y: 1.9009, z: 6.0496}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
   m_MatchTargetFields: 63
@@ -1227,13 +1227,13 @@ MonoBehaviour:
     m_Start: 142.65
     m_ClipIn: 0
     m_Asset: {fileID: -6884810596154493606}
-    m_Duration: 39.866666666666674
+    m_Duration: 51.98333333333332
     m_TimeScale: 1
     m_ParentTrack: {fileID: 5095740713919688965}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 3.0166666666666515
-    m_BlendOutDuration: 1.9833333333333485
+    m_BlendOutDuration: 9.047211636540823
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -1293,7 +1293,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: TurnGoToRoom
   - m_Version: 1
-    m_Start: 180.53333333333333
+    m_Start: 185.5861216967925
     m_ClipIn: 0
     m_Asset: {fileID: -1457973354875230714}
     m_Duration: 74.00000000000003
@@ -1301,7 +1301,7 @@ MonoBehaviour:
     m_ParentTrack: {fileID: 5095740713919688965}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 1.9833333333333485
+    m_BlendInDuration: 9.047211636540823
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2

@@ -43,8 +43,8 @@ public class InteractiveObject : MonoBehaviour
             if (itemNecessario == TipoDeItem.ChaveCircular) /////////////////////////////////////////// CHAVE CIRCULAR
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                doorMoviment.enabled = true;
-                doorMoviment.TryActiveDoor();
+                drawerMoviment.enabled = true;
+                drawerMoviment.TryActiveDrawer();
 
                 /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
                 parent.useTheObject.enabled = false; // Desabilita o script de usar
@@ -90,10 +90,10 @@ public class InteractiveObject : MonoBehaviour
             else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                                             //drawerMoviment.enabled = true;
-                                             //drawerMoviment.TryActiveDrawer();
-                doorMoviment.enabled = true;
-                doorMoviment.TryActiveDoor();
+                drawerMoviment.enabled = true;
+                drawerMoviment.TryActiveDrawer();
+                //doorMoviment.enabled = true;
+                //doorMoviment.TryActiveDoor();
 
                 //gameObject.SetActive(false); // Desativa o objeto do mundo
 
@@ -166,7 +166,9 @@ public class InteractiveObject : MonoBehaviour
             parent.useTheObject.enabled = false; // Desabilita o script de usar
             parent.dropTheObject.enabled = false; // Desabilita o script de solt
             parent.grabTheObject.isHolding = false; // Define que o objeto n�o est� mais sendo segurado
-            unlocked = true; // Define que o objeto foi desbloqueado
+
+            if (itemNecessario != TipoDeItem.Desinfetante)
+                unlocked = true; // Define que o objeto foi desbloqueado
         }
         
         else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
@@ -183,10 +185,10 @@ public class InteractiveObject : MonoBehaviour
                     drawerMoviment.TryActiveDrawer();
                     break;
 
-                case TipoDeItem.ChaveQuadrada:
+                /*case TipoDeItem.ChaveQuadrada:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da gaveta
                     doorMoviment.TryActiveDoor();
-                    break;
+                    break;*/
 
                 case TipoDeItem.Porta:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
