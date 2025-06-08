@@ -6964,6 +6964,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: casarao
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6ee781307cea064786add84485a09fc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 945454400225530728, guid: c6ee781307cea064786add84485a09fc,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -26564,7 +26569,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
@@ -28858,13 +28863,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192786828}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -19.41, y: 8.9155, z: -3.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!95 &1192786832
 Animator:
   serializedVersion: 5
@@ -41654,7 +41659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1943491176
 Transform:
   m_ObjectHideFlags: 0
