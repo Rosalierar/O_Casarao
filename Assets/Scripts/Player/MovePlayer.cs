@@ -92,11 +92,11 @@ public class MovePlayer : MonoBehaviour
         if (crounchPressed && !isCrounching) {
             anim.SetBool("isCrounch", true);
 
-            playerCollider.height = 1.39f; //muda a altura do capsule collider para o tamanho do jogador agachado
-            playerCollider.radius = 0.28f; //muda o raio do capsule collider para o tamanho do jogador agachado
-            playerCollider.center = new Vector3(0.1f, 0.67f, 0.13f); //muda o centro do capsule collider para o meio do jogador
+            playerCollider.height = 1.56f; //muda a altura do capsule collider para o tamanho do jogador agachado
+            playerCollider.radius = 0.57f; //muda o raio do capsule collider para o tamanho do jogador agachado
+            playerCollider.center = new Vector3(0.1f, 0.79f, 0.41f); //muda o centro do capsule collider para o meio do jogador
  
-            View.localPosition = new Vector3(0, 0.957f, 0.594f); //muda a posição da câmera para o meio do jogador
+            View.localPosition = new Vector3(0.28f, 1.039f, 0.87f); //muda a posição da câmera para o meio do jogador
 
             velocity = crounchVelocity;
             
@@ -108,10 +108,10 @@ public class MovePlayer : MonoBehaviour
             anim.SetBool("isCrounch", false); //desativa a animação de agachar
 
             playerCollider.height = 2f; //muda a altura do capsule collider para o tamanho do jogador agachado
-            playerCollider.radius = 0.2f; //muda o raio do capsule collider para o tamanho do jogador agachado
-            playerCollider.center = new Vector3(0, 1f, 0f);
+            playerCollider.radius = 0.282f; //muda o raio do capsule collider para o tamanho do jogador agachado
+            playerCollider.center = new Vector3(-0.07f, 1f, 0.129f);
 
-            View.localPosition = new Vector3(0, 1.431f, 0.35f);
+            View.localPosition = new Vector3(0, 1.431f, 0.45f);
 
             velocity = originalSpeed;
 
