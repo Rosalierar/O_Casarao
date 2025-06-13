@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 public class TextForSignalController : MonoBehaviour
 {
     private bool isMultiplayer = false;
+    private NetworkRunner runner;
     GameObject player2;
     [SerializeField] int playerCount = 1;
 
@@ -26,18 +27,25 @@ public class TextForSignalController : MonoBehaviour
     [TextArea]
     [SerializeField] private string[] textForSignalConversationEn;
 
-    void Start()
+    void Awake()
     {
         try
         {
-            if (FindObjectOfType<NetworkRunner>() != null)
-            {
-                isMultiplayer = true;
-            }
+            runner = FindObjectOfType<NetworkRunner>();
         }
         catch
         {
             print("Não está no Multiplayer");
+        }
+
+        if (runner != null)
+        {
+            isMultiplayer = true;
+            print("Multiplayer");
+        }
+        else
+        {
+            print("Não Multiplayer");
         }
     }
 
