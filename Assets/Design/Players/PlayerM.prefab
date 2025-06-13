@@ -1998,7 +1998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9161692617175097916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5128,9 +5128,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1385250824866856566}
+  - component: {fileID: -1957749051402319053}
   m_Layer: 0
   m_Name: PlayerM
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5151,6 +5152,25 @@ Transform:
   - {fileID: 1388552697067607054}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1957749051402319053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4938771836521345122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3290635541
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 4738501959232084192}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &5128672032259360498
 GameObject:
   m_ObjectHideFlags: 0
@@ -10377,6 +10397,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4533334701982212630}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4738501959232084192}
   m_SourcePrefab: {fileID: 100100000, guid: 61470e15dcad9c4468aed38cf97b7b70, type: 3}
 --- !u!1 &3821388208092017263 stripped
 GameObject:
@@ -10558,6 +10582,23 @@ MonoBehaviour:
   audioPassosCClip:
   - {fileID: 8300000, guid: 7d22997c3222c124d91d351ddc1c6ee4, type: 3}
   - {fileID: 8300000, guid: fcbaf164018fc614a9729400cf40f9de, type: 3}
+--- !u!114 &4738501959232084192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821388208092017263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!4 &4486602245953071317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61470e15dcad9c4468aed38cf97b7b70,
