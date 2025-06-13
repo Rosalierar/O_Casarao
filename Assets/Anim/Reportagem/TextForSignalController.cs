@@ -4,9 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Fusion;
+using System.Threading.Tasks;
 
 public class TextForSignalController : MonoBehaviour
 {
+    private bool isMultiplayer = false;
     GameObject player2;
     [SerializeField] int playerCount = 1;
 
@@ -22,6 +25,21 @@ public class TextForSignalController : MonoBehaviour
     [SerializeField] private string[] textForSignalConversationPt;
     [TextArea]
     [SerializeField] private string[] textForSignalConversationEn;
+
+    void Start()
+    {
+        try
+        {
+            if (FindObjectOfType<NetworkRunner>() != null)
+            {
+                isMultiplayer = true;
+            }
+        }
+        catch
+        {
+            print("Não está no Multiplayer");
+        }
+    }
 
     public void ZeroText()
     {
@@ -68,13 +86,20 @@ public class TextForSignalController : MonoBehaviour
 
     public void LoadScene()
     {
-        if (playerCount == 1)
+        if (!isMultiplayer)
         {
             SceneManager.LoadScene(2); //index da cena Single player
         }
-        else if (playerCount == 2)
+        else if (isMultiplayer)
         {
-            SceneManager.LoadScene(5); //index da cena Multi player
+            NetworkRunner runner = FindObjectOfType<NetworkRunner>();
+
+            StartGameMultiplayer(runner); //index da cena Multi player
         }
+    }
+
+    private async void StartGameMultiplayer(NetworkRunner runner)
+    {
+        await runner.LoadScene(SceneRef.FromIndex(5));
     }
 }
