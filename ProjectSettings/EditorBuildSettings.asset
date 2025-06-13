@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameSinglePlayer/ChooseFinal.unity
     guid: b2be630757b77374ea24241478c7336f
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 728fa46166a99a14bafa7790802caff7
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 82f0e2e6eb97fc945980fd6179e110f0, type: 2}
