@@ -41,6 +41,10 @@ public class TextForSignalController : MonoBehaviour
         if (runner != null)
         {
             isMultiplayer = true;
+            foreach (GameObject playerObj in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                playerObj.SetActive(false);
+            }
             print("Multiplayer");
         }
         else
