@@ -15,7 +15,7 @@ public class ButtonsController : MonoBehaviour
     string[] textEnConfig = {"Language", "Portuguese", "English", "Volume" };
     string[] textEnCredits = {"Credits", "Developed by", "Lucas Oliveira", "Lucas Silva", "Gabriel Almeida", "Gabriel Ferreira", "Matheus Oliveira", "Matheus Silva" };
     
-    string[] textPtMenu = {"Modo Solo", "Modo Multiplayer", "Opções", "Volume", "Idioma", "Português", "Inglês", "Créditos", "Sair" };
+    string[] textPtMenu = {"Modo Solo", "Modo Multiplayer", "Opções", "Créditos", "Sair" };
     string[] textPtConfig = {"Idioma", "Português", "Inglês", "Volume"};
     string[] textPtCredits = {"Créditos", "Desenvolvido por", "Lucas Oliveira", "Lucas Silva", "Gabriel Almeida", "Gabriel Ferreira", "Matheus Oliveira", "Matheus Silva" };
     
