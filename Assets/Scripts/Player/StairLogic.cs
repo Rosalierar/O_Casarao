@@ -52,7 +52,7 @@ public class StairLogic : MonoBehaviour
             if (hit3.point.y > hit1.point.y)
                 hit1 = hit3;
             
-            if(hit1.normal == Vector3.up && (hit1.point.y - transform.position.y) > .25f) //esse numero deve ser mudado para o mesmo tamanho colocado na altura de cada degrau
+            if(hit1.normal == Vector3.up && (hit1.point.y - transform.position.y) > .20f) //esse numero deve ser mudado para o mesmo tamanho colocado na altura de cada degrau
             {
                 // Calcular a diferença de altura
                 float heightDifference = hit1.point.y - transform.position.y - .1f;

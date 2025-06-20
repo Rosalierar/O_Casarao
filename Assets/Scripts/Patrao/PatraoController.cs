@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -151,11 +151,30 @@ public class PatraoController : MonoBehaviour
     void PatraoVision()
     {
         ray = new Ray(visionPos.position, transform.forward); // Cria um raio a partir da posição do objeto em direção à frente
+        
+            Vector3 forwardOffset = transform.forward;
+            Vector3 origin1 = transform.position + forwardOffset + Vector3.up;
+            
+            // Aplica rotação nas origens para os raios laterais (com ângulo de 35 graus)
+            Vector3 origin2 = Quaternion.Euler(0, 35, 0) * (origin1 - visionPos.position) + visionPos.position;
+            Vector3 origin3 = Quaternion.Euler(0, -35, 0) * (origin1 - visionPos.position) + visionPos.position;
+
+            Ray rayDireita = new Ray(origin2, (origin2 - visionPos.position).normalized);
+            Ray rayEsquerda = new Ray(origin3, (origin3 - visionPos.position).normalized);
+
+
+            // Lançar raios nas direções certas a partir das novas origens calculadas
+            Physics.Raycast(rayDireita, out patraoHit, distanceRayPatrao, layerPlayer);
+            Physics.Raycast(rayEsquerda, out patraoHit, distanceRayPatrao, layerPlayer);
+
+            // Desenhar os raios para depuração
+            Debug.DrawRay(rayDireita.origin, rayDireita.direction * distanceRayPatrao, Color.green);
+            Debug.DrawRay(rayEsquerda.origin, rayEsquerda.direction  * distanceRayPatrao, Color.green);
 
         Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer);
-        Debug.DrawRay(visionPos.position, transform.forward * distanceRayPatrao, Color.red); // Desenha o raio na cena para visualização
+        Debug.DrawRay(visionPos.position, transform.forward * distanceRayPatrao, Color.green); // Desenha o raio na cena para visualização
 
-        if (Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer))
+        if (Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer)|| Physics.Raycast(rayDireita, out patraoHit, distanceRayPatrao, layerPlayer) || Physics.Raycast(rayEsquerda, out patraoHit, distanceRayPatrao, layerPlayer))
         {
             if (patraoHit.collider.CompareTag("Player"))
             { // Verifica se o raio atingiu algo
