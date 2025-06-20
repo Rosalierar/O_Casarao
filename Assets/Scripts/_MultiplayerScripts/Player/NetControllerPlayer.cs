@@ -1,8 +1,9 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Fusion;
 
-public class ControllerPlayer : MonoBehaviour
+public class NetControllerPlayer : NetworkBehaviour
 {
     public Vector3 spawnPoint;
     public GameObject blackPainel;
