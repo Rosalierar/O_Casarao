@@ -6887,7 +6887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 4330760986098934695}
-  rb: {fileID: 7254771263064606913}
+  rb: {fileID: 0}
   cameraSensitivity: 10
   moveSpeed: 0
   moveInputDeadZone: 0
@@ -7691,7 +7691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2281667378044413749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9135,7 +9135,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8881115424201460200}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &907158348404489963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10382,19 +10382,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7254771263064606913}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2394040014065248191}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2792997724712654648}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8563933399241000270}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
         type: 3}
       insertIndex: -1
@@ -10407,6 +10399,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4738501959232084192}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2074579751395483063}
   m_SourcePrefab: {fileID: 100100000, guid: 61470e15dcad9c4468aed38cf97b7b70, type: 3}
 --- !u!1 &3821388208092017263 stripped
 GameObject:
@@ -10458,33 +10454,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: -0.07, y: 1, z: 0.18526793}
---- !u!54 &7254771263064606913
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3821388208092017263}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &2394040014065248191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10497,13 +10466,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5762d6d507e9b458f574d878f85a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canva: {fileID: 7125483570278362638}
   View: {fileID: 8352971927734584725}
-  rb: {fileID: 0}
+  ch: {fileID: 0}
   anim: {fileID: 0}
-  velocity: 3
+  playerSpeed: 3
   moveH: 0
   moveV: 0
-  originalSpeed: 120
+  originalSpeed: 3
   crounchVelocity: 1
 --- !u!114 &2792997724712654648
 MonoBehaviour:
@@ -10521,45 +10491,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxStepHight: 0.3
---- !u!114 &8563933399241000270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3821388208092017263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bc0ec607e1b56418fe2c81d3d6367d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {x: 26, y: 0, z: 43}
-  blackPainel: {fileID: 5969147776787594359}
-  tmpSpeaks: {fileID: 4433916995401375876}
-  crunchBtn: {fileID: 8032389633956947463}
-  interectBtn: {fileID: 304427872254928140}
-  moveJoy: {fileID: 6568589224866673259}
-  textLostLifePt:
-  - "Eu n\xE3o sou o problema aqui. Isso vai al\xE9m de mim... Eu preciso sair daqui
-    antes que me apaguem por completo."
-  - "Por que tudo sempre recai sobre mim? N\xE3o importa o quanto eu me esforce,
-    eu sou sempre a suspeita."
-  - "Talvez... se eu fizer tudo certo, ele pare de me tratar assim. Eu s\xF3 preciso
-    provar que sou confi\xE1vel."
-  textLostLifeEn:
-  - Maybe... if I do everything right, he'll stop treating me like this. I just need
-    to prove that I can be trusted.
-  - Why does everything always fall on me? No matter how hard I try, I'm always the
-    suspect.
-  - I'm not the problem here. This is beyond me... I need to get out of here before
-    they erase me completely.
-  textPtLost: "N\xE3o acho que aquela reportagem se aplique a mim\u2026 ent\xE3o
-    n\xE3o devo me preocupar?"
-  textEnLost: I don't think that report applies to me... so I shouldn't worry?
-  textPtWin: "No fim, aquela reportagem p\xF4de me libertar dessa casa e do meu pensamento,
-    fico feliz. Eu mere\xE7o algo melhor, o que aqui n\xE3o tem."
-  textEnWin: In the end, that report was able to free me from this house and my thoughts,
-    I'm glad. I deserve something better, which is not here.
 --- !u!114 &8550484471564929433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10644,6 +10575,32 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!143 &2074579751395483063
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821388208092017263}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.2820842
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: -0.07, y: 1, z: 0.1852679}
 --- !u!4 &4486602245953071317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61470e15dcad9c4468aed38cf97b7b70,

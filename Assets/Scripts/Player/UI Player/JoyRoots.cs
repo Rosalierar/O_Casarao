@@ -40,6 +40,7 @@ public class JoyRoots : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
         if (runner != null)
         {
             networkObject = GetComponentInParent<NetworkObject>();
+            print(runner);
 
             if (networkObject.HasInputAuthority)
             {

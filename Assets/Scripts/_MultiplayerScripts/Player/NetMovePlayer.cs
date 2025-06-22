@@ -8,6 +8,7 @@ public class NetMovePlayer : NetworkBehaviour
 {
     NetworkObject networkObject;
     Camera camPlayer;
+    [SerializeField] GameObject canva;
 
     public static event Action OnLifeLost;
     //GameObjects do player
@@ -19,13 +20,17 @@ public class NetMovePlayer : NetworkBehaviour
     [SerializeField]private Transform View; //Referencia da visao do jogador
 
     //Classe
-    public Rigidbody rb;
+    public CharacterController ch;
     public Animator anim; //Referencia do animator do jogador
     CapsuleCollider playerCollider; //Referencia do capsule collider do jogador
 
     //CONTROLE DO JOGADOR
-        //movimento do jogador
-    [SerializeField] private float velocity, moveH, moveV; //velocidade do jogador e input horizontal e vertical
+    //Gravidade
+    float gravity = -9.91f;
+    Vector3 velocity;
+    
+    //movimento do jogador
+    [SerializeField] private float playerSpeed, moveH, moveV; //velocidade do jogador e input horizontal e vertical
     Vector3 dir; //direção do movimento
     [SerializeField] private float originalSpeed; //velocidade original do jogador
         //Agachamento do jogador
@@ -40,16 +45,58 @@ public class NetMovePlayer : NetworkBehaviour
         if (networkObject.HasInputAuthority)
         {
             anim = GetComponent<Animator>(); //pega o animator do jogador
-            rb = GetComponent<Rigidbody>();
+            ch = GetComponent<CharacterController>();
+            playerCollider = GetComponent<CapsuleCollider>(); //pega o capsule collider do jogador
+            controllerPlayer = GetComponent<NetControllerPlayer>(); //pega o controller do jogador
+
+            Transform raiz = transform.root;
+
+            // Procura a câmera apenas dentro da prefab
+            camPlayer = raiz.GetComponentInChildren<Camera>(true); // true = inclui objetos inativos
+            camPlayer.enabled = true;
+            myCamera = camPlayer.GetComponent<Transform>();
+
+            AudioListener audioListener = camPlayer.GetComponent<AudioListener>();
+            audioListener.enabled = true;
+
+            canva.SetActive(true);
+
+            myCamera = camPlayer.transform;
+            print(myCamera);
+
+            originalSpeed = playerSpeed; //salva a velocidade original do jogador
+
+            controllerPlayer.spawnPoint = transform.localPosition; //salva o ponto de spawn do jogador
+            controllerPlayer.PlayerHealth = 3; //salva a vida do jogador
+
+            print("PLAYER SPAWNED");
+        }
+    }
+
+    /*void Start()
+    {
+        networkObject = GetComponentInParent<NetworkObject>();
+
+        if (networkObject.HasInputAuthority)
+        {
+            anim = GetComponent<Animator>(); //pega o animator do jogador
+            ch = GetComponent<CharacterController>();
             playerCollider = GetComponent<CapsuleCollider>(); //pega o capsule collider do jogador
             controllerPlayer = GetComponent<NetControllerPlayer>(); //pega o controller do jogador
             
             Transform raiz = transform.root;
+
             // Procura a câmera apenas dentro da prefab
             camPlayer = raiz.GetComponentInChildren<Camera>(true); // true = inclui objetos inativos
             camPlayer.enabled = true;
 
+            AudioListener audioListener = camPlayer.GetComponent<AudioListener>();
+            audioListener.enabled = true;
+            
+            canva.SetActive(true);
+
             myCamera = camPlayer.transform;
+            print(myCamera);
 
             originalSpeed = velocity; //salva a velocidade original do jogador
 
@@ -58,8 +105,7 @@ public class NetMovePlayer : NetworkBehaviour
 
             print("PLAYER SPAWNED");
         }
-    }
-   
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -67,18 +113,21 @@ public class NetMovePlayer : NetworkBehaviour
     }
     public override void FixedUpdateNetwork()
     {
-        if (networkObject.HasInputAuthority)
+        if (!networkObject.HasInputAuthority)
         {
-             // Ajusta a rotação do jogador para alinhar com a rotação da câmera
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, myCamera.eulerAngles.y, transform.eulerAngles.z); 
-
-            //Metodo de Movimentação
-            MoveHorizontal();
-
-            //Metodo de Agachamento
-            Crunch();
-            GetPressedButtonCrunch();
+            return;
         }
+
+        print("FIXEDNETWORK");
+        velocity.y += gravity * Runner.DeltaTime;
+
+        // Ajusta a rotação do jogador para alinhar com a rotação da câmera
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, myCamera.eulerAngles.y, transform.eulerAngles.z); 
+        //Metodo de Movimentação
+        MoveHorizontal();
+        //Metodo de Agachamento
+        Crunch();
+        GetPressedButtonCrunch();
     }
 
     void FixedUpdate()
@@ -97,15 +146,20 @@ public class NetMovePlayer : NetworkBehaviour
     void MoveHorizontal(){
         moveH = controllerPlayer.moveJoy.inputDirection.x;
         moveV = controllerPlayer.moveJoy.inputDirection.y;
-        dir = new Vector3(moveH, 0, moveV); 
+        dir = new Vector3(moveH, 0, moveV) * playerSpeed * Runner.DeltaTime; 
        
+        ch.Move(dir + velocity);
+
         if (dir != Vector3.zero)
         {
             anim.SetBool("isWalking", true);
-            dir = transform.TransformDirection(dir); 
+            //dir = transform.TransformDirection(dir); 
             //rb.velocity = new Vector3(dir.x * velocity * Runner.DeltaTime, rb.velocity.y, dir.z * velocity * Runner.DeltaTime);
-            transform.position += dir * velocity * Runner.DeltaTime;
+            //transform.position += dir * velocity * Runner.DeltaTime;
             //transform.LookAt(transform.position + dir);
+
+            gameObject.transform.forward = dir;
+
             anim.SetFloat("Blend", 1);
         }
         else
@@ -124,10 +178,14 @@ public class NetMovePlayer : NetworkBehaviour
             playerCollider.height = 1.56f; //muda a altura do capsule collider para o tamanho do jogador agachado
             playerCollider.radius = 0.57f; //muda o raio do capsule collider para o tamanho do jogador agachado
             playerCollider.center = new Vector3(0.1f, 0.79f, 0.41f); //muda o centro do capsule collider para o meio do jogador
+
+            ch.height = 1.56f;
+            ch.radius = 0.57f; //muda o raio do capsule collider para o tamanho do jogador agachado
+            ch.center = new Vector3(0.1f, 0.79f, 0.41f); //muda o centro do capsule collider para o meio do jogador
  
             View.localPosition = new Vector3(0.28f, 1.039f, 0.87f); //muda a posição da câmera para o meio do jogador
 
-            velocity = crounchVelocity;
+            playerSpeed = crounchVelocity;
             
             crounchPressed = false; // Reseta o estado do botão de agachar
             isCrounching = true; 
@@ -140,9 +198,13 @@ public class NetMovePlayer : NetworkBehaviour
             playerCollider.radius = 0.282f; //muda o raio do capsule collider para o tamanho do jogador agachado
             playerCollider.center = new Vector3(-0.07f, 1f, 0.129f);
 
+            ch.height = 2f; //muda a altura do capsule collider para o tamanho do jogador agachado
+            ch.radius = 0.282f; //muda o raio do capsule collider para o tamanho do jogador agachado
+            ch.center = new Vector3(-0.07f, 1f, 0.129f);
+
             View.localPosition = new Vector3(0, 1.431f, 0.45f);
 
-            velocity = originalSpeed;
+            playerSpeed = originalSpeed;
 
             crounchPressed = false; // Reseta o estado do botão de agachar
             isCrounching = false; 

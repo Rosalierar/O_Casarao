@@ -46,6 +46,8 @@ public class TextForSignalController : MonoBehaviour
                 playerObj.SetActive(false);
             }
             print("Multiplayer");
+            
+            IsMultiPLayer();
         }
         else
         {
