@@ -17,7 +17,7 @@ public class EnabledPlayers : MonoBehaviour
         {
             print("Não está no Multiplayer");
         }
-        
+
         if (runner != null)
         {
             foreach (GameObject playerObj in GameObject.FindGameObjectsWithTag("Player"))
