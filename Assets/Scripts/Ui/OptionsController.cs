@@ -22,7 +22,15 @@ public class OptionsController : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 0f;
+        if (tutorial.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            
+            Time.timeScale = 1f;
+        }
     }
     public void ChangeSensibility()
     {
