@@ -13,6 +13,14 @@ using UnityEngine.SocialPlatforms;
 
 public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 {
+    private string[] tagDosObjetos = new string[] {"Itens"  };
+    private Vector3[] spawnPoints = new Vector3[2]
+    {
+        new Vector3(-6.17f, 7.18f, 0.36f),
+        new Vector3(-3.18f, 7.18f, 0.36f)
+        //new Vector3(-800.55f, 65.5f, 0.8f),
+        //new Vector3(-9.2f,65.5f, 0.8f)
+    };
     [SerializeField] private int indexSceneForStart;
     [SerializeField] private NetworkManager networkManager;
     public static LoobyManager Instance;
@@ -299,10 +307,41 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, System.ArraySegment<byte> data) { }
     public void OnSceneLoadDone(NetworkRunner runner)
     {
-        Scene fusionScene = SceneManager.GetActiveScene(); // obtém a cena ativa do Unity
+        //Scene fusionScene = SceneManager.GetActiveScene(); // obtém a cena ativa do Unity
         //int buildIndex = fusionScene.SceneRef; // índice da cena ativa
-        string sceneName = fusionScene.name; // nome da cena ativa
+        //string sceneName = fusionScene.name; // nome da cena ativa
 
+        GameObject cenaGame = GameObject.Find("CenaGame");
+
+        Debug.Log("RUNNER: " + runner.IsServer);
+
+        if (cenaGame != null)
+        {
+            if (runner.IsPlayer)
+            {
+                SpawnPlayer(runner, runner.LocalPlayer);
+                print("CENA DE JOGO!");
+            }
+            
+            PlayerRef localPlayer = runner.LocalPlayer;
+
+            bool isFirstPlayer = connectedPlayers.Count > 0 && connectedPlayers[0] == localPlayer;
+
+            if (isFirstPlayer)
+            {
+                // O jogador local é o primeiro da lista, então ele pode executar lógicas exclusivas, tipo spawnar objetos
+                Debug.Log("Sou o primeiro jogador!");
+                SpawnOpbject(runner);
+            }
+            else
+            {
+                Debug.Log("Não sou o primeiro jogador.");
+            }
+        }
+        else
+        {
+            Debug.Log("Não Estamos Na Jogo, nenhuma spawn por enquanto.");
+        }
         //Debug.Log($"Cena carregada: {sceneName} (índice: {buildIndex})");
         /*// Pega o índice da cena atual carregada no Unity
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -332,11 +371,22 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             Debug.Log("Cena desconhecida, nenhuma ação definida.");
         }*/
 
-        if (runner.IsPlayer)
-        {
-            SpawnPlayer(runner, runner.LocalPlayer);
-        }
+    }
 
+    private void SpawnOpbject(NetworkRunner runner)
+    {
+        GameObject[] objetos = GameObject.FindGameObjectsWithTag(tagDosObjetos[0]);
+
+        foreach (GameObject go in objetos)
+        {
+            NetworkObject netObj = go.GetComponent<NetworkObject>();
+
+            if (netObj != null)
+            {
+                runner.Spawn(netObj);
+                Debug.Log($"[Fusion] Spawn feito para: {go.name}");
+            }
+        }
     }
 
     private void SpawnPlayer(NetworkRunner runner, PlayerRef player)
@@ -348,10 +398,12 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             Debug.Log("Jogador já possui avatar. Ignorando.");
             return;
         }
+        //-6.17F 7.18F 0.36F // -3.18
+        int index = player.RawEncoded % spawnPoints.Length;
+        Vector3 pos = spawnPoints[index];
+        //Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-5f, 5f), 1f, UnityEngine.Random.Range(-5f, 5f));
 
-        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-5f, 5f), 1f, UnityEngine.Random.Range(-5f, 5f));
-
-        NetworkObject playerObj = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, inputAuthority: runner.LocalPlayer); //ou só Player
+        NetworkObject playerObj = runner.Spawn(playerPrefab, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer); //ou só Player
 
         Debug.Log("Player spawnado: " + playerObj.name);
     }
