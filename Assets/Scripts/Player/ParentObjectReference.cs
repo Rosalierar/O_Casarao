@@ -9,6 +9,7 @@ public class ParentObjectReference : MonoBehaviour
     public GrabTheObject grabTheObject;
     public UseTheObject useTheObject; // Ref�rencia ao Script UseTheObject
     public Inventory inventory;
+    public AudioClip[] AC;
 
     //public GameObject itemCarregado;
 
