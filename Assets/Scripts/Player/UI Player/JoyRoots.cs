@@ -31,6 +31,7 @@ public class JoyRoots : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
         try
         {
             runner = FindObjectOfType<NetworkRunner>();
+            print(runner);
         }
         catch
         {
@@ -64,7 +65,7 @@ public class JoyRoots : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
     }
 
     public void OnDrag(PointerEventData eventData){
-        if (networkObject.HasInputAuthority || runner == null)
+        if (PodeExecutar())
         {
             Vector3 newPos = Vector3.zero; 
 
@@ -86,7 +87,7 @@ public class JoyRoots : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
         } 
     }
     public void OnPointerUp(PointerEventData eventData){
-        if (networkObject.HasInputAuthority || runner == null)
+        if (PodeExecutar())
         {
             // Retorna o joystick para a posição inicial.
             transform.position = startPos;
@@ -95,12 +96,22 @@ public class JoyRoots : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointer
             UpdateVirtualAxes(Vector3.zero);
         }
     }
+    
+    bool PodeExecutar()
+    {
+        // Se tiver NetworkObject e InputAuthority → multiplayer local
+        if (TryGetComponent<NetworkObject>(out var netObj))
+            return netObj.HasInputAuthority;
+
+        // Se não tem NetworkObject → estamos no singleplayer
+        return true;
+    }
 
     // Método responsável por atualizar os eixos virtuais do joystick.
 
     void UpdateVirtualAxes(Vector3 value)
     {
-        if (networkObject.HasInputAuthority || runner == null)
+        if (PodeExecutar())
         {
             // Caulcula a diferença entre a posição inicial e o valor atal.
             var delta = startPos - value;
