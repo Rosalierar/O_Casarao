@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 
 public class InteractiveObject : MonoBehaviour
 {
+    [Header("Sons dos Itens")]
+    AudioSource AS;
+    
     [Header("UI Sobre Itens")]
     [SerializeField] private TextMeshProUGUI informationAboutItem;
     int language;
@@ -57,13 +60,13 @@ public class InteractiveObject : MonoBehaviour
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
 
-                gameObject.SetActive(false); // Desativa o objeto do mundo
+                gameObject.SetActive(false); // Desativa o objeto do mund
 
                 /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
                 parent.useTheObject.enabled = false; // Desabilita o script de usar
                 parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
-
                 Debug.Log("Corrente Quebrada!");
+
             }
 
             else if (itemNecessario == TipoDeItem.PeDeCabra) /////////////////////////////////////////// PE DE CABRA
@@ -90,10 +93,10 @@ public class InteractiveObject : MonoBehaviour
             else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                drawerMoviment.enabled = true;
-                drawerMoviment.TryActiveDrawer();
-                //doorMoviment.enabled = true;
-                //doorMoviment.TryActiveDoor();
+                //drawerMoviment.enabled = true;
+                //drawerMoviment.TryActiveDrawer();
+                doorMoviment.enabled = true;
+                doorMoviment.TryActiveDoor();
 
                 //gameObject.SetActive(false); // Desativa o objeto do mundo
 
@@ -150,7 +153,7 @@ public class InteractiveObject : MonoBehaviour
 
             else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
             {
-                GetComponent<Animation>().Play("GotOutKey");
+                GameObject.Find("ChaveCircular").GetComponent<Animation>().Play("GotOutKey");
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
             }
@@ -183,6 +186,8 @@ public class InteractiveObject : MonoBehaviour
                 case TipoDeItem.Gaveta:
                     drawerMoviment.enabled = true; // Habilita o script de movimentação da gaveta
                     drawerMoviment.TryActiveDrawer();
+                    AS.clip = parent.AC[13];
+                    AS.Play();
                     break;
 
                 /*case TipoDeItem.ChaveQuadrada:
@@ -193,6 +198,8 @@ public class InteractiveObject : MonoBehaviour
                 case TipoDeItem.Porta:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
+                    AS.clip = parent.AC[12];
+                    AS.Play();
                     break;
 
                 /*case TipoDeItem.Crucifixo:
@@ -202,10 +209,15 @@ public class InteractiveObject : MonoBehaviour
                 case TipoDeItem.Senha:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
+                    AS.clip = parent.AC[11];
+                    
+                    AS.Play();
                     break;
                 case TipoDeItem.Desinfetante:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
+                    AS.clip = parent.AC[7];
+                    AS.Play();
                     break;
                 default:
                     break;
