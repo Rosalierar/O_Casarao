@@ -105,13 +105,21 @@ public class PatraoController : MonoBehaviour
         PatraoVision();
         Patrolling();
 
-        if (FindObjectOfType<ControllerPlayer>().blackPainel.activeSelf)
+        try
         {
-            animPatrao.SetBool("isWalking", false);
-            animPatrao.SetBool("isRunning", false);
 
-            agent.isStopped = true; // Para o agente NavMesh
-            isPatrol = false; // Define que o patrão não está patrulhando
+            if (FindObjectOfType<ControllerPlayer>().blackPainel.activeSelf)
+            {
+                animPatrao.SetBool("isWalking", false);
+                animPatrao.SetBool("isRunning", false);
+
+                agent.isStopped = true; // Para o agente NavMesh
+                isPatrol = false; // Define que o patrão não está patrulhando
+            }
+        }
+        catch
+        {
+            print("ERRO AO PEGAR BLACKPAINEL");
         }
         /*else if (!FindObjectOfType<ControllerPlayer>().blackPainel.activeSelf)
         {

@@ -12,6 +12,7 @@ TagManager:
   - PortaEntrada
   - Cam
   - Canva
+  - Objetos
   layers:
   - Default
   - TransparentFX
