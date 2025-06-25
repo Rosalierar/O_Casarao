@@ -13,7 +13,10 @@ using UnityEngine.SocialPlatforms;
 
 public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 {
-    private string[] tagDosObjetos = new string[] {"Itens"  };
+    
+    [Header("Spawnner Objects Controller")]
+    private string[] tagDosObjetos = new string[] { "Itens", "Enemy" };
+    GameObject[] gameObj;
     private Vector3[] spawnPoints = new Vector3[2]
     {
         new Vector3(-6.17f, 7.18f, 0.36f),
@@ -375,9 +378,12 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void SpawnOpbject(NetworkRunner runner)
     {
-        GameObject[] objetos = GameObject.FindGameObjectsWithTag(tagDosObjetos[0]);
+        for (int i = 0; i < tagDosObjetos.Length; i++)
+        {
+            gameObj = GameObject.FindGameObjectsWithTag(tagDosObjetos[i]);
+        }
 
-        foreach (GameObject go in objetos)
+        foreach (GameObject go in gameObj)
         {
             NetworkObject netObj = go.GetComponent<NetworkObject>();
 
