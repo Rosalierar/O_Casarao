@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class NetGrabTheObject : MonoBehaviour
 {
-    ParentObjectReference parent;
-    //DetectionObjects detectionObjects;
+    NetParentObjectReference parent;
 
     [SerializeField] private MyButton interectBtn; // Bot�o de intera��o
     bool pressedButtonGrab = false; // Vari�vel para verificar se o bot�o foi pressionado
@@ -13,8 +12,7 @@ public class NetGrabTheObject : MonoBehaviour
 
     private void Awake()
     {
-        parent = GetComponent<ParentObjectReference>();
-        //detectionObjects = GetComponent<DetectionObjects>();
+        parent = GetComponent<NetParentObjectReference>();
     }
     // Update is called once per frame
     void Update()
@@ -28,7 +26,7 @@ public class NetGrabTheObject : MonoBehaviour
         if (holdPressed && !isHolding && parent.detectionObjects.isCollidingItem) // Verifica se o bot�o foi pressionado e n�o est� segurando o obj
         {
             // Pegar
-            parent.inventory.ColetarItem(parent.detectionObjects.item);
+            parent.inventory.TryColetarItem(parent.detectionObjects.item);
 
             parent.dropTheObject.enabled = true;
 

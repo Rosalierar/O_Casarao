@@ -8,22 +8,21 @@ using System.Collections;
 
 public class NetInventory : NetworkBehaviour
 {
-    /*Trocar no Canva
-    [SerializeField] Image image; // Referência ao script DetectionObjects
-    [SerializeField] Image painelInventario;*/
     int language;
     [SerializeField] private TextMeshProUGUI informationAboutItem;
     [SerializeField] private Sprite[] spriteItem = new Sprite[9]; // Referência ao painel de inventário
     [SerializeField] private Image imagePainelItem; // Referência ao painel de inventário
     [SerializeField] private Transform localDeDrop;
-    [Networked] private NetworkObject ItemCarregado { get; set; }
-    public List<Item> itens = new List<Item>();  // Lista de itens
+    [Networked] private NetworkObject CarryItem { get; set; }
+    [SerializeField] public NetItem itemCarregado;
 
-     public void TryColetarItem(Item item)
+    public List<NetItem> itens = new List<NetItem>();  // Lista de itens
+
+     public void TryColetarItem(NetItem item)
     {
         if (!HasInputAuthority) return;
 
-        if (ItemCarregado != null)
+        if (CarryItem != null)
         {
             StartCoroutine(TimerForShowInformation(language == 0 ? "Você já está segurando um item." : "You're already carrying an item."));
             return;
@@ -37,7 +36,7 @@ public class NetInventory : NetworkBehaviour
     {
         if (!HasInputAuthority) return;
 
-        if (ItemCarregado == null)
+        if (CarryItem == null)
         {
             StartCoroutine(TimerForShowInformation(language == 0 ? "Nenhum item para soltar." : "No item to drop."));
             return;
@@ -49,11 +48,13 @@ public class NetInventory : NetworkBehaviour
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     public void RPC_ColetarItem(NetworkObject itemNet)
     {
-        if (ItemCarregado != null) return;
+        if (CarryItem != null) return;
 
-        Item item = itemNet.GetComponent<Item>();
+        NetItem item = itemNet.GetComponent<NetItem>();
 
-        ItemCarregado = itemNet;
+        itemCarregado = item;
+        CarryItem = itemNet;
+        
         itemNet.RequestStateAuthority();
         itens.Add(item);
         itemNet.gameObject.SetActive(false);
@@ -83,13 +84,13 @@ public class NetInventory : NetworkBehaviour
 
         language = PlayerPrefs.GetInt("Language");
 
-        Item item = ItemCarregado.GetComponent<Item>();
+        NetItem item = CarryItem.GetComponent<NetItem>();
 
-        ItemCarregado.transform.position = localDeDrop.position;
-        //ItemCarregado.transform.SetParent(null);
-        ItemCarregado.gameObject.SetActive(true);
+        CarryItem.transform.position = localDeDrop.position;
 
-        if (ItemCarregado.TryGetComponent<Rigidbody>(out var rb))
+        CarryItem.gameObject.SetActive(true);
+
+        if (CarryItem.TryGetComponent<Rigidbody>(out var rb))
         {
             rb.useGravity = true;
             rb.velocity = Vector3.zero;
@@ -105,20 +106,21 @@ public class NetInventory : NetworkBehaviour
                                                $"Item solto: {item.tipoDoItem.ParaNomeLegivel()}" :
                                                $"Item dropped: {item.tipoDoItem.ParaNomeLegivel()}"));
 
-        ItemCarregado = null;
+        CarryItem = null;
+        itemCarregado = null;
     }
 
     public void UsarItem()
     {
-        if (!HasInputAuthority || ItemCarregado == null ) return;
+        if (!HasInputAuthority || CarryItem == null ) return;
 
-        Item item = ItemCarregado.GetComponent<Item>();
+        NetItem item = CarryItem.GetComponent<NetItem>();
         itens.Remove(item);
 
-        Runner.Despawn(ItemCarregado);
+        Runner.Despawn(CarryItem);
 
         imagePainelItem.sprite = null; // Limpa o sprite do painel de inventário
-        ItemCarregado = null;
+        CarryItem = null;
     }
 
     // Verificar se o inventário contém um item específico

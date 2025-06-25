@@ -113,10 +113,7 @@ public class NetMovePlayer : NetworkBehaviour
     }
     public override void FixedUpdateNetwork()
     {
-        if (!networkObject.HasInputAuthority)
-        {
-            return;
-        }
+        if (!networkObject.HasInputAuthority) return;
 
         print("FIXEDNETWORK");
         velocity.y += gravity * Runner.DeltaTime;
@@ -146,11 +143,13 @@ public class NetMovePlayer : NetworkBehaviour
     void MoveHorizontal(){
         moveH = controllerPlayer.moveJoy.inputDirection.x;
         moveV = controllerPlayer.moveJoy.inputDirection.y;
-        dir = new Vector3(moveH, 0, moveV) * playerSpeed * Runner.DeltaTime; 
-       
-        ch.Move(dir + velocity);
 
-        if (dir != Vector3.zero)
+        dir = new Vector3(moveH, 0, moveV) * playerSpeed * Runner.DeltaTime; 
+        Vector3 DirNormalized = dir.normalized;
+        
+        ch.Move(DirNormalized + velocity * Runner.DeltaTime);
+
+        if (DirNormalized != Vector3.zero)
         {
             anim.SetBool("isWalking", true);
             //dir = transform.TransformDirection(dir); 
@@ -158,7 +157,7 @@ public class NetMovePlayer : NetworkBehaviour
             //transform.position += dir * velocity * Runner.DeltaTime;
             //transform.LookAt(transform.position + dir);
 
-            gameObject.transform.forward = dir;
+            gameObject.transform.forward = DirNormalized;
 
             anim.SetFloat("Blend", 1);
         }
