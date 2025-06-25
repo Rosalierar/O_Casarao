@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 
 public class InteractiveObject : MonoBehaviour
 {
+    [Header("Sons dos Itens")]
+    AudioSource AS;
+    
     [Header("UI Sobre Itens")]
     [SerializeField] private TextMeshProUGUI informationAboutItem;
     int language;
@@ -183,6 +186,8 @@ public class InteractiveObject : MonoBehaviour
                 case TipoDeItem.Gaveta:
                     drawerMoviment.enabled = true; // Habilita o script de movimentação da gaveta
                     drawerMoviment.TryActiveDrawer();
+                    AS.clip = parent.AC[13];
+                    AS.Play();
                     break;
 
                 /*case TipoDeItem.ChaveQuadrada:
@@ -193,6 +198,8 @@ public class InteractiveObject : MonoBehaviour
                 case TipoDeItem.Porta:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
+                    AS.clip = parent.AC[12];
+                    AS.Play();
                     break;
 
                 /*case TipoDeItem.Crucifixo:
@@ -202,10 +209,15 @@ public class InteractiveObject : MonoBehaviour
                 case TipoDeItem.Senha:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
+                    AS.clip = parent.AC[11];
+                    
+                    AS.Play();
                     break;
                 case TipoDeItem.Desinfetante:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
+                    AS.clip = parent.AC[7];
+                    AS.Play();
                     break;
                 default:
                     break;
