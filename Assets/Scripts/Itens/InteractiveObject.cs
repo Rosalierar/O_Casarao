@@ -60,13 +60,13 @@ public class InteractiveObject : MonoBehaviour
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
 
-                gameObject.SetActive(false); // Desativa o objeto do mundo
+                gameObject.SetActive(false); // Desativa o objeto do mund
 
                 /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
                 parent.useTheObject.enabled = false; // Desabilita o script de usar
                 parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
-
                 Debug.Log("Corrente Quebrada!");
+
             }
 
             else if (itemNecessario == TipoDeItem.PeDeCabra) /////////////////////////////////////////// PE DE CABRA
@@ -93,10 +93,10 @@ public class InteractiveObject : MonoBehaviour
             else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                drawerMoviment.enabled = true;
-                drawerMoviment.TryActiveDrawer();
-                //doorMoviment.enabled = true;
-                //doorMoviment.TryActiveDoor();
+                //drawerMoviment.enabled = true;
+                //drawerMoviment.TryActiveDrawer();
+                doorMoviment.enabled = true;
+                doorMoviment.TryActiveDoor();
 
                 //gameObject.SetActive(false); // Desativa o objeto do mundo
 
@@ -153,7 +153,7 @@ public class InteractiveObject : MonoBehaviour
 
             else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
             {
-                GetComponent<Animation>().Play("GotOutKey");
+                GameObject.Find("ChaveCircular").GetComponent<Animation>().Play("GotOutKey");
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
             }
