@@ -30,6 +30,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
     [Header("Player Prefab")]
     [SerializeField] private NetworkObject playerPrefab;
+    [SerializeField] private NetworkObject HouseMultiplayer;
 
     private List<PlayerRef> connectedPlayers = new List<PlayerRef>();
 
@@ -284,7 +285,10 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         Debug.Log("Player entrou: " + player.PlayerId);
 
         if (!connectedPlayers.Contains(player))
+        {
             connectedPlayers.Add(player);
+            print("ADICIONADO PLAYER ALISTA COM SUCESSO");
+        }
 
         OpenPainels(1);
 
@@ -328,7 +332,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             
             PlayerRef localPlayer = runner.LocalPlayer;
 
-            bool isFirstPlayer = connectedPlayers.Count > 0 && connectedPlayers[0] == localPlayer;
+            bool isFirstPlayer = /*connectedPlayers.Count > 0 && connectedPlayers[0] == localPlayer*/ true;
 
             if (isFirstPlayer)
             {
@@ -345,40 +349,11 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             Debug.Log("Não Estamos Na Jogo, nenhuma spawn por enquanto.");
         }
-        //Debug.Log($"Cena carregada: {sceneName} (índice: {buildIndex})");
-        /*// Pega o índice da cena atual carregada no Unity
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-        Debug.Log($"Cena carregada: {currentSceneName} (índice: {currentSceneIndex})");
-            print("RUNNER IS PLAYER:" + runner.IsPlayer);
-
-        if (currentSceneIndex == 2) // ou "Cutscene"
-        {
-            // Ações específicas para a cena 2 (cutscene)
-            Debug.Log("Estamos na cutscene, nenhuma spawn por enquanto.");
-        }
-
-        else if (currentSceneIndex == 1  ) // ou "Gameplay"
-        {
-            if (runner.IsPlayer)
-            {
-                foreach (var player in connectedPlayers)
-                {
-                    SpawnPlayer(runner, player);
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("Cena desconhecida, nenhuma ação definida.");
-        }*/
-
     }
 
     private void SpawnOpbject(NetworkRunner runner)
     {
-        for (int i = 0; i < tagDosObjetos.Length; i++)
+        /*for (int i = 0; i < tagDosObjetos.Length; i++)
         {
             gameObj = GameObject.FindGameObjectsWithTag(tagDosObjetos[i]);
         }
@@ -392,7 +367,12 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
                 runner.Spawn(netObj);
                 Debug.Log($"[Fusion] Spawn feito para: {go.name}");
             }
-        }
+        }*/
+
+        Vector3 pos = new Vector3(0,0,0);
+        NetworkObject CenaObj = runner.Spawn(HouseMultiplayer, pos, Quaternion.identity);
+
+        Debug.Log("Spawn de: " + CenaObj.name);
     }
 
     private void SpawnPlayer(NetworkRunner runner, PlayerRef player)
@@ -404,12 +384,13 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             Debug.Log("Jogador já possui avatar. Ignorando.");
             return;
         }
+
         //-6.17F 7.18F 0.36F // -3.18
         int index = player.RawEncoded % spawnPoints.Length;
         Vector3 pos = spawnPoints[index];
-        //Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-5f, 5f), 1f, UnityEngine.Random.Range(-5f, 5f));
+        Vector3 spawnPosition = new Vector3(0, 0, 0);
 
-        NetworkObject playerObj = runner.Spawn(playerPrefab, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer); //ou só Player
+        NetworkObject playerObj = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, inputAuthority: runner.LocalPlayer); //ou só Player
 
         Debug.Log("Player spawnado: " + playerObj.name);
     }
