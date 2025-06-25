@@ -14597,17 +14597,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   informationAboutItem: {fileID: 425882833}
   spriteItem:
-  - {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: 47ddec944ca09a24baaca718a1093d08, type: 3}
+  - {fileID: 21300000, guid: 79140d3f6181cc14e8eb12c19886a515, type: 3}
+  - {fileID: 21300000, guid: 0bdb762bd148e9348a21aaeba6d27df5, type: 3}
+  - {fileID: 21300000, guid: 10d67b554a93139459d84da4df7ead8b, type: 3}
+  - {fileID: 21300000, guid: ec725a689973ef340bec21bf1805ed0f, type: 3}
+  - {fileID: 21300000, guid: 6024f021cd5a42f4bbd902772590a3f1, type: 3}
+  - {fileID: 21300000, guid: 8a195d4d67b71074782dc6fbcac8503e, type: 3}
+  - {fileID: 21300000, guid: 3e4939d64be7bfc4b8a1432bf5baa873, type: 3}
+  - {fileID: 21300000, guid: e15c0b2eac76ae14d97b38581bbd1410, type: 3}
+  - {fileID: 21300000, guid: 43ab75880cda78245bb160856bd50844, type: 3}
+  - {fileID: 21300000, guid: 85b5c491c07caec4ba3cf51ccd53ec72, type: 3}
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   imagePainelItem: {fileID: 1486026500}
