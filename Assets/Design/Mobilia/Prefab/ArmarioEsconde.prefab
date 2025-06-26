@@ -447,7 +447,7 @@ MonoBehaviour:
   tipoDeObjeto: 12
   doorMoviment: {fileID: 6897565407861981769}
   drawerMoviment: {fileID: 0}
-  unlocked: 0
+  unlocked: 1
 --- !u!1 &2969843389138816681
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorTransform: {fileID: 2718537044515240588}
-  posForOpenDoor: 0
+  posForOpenDoor: 1
   openAngle: -90
   openSpeed: 2
   isOpen: 0
@@ -1034,4 +1034,4 @@ MonoBehaviour:
   tipoDeObjeto: 12
   doorMoviment: {fileID: 7132402333361180806}
   drawerMoviment: {fileID: 0}
-  unlocked: 0
+  unlocked: 1
