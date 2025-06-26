@@ -13247,7 +13247,7 @@ GameObject:
   - component: {fileID: 570712135}
   m_Layer: 0
   m_Name: PivE
-  m_TagString: Untagged
+  m_TagString: Porta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17982,7 +17982,7 @@ GameObject:
   - component: {fileID: 882487676}
   m_Layer: 0
   m_Name: PivD
-  m_TagString: Untagged
+  m_TagString: Porta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33204,7 +33204,7 @@ GameObject:
   - component: {fileID: 1676271812}
   m_Layer: 0
   m_Name: Pivot
-  m_TagString: Untagged
+  m_TagString: Porta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43333,7 +43333,7 @@ GameObject:
   - component: {fileID: 5261894991081844929}
   m_Layer: 0
   m_Name: PivotE
-  m_TagString: Untagged
+  m_TagString: Porta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
