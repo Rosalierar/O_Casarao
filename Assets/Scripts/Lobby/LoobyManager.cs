@@ -334,7 +334,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             
             PlayerRef localPlayer = runner.LocalPlayer;
 
-            int playerCount = networkRunner.ActivePlayers.Count;
+            //int playerCount = Runner.ActivePlayers.Count;
             bool isFirstPlayer = /*connectedPlayers.Count > 0 && connectedPlayers[0] == localPlayer*/ true;
 
             if (isFirstPlayer)
