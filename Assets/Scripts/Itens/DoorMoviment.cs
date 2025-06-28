@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DoorMoviment : MonoBehaviour
 {
+    public GameObject pants;
     [SerializeField] BoxCollider boxCollider;
     [SerializeField] private byte direction;
     public Transform doorTransform;
@@ -60,6 +61,7 @@ public class DoorMoviment : MonoBehaviour
         {
             boxCollider.size = new Vector3(0f, 0.7866557f, 0f);
             boxCollider.center = new Vector3(0f, -0.1066722f, 0f);
+            pants.SetActive(false);
         }
         isMoving = true;
         Quaternion startRot = doorTransform.rotation;
