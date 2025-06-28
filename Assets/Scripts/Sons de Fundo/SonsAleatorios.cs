@@ -5,18 +5,18 @@ using UnityEngine;
 public class SonsAleatorios : MonoBehaviour
 {
     public AudioClip[] sons;
-    public float intervalo = 30f;
-    private AudioSource audio;
+    public float intervaloMin, intervaloMax;
+    private AudioSource AS;
     private Coroutine Loop;
 
     void Awake()
     {
-        audio = GetComponent<AudioSource>();
-        audio.loop = false;
-        audio.clip = null;
+        AS = GetComponent<AudioSource>();
+        AS.loop = false;
+        AS.clip = null;
     }
 
-    // Start is called before the first frame update
+   
     void Start()
     {
         if (sons.Length > 0)
@@ -33,7 +33,7 @@ public class SonsAleatorios : MonoBehaviour
     {
         while (true) 
         {
-            yield return new WaitForSeconds(intervalo);
+            yield return new WaitForSeconds(Random.Range(intervaloMin, intervaloMax));
 
             int random = Random.Range(0, sons.Length);
 
@@ -41,18 +41,13 @@ public class SonsAleatorios : MonoBehaviour
 
             if (somEscolhido != null)
             {
-                audio.PlayOneShot(somEscolhido);
+                AS.PlayOneShot(somEscolhido);
             }
             else
             {
-                Debug.LogWarning($"O clipe não foi tocado.");
+                Debug.LogWarning($"O clipe nï¿½o foi tocado.");
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
