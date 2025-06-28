@@ -198,10 +198,10 @@ public class NetMovePlayer : NetworkBehaviour
             playerCollider.center = new Vector3(-0.07f, 1f, 0.129f);
 
             ch.height = 2f; //muda a altura do capsule collider para o tamanho do jogador agachado
-            ch.radius = 0.282f; //muda o raio do capsule collider para o tamanho do jogador agachado
+            ch.radius = 0.35f; //muda o raio do capsule collider para o tamanho do jogador agachado
             ch.center = new Vector3(-0.07f, 1f, 0.129f);
 
-            View.localPosition = new Vector3(0, 1.431f, 0.45f);
+            View.localPosition = new Vector3(-0.055f, 1.431f, 0.417f);
 
             playerSpeed = originalSpeed;
 

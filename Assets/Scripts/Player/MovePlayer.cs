@@ -111,7 +111,7 @@ public class MovePlayer : MonoBehaviour
             playerCollider.radius = 0.282f; //muda o raio do capsule collider para o tamanho do jogador agachado
             playerCollider.center = new Vector3(-0.07f, 1f, 0.129f);
 
-            View.localPosition = new Vector3(0, 1.431f, 0.45f);
+            View.localPosition = new Vector3(-0.055f, 1.431f, 0.417f);
 
             velocity = originalSpeed;
 
