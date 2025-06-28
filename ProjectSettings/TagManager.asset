@@ -13,6 +13,7 @@ TagManager:
   - Cam
   - Canva
   - Objetos
+  - Machine
   layers:
   - Default
   - TransparentFX
