@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class ButtonsController : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioMusic;
+    [SerializeField] private Slider sliderVolume;
+
     public TextMeshProUGUI[] tmpButtons;
     public TextMeshProUGUI[] tmpConfig;
     public TextMeshProUGUI[] tmpCredits;
@@ -15,7 +18,7 @@ public class ButtonsController : MonoBehaviour
     string[] textEnConfig = {"Language", "Portuguese", "English", "Volume" };
     string[] textEnCredits = {"Credits", "Developed by", "Lucas Oliveira", "Lucas Silva", "Gabriel Almeida", "Gabriel Ferreira", "Matheus Oliveira", "Matheus Silva" };
     
-    string[] textPtMenu = {"Modo Solo", "Modo Multiplayer", "Opções", "Créditos", "Sair" };
+    string[] textPtMenu = {"SinglePlayer", "Multiplayer", "Configuração", "Créditos", "Sair" };
     string[] textPtConfig = {"Idioma", "Português", "Inglês", "Volume"};
     string[] textPtCredits = {"Créditos", "Desenvolvido por", "Lucas Oliveira", "Lucas Silva", "Gabriel Almeida", "Gabriel Ferreira", "Matheus Oliveira", "Matheus Silva" };
     
@@ -34,7 +37,18 @@ public class ButtonsController : MonoBehaviour
         }
         
         ChangeLanguageMenu();
+    }
+
+    public void ChangeVolume()
+    {
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetInt("Volume", 1);
+        }
+
+        audioMusic.volume = sliderVolume.value;
         
+        PlayerPrefs.SetInt("Volume", (int)audioMusic.volume);
     }
 
     public void StartGameSingle()
