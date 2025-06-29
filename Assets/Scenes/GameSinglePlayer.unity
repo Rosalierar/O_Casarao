@@ -1015,6 +1015,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 1359873156105419088, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
+        type: 3}
+      propertyPath: m_Name
+      value: MaquinaDeLavar (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 7810002573395464974, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1064,11 +1069,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359873156105419088, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
-        type: 3}
-      propertyPath: m_Name
-      value: MaquinaDeLavar (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2037,6 +2037,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 3847745754367166783, guid: fc056ae38a4db5f44b2c90b561876162,
+        type: 3}
+      propertyPath: m_Name
+      value: CamaQuarto
+      objectReference: {fileID: 0}
     - target: {fileID: 4480554739853087621, guid: fc056ae38a4db5f44b2c90b561876162,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2086,11 +2091,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3847745754367166783, guid: fc056ae38a4db5f44b2c90b561876162,
-        type: 3}
-      propertyPath: m_Name
-      value: CamaQuarto
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10662,7 +10662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &441614532
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10958,6 +10958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 3162055456708179, guid: 502b225a6b80a67478482cb12a6a777a, type: 3}
+      propertyPath: m_Name
+      value: VasoSanitario (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 810906816156372201, guid: 502b225a6b80a67478482cb12a6a777a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11007,10 +11011,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162055456708179, guid: 502b225a6b80a67478482cb12a6a777a, type: 3}
-      propertyPath: m_Name
-      value: VasoSanitario (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13729,6 +13729,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 1474842774838640184, guid: 63ea3c7bfc69901448d9a3629e515c40,
+        type: 3}
+      propertyPath: m_Name
+      value: CamaEmpregada
+      objectReference: {fileID: 0}
     - target: {fileID: 2250780687059559554, guid: 63ea3c7bfc69901448d9a3629e515c40,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13778,11 +13783,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1474842774838640184, guid: 63ea3c7bfc69901448d9a3629e515c40,
-        type: 3}
-      propertyPath: m_Name
-      value: CamaEmpregada
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15447,7 +15447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &765348159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15914,7 +15914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &782180915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18820,8 +18820,8 @@ GameObject:
   - component: {fileID: 944731341}
   - component: {fileID: 944731340}
   - component: {fileID: 944731339}
+  - component: {fileID: 944731343}
   - component: {fileID: 944731338}
-  - component: {fileID: 944731337}
   - component: {fileID: 944731342}
   m_Layer: 0
   m_Name: Musica de Fundo
@@ -18830,20 +18830,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &944731337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944731335}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8c8444a29534a4cbf6120628faf4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  som: {fileID: 8300000, guid: 35217ae9a26ccab489f35e173b8de773, type: 3}
-  som2: {fileID: 8300000, guid: 6531942427bb3fe439ff6afefdf9ca80, type: 3}
 --- !u!82 &944731338
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19156,14 +19142,119 @@ MonoBehaviour:
   m_GameObject: {fileID: 944731335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888ed7838cc71d24889310c0397a773b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bfbd919182b14249997a349e53cb93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sons:
-  - {fileID: 8300000, guid: 6531942427bb3fe439ff6afefdf9ca80, type: 3}
-  - {fileID: 8300000, guid: 35217ae9a26ccab489f35e173b8de773, type: 3}
-  - {fileID: 8300000, guid: 25e33f737acd2ba49859436e24046f74, type: 3}
-  intervalo: 50
+  songsBackGround:
+  - {fileID: 8300000, guid: c441e85ab59a84b4eb1d3a70561f37d5, type: 3}
+  - {fileID: 8300000, guid: d3734ed0d3fca294c9e4e56d71373647, type: 3}
+  - {fileID: 0}
+  audioSorceBackGround:
+  - {fileID: 944731340}
+  - {fileID: 944731339}
+  - {fileID: 944731343}
+  sonsAleatorios:
+  - {fileID: 8300000, guid: 6c92990051357e248b1ddfbd30eace4f, type: 3}
+  - {fileID: 8300000, guid: f35ca21f5ae1b9e43bd49b6c3e7f26f8, type: 3}
+  intervaloMin: 60
+  intervaloMax: 270
+  AS: {fileID: 944731338}
+--- !u!82 &944731343
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944731335}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &947024519
 GameObject:
   m_ObjectHideFlags: 0
@@ -19204,6 +19295,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 7469461812340718832, guid: eeedd5cd1982b3e4d9e4c91f4286e378,
+        type: 3}
+      propertyPath: m_Name
+      value: Box (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 7846127470294705738, guid: eeedd5cd1982b3e4d9e4c91f4286e378,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19253,11 +19349,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7469461812340718832, guid: eeedd5cd1982b3e4d9e4c91f4286e378,
-        type: 3}
-      propertyPath: m_Name
-      value: Box (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20884,6 +20975,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 227308890723853718, guid: 9de43f34ab97a484eb5de98c6b594ec2,
+        type: 3}
+      propertyPath: m_Name
+      value: Comoda (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 606931070550703916, guid: 9de43f34ab97a484eb5de98c6b594ec2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20933,11 +21029,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 227308890723853718, guid: 9de43f34ab97a484eb5de98c6b594ec2,
-        type: 3}
-      propertyPath: m_Name
-      value: Comoda (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21889,7 +21980,7 @@ RectTransform:
   m_Father: {fileID: 1316449775}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -24524,6 +24615,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 1421563521131541379, guid: e13239f94a586b04d846ed2a0ad30c4e,
+        type: 3}
+      propertyPath: m_Name
+      value: prateleira 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1797420934152497465, guid: e13239f94a586b04d846ed2a0ad30c4e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24573,11 +24669,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1421563521131541379, guid: e13239f94a586b04d846ed2a0ad30c4e,
-        type: 3}
-      propertyPath: m_Name
-      value: prateleira 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24753,6 +24844,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
+        type: 3}
+      propertyPath: m_Name
+      value: EstanteDispensaP (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 8958960163970679967, guid: d60e78295be9aee4eb07978b3cd79cbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24802,11 +24898,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
-        type: 3}
-      propertyPath: m_Name
-      value: EstanteDispensaP (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27316,6 +27407,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 504002320491390780, guid: 644439d5ffb2a264d934708a81bce8ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Pa
+      objectReference: {fileID: 0}
     - target: {fileID: 987770306329116038, guid: 644439d5ffb2a264d934708a81bce8ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27365,11 +27461,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 504002320491390780, guid: 644439d5ffb2a264d934708a81bce8ae,
-        type: 3}
-      propertyPath: m_Name
-      value: Pa
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30040,6 +30131,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 1359873156105419088, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
+        type: 3}
+      propertyPath: m_Name
+      value: MaquinaDeLavar (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 7810002573395464974, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30090,11 +30186,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1359873156105419088, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
-        type: 3}
-      propertyPath: m_Name
-      value: MaquinaDeLavar (2)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30141,6 +30232,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 1359873156105419088, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
+        type: 3}
+      propertyPath: m_Name
+      value: MaquinaDeLavar (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 7810002573395464974, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30190,11 +30286,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359873156105419088, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
-        type: 3}
-      propertyPath: m_Name
-      value: MaquinaDeLavar (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30817,6 +30908,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 8128566714066276807, guid: fe2dcbb6b47abac49b689c596175c99a,
+        type: 3}
+      propertyPath: m_Name
+      value: ArmarioEspelho (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 8900705989969070973, guid: fe2dcbb6b47abac49b689c596175c99a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30866,11 +30962,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128566714066276807, guid: fe2dcbb6b47abac49b689c596175c99a,
-        type: 3}
-      propertyPath: m_Name
-      value: ArmarioEspelho (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32814,6 +32905,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
+        type: 3}
+      propertyPath: m_Name
+      value: EstanteDispensaP
+      objectReference: {fileID: 0}
     - target: {fileID: 8958960163970679967, guid: d60e78295be9aee4eb07978b3cd79cbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32863,11 +32959,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
-        type: 3}
-      propertyPath: m_Name
-      value: EstanteDispensaP
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33567,6 +33658,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
+        type: 3}
+      propertyPath: m_Name
+      value: EstanteDispensaP (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 8958960163970679967, guid: d60e78295be9aee4eb07978b3cd79cbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33616,11 +33712,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
-        type: 3}
-      propertyPath: m_Name
-      value: EstanteDispensaP (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34358,6 +34449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16d02a0552ec924584c8a94edace33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMusic: {fileID: 0}
+  sliderVolume: {fileID: 0}
   tutorial: {fileID: 599204463}
   sliderSensibility: {fileID: 251974390}
   painelOptions: {fileID: 765348158}
@@ -35220,6 +35313,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
+        type: 3}
+      propertyPath: m_Name
+      value: EstanteDispensaP (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 8958960163970679967, guid: d60e78295be9aee4eb07978b3cd79cbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35269,11 +35367,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
-        type: 3}
-      propertyPath: m_Name
-      value: EstanteDispensaP (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35771,7 +35864,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.06666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: ca01112405eb1894999e7b0af89af6fb, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 38fba76de0a0b8744bd0333c34a2bae1, type: 2}
   m_BuildHeightMesh: 0
 --- !u!65 &1944308147
 BoxCollider:
@@ -35976,6 +36069,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
+        type: 3}
+      propertyPath: m_Name
+      value: EstanteDispensaP (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 8958960163970679967, guid: d60e78295be9aee4eb07978b3cd79cbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36025,11 +36123,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8583665597217857061, guid: d60e78295be9aee4eb07978b3cd79cbb,
-        type: 3}
-      propertyPath: m_Name
-      value: EstanteDispensaP (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37620,6 +37713,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 1359873156105419088, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
+        type: 3}
+      propertyPath: m_Name
+      value: MaquinaDeLavar
+      objectReference: {fileID: 0}
     - target: {fileID: 7810002573395464974, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37669,11 +37767,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359873156105419088, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
-        type: 3}
-      propertyPath: m_Name
-      value: MaquinaDeLavar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38525,6 +38618,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 776363004}
     m_Modifications:
+    - target: {fileID: 8617834567033356057, guid: d9600ff1ed64bdc4cbaa54756fceda5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Caixa
+      objectReference: {fileID: 0}
     - target: {fileID: 8994640966856648099, guid: d9600ff1ed64bdc4cbaa54756fceda5b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38574,11 +38672,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617834567033356057, guid: d9600ff1ed64bdc4cbaa54756fceda5b,
-        type: 3}
-      propertyPath: m_Name
-      value: Caixa
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

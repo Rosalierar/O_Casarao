@@ -6,6 +6,9 @@ using TMPro;
 
 public class OptionsController : MonoBehaviour
 {
+    [SerializeField] private SongsController audioMusic;
+    [SerializeField] private Slider sliderVolume;
+
     [SerializeField] private GameObject tutorial;
 
     [SerializeField] private Slider sliderSensibility;
@@ -32,6 +35,12 @@ public class OptionsController : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+
+    public void ChangeVolume()
+    {
+        audioMusic.audioSorceBackGround[1].volume = sliderVolume.value;
+    }
+
     public void ChangeSensibility()
     {
         cameraTouchController.cameraSensitivity = sliderSensibility.value;
