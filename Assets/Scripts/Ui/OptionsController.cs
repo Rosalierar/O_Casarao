@@ -16,8 +16,8 @@ public class OptionsController : MonoBehaviour
     [SerializeField] private GameObject painelOptions;
 
     public TextMeshProUGUI[] tmpConfig;
-    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial" };
-    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial" };
+    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial", "Volume"};
+    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial", "Volume" };
 
     [SerializeField] private CameraTouchController cameraTouchController;
 
