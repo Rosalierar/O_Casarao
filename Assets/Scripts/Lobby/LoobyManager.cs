@@ -320,7 +320,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         //int buildIndex = fusionScene.SceneRef; // índice da cena ativa
         //string sceneName = fusionScene.name; // nome da cena ativa
 
-        GameObject cenaGame = GameObject.Find("CenaGame");
+        /*GameObject cenaGame = GameObject.Find("CenaGame");
 
         Debug.Log("RUNNER: " + runner.IsServer);
 
@@ -335,7 +335,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             PlayerRef localPlayer = runner.LocalPlayer;
 
             //int playerCount = Runner.ActivePlayers.Count;
-            bool isFirstPlayer = /*connectedPlayers.Count > 0 && connectedPlayers[0] == localPlayer*/ true;
+            bool isFirstPlayer = /*connectedPlayers.Count > 0 && connectedPlayers[0] == localPlayer true;
 
             if (isFirstPlayer)
             {
@@ -351,7 +351,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         else
         {
             Debug.Log("Não Estamos Na Jogo, nenhuma spawn por enquanto.");
-        }
+        }*/
     }
 
     private void SpawnOpbject(NetworkRunner runner)
@@ -370,17 +370,17 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
                 runner.Spawn(netObj);
                 Debug.Log($"[Fusion] Spawn feito para: {go.name}");
             }
-        }*/
+        }
 
         Vector3 pos = new Vector3(0,0,0);
         NetworkObject CenaObj = runner.Spawn(HouseMultiplayer, pos, Quaternion.identity);
 
-        Debug.Log("Spawn de: " + CenaObj.name);
+        Debug.Log("Spawn de: " + CenaObj.name);*/
     }
 
     private void SpawnPlayer(NetworkRunner runner, PlayerRef player)
     {
-        Debug.Log("Spawnando player: " + player);
+        /*Debug.Log("Spawnando player: " + player);
 
         if (runner.GetPlayerObject(player) != null)
         {
@@ -395,7 +395,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
         NetworkObject playerObj = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, inputAuthority: runner.LocalPlayer); //ou só Player
 
-        Debug.Log("Player spawnado: " + playerObj.name);
+        Debug.Log("Player spawnado: " + playerObj.name); */
     }
 
     public void OnSceneLoadStart(NetworkRunner runner) { }

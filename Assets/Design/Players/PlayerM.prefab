@@ -7541,6 +7541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16d02a0552ec924584c8a94edace33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMusic: {fileID: 0}
+  sliderVolume: {fileID: 0}
   tutorial: {fileID: 2476404163319852360}
   sliderSensibility: {fileID: 7975965143071086472}
   painelOptions: {fileID: 7789801352143612701}
@@ -10482,11 +10484,11 @@ MonoBehaviour:
   View: {fileID: 8352971927734584725}
   ch: {fileID: 0}
   anim: {fileID: 0}
-  playerSpeed: 3
+  playerSpeed: 5
   moveH: 0
   moveV: 0
-  originalSpeed: 3
-  crounchVelocity: 1
+  originalSpeed: 5
+  crounchVelocity: 2
 --- !u!114 &2792997724712654648
 MonoBehaviour:
   m_ObjectHideFlags: 0
