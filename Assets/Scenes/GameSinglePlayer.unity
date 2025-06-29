@@ -29638,7 +29638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5990e3988e4d6294da6aa240b4a75763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 493322092}
+  enemy: {fileID: 0}
   player: {fileID: 1389631430}
   doorMovimentSecond: {fileID: 1841458355}
   doorMoviment: {fileID: 584354051}
@@ -35346,8 +35346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16d02a0552ec924584c8a94edace33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMusic: {fileID: 944731342}
-  sliderVolume: {fileID: 2110925409}
+  audioMusic: {fileID: 0}
+  sliderVolume: {fileID: 0}
   tutorial: {fileID: 599204463}
   sliderSensibility: {fileID: 251974390}
   painelOptions: {fileID: 765348158}
