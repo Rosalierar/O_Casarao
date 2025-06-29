@@ -1121,8 +1121,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.1546059}
+  m_Center: {x: 0, y: 0, z: -0.07730293}
 --- !u!114 &5551039415901064920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1486,6 +1486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
   doorTransform: {fileID: 4271318779374045296}
   posForOpenDoor: 0
   openAngle: -90
@@ -2407,6 +2410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
   doorTransform: {fileID: 8121203541202417407}
   posForOpenDoor: 0
   openAngle: -90

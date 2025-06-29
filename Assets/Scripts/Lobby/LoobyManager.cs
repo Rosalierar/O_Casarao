@@ -372,7 +372,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             }
         }*/
 
-        Vector3 pos = new Vector3(0,0,0);
+        Vector3 pos = new Vector3(-0.378198445f,8.20464134f,-1.46559298f);
         NetworkObject CenaObj = runner.Spawn(HouseMultiplayer, pos, Quaternion.identity);
 
         Debug.Log("Spawn de: " + CenaObj.name);
@@ -393,7 +393,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         Vector3 pos = spawnPoints[index];
         Vector3 spawnPosition = new Vector3(0, 0, 0);
 
-        NetworkObject playerObj = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, inputAuthority: runner.LocalPlayer); //ou só Player
+        NetworkObject playerObj = runner.Spawn(playerPrefab, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer); //ou só Player
 
         Debug.Log("Player spawnado: " + playerObj.name);
     }

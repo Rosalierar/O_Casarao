@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using System;
+using UnityEngine.InputSystem;
 
 public class NetMovePlayer : NetworkBehaviour
 {
@@ -58,6 +59,9 @@ public class NetMovePlayer : NetworkBehaviour
 
             AudioListener audioListener = camPlayer.GetComponent<AudioListener>();
             audioListener.enabled = true;
+
+            CameraTouchController cameraTouch = raiz.GetComponentInChildren<CameraTouchController>();
+            cameraTouch.enabled = true;
 
             canva.SetActive(true);
 
@@ -145,19 +149,14 @@ public class NetMovePlayer : NetworkBehaviour
         moveV = controllerPlayer.moveJoy.inputDirection.y;
 
         dir = new Vector3(moveH, 0, moveV) * playerSpeed * Runner.DeltaTime; 
-        Vector3 DirNormalized = dir.normalized;
         
-        ch.Move(DirNormalized + velocity * Runner.DeltaTime);
+        ch.Move( velocity * Runner.DeltaTime);
 
-        if (DirNormalized != Vector3.zero)
+        if (dir!= Vector3.zero)
         {
             anim.SetBool("isWalking", true);
-            //dir = transform.TransformDirection(dir); 
-            //rb.velocity = new Vector3(dir.x * velocity * Runner.DeltaTime, rb.velocity.y, dir.z * velocity * Runner.DeltaTime);
-            //transform.position += dir * velocity * Runner.DeltaTime;
-            //transform.LookAt(transform.position + dir);
 
-            gameObject.transform.forward = DirNormalized;
+            gameObject.transform.forward = dir;
 
             anim.SetFloat("Blend", 1);
         }

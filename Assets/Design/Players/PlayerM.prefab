@@ -384,7 +384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5383691890048813571
 Transform:
   m_ObjectHideFlags: 0
@@ -5110,7 +5110,7 @@ Transform:
   m_GameObject: {fileID: 4938771836521345122}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.3, y: 7.18, z: -1.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6840,7 +6840,6 @@ GameObject:
   - component: {fileID: 3590842237205644911}
   - component: {fileID: 2860769446001853431}
   - component: {fileID: 7935844421491185661}
-  - component: {fileID: 6290700666015572662}
   m_Layer: 3
   m_Name: Vision
   m_TagString: Itens
@@ -6870,7 +6869,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6316917547666946288}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a60c8a44dc7f2514c90964ae9f7f65e7, type: 3}
   m_Name: 
@@ -6995,27 +6994,6 @@ MonoBehaviour:
   useTheObject: {fileID: 0}
   inventory: {fileID: 0}
   AC: []
---- !u!65 &6290700666015572662
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6316917547666946288}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36782283, y: 0.5864458, z: 0.24574259}
-  m_Center: {x: -0.012666881, y: -0.2067771, z: -0.017155662}
 --- !u!1 &6377743520724030512
 GameObject:
   m_ObjectHideFlags: 0
@@ -7541,6 +7519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16d02a0552ec924584c8a94edace33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMusic: {fileID: 0}
+  sliderVolume: {fileID: 0}
   tutorial: {fileID: 2476404163319852360}
   sliderSensibility: {fileID: 7975965143071086472}
   painelOptions: {fileID: 7789801352143612701}
@@ -10462,7 +10442,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.28208423
+  m_Radius: 0.35
   m_Height: 2
   m_Direction: 1
   m_Center: {x: -0.07, y: 1, z: 0.18526793}
@@ -10600,14 +10580,14 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.2820842
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
