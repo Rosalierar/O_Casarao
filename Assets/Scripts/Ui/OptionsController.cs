@@ -38,7 +38,14 @@ public class OptionsController : MonoBehaviour
 
     public void ChangeVolume()
     {
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetInt("Volume", 1);
+        }
+        
         audioMusic.audioSorceBackGround[1].volume = sliderVolume.value;
+
+        PlayerPrefs.SetInt("Volume", (int)audioMusic.audioSorceBackGround[1].volume);
     }
 
     public void ChangeSensibility()
