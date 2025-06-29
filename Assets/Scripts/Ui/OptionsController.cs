@@ -6,6 +6,9 @@ using TMPro;
 
 public class OptionsController : MonoBehaviour
 {
+    [SerializeField] private SongsController audioMusic;
+    [SerializeField] private Slider sliderVolume;
+
     [SerializeField] private GameObject tutorial;
 
     [SerializeField] private Slider sliderSensibility;
@@ -13,8 +16,8 @@ public class OptionsController : MonoBehaviour
     [SerializeField] private GameObject painelOptions;
 
     public TextMeshProUGUI[] tmpConfig;
-    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial" };
-    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial" };
+    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial", "Volume"};
+    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial", "Volume" };
 
     [SerializeField] private CameraTouchController cameraTouchController;
 
@@ -32,6 +35,12 @@ public class OptionsController : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+
+    public void ChangeVolume()
+    {
+        audioMusic.audioSorceBackGround[1].volume = sliderVolume.value;
+    }
+
     public void ChangeSensibility()
     {
         cameraTouchController.cameraSensitivity = sliderSensibility.value;

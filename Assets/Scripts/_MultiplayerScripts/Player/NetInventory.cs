@@ -45,7 +45,7 @@ public class NetInventory : NetworkBehaviour
         RPC_SoltarItem();
     }
     // Função para adicionar itens ao inventário
-    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_ColetarItem(NetworkObject itemNet)
     {
         if (CarryItem != null) return;
@@ -77,7 +77,7 @@ public class NetInventory : NetworkBehaviour
         }*/
     }
 
-    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_SoltarItem()
     {
         if (!HasInputAuthority) return;

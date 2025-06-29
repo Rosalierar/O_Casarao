@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ControllerPlayer : MonoBehaviour
 {
+    public GameObject painelLife;
     public Vector3 spawnPoint;
     public GameObject blackPainel;
     public TextMeshProUGUI tmpSpeaks;
@@ -18,6 +19,8 @@ public class ControllerPlayer : MonoBehaviour
         set
         {
             playerHealth = value;
+
+            painelLife.GetComponentInChildren<TextMeshProUGUI>().text = playerHealth.ToString();
 
             languageText = PlayerPrefs.GetInt("Language");
             
