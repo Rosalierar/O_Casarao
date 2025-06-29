@@ -144,8 +144,8 @@ public class NetMovePlayer : NetworkBehaviour
         moveH = controllerPlayer.moveJoy.inputDirection.x;
         moveV = controllerPlayer.moveJoy.inputDirection.y;
 
-        dir = new Vector3(moveH, 0, moveV) * playerSpeed * Runner.DeltaTime; 
-        Vector3 DirNormalized = dir.normalized;
+        dir = new Vector3(moveH, 0, moveV) * playerSpeed; 
+        Vector3 DirNormalized = dir.normalized * playerSpeed * Runner.DeltaTime;
         
         ch.Move(DirNormalized + velocity * Runner.DeltaTime);
 
