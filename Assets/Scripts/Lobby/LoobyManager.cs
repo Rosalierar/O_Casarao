@@ -26,6 +26,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     };
     [SerializeField] private int indexSceneForStart;
     [SerializeField] private NetworkManager networkManager;
+    NetworkRunner networkRunner;
     public static LoobyManager Instance;
 
     [Header("Player Prefab")]
@@ -249,6 +250,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
         Debug.Log("runnerInstance: " + runnerInstance);
         Debug.Log("runnerPrefab: " + runnerPrefab);
+        networkRunner = runnerInstance; 
 
         //if (isStartingGame) return;
         //isStartingGame = true; 
@@ -332,6 +334,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             
             PlayerRef localPlayer = runner.LocalPlayer;
 
+            //int playerCount = Runner.ActivePlayers.Count;
             bool isFirstPlayer = /*connectedPlayers.Count > 0 && connectedPlayers[0] == localPlayer*/ true;
 
             if (isFirstPlayer)

@@ -13,11 +13,13 @@ TagManager:
   - Cam
   - Canva
   - Objetos
+  - Machine
+  - VirtualCamera
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Visao
   - Water
   - UI
   - ground

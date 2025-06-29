@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FinalController : MonoBehaviour
 {
+    [SerializeField] GameObject enemy;
     [SerializeField] GameObject player;
     Animator animCam;
     Camera camMain;
@@ -39,6 +40,13 @@ public class FinalController : MonoBehaviour
                 {
                     Destroy(cadeado[i]);
                 }
+
+                if (animCam == null)
+                    print("animCam é null");
+
+                animCam.enabled = true;
+                player.SetActive(false);
+                enemy.SetActive(false);
             }
         }
         catch
@@ -94,10 +102,9 @@ public class FinalController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (animCam == null)
-            print("animCam é null");
-
-        animCam.enabled = true;
-        player.SetActive(false);
+        if (other.CompareTag("PortaEntrada"))
+        {
+            SceneManager.LoadScene(6);
+        }
     }
 }

@@ -789,7 +789,7 @@ Transform:
   m_GameObject: {fileID: 1238234430074382799}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000020796875, z: -3.1768521e-15, w: 1}
-  m_LocalPosition: {x: -0.061308395, y: 1.431, z: 0.3702491}
+  m_LocalPosition: {x: -0.06457138, y: 1.431, z: 0.33757463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 60.000004
     OrthographicSize: 5
-    NearClipPlane: 0.04
+    NearClipPlane: 0.01
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -3655,7 +3655,7 @@ Transform:
   m_GameObject: {fileID: 3448050425627360899}
   serializedVersion: 2
   m_LocalRotation: {x: 0.32916448, y: 0.39053714, z: -0.15191568, w: 0.8461993}
-  m_LocalPosition: {x: -2.3719206, y: 2.5, z: -1.7489173}
+  m_LocalPosition: {x: -2.3845775, y: 2.5, z: -1.7283498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4368,7 +4368,7 @@ Transform:
   m_GameObject: {fileID: 4509918023198874723}
   serializedVersion: 2
   m_LocalRotation: {x: 0.36005983, y: 0.38423046, z: -0.16592579, w: 0.8337821}
-  m_LocalPosition: {x: -2.3650947, y: 2.5, z: -1.7577605}
+  m_LocalPosition: {x: -2.3777845, y: 2.5, z: -1.7373115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6085,7 +6085,7 @@ Transform:
   m_GameObject: {fileID: 5522594145900383774}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3721368, y: 2.5, z: -1.748636}
+  m_LocalPosition: {x: -2.3847947, y: 2.5, z: -1.7280623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6840,7 +6840,8 @@ GameObject:
   - component: {fileID: 3590842237205644911}
   - component: {fileID: 2860769446001853431}
   - component: {fileID: 7935844421491185661}
-  m_Layer: 0
+  - component: {fileID: 6290700666015572662}
+  m_Layer: 3
   m_Name: Vision
   m_TagString: Itens
   m_Icon: {fileID: 0}
@@ -6856,7 +6857,7 @@ Transform:
   m_GameObject: {fileID: 6316917547666946288}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.055, y: 1.431, z: 0.45}
+  m_LocalPosition: {x: -0.055, y: 1.431, z: 0.417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6994,6 +6995,27 @@ MonoBehaviour:
   useTheObject: {fileID: 0}
   inventory: {fileID: 0}
   AC: []
+--- !u!65 &6290700666015572662
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316917547666946288}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.36782283, y: 0.5864458, z: 0.24574259}
+  m_Center: {x: -0.012666881, y: -0.2067771, z: -0.017155662}
 --- !u!1 &6377743520724030512
 GameObject:
   m_ObjectHideFlags: 0
@@ -7722,7 +7744,7 @@ Canvas:
   m_GameObject: {fileID: 7125483570278362638}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 3126428820364052735}
   m_PlaneDistance: 2.46
   m_PixelPerfect: 0
@@ -9061,7 +9083,7 @@ Transform:
   m_GameObject: {fileID: 8881115424201460200}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000020796875, z: -3.1768521e-15, w: 1}
-  m_LocalPosition: {x: -0.061308395, y: 1.431, z: 0.3702491}
+  m_LocalPosition: {x: -0.06457138, y: 1.431, z: 0.33757463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9098,7 +9120,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.04
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
@@ -10434,7 +10456,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -10578,7 +10600,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

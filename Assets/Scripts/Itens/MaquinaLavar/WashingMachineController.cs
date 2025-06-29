@@ -23,7 +23,7 @@ public class WashingMachineController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = audios[1];
         audioSource.Play();
-
+        
         GetComponent<InteractiveObject>().unlocked = true;
     }
 }
