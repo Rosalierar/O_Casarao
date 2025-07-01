@@ -15,6 +15,7 @@ TagManager:
   - Objetos
   - Machine
   - VirtualCamera
+  - jumpscare
   layers:
   - Default
   - TransparentFX
