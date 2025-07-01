@@ -7,7 +7,7 @@ using TMPro;
 public class OptionsController : MonoBehaviour
 {
     [SerializeField] private SongsController audioMusic;
-    [SerializeField] private Slider sliderVolume;
+    [SerializeField] private Slider[] sliderVolume;
 
     [SerializeField] private GameObject tutorial;
 
@@ -16,8 +16,8 @@ public class OptionsController : MonoBehaviour
     [SerializeField] private GameObject painelOptions;
 
     public TextMeshProUGUI[] tmpConfig;
-    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial", "Volume"};
-    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial", "Volume" };
+    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial", "Volume 1"};
+    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial", "Volume 1" };
 
     [SerializeField] private CameraTouchController cameraTouchController;
 
@@ -36,16 +36,16 @@ public class OptionsController : MonoBehaviour
         }
     }
 
-    public void ChangeVolume()
+    public void ChangeVolume(int index)
     {
-        if (!PlayerPrefs.HasKey("Volume"))
+        if (!PlayerPrefs.HasKey("Volume"+index))
         {
-            PlayerPrefs.SetInt("Volume", 1);
+            PlayerPrefs.SetInt("Volume"+index, 1);
         }
         
-        audioMusic.audioSorceBackGround[1].volume = sliderVolume.value;
+        audioMusic.audioSorceBackGround[index].volume = sliderVolume[index].value;
 
-        PlayerPrefs.SetInt("Volume", (int)audioMusic.audioSorceBackGround[1].volume);
+        PlayerPrefs.SetInt("Volume"+index, (int)audioMusic.audioSorceBackGround[index].volume);
     }
 
     public void ChangeSensibility()

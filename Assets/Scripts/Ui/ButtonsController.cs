@@ -41,14 +41,18 @@ public class ButtonsController : MonoBehaviour
 
     public void ChangeVolume()
     {
-        if (!PlayerPrefs.HasKey("Volume"))
+        if (!PlayerPrefs.HasKey("Volume0"))
         {
-            PlayerPrefs.SetInt("Volume", 1);
+            PlayerPrefs.SetInt("Volume0", 1);
+        }
+        if (!PlayerPrefs.HasKey("Volume1"))
+        {
+            PlayerPrefs.SetInt("Volume1", 1);
         }
 
         audioMusic.volume = sliderVolume.value;
         
-        PlayerPrefs.SetInt("Volume", (int)audioMusic.volume);
+        PlayerPrefs.SetInt("Volume0", (int)audioMusic.volume);
     }
 
     public void StartGameSingle()
