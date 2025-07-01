@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Playables;
 
 public class MovePlayer : MonoBehaviour
 {
+    [SerializeField] PlayableDirector jumpscareDirector;
     public static event Action OnLifeLost;
     //GameObjects do player
     ControllerPlayer controllerPlayer; //Referencia do controller do jogador
@@ -135,6 +137,11 @@ public class MovePlayer : MonoBehaviour
             pressedButton = false; //define que o botão não foi pressionado
         }
     }
+    public void CallWaitForSpawn()
+    {
+        StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
+    }
+
 
     IEnumerator WaitForSpawn()
     {
@@ -163,7 +170,8 @@ public class MovePlayer : MonoBehaviour
         {
             FindAnyObjectByType<PatraoController>().ContinueGame();
             
-            StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
+            jumpscareDirector.Play();
+            //StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
             print("Touch Enemy");
         }
     }

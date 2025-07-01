@@ -8,7 +8,7 @@ public class StairLogic : MonoBehaviour
     MovePlayer movePlayer; //Classe
     bool isGrounded = true;
     [SerializeField] LayerMask groundLayer; //Camada apenas da escada
-    [SerializeField] float maxStepHight; //Altura máxima do degrau
+    [SerializeField] float maxStepHight = 0.4f; //Altura máxima do degrau
 
     void Awake()
     {
@@ -27,7 +27,7 @@ public class StairLogic : MonoBehaviour
         if (isGrounded)
         {
            // Calcular a origem dos raios 0.5 unidades à frente do jogador
-            Vector3 forwardOffset = transform.forward * 0.5f;
+            Vector3 forwardOffset = transform.forward * 0.7f;
             Vector3 origin1 = transform.position + forwardOffset + Vector3.up * (maxStepHight + 0.2f);
         
             
