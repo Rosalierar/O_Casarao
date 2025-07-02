@@ -8,15 +8,8 @@ using UnityEngine.UI;
 
 public class ButtonsGameOver : MonoBehaviour
 {
-
-    public TextMeshProUGUI[] tmpButtons;
-
     [SerializeField] private byte LoadSceneMenu;
 
-    void Start()
-    {
-
-    }
 
     public void VoltaMenu()
     {

@@ -96,8 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: eccfa813388e3974a9af127e2efe8b62,
-    type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -4959,7 +4958,7 @@ MonoBehaviour:
   timeForShow: 200
   "isPatr\xE3o": 0
   textForShow:
-  - {fileID: 0}
+  - {fileID: 372328740}
   totalLinePt:
   - "Eu n\xE3o sei como voc\xEA aguenta trabalhar tanto assim, deve ser da sua natureza,
     n\xE9?\r\n"
@@ -11001,10 +11000,10 @@ PlayableDirector:
     value: {fileID: 1389631441}
   - key: {fileID: -4400758935817459078, guid: 901fff9f973ea7141b1ce69d5e466559, type: 2}
     value: {fileID: 125864227}
-  - key: {fileID: -2823260477687282772, guid: 901fff9f973ea7141b1ce69d5e466559, type: 2}
-    value: {fileID: 67285067}
   - key: {fileID: 7677291212620253944, guid: 901fff9f973ea7141b1ce69d5e466559, type: 2}
     value: {fileID: 322903162}
+  - key: {fileID: -2823260477687282772, guid: 901fff9f973ea7141b1ce69d5e466559, type: 2}
+    value: {fileID: 67285067}
   m_ExposedReferences:
     m_References:
     - fbfa73f07ca505549b03b0d816329a56: {fileID: 322903164}
@@ -22617,7 +22616,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -22929,6 +22928,7 @@ MonoBehaviour:
   - {fileID: 944731340}
   - {fileID: 944731339}
   - {fileID: 944731343}
+  - {fileID: 944731338}
   sonsAleatorios:
   - {fileID: 8300000, guid: 6c92990051357e248b1ddfbd30eace4f, type: 3}
   - {fileID: 8300000, guid: f35ca21f5ae1b9e43bd49b6c3e7f26f8, type: 3}
@@ -34138,7 +34138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffdf6f88f6acf545938ffff11ba670a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishTimeLine: 0
+  Canva: {fileID: 67285067}
   song: {fileID: 944731342}
   jumpscareDirector: {fileID: 344550607}
   View: {fileID: 499161654}

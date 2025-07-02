@@ -6,7 +6,21 @@ using UnityEngine.Playables;
 
 public class MovePlayer : MonoBehaviour
 {
-    public bool finishTimeLine = false;
+    //private bool _isFinishJumpScare;
+    [SerializeField] GameObject Canva;
+    /*public bool IsFinishJumpScare
+    {
+        get => _isFinishJumpScare = false;
+        set
+        {
+            if (_isFinishJumpScare != value)
+            {
+                print("FINISH JUMPSCARE MUDADO PARA: " + value);
+                _isFinishJumpScare = value;
+                Invoke("StartCoroutineForSpawn", 0.4f); // Chama automaticamente quando mudar
+            }
+        }
+    }*/
     [SerializeField] SongsController song;
     [SerializeField] PlayableDirector jumpscareDirector;
     public static event Action OnLifeLost;
@@ -141,28 +155,51 @@ public class MovePlayer : MonoBehaviour
     }
     public void CallWaitForSpawn()
     {
-        StartCoroutineForSpawn();
+        //IsFinishJumpScare = true;
+
+        Invoke("CWACFS", 0.4f);
+        
+        for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+        {
+            if (song.songsBackGround[i] != null && i == 0)
+            {
+                song.audioSorceBackGround[i].Play();
+            }
+        }
+
+        //print("METODO DE JUMPSCARE MUDADO PARA: " + _isFinishJumpScare);
     }
 
-    private void StartCoroutineForSpawn()
+    void CWACFS()
     {
-        StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
+        StartCoroutine(WaitForSpawn()); 
     }
+
+    /*private void StartCoroutineForSpawn()
+    {
+        if (_isFinishJumpScare)
+            StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
+
+        print("COROUTINE JUMPSCARE MUDADO PARA: " + _isFinishJumpScare);
+    }*/
 
 
     IEnumerator WaitForSpawn()
     {
+
         controllerPlayer.blackPainel.SetActive(true); //ativa o painel preto
         controllerPlayer.PlayerHealth -= 1; //diminui a vida do jogador
+        transform.localPosition = controllerPlayer.spawnPoint;
 
         // Disparar o evento para as janelas ligarem a grade
         OnLifeLost?.Invoke();
 
         yield return new WaitForSeconds(6f);
         print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
-        transform.localPosition = controllerPlayer.spawnPoint;
 
         controllerPlayer.blackPainel.SetActive(false); //ativa o painel pretos
+
+        //IsFinishJumpScare = false;
     }
 
     void OnTriggerEnter(Collider collision) //verifica se o jogador colidiu com algo
@@ -190,15 +227,21 @@ public class MovePlayer : MonoBehaviour
 
             for (int i = 0; i < song.audioSorceBackGround.Length; i++)
             {
-                if (song.songsBackGround[i] != null)
+                if (song.songsBackGround[i] != null && i != 3)
                 {
                     song.audioSorceBackGround[i].Stop();
                 }
+                else
+                {
+                    song.audioSorceBackGround[i].Play();
+                }
             }
 
-            jumpscareDirector.Play();
-            //StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
             print("Touch Enemy");
+            Canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0,0,0);
+            jumpscareDirector.Play();
+            //Canva.SetActive(false);
+            //StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
         }
     }
 
