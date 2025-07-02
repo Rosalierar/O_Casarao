@@ -525,5 +525,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     public void GoToMenu()
     {
         SceneManager.LoadScene(0);
+        OnLeaveLobbyClicked();
+        DestroyImmediate(gameObject);
     }
 }
