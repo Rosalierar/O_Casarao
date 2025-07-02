@@ -42,7 +42,18 @@ public class NetDetectionObjects : MonoBehaviour
 
         if (hitObject.collider !=null)
         {
-            try{
+            print(hitObject.collider.name);
+            try
+            {
+                item = hitObject.collider.GetComponent<NetItem>(); // Obtém o componente Item do objeto atingido pelo Raycast
+            }
+            catch (System.Exception e) // Se não conseguir pegar o componente, ignora
+            {
+                Debug.Log("Erro ao pegar o componente item: " + e.Message);
+            }
+            
+            try
+            {
                 interactiveObject = hitObject.collider.GetComponent<NetInteractiveObjects>(); // Obtém o componente InteractiveObject do objeto atingido pelo Raycast
                 interactiveObject.SetParentReference(parent);
             }
@@ -50,13 +61,7 @@ public class NetDetectionObjects : MonoBehaviour
             {
                 Debug.Log("Erro ao pegar o componente interactive: " + e.Message);
             }
-            try{
-                item = hitObject.collider.GetComponent<NetItem>(); // Obtém o componente Item do objeto atingido pelo Raycast
-            }
-            catch (System.Exception e) // Se não conseguir pegar o componente, ignora
-            {
-                Debug.Log("Erro ao pegar o componente item: " + e.Message);
-            }
+            
           
             isCollidingInteractiveObj = interactiveObject != null; //Se interactiveObject não for null, então isCollidingInteractiveObj será true. Se for null, será false
             isCollidingItem = item != null;

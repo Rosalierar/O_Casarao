@@ -8,7 +8,7 @@ public class Item : MonoBehaviour
     ParentObjectReference parent; // Referência ao objeto pai
     [SerializeField] private Rigidbody rbObj;
     [SerializeField] private Transform localDeDrop; // Local onde o item será solto
-    [SerializeField] private Inventory inventario; // Referência ao inventário do jogador
+    //[SerializeField] private Inventory inventario; // Referência ao inventário do jogador
     public TipoDeItem tipoDoItem;
     private string descricao;
 
