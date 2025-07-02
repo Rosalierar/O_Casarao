@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameMultiPlayer.unity
     guid: f8980fbd3c88ce34f8effb76712c4fb7
   - enabled: 1
-    path: Assets/Scenes/GameSinglePlayer/ChooseFinal.unity
+    path: Assets/Scenes/ChooseFinal.unity
     guid: b2be630757b77374ea24241478c7336f
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
