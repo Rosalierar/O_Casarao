@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using System;
+using UnityEngine.Playables;
 
 public class NetMovePlayer : NetworkBehaviour
 {
+    [SerializeField] SongsController song;
+    [SerializeField] PlayableDirector jumpscareDirector;
     NetworkObject networkObject;
     Camera camPlayer;
     [SerializeField] GameObject canva;
@@ -225,6 +228,10 @@ public class NetMovePlayer : NetworkBehaviour
             pressedButton = false; //define que o botão não foi pressionado
         }
     }
+    void CWACFS()
+    {
+        StartCoroutine(WaitForSpawn()); 
+    }
 
     IEnumerator WaitForSpawn()
     {
@@ -247,13 +254,41 @@ public class NetMovePlayer : NetworkBehaviour
         if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
         {
             gameObject.layer = LayerMask.NameToLayer("Hide"); //define a layer do jogador como "Hide"
+
+            
+            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+            {
+                if (song.songsBackGround[i] != null && i != 3)
+                {
+                    song.audioSorceBackGround[i].Stop();
+                }
+                else
+                {
+                    song.audioSorceBackGround[i].Play();
+                }
+            }
         }
 
         if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
         {
             FindAnyObjectByType<PatraoController>().ContinueGame();
             
-            StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
+            //StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
+
+            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+            {
+                if (song.songsBackGround[i] != null && i != 3)
+                {
+                    song.audioSorceBackGround[i].Stop();
+                }
+                else
+                {
+                    song.audioSorceBackGround[i].Play();
+                }
+            }
+
+            canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0,0,0);
+            jumpscareDirector.Play();
             print("Touch Enemy");
         }
     }
@@ -263,6 +298,18 @@ public class NetMovePlayer : NetworkBehaviour
         if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
         {
             gameObject.layer = LayerMask.NameToLayer("Player"); //define a layer do jogador como "Player"
+
+            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+            {
+                if (song.songsBackGround[i] != null && i < 2)
+                {
+                    song.audioSorceBackGround[i].Play();
+                }
+                else
+                {
+                    song.audioSorceBackGround[i].Stop();
+                }
+            }
         }
     }
 }
