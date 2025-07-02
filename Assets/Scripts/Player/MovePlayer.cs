@@ -139,6 +139,11 @@ public class MovePlayer : MonoBehaviour
     }
     public void CallWaitForSpawn()
     {
+        StartCoroutineForSpawn();
+    }
+
+    private void StartCoroutineForSpawn()
+    {
         StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
     }
 
@@ -152,6 +157,7 @@ public class MovePlayer : MonoBehaviour
         OnLifeLost?.Invoke();
 
         print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
+        yield return null; // espera 1 frame
         transform.localPosition = controllerPlayer.spawnPoint;
 
         yield return new WaitForSeconds(6f);
