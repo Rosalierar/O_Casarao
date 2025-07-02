@@ -10,9 +10,11 @@ public class GameManagerNet : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 
     private Vector3[] spawnPoints = new Vector3[2]
     {
-        //new Vector3(-6.17f, 7.18f, 0.36f),
-        new Vector3(0f, 0f, 0f),
-        new Vector3(-3.18f, 7.18f, 0.36f)
+        //new Vector3(0f, 0f, 0f),
+        //new Vector3(0f, 0f, 0f),
+        new Vector3(-3.18f, 7.18f, 0.36f),
+        new Vector3(-6.17f, 7.18f, 0.36f),
+        //new Vector3(-3.18f, 7.18f, 0.36f)
     };
 
     public override void Spawned()
@@ -82,7 +84,7 @@ public class GameManagerNet : NetworkBehaviour, IPlayerJoined, IPlayerLeft
     
     void SpawnPlayers()
     {
-        print("Chamou AQUI");
+        /*print("Chamou AQUI");
         foreach (var player in Runner.ActivePlayers)
         {
             if (!Players.ContainsKey(player))
@@ -95,6 +97,6 @@ public class GameManagerNet : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 
                 Debug.Log("Spawn manual do jogador: " + player);
             }
-        }
+        }*/
     }
 }
