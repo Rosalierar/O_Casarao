@@ -5,22 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class FinalController : MonoBehaviour
 {
+    [SerializeField] SongsController song;
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject player;
     Animator animCam;
     Camera camMain;
-    bool isOpenDoor = false;
+    [SerializeField] bool isOpenDoor = false;
     [SerializeField] DoorMoviment doorMovimentSecond;
     [SerializeField] DoorMoviment doorMoviment;
-    [SerializeField] bool[] conclusion = new bool[3];
     [SerializeField] private GameObject[] cadeado = new GameObject[3];
 
     void Awake()
     {
         camMain = GameObject.FindWithTag("Cam").GetComponent<Camera>();
-        camMain.enabled = false;
+        animCam = GameObject.FindWithTag("Cam").GetComponent<Animator>();
 
-        animCam = camMain.GetComponent<Animator>();
+        //camMain = GetComponent<Camera>();
+        //animCam = GetComponent<Animator>();
+
+        camMain.enabled = false;
         animCam.enabled = false;
 
         //this.enabled = false;
@@ -32,21 +35,37 @@ public class FinalController : MonoBehaviour
         {
             if (!cadeado[0].activeSelf && !cadeado[1].activeSelf && !cadeado[2].activeSelf && !isOpenDoor)
             {
+                for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+                {
+                    if (song.songsBackGround[i] != null && i != 3)
+                    {
+                        song.audioSorceBackGround[i].Stop();
+                    }
+                    else
+                    {
+                        song.audioSorceBackGround[3].clip = song.songsBackGround[4];
+                        song.audioSorceBackGround[3].Play();
+                        song.audioSorceBackGround[0].Play();
+                    }
+                }
+
                 isOpenDoor = true;
 
-                DesableCams();
+                if (animCam == null)
+                    print("animCam é null");
 
                 for (int i = 0; i < cadeado.Length; i++)
                 {
                     Destroy(cadeado[i]);
                 }
 
-                if (animCam == null)
-                    print("animCam é null");
-
                 animCam.enabled = true;
                 player.SetActive(false);
                 enemy.SetActive(false);
+
+                DesableCams();
+
+                print("FINAL CONTROLLER");
             }
         }
         catch
