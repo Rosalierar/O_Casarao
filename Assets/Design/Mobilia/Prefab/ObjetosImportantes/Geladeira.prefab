@@ -972,6 +972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AS: {fileID: 5973668660012853175}
   informationAboutItem: {fileID: 0}
   cadeado:
   - {fileID: 0}

@@ -35,24 +35,26 @@ public class ButtonsController : MonoBehaviour
         {
             PlayerPrefs.SetInt("Language", 0);
         }
-        
+        if (!PlayerPrefs.HasKey("Volume0"))
+        {
+            PlayerPrefs.SetFloat("Volume0", 0.5f);
+        }
+        if (!PlayerPrefs.HasKey("Volume1"))
+        {
+            PlayerPrefs.SetFloat("Volume1", 0.5f);
+        }
+
+        audioMusic.volume =  PlayerPrefs.GetFloat("Volume0");
+        sliderVolume.value = PlayerPrefs.GetFloat("Volume0");
+
         ChangeLanguageMenu();
     }
 
     public void ChangeVolume()
     {
-        if (!PlayerPrefs.HasKey("Volume0"))
-        {
-            PlayerPrefs.SetInt("Volume0", 1);
-        }
-        if (!PlayerPrefs.HasKey("Volume1"))
-        {
-            PlayerPrefs.SetInt("Volume1", 1);
-        }
-
         audioMusic.volume = sliderVolume.value;
         
-        PlayerPrefs.SetInt("Volume0", (int)audioMusic.volume);
+        PlayerPrefs.SetFloat("Volume0", audioMusic.volume);
     }
 
     public void StartGameSingle()

@@ -46,124 +46,133 @@ public class InteractiveObject : MonoBehaviour
             if (itemNecessario == TipoDeItem.ChaveCircular) /////////////////////////////////////////// CHAVE CIRCULAR
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                drawerMoviment.enabled = true;
-                drawerMoviment.TryActiveDrawer();
-
-                /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
-                parent.useTheObject.enabled = false; // Desabilita o script de usar
-                parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
-
-                Debug.Log("Porta Aberta!");
-            }
-
-            if (itemNecessario == TipoDeItem.Alicate)
-            {
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
-
-                gameObject.SetActive(false); // Desativa o objeto do mund
-
-                /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
-                parent.useTheObject.enabled = false; // Desabilita o script de usar
-                parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
-                Debug.Log("Corrente Quebrada!");
-
-            }
-
-            else if (itemNecessario == TipoDeItem.PeDeCabra) /////////////////////////////////////////// PE DE CABRA
-            {
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                doorMoviment.enabled = true;
-                doorMoviment.TryActiveDoor();
-
-                //gameObject.SetActive(false); // Desativa o objeto do mundo
-
-                Debug.Log("Porta Aberta!");
-            }
-            else if (itemNecessario == TipoDeItem.Crucifixo)
-            {
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                doorMoviment.enabled = true;
-                doorMoviment.TryActiveDoor();
-
-                //gameObject.SetActive(false); // Desativa o objeto do mundo
-
-                Debug.Log("Porta Aberta!");
-            }
-
-            else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
-            {
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 //drawerMoviment.enabled = true;
                 //drawerMoviment.TryActiveDrawer();
                 doorMoviment.enabled = true;
                 doorMoviment.TryActiveDoor();
 
-                //gameObject.SetActive(false); // Desativa o objeto do mundo
+                /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
+                parent.useTheObject.enabled = false; // Desabilita o script de usar
+                parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
 
-                Debug.Log("Gaveta Aberta!");
+                Debug.Log("Porta Aberta!");
+            }
+            if (itemNecessario == TipoDeItem.GrampoDeCabelo) /////////////////////////////////////////// GRAMPO DE CABELO
+            {
+                
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                doorMoviment.enabled = true;
+                doorMoviment.TryActiveDoor();
             }
 
-            else if (itemNecessario == TipoDeItem.ChaveVermelha) /////////////////////////////////////////// CHAVE VERMELHA
-            {
-                audioSource = GetComponent<AudioSource>();
-                audioSource.Play();
-
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                progressionGame[0] = true;
-
-                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+            if (itemNecessario == TipoDeItem.Alicate)
                 {
-                    //  GoToWin();
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
+
+                    gameObject.SetActive(false); // Desativa o objeto do mund
+
+                    /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
+                    parent.useTheObject.enabled = false; // Desabilita o script de usar
+                    parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
+                    Debug.Log("Corrente Quebrada!");
+
                 }
 
-                StartCoroutine(ToDisableDelayed(1, 0.5f));
-            }
-
-            else if (itemNecessario == TipoDeItem.ChaveAmarela) /////////////////////////////////////////// CHAVE AMARELA
-            {
-                audioSource = GetComponent<AudioSource>();
-                audioSource.Play();
-
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                progressionGame[1] = true;
-
-                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+                else if (itemNecessario == TipoDeItem.PeDeCabra) /////////////////////////////////////////// PE DE CABRA
                 {
-                    //GoToWin();
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                    doorMoviment.enabled = true;
+                    doorMoviment.TryActiveDoor();
+
+                    //gameObject.SetActive(false); // Desativa o objeto do mundo
+
+                    Debug.Log("Porta Aberta!");
+                }
+                else if (itemNecessario == TipoDeItem.Crucifixo)
+                {
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                    doorMoviment.enabled = true;
+                    doorMoviment.TryActiveDoor();
+
+                    //gameObject.SetActive(false); // Desativa o objeto do mundo
+
+                    Debug.Log("Porta Aberta!");
                 }
 
-                StartCoroutine(ToDisableDelayed(0, 0.5f));
-            }
-
-            else if (itemNecessario == TipoDeItem.ChaveVerde) /////////////////////////////////////////// CHAVE VERDE
-            {
-                audioSource = GetComponent<AudioSource>();
-                audioSource.Play();
-
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                progressionGame[2] = true;
-
-                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+                else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
                 {
-                    // GoToWin();
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                                                 //drawerMoviment.enabled = true;
+                                                 //drawerMoviment.TryActiveDrawer();
+                    doorMoviment.enabled = true;
+                    doorMoviment.TryActiveDoor();
+
+                    //gameObject.SetActive(false); // Desativa o objeto do mundo
+
+                    Debug.Log("Gaveta Aberta!");
                 }
 
-                StartCoroutine(ToDisableDelayed(2, 0.5f));
-            }
+                else if (itemNecessario == TipoDeItem.ChaveVermelha) /////////////////////////////////////////// CHAVE VERMELHA
+                {
+                    audioSource = GetComponent<AudioSource>();
+                    audioSource.Play();
 
-            else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
-            {
-                GameObject.Find("ChaveCircular").GetComponent<Animation>().Play("GotOutKey");
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                    progressionGame[0] = true;
 
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-            }
+                    if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+                    {
+                        //  GoToWin();
+                    }
 
-            else if (itemNecessario == TipoDeItem.Desinfetante) /////////////////////////////////////////// MAQUINA DE LAVAR
-            {
-                GetComponent<WashingMachineController>().StartTime();
+                    StartCoroutine(ToDisableDelayed(1, 0.5f));
+                }
 
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-            }
+                else if (itemNecessario == TipoDeItem.ChaveAmarela) /////////////////////////////////////////// CHAVE AMARELA
+                {
+                    audioSource = GetComponent<AudioSource>();
+                    audioSource.Play();
+
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                    progressionGame[1] = true;
+
+                    if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+                    {
+                        //GoToWin();
+                    }
+
+                    StartCoroutine(ToDisableDelayed(0, 0.5f));
+                }
+
+                else if (itemNecessario == TipoDeItem.ChaveVerde) /////////////////////////////////////////// CHAVE VERDE
+                {
+                    audioSource = GetComponent<AudioSource>();
+                    audioSource.Play();
+
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                    progressionGame[2] = true;
+
+                    if (progressionGame[0] && progressionGame[1] && progressionGame[2])
+                    {
+                        // GoToWin();
+                    }
+
+                    StartCoroutine(ToDisableDelayed(2, 0.5f));
+                }
+
+                else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
+                {
+                    GameObject.Find("ChaveCircular").GetComponent<Animation>().Play("GotOutKey");
+
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                }
+
+                else if (itemNecessario == TipoDeItem.Desinfetante) /////////////////////////////////////////// MAQUINA DE LAVAR
+                {
+                    GetComponent<WashingMachineController>().StartTime();
+
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                }
 
             parent.grabTheObject.enabled = true; // Habilita o script de pegar
             parent.useTheObject.enabled = false; // Desabilita o script de usar

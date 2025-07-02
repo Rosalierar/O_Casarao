@@ -25,27 +25,42 @@ public class OptionsController : MonoBehaviour
 
     void Start()
     {
+        if (!PlayerPrefs.HasKey("Volume"+0))
+        {
+            PlayerPrefs.SetFloat("Volume0", 0.5f);
+            print("Saved=" + PlayerPrefs.GetFloat("Volume"+0));
+        }
+        if (!PlayerPrefs.HasKey("Volume"+1))
+        {
+            PlayerPrefs.SetFloat("Volume1", 0.5f);
+            print("Saved=" + PlayerPrefs.GetFloat("Volume"+1));
+        }
+
+        audioMusic.audioSorceBackGround[0].volume = PlayerPrefs.GetFloat("Volume0");
+        audioMusic.audioSorceBackGround[1].volume = PlayerPrefs.GetFloat("Volume1");
+        sliderVolume[0].value = PlayerPrefs.GetFloat("Volume0");
+        sliderVolume[1].value = PlayerPrefs.GetFloat("Volume1");
+        print("Slider=" + sliderVolume[0].value + " | Saved=" + PlayerPrefs.GetFloat("Volume" + 0));
+        print("Slider=" + sliderVolume[1].value + " | Saved=" + PlayerPrefs.GetFloat("Volume" + 1));
+
         if (tutorial.activeSelf)
         {
             Time.timeScale = 0f;
         }
         else
         {
-            
+
             Time.timeScale = 1f;
         }
     }
 
     public void ChangeVolume(int index)
     {
-        if (!PlayerPrefs.HasKey("Volume"+index))
-        {
-            PlayerPrefs.SetInt("Volume"+index, 1);
-        }
-        
         audioMusic.audioSorceBackGround[index].volume = sliderVolume[index].value;
 
-        PlayerPrefs.SetInt("Volume"+index, (int)audioMusic.audioSorceBackGround[index].volume);
+        PlayerPrefs.SetFloat("Volume" + index, audioMusic.audioSorceBackGround[index].volume);
+        print("Volume" + index + ": Slider=" + sliderVolume[index].value + " | Saved=" + PlayerPrefs.GetFloat("Volume" + index));
+        PlayerPrefs.Save();
     }
 
     public void ChangeSensibility()

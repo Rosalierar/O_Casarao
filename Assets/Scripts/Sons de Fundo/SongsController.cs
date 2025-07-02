@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SongsController : MonoBehaviour
 {
-    [SerializeField] private AudioClip[] songsBackGround = new AudioClip[3]; //MUSICA DE CHAVA, MUSICA DE FUNDO E PERSEGUIÇÃO
+    public AudioClip[] songsBackGround = new AudioClip[4]; //MUSICA DE CHAVA, MUSICA DE FUNDO, PERSEGUIÇÃO e ESCONDER
     public AudioSource[] audioSorceBackGround;
 
     //SOM ALEATORIOS
@@ -23,7 +23,7 @@ public class SongsController : MonoBehaviour
             audioSorceBackGround[i].loop = true;
             audioSorceBackGround[i].clip = songsBackGround[i];
 
-            if (songsBackGround[i] != null && i != 2)
+            if (songsBackGround[i] != null && i < 2)
             {
                 audioSorceBackGround[i].Play();
             }

@@ -6,6 +6,8 @@ using UnityEngine.Playables;
 
 public class MovePlayer : MonoBehaviour
 {
+    public bool finishTimeLine = false;
+    [SerializeField] SongsController song;
     [SerializeField] PlayableDirector jumpscareDirector;
     public static event Action OnLifeLost;
     //GameObjects do player
@@ -156,11 +158,9 @@ public class MovePlayer : MonoBehaviour
         // Disparar o evento para as janelas ligarem a grade
         OnLifeLost?.Invoke();
 
-        print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
-        yield return null; // espera 1 frame
-        transform.localPosition = controllerPlayer.spawnPoint;
-
         yield return new WaitForSeconds(6f);
+        print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
+        transform.localPosition = controllerPlayer.spawnPoint;
 
         controllerPlayer.blackPainel.SetActive(false); //ativa o painel pretos
     }
@@ -170,12 +170,32 @@ public class MovePlayer : MonoBehaviour
         if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
         {
             gameObject.layer = LayerMask.NameToLayer("Hide"); //define a layer do jogador como "Hide"
+
+            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+            {
+                if (song.songsBackGround[i] != null && i != 3)
+                {
+                    song.audioSorceBackGround[i].Stop();
+                }
+                else
+                {
+                    song.audioSorceBackGround[i].Play();
+                }
+            }
         }
 
         if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
         {
             FindAnyObjectByType<PatraoController>().ContinueGame();
-            
+
+            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+            {
+                if (song.songsBackGround[i] != null)
+                {
+                    song.audioSorceBackGround[i].Stop();
+                }
+            }
+
             jumpscareDirector.Play();
             //StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
             print("Touch Enemy");
@@ -187,6 +207,18 @@ public class MovePlayer : MonoBehaviour
         if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
         {
             gameObject.layer = LayerMask.NameToLayer("Player"); //define a layer do jogador como "Player"
+
+            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+            {
+                if (song.songsBackGround[i] != null && i < 2)
+                {
+                    song.audioSorceBackGround[i].Play();
+                }
+                else
+                {
+                    song.audioSorceBackGround[i].Stop();
+                }
+            }
         }
     }
 }

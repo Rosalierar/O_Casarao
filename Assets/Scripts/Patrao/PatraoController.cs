@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class PatraoController : MonoBehaviour
 {
+    [SerializeField] SongsController songs;
+    bool isPlaySongPersecution= false;
     Animator animPatrao;
     NavMeshAgent agent; // Referência ao agente NavMesh
 
@@ -164,8 +166,8 @@ public class PatraoController : MonoBehaviour
             Vector3 origin1 = transform.position + forwardOffset + Vector3.up;
             
             // Aplica rotação nas origens para os raios laterais (com ângulo de 35 graus)
-            Vector3 origin2 = Quaternion.Euler(0, 35, 0) * (origin1 - visionPos.position) + visionPos.position;
-            Vector3 origin3 = Quaternion.Euler(0, -35, 0) * (origin1 - visionPos.position) + visionPos.position;
+            Vector3 origin2 = Quaternion.Euler(0, 25, 0) * (origin1 - visionPos.position) + visionPos.position;
+            Vector3 origin3 = Quaternion.Euler(0, -25, 0) * (origin1 - visionPos.position) + visionPos.position;
 
             Ray rayDireita = new Ray(origin2, (origin2 - visionPos.position).normalized);
             Ray rayEsquerda = new Ray(origin3, (origin3 - visionPos.position).normalized);
@@ -187,6 +189,22 @@ public class PatraoController : MonoBehaviour
             if (patraoHit.collider.CompareTag("Player"))
             { // Verifica se o raio atingiu algo
                 playerTransform = patraoHit.transform; // Atribui o objeto atingido à variável playerTransform
+
+                if (!isPlaySongPersecution)
+                {
+                    for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
+                    {
+                        if (songs.songsBackGround[i] != null && i != 2)
+                        {
+                            songs.audioSorceBackGround[i].Stop();
+                        }
+                        else
+                        {
+                            songs.audioSorceBackGround[i].Play();
+                        }
+                    }
+                    isPlaySongPersecution = true;
+                }
 
                 animPatrao.SetBool("isRunning", true);
                 animPatrao.SetBool("isWalking", false);
@@ -277,7 +295,22 @@ public class PatraoController : MonoBehaviour
         
         agent.isStopped = true; // Para o agente NavMesh
         isPatrol = true; // Define que o patrão está patrulhando
-        
+
+        if (isPlaySongPersecution)
+        {
+            for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
+            {
+                if (songs.songsBackGround[i] != null && i < 2)
+                {
+                    songs.audioSorceBackGround[i].Play();
+                }
+                else
+                {
+                    songs.audioSorceBackGround[i].Stop();
+                }
+            }
+            isPlaySongPersecution = false;
+        }
 
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
