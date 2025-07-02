@@ -889,7 +889,7 @@ Transform:
   m_GameObject: {fileID: 50863712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.689, y: 0, z: -0}
+  m_LocalPosition: {x: -0.672, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11991,7 +11991,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 440071601}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 1
 --- !u!114 &440071599
 MonoBehaviour:
@@ -12791,7 +12790,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 471450660}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 5
 --- !u!114 &471450658
 MonoBehaviour:
@@ -13171,6 +13169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309cc877995b47340b5e9082842db2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  songs: {fileID: 0}
   seePlayer: 0
   timerToStopPersecution: 20
   player: {fileID: 1389631432}
@@ -14378,11 +14377,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5990e3988e4d6294da6aa240b4a75763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  song: {fileID: 0}
   enemy: {fileID: 0}
   player: {fileID: 1796458766}
+  isOpenDoor: 0
   doorMovimentSecond: {fileID: 1411177817}
   doorMoviment: {fileID: 270731437}
-  conclusion: 000000
   cadeado:
   - {fileID: 1332534936}
   - {fileID: 942793775}
@@ -16794,7 +16794,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 715323694}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 9
 --- !u!114 &715323692
 MonoBehaviour:
@@ -17851,7 +17850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 782242252}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 0
 --- !u!114 &782242250
 MonoBehaviour:
@@ -18431,7 +18429,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 831360155}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 8
 --- !u!114 &831360153
 MonoBehaviour:
@@ -20102,7 +20099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 934592759}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 3
 --- !u!114 &934592757
 MonoBehaviour:
@@ -22413,7 +22409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 1063452155}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 2
 --- !u!114 &1063452153
 MonoBehaviour:
@@ -23848,76 +23843,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.04
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.13
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -8.76
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_Name
-      value: Inimigo
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: -8113662451844533969, guid: a578014b51d8d544ea5a622c47d5f83a,
         type: 3}
       propertyPath: m_RootBone
@@ -24533,6 +24458,76 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a3144b4a7ec8954448fb0d3b40984956, type: 2}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.04
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.13
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.76
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_Name
+      value: Inimigo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5322205586786856616, guid: a578014b51d8d544ea5a622c47d5f83a, type: 3}
@@ -26303,11 +26298,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5990e3988e4d6294da6aa240b4a75763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  song: {fileID: 0}
   enemy: {fileID: 493322092}
   player: {fileID: 0}
+  isOpenDoor: 0
   doorMovimentSecond: {fileID: 876249178}
   doorMoviment: {fileID: 594766686}
-  conclusion: 000000
   cadeado:
   - {fileID: 46871044}
   - {fileID: 766082851}
@@ -27859,7 +27855,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 1278135343}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 7
 --- !u!114 &1278135341
 MonoBehaviour:
@@ -28093,7 +28088,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 1282403243}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 10
 --- !u!114 &1282403241
 MonoBehaviour:
@@ -29215,7 +29209,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 1340817131}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 4
 --- !u!114 &1340817129
 MonoBehaviour:
@@ -30920,6 +30913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffdf6f88f6acf545938ffff11ba670a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canva: {fileID: 0}
+  song: {fileID: 0}
   jumpscareDirector: {fileID: 0}
   View: {fileID: 499161654}
   rb: {fileID: 0}
@@ -31553,11 +31548,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5990e3988e4d6294da6aa240b4a75763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  song: {fileID: 0}
   enemy: {fileID: 0}
   player: {fileID: 0}
+  isOpenDoor: 0
   doorMovimentSecond: {fileID: 1841458355}
   doorMoviment: {fileID: 584354051}
-  conclusion: 000000
   cadeado:
   - {fileID: 46871044}
   - {fileID: 766082851}
@@ -43644,7 +43640,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbObj: {fileID: 2137458584}
   localDeDrop: {fileID: 325512185}
-  inventario: {fileID: 499161657}
   tipoDoItem: 6
 --- !u!114 &2137458582
 MonoBehaviour:
