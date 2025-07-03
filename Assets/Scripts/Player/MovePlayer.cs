@@ -157,7 +157,7 @@ public class MovePlayer : MonoBehaviour
     {
         //IsFinishJumpScare = true;
 
-        Invoke("CWACFS", 0.4f);
+        Invoke("CWACFS", 0.5f);
         
         for (int i = 0; i < song.audioSorceBackGround.Length; i++)
         {
