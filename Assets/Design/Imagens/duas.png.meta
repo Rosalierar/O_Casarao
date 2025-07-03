@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 212f254b38ed6e54b9e72ac9631322b1
+guid: 768e123fbe369e94db861d1c36430146
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,18 +108,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: duas_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401dc61ada1716544a59b0ab59506229
+      internalID: 2040460152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 043bda89f56ab9d47823ed62a94ad6d5
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      duas_0: 2040460152
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
