@@ -46,7 +46,11 @@ public class NetMovePlayer : NetworkBehaviour
     {
         networkObject = GetComponentInParent<NetworkObject>();
 
-        if (networkObject.HasInputAuthority)
+        if (!networkObject.HasInputAuthority)
+        {
+            AtivarTodosScriptsDoPaiRaiz(gameObject);
+        }
+        else if (networkObject.HasInputAuthority)
         {
             anim = GetComponent<Animator>(); //pega o animator do jogador
             ch = GetComponent<CharacterController>();
@@ -76,6 +80,24 @@ public class NetMovePlayer : NetworkBehaviour
             controllerPlayer.PlayerHealth = 3; //salva a vida do jogador
 
             print("PLAYER SPAWNED");
+        }
+    }
+
+    Transform GetRaiz(Transform t)
+    {
+        while (t.parent != null)
+            t = t.parent;
+        return t;
+    }
+
+    void AtivarTodosScriptsDoPaiRaiz(GameObject objeto)
+    {
+        Transform raiz = GetRaiz(objeto.transform);
+        MonoBehaviour[] scripts = raiz.GetComponents<MonoBehaviour>();
+
+        foreach (MonoBehaviour script in scripts)
+        {
+            script.enabled = true;
         }
     }
 
