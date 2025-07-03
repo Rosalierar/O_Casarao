@@ -19,8 +19,8 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     GameObject[] gameObj;
     private Vector3[] spawnPoints = new Vector3[2]
     {
-        new Vector3(-6.17f, 7.18f, 0.36f),
-        new Vector3(-3.18f, 7.18f, 0.36f)
+        new Vector3(-6.3f,7.18f,0.21f),
+        new Vector3(-2.95f,7.18f,0.21f),
         //new Vector3(-800.55f, 65.5f, 0.8f),
         //new Vector3(-9.2f,65.5f, 0.8f)
     };
@@ -30,9 +30,9 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     public static LoobyManager Instance;
 
     [Header("Player Prefab")]
-    Animator anim;
-    [SerializeField] AnimatorOverrideController[] animatorOverrideController;
-    [SerializeField] private NetworkObject playerPrefab;
+    //Animator anim;
+    //[SerializeField] AnimatorOverrideController[] animatorOverrideController;
+    [SerializeField] private NetworkObject playerPrefab1, playerPrefab2;
     [SerializeField] private NetworkObject HouseMultiplayer;
 
     private List<PlayerRef> connectedPlayers = new List<PlayerRef>();
@@ -394,19 +394,21 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         //-6.17F 7.18F 0.36F // -3.18
         //int index = player.RawEncoded % spawnPoints.Length;
         Vector3 pos = spawnPoints[playerCount- 1];
-        NetworkObject playerObj = runner.Spawn(playerPrefab, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
-
-        anim = playerObj.GetComponent<Animator>();
 
         if (playerCount == 1)
         {
-            anim.runtimeAnimatorController = animatorOverrideController[0];
-            byte inx = 0;
+            NetworkObject playerObj = runner.Spawn(playerPrefab1, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
+            //anim = playerObj.GetComponent<Animator>();
+            //anim.runtimeAnimatorController = animatorOverrideController[0];
         }
         else if (playerCount == 2)
-            anim.runtimeAnimatorController = animatorOverrideController[1];
+        {
+            NetworkObject playerObj = runner.Spawn(playerPrefab2, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
+            //anim = playerObj.GetComponent<Animator>();
+            //anim.runtimeAnimatorController = animatorOverrideController[1];
+        }
 
-        Debug.Log("Player spawnado: " + playerObj.name); 
+        //Debug.Log("Player spawnado: " + playerObj.name); 
     }
 
     public void OnSceneLoadStart(NetworkRunner runner) { }
