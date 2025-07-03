@@ -1,12 +1,13 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using System.Linq;
 
 public class GameManagerNet : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 {
     [SerializeField] private NetworkObject housePrefab;
     [SerializeField] private NetworkPrefabRef playerPrefab;
     [Networked, Capacity(12)] private NetworkDictionary<PlayerRef, NetMovePlayer> Players => default;
+
 
     private Vector3[] spawnPoints = new Vector3[2]
     {
@@ -56,6 +57,7 @@ public class GameManagerNet : NetworkBehaviour, IPlayerJoined, IPlayerLeft
 
     public void PlayerJoined(PlayerRef player)
     {
+        int playerCount = Runner.ActivePlayers.Count();
         /*if (HasStateAuthority)
         {
             int index = player.RawEncoded % spawnPoints.Length;

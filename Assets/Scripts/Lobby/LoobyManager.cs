@@ -30,6 +30,8 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     public static LoobyManager Instance;
 
     [Header("Player Prefab")]
+    Animator anim;
+    [SerializeField] AnimatorOverrideController[] animatorOverrideController;
     [SerializeField] private NetworkObject playerPrefab;
     [SerializeField] private NetworkObject HouseMultiplayer;
 
@@ -334,8 +336,8 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             
             PlayerRef localPlayer = runner.LocalPlayer;
 
-            //int playerCount = Runner.ActivePlayers.Count;*/
-            bool isFirstPlayer = /*connectedPlayers.Count > 0 && connectedPlayers[0] == localPlayer*/true;
+            int playerCount = runner.ActivePlayers.Count();
+            bool isFirstPlayer = playerCount > 0 && playerCount < 2;
 
             if (isFirstPlayer)
             {
@@ -356,26 +358,24 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void SpawnOpbject(NetworkRunner runner)
     {
-        /*for (int i = 0; i < tagDosObjetos.Length; i++)
-        {
-            gameObj = GameObject.FindGameObjectsWithTag(tagDosObjetos[i]);
-        }
+         // Pega todos os filhos com NetworkObject (inclusive os desativados)
+        var networkObjects = HouseMultiplayer.GetComponentsInChildren<NetworkObject>(true);
 
-        foreach (GameObject go in gameObj)
+        foreach (var netObj in networkObjects)
         {
-            NetworkObject netObj = go.GetComponent<NetworkObject>();
+            print("RUNNER IS RUNNIG: " + runner.IsRunning);
 
-            if (netObj != null)
+            if (netObj.tag == "Itens")
             {
-                runner.Spawn(netObj);
-                Debug.Log($"[Fusion] Spawn feito para: {go.name}");
+
+
+            if (netObj == HouseMultiplayer) continue; // Evita spawnar o pai novamente
+            if (netObj != null && !netObj.IsValid) continue;
+
+            runner.Spawn(netObj, netObj.transform.position, netObj.transform.rotation);
+            Debug.Log($"Spawnado objeto: {netObj.name}");
             }
         }
-
-        Vector3 pos = new Vector3(0,0,0);
-        NetworkObject CenaObj = runner.Spawn(HouseMultiplayer, pos, Quaternion.identity);
-
-        Debug.Log("Spawn de: " + CenaObj.name);*/
     }
 
     private void SpawnPlayer(NetworkRunner runner, PlayerRef player)
@@ -388,12 +388,23 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             return;
         }
 
+        int playerCount = runner.ActivePlayers.Count();
+        print("JOGADORES NO MOMENTEO: " + playerCount);
+            
         //-6.17F 7.18F 0.36F // -3.18
-        int index = player.RawEncoded % spawnPoints.Length;
-        Vector3 pos = spawnPoints[index];
-        Vector3 spawnPosition = new Vector3(0, 0, 0);
+        //int index = player.RawEncoded % spawnPoints.Length;
+        Vector3 pos = spawnPoints[playerCount- 1];
+        NetworkObject playerObj = runner.Spawn(playerPrefab, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
 
-        NetworkObject playerObj = runner.Spawn(playerPrefab, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer); //ou só Player
+        anim = playerObj.GetComponent<Animator>();
+
+        if (playerCount == 1)
+        {
+            anim.runtimeAnimatorController = animatorOverrideController[0];
+            byte inx = 0;
+        }
+        else if (playerCount == 2)
+            anim.runtimeAnimatorController = animatorOverrideController[1];
 
         Debug.Log("Player spawnado: " + playerObj.name); 
     }

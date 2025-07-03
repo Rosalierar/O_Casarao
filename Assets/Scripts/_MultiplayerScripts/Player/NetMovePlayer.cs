@@ -4,6 +4,7 @@ using UnityEngine;
 using Fusion;
 using System;
 using UnityEngine.Playables;
+using Unity.VisualScripting;
 
 public class NetMovePlayer : NetworkBehaviour
 {
@@ -62,6 +63,8 @@ public class NetMovePlayer : NetworkBehaviour
             AudioListener audioListener = camPlayer.GetComponent<AudioListener>();
             audioListener.enabled = true;
 
+            Transform canvas = raiz.Find("Canvas").GetComponentInChildren<Transform>(true);
+            canva = canvas.gameObject;
             canva.SetActive(true);
 
             myCamera = camPlayer.transform;
