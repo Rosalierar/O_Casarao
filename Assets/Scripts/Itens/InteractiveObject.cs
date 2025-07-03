@@ -185,6 +185,7 @@ public class InteractiveObject : MonoBehaviour
         
         else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
         {
+            print("Geladeira");
             passwordPainel.SetActive(true);
         }
 

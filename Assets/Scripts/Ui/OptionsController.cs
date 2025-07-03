@@ -27,12 +27,12 @@ public class OptionsController : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("Volume"+0))
         {
-            PlayerPrefs.SetFloat("Volume0", 0.5f);
+            PlayerPrefs.SetFloat("Volume0", 0.015f);
             print("Saved=" + PlayerPrefs.GetFloat("Volume"+0));
         }
         if (!PlayerPrefs.HasKey("Volume"+1))
         {
-            PlayerPrefs.SetFloat("Volume1", 0.5f);
+            PlayerPrefs.SetFloat("Volume1", 0.006f);
             print("Saved=" + PlayerPrefs.GetFloat("Volume"+1));
         }
 

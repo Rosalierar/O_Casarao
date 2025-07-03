@@ -37,11 +37,11 @@ public class ButtonsController : MonoBehaviour
         }
         if (!PlayerPrefs.HasKey("Volume0"))
         {
-            PlayerPrefs.SetFloat("Volume0", 0.5f);
+            PlayerPrefs.SetFloat("Volume0", 0.015f);
         }
         if (!PlayerPrefs.HasKey("Volume1"))
         {
-            PlayerPrefs.SetFloat("Volume1", 0.5f);
+            PlayerPrefs.SetFloat("Volume1", 0.006f);
         }
 
         audioMusic.volume =  PlayerPrefs.GetFloat("Volume0");
