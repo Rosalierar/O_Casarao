@@ -70,6 +70,7 @@ public class PatraoController : MonoBehaviour
     [SerializeField] private Transform visionPos;
     Ray ray;
     RaycastHit patraoHit;
+    [SerializeField] float[] rayAngles = { 0f, 25f, -25f, 45f, -45f, 90f, -90f, 180f, -180f };// Ângulos em graus para disparar os raios
     [SerializeField] float distanceRayPatrao;
 
     // Start is called before the first frame update
@@ -142,6 +143,7 @@ public class PatraoController : MonoBehaviour
     #region RayCast
     public void ContinueGame()
     {
+        agent.speed = 1.5f;
         animPatrao.SetBool("isWalking", false);
         animPatrao.SetBool("isRunning", false);
 
@@ -160,7 +162,87 @@ public class PatraoController : MonoBehaviour
 
     void PatraoVision()
     {
-        ray = new Ray(visionPos.position, transform.forward); // Cria um raio a partir da posição do objeto em direção à frente
+        RaycastHit patraoHit;
+        bool SawPlayer = false;
+
+        foreach (float angle in rayAngles)
+        {
+            Vector3 origin = visionPos.position + Vector3.up + transform.forward;
+            Vector3 direction = Quaternion.Euler(0, angle, 0) * transform.forward;
+
+            Ray ray = new Ray(origin, direction);
+            Debug.DrawRay(ray.origin, ray.direction * distanceRayPatrao, Color.magenta);
+
+            if (Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer))
+            {
+                string tag = patraoHit.collider.tag;
+
+                if (tag == "Player")
+                {
+                    SawPlayer = true;
+
+                    playerTransform = patraoHit.transform;
+
+                    if (!isPlaySongPersecution)
+                    {
+                        for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
+                        {
+                            if (songs.songsBackGround[i] != null && i != 2)
+                                songs.audioSorceBackGround[i].Stop();
+                            else
+                                songs.audioSorceBackGround[i].Play();
+                        }
+
+                        isPlaySongPersecution = true;
+                    }
+
+                    animPatrao.SetBool("isRunning", true);
+                    animPatrao.SetBool("isWalking", false);
+
+                    agent.speed = 2.35f;
+                    isPatrol = false;
+                    isRotate = false;
+                    seePlayer = true;
+
+                    PersecutionPlayer();
+
+                    Debug.Log("Patrão viu o jogador!");
+
+                    if (patraoHit.distance <= 0.2f)
+                    {
+                        Debug.Log("Patrão pegou o jogador!");
+                    }
+
+                    return; // já viu o jogador
+                }
+                else if (tag == "Porta" && patraoHit.distance <= 0.8f)
+                {
+                    DoorMoviment doorMoviment = patraoHit.collider.GetComponentInParent<DoorMoviment>();
+                    InteractiveObject interactivedoor = doorMoviment.GetComponentInChildren<InteractiveObject>();
+
+                    if (!doorMoviment.isOpen && interactivedoor.unlocked)
+                        doorMoviment.TryActiveDoor();
+                }
+            }
+        }
+
+        if (!SawPlayer)
+        {
+            // Se chegou aqui, não viu o jogador com nenhum raio
+            if (seePlayer)
+            {
+                seePlayer = false;
+                StartCoroutine(TimerStopPersecution());
+            }
+            else if (!agent.isStopped && !isPatrol && playerTransform != null)
+            {
+                PersecutionPlayer();
+            }
+
+            Debug.Log("Patrão não viu o jogador!");
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        /*    ray = new Ray(visionPos.position, transform.forward); // Cria um raio a partir da posição do objeto em direção à frente
         
             Vector3 forwardOffset = transform.forward;
             Vector3 origin1 = transform.position + forwardOffset + Vector3.up;
@@ -168,23 +250,32 @@ public class PatraoController : MonoBehaviour
             // Aplica rotação nas origens para os raios laterais (com ângulo de 35 graus)
             Vector3 origin2 = Quaternion.Euler(0, 25, 0) * (origin1 - visionPos.position) + visionPos.position;
             Vector3 origin3 = Quaternion.Euler(0, -25, 0) * (origin1 - visionPos.position) + visionPos.position;
+            Vector3 origin4 = Quaternion.Euler(0, 45, 0) * (origin1 - visionPos.position) + visionPos.position;
+            Vector3 origin5 = Quaternion.Euler(0, -45, 0) * (origin1 - visionPos.position) + visionPos.position;
 
-            Ray rayDireita = new Ray(origin2, (origin2 - visionPos.position).normalized);
-            Ray rayEsquerda = new Ray(origin3, (origin3 - visionPos.position).normalized);
+
+            Ray rayDireita35 = new Ray(origin2, (origin2 - visionPos.position).normalized);
+            Ray rayEsquerda35 = new Ray(origin3, (origin3 - visionPos.position).normalized);
+            Ray rayDireita90 = new Ray(origin4, (origin4 - visionPos.position).normalized);
+            Ray rayEsquerda90 = new Ray(origin5, (origin5 - visionPos.position).normalized);
 
 
             // Lançar raios nas direções certas a partir das novas origens calculadas
-            Physics.Raycast(rayDireita, out patraoHit, distanceRayPatrao, layerPlayer);
-            Physics.Raycast(rayEsquerda, out patraoHit, distanceRayPatrao, layerPlayer);
+            Physics.Raycast(rayDireita35, out patraoHit, distanceRayPatrao, layerPlayer);
+            Physics.Raycast(rayEsquerda35, out patraoHit, distanceRayPatrao, layerPlayer);
+            Physics.Raycast(rayDireita90, out patraoHit, distanceRayPatrao, layerPlayer);
+            Physics.Raycast(rayEsquerda90, out patraoHit, distanceRayPatrao, layerPlayer);
 
             // Desenhar os raios para depuração
-            Debug.DrawRay(rayDireita.origin, rayDireita.direction * distanceRayPatrao, Color.green);
-            Debug.DrawRay(rayEsquerda.origin, rayEsquerda.direction  * distanceRayPatrao, Color.green);
+            Debug.DrawRay(rayDireita35.origin, rayDireita35.direction * distanceRayPatrao, Color.green);
+            Debug.DrawRay(rayEsquerda35.origin, rayEsquerda35.direction  * distanceRayPatrao, Color.green);
+            Debug.DrawRay(rayDireita90.origin, rayDireita90.direction * distanceRayPatrao, Color.cyan);
+            Debug.DrawRay(rayEsquerda90.origin, rayEsquerda90.direction  * distanceRayPatrao, Color.cyan);
 
-        Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer);
-        Debug.DrawRay(visionPos.position, transform.forward * distanceRayPatrao, Color.green); // Desenha o raio na cena para visualização
+            Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer);
+            Debug.DrawRay(visionPos.position, transform.forward * distanceRayPatrao, Color.green); // Desenha o raio na cena para visualização
 
-        if (Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer)|| Physics.Raycast(rayDireita, out patraoHit, distanceRayPatrao, layerPlayer) || Physics.Raycast(rayEsquerda, out patraoHit, distanceRayPatrao, layerPlayer))
+        if (Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer)|| Physics.Raycast(rayDireita35, out patraoHit, distanceRayPatrao, layerPlayer) || Physics.Raycast(rayEsquerda35, out patraoHit, distanceRayPatrao, layerPlayer) || Physics.Raycast(rayDireita90, out patraoHit, distanceRayPatrao, layerPlayer) || Physics.Raycast(rayEsquerda90, out patraoHit, distanceRayPatrao, layerPlayer))
         {
             if (patraoHit.collider.CompareTag("Player"))
             { // Verifica se o raio atingiu algo
@@ -260,7 +351,7 @@ public class PatraoController : MonoBehaviour
         else
         {
             Debug.Log("Patrão não viu o jogador!"); // Exibe mensagem de que o patrão não viu o jogador
-        }
+        }*/
     }
     #endregion RayCast
 

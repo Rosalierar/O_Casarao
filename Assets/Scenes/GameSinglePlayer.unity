@@ -13687,6 +13687,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3328
   visionPos: {fileID: 2142839582}
+  rayAngles:
+  - 0
+  - 25
+  - -25
+  - 45
+  - -45
   distanceRayPatrao: 100
 --- !u!114 &493322098
 MonoBehaviour:
@@ -15596,7 +15602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &599204464
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46205,7 +46211,7 @@ Transform:
   m_GameObject: {fileID: 2142839581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.581, z: 0.348}
+  m_LocalPosition: {x: -0.04, y: -0.41, z: -0.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
