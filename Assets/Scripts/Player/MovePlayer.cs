@@ -157,7 +157,7 @@ public class MovePlayer : MonoBehaviour
     {
         //IsFinishJumpScare = true;
 
-        Invoke("CWACFS", 0.5f);
+        Invoke("CWACFS", 0.35f);
         
         for (int i = 0; i < song.audioSorceBackGround.Length; i++)
         {
@@ -237,10 +237,13 @@ public class MovePlayer : MonoBehaviour
                 }
             }
 
-            print("Touch Enemy");
+            Canva.SetActive(false);
+            anim.SetBool("isWalking", false);
+            rb.velocity = Vector3.zero;
             Canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0,0,0);
+            transform.localPosition = controllerPlayer.spawnPoint;
+            print("Touch Enemy");
             jumpscareDirector.Play();
-            //Canva.SetActive(false);
             //StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
         }
     }
