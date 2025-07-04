@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class PatraoController : MonoBehaviour
 {
+    byte dificulty;
     [SerializeField] SongsController songs;
     bool isPlaySongPersecution= false;
     Animator animPatrao;
@@ -76,6 +77,8 @@ public class PatraoController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        dificulty = (byte)PlayerPrefs.GetInt("Dificulty");
+
         patrolPoints = new Vector3[patrolPointsObjects.Length];
 
         for (int i = 0; i < patrolPointsObjects.Length; i++)
@@ -140,6 +143,11 @@ public class PatraoController : MonoBehaviour
             Gizmos.DrawSphere(point, 0.2f);
         }
     }
+
+    /*float ValueSpeedPatrol()
+    {
+        if (dificulty)
+    }*/
     #region RayCast
     public void ContinueGame()
     {
@@ -199,7 +207,7 @@ public class PatraoController : MonoBehaviour
                     animPatrao.SetBool("isRunning", true);
                     animPatrao.SetBool("isWalking", false);
 
-                    agent.speed = 2.35f;
+                    agent.speed = 1.8f;
                     isPatrol = false;
                     isRotate = false;
                     seePlayer = true;
@@ -421,7 +429,7 @@ public class PatraoController : MonoBehaviour
 
         isWalking = true; // Define que o patrão está andando
         agent.isStopped = false; // Volta a ativa o agente NavMesh
-        agent.speed = 1.5f; // Define a velocidade do agente NavMesh
+        agent.speed = 1f; // Define a velocidade do agente NavMesh
         GoToPatrol(); // Chama o método para ir para o ponto de patrulha
     }
 
