@@ -25,12 +25,19 @@ public class ButtonsController : MonoBehaviour
     [SerializeField] private byte LoadSceneSinglePlayer;
     [SerializeField] private byte LoadSceneMultiPlayer;
 
+    [SerializeField] private GameObject[] painels;
     [SerializeField] private GameObject painelMenu;
     [SerializeField] private GameObject painelOptions;
     [SerializeField] private GameObject painelCredits;
+    [SerializeField] private GameObject painelDificuldade;
 
     void Start()
     {
+        if (!PlayerPrefs.HasKey("Dificulty"))
+        {
+            PlayerPrefs.SetInt("Dificulty", 0);
+        }
+
         if (!PlayerPrefs.HasKey("Language"))
         {
             PlayerPrefs.SetInt("Language", 0);
@@ -116,6 +123,17 @@ public class ButtonsController : MonoBehaviour
         }
     }
 
+    public void OpenPainels(int controller)
+    {
+        for (int i = 0; i < painels.Length; i++)
+        {
+            if (i == controller)
+                painels[i].SetActive(true);
+            else
+                painels[i].SetActive(false);
+        }
+    }
+
     public void QuitGame()
     {
         Application.Quit();
@@ -180,9 +198,10 @@ public class ButtonsController : MonoBehaviour
 
     public void ChooseDificulty(int dificulty)
     {
-        if (!PlayerPrefs.HasKey("Dificulty"))
+        if (dificulty > 0 && dificulty <= 3)
         {
-            PlayerPrefs.SetInt("Dificulty", 0);
+            PlayerPrefs.SetInt("Dificulty", dificulty);
+            StartGameSingle();
         }
     }
 }
