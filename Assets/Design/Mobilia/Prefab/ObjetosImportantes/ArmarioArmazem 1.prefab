@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AS: {fileID: 0}
+  AS: {fileID: 8028993877085420443}
   informationAboutItem: {fileID: 0}
   cadeado:
   - {fileID: 0}
@@ -2339,7 +2339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AS: {fileID: 0}
+  AS: {fileID: 1463798925516613605}
   informationAboutItem: {fileID: 0}
   cadeado:
   - {fileID: 0}

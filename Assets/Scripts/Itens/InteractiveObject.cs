@@ -46,11 +46,9 @@ public class InteractiveObject : MonoBehaviour
             if (itemNecessario == TipoDeItem.ChaveCircular) /////////////////////////////////////////// CHAVE CIRCULAR
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                //drawerMoviment.enabled = true;
-                //drawerMoviment.TryActiveDrawer();
-                doorMoviment.enabled = true;
-                doorMoviment.TryActiveDoor();
-
+                drawerMoviment.enabled = true;
+                drawerMoviment.TryActiveDrawer();
+                
                 /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
                 parent.useTheObject.enabled = false; // Desabilita o script de usar
                 parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
