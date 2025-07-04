@@ -79,14 +79,16 @@ public class PatraoController : MonoBehaviour
     {
         dificulty = (byte)PlayerPrefs.GetInt("Dificulty");
 
-        patrolPoints = new Vector3[patrolPointsObjects.Length];
+        patrolPoints = new Vector3[patrolPointsObjects.Length - ValuePointPatrolsDelete()];
 
-        for (int i = 0; i < patrolPointsObjects.Length; i++)
+        print("Fase: " + (byte)PlayerPrefs.GetInt("Dificulty") + "Total Pontos de Patrulha Pontos: " + patrolPoints.Length);
+
+        for (int i = 0; i < patrolPoints.Length; i++)
         {
             patrolPoints[i] = patrolPointsObjects[i].position;
         }
 
-        // Se quiser, pode até destruir os GameObjects agora
+        // Destruir os GameObjects 
         foreach (Transform t in patrolPointsObjects)
         {
             Destroy(t.gameObject);
@@ -127,11 +129,6 @@ public class PatraoController : MonoBehaviour
         {
             print("ERRO AO PEGAR BLACKPAINEL");
         }
-        /*else if (!FindObjectOfType<ControllerPlayer>().blackPainel.activeSelf)
-        {
-            agent.isStopped = false; // Ativa o agente NavMesh
-            isPatrol = true; // Define que o patrão está patrulhando
-        }*/
     }
     void OnDrawGizmos()
     {
@@ -198,6 +195,25 @@ public class PatraoController : MonoBehaviour
             time = 10;
         }
         return time;
+    }
+    private byte ValuePointPatrolsDelete()
+    {
+        byte pointPatrolsForDelete;
+
+        if (dificulty == 3)
+        {
+            pointPatrolsForDelete = 0;
+        }
+        else if (dificulty == 2)
+        {
+            pointPatrolsForDelete = 8;
+        }
+        else
+        {
+            pointPatrolsForDelete = 12;
+        }
+
+        return pointPatrolsForDelete;
     }
 
 
