@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DrawerMoviment : MonoBehaviour
 {
+    [SerializeField]int indexVector;
+    Vector3[] posVector = {}
     public Transform drawerTransform;
     public float openDistance = 0.5f;
     public float openSpeed = 2f;
