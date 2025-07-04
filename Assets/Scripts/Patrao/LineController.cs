@@ -87,7 +87,7 @@ public class LineController : MonoBehaviour
                 // Posição do outro objeto no sistema local deste objeto
                 Vector3 localPos = transform.InverseTransformPoint(other.transform.position);
 
-                // Se saiu pela frente (Z positivo local)
+                // Se entrou pela frente (Z positivo local)
                 if (localPos.z > 0f)
                 {
                     Debug.Log("enrtou pela frente (Z+)");
