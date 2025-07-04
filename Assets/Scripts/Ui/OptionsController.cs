@@ -16,8 +16,8 @@ public class OptionsController : MonoBehaviour
     [SerializeField] private GameObject painelOptions;
 
     public TextMeshProUGUI[] tmpConfig;
-    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial", "Volume 1"};
-    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial", "Volume 1" };
+    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial", "Volume Rain"};
+    string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial", "Volume da Chuva" };
 
     [SerializeField] private CameraTouchController cameraTouchController;
 
@@ -116,6 +116,10 @@ public class OptionsController : MonoBehaviour
                 }
                 break;
         }
+    }
+    public void Menu(int index)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(index);
     }
 
     public void OpenTutorial()
