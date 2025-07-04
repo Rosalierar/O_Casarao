@@ -35,7 +35,7 @@ public class MovePlayer : MonoBehaviour
     //Classe
     public Rigidbody rb;
     public Animator anim; //Referencia do animator do jogador
-    CapsuleCollider playerCollider; //Referencia do capsule collider do jogador
+    public CapsuleCollider playerCollider; //Referencia do capsule collider do jogador
 
     //CONTROLE DO JOGADOR
         //movimento do jogador

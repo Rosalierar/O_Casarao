@@ -5847,11 +5847,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5386141699327809722, guid: 1543d53bcddf0c34b8b7c17661da6154,
-        type: 3}
-      propertyPath: m_Name
-      value: "Detec\xE7\xE3oEscadaCima"
-      objectReference: {fileID: 0}
     - target: {fileID: 5878383351471549957, guid: 1543d53bcddf0c34b8b7c17661da6154,
         type: 3}
       propertyPath: isFirstFloor
@@ -33838,7 +33833,7 @@ MonoBehaviour:
   moveH: 0
   moveV: 0
   originalSpeed: 120
-  crounchVelocity: 120
+  crounchVelocity: 50
 --- !u!114 &1389631435
 MonoBehaviour:
   m_ObjectHideFlags: 0
