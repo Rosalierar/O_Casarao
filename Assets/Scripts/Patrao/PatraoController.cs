@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class PatraoController : MonoBehaviour
 {
+    byte dificulty;
     [SerializeField] SongsController songs;
     bool isPlaySongPersecution= false;
     Animator animPatrao;
@@ -76,14 +77,18 @@ public class PatraoController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        patrolPoints = new Vector3[patrolPointsObjects.Length];
+        dificulty = (byte)PlayerPrefs.GetInt("Dificulty");
 
-        for (int i = 0; i < patrolPointsObjects.Length; i++)
+        patrolPoints = new Vector3[patrolPointsObjects.Length - ValuePointPatrolsDelete()];
+
+        print("Fase: " + (byte)PlayerPrefs.GetInt("Dificulty") + "Total Pontos de Patrulha Pontos: " + patrolPoints.Length);
+
+        for (int i = 0; i < patrolPoints.Length; i++)
         {
             patrolPoints[i] = patrolPointsObjects[i].position;
         }
 
-        // Se quiser, pode até destruir os GameObjects agora
+        // Destruir os GameObjects 
         foreach (Transform t in patrolPointsObjects)
         {
             Destroy(t.gameObject);
@@ -124,11 +129,6 @@ public class PatraoController : MonoBehaviour
         {
             print("ERRO AO PEGAR BLACKPAINEL");
         }
-        /*else if (!FindObjectOfType<ControllerPlayer>().blackPainel.activeSelf)
-        {
-            agent.isStopped = false; // Ativa o agente NavMesh
-            isPatrol = true; // Define que o patrão está patrulhando
-        }*/
     }
     void OnDrawGizmos()
     {
@@ -140,10 +140,87 @@ public class PatraoController : MonoBehaviour
             Gizmos.DrawSphere(point, 0.2f);
         }
     }
+
+    private float ValueSpeedPatrol()
+    {
+        float speedPl;
+
+        if (dificulty == 3)
+        {
+            speedPl = 1.7f;
+        }
+        else if (dificulty == 2)
+        {
+            speedPl = 1.5f;
+        }
+        else
+        {
+            speedPl = 1.1f;
+        }
+        return speedPl;
+    }
+
+    private float ValueSpeedPersecution()
+    {
+        float speedPn;
+
+        if (dificulty == 3)
+        {
+            speedPn = 2.4f;
+        }
+        else if (dificulty == 2)
+        {
+            speedPn = 2.1f;
+        }
+        else
+        {
+            speedPn = 1.8f;
+        }
+        return speedPn;
+    }
+    private int ValueTimePn()
+    {
+        int time;
+
+        if (dificulty == 3)
+        {
+            time = 30;
+        }
+        else if (dificulty == 2)
+        {
+            time = 20;
+        }
+        else
+        {
+            time = 10;
+        }
+        return time;
+    }
+    private byte ValuePointPatrolsDelete()
+    {
+        byte pointPatrolsForDelete;
+
+        if (dificulty == 3)
+        {
+            pointPatrolsForDelete = 0;
+        }
+        else if (dificulty == 2)
+        {
+            pointPatrolsForDelete = 8;
+        }
+        else
+        {
+            pointPatrolsForDelete = 12;
+        }
+
+        return pointPatrolsForDelete;
+    }
+
+
     #region RayCast
     public void ContinueGame()
     {
-        agent.speed = 1.5f;
+        agent.speed = ValueSpeedPatrol();
         animPatrao.SetBool("isWalking", false);
         animPatrao.SetBool("isRunning", false);
 
@@ -199,7 +276,7 @@ public class PatraoController : MonoBehaviour
                     animPatrao.SetBool("isRunning", true);
                     animPatrao.SetBool("isWalking", false);
 
-                    agent.speed = 2.35f;
+                    agent.speed = ValueSpeedPersecution();
                     isPatrol = false;
                     isRotate = false;
                     seePlayer = true;
@@ -379,7 +456,7 @@ public class PatraoController : MonoBehaviour
 
         if (seePlayer) yield break; // Se o patrão viu o jogador, sai do método
 
-        yield return new WaitForSeconds(timerToStopPersecution); // Aguarda 2 segundos antes de parar a perseguição
+        yield return new WaitForSeconds(ValueTimePn()); // Aguarda 2 segundos antes de parar a perseguição
 
         animPatrao.SetBool("isWalking", false);
         animPatrao.SetBool("isRunning", false);
@@ -421,7 +498,7 @@ public class PatraoController : MonoBehaviour
 
         isWalking = true; // Define que o patrão está andando
         agent.isStopped = false; // Volta a ativa o agente NavMesh
-        agent.speed = 1.5f; // Define a velocidade do agente NavMesh
+        agent.speed = ValueSpeedPatrol(); // Define a velocidade do agente NavMesh
         GoToPatrol(); // Chama o método para ir para o ponto de patrulha
     }
 

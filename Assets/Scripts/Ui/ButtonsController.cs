@@ -14,24 +14,31 @@ public class ButtonsController : MonoBehaviour
     public TextMeshProUGUI[] tmpButtons;
     public TextMeshProUGUI[] tmpConfig;
     public TextMeshProUGUI[] tmpCredits;
-    string[] textEnMenu = {"SinglePlayer", "MultiPlayer", "Options", "Credits", "Quit" };
-    string[] textEnConfig = {"Language", "Portuguese", "English", "Volume" };
-    string[] textEnCredits = {"Credits", "Developed by", "Lucas Oliveira", "Lucas Silva", "Gabriel Almeida", "Gabriel Ferreira", "Matheus Oliveira", "Matheus Silva" };
-    
-    string[] textPtMenu = {"SinglePlayer", "Multiplayer", "Configuração", "Créditos", "Sair" };
-    string[] textPtConfig = {"Idioma", "Português", "Inglês", "Volume"};
-    string[] textPtCredits = {"Créditos", "Desenvolvido por", "Lucas Oliveira", "Lucas Silva", "Gabriel Almeida", "Gabriel Ferreira", "Matheus Oliveira", "Matheus Silva" };
-    
+    string[] textEnMenu = { "SinglePlayer", "MultiPlayer", "Options", "Credits", "Quit" };
+    string[] textEnConfig = { "Language", "Portuguese", "English", "Volume" };
+    string[] textEnCredits = { "Credits", "Developed by", "Lucas Oliveira", "Lucas Silva", "Gabriel Almeida", "Gabriel Ferreira", "Matheus Oliveira", "Matheus Silva" };
+
+    string[] textPtMenu = { "SinglePlayer", "Multiplayer", "Configuração", "Créditos", "Sair" };
+    string[] textPtConfig = { "Idioma", "Português", "Inglês", "Volume" };
+    string[] textPtCredits = { "Créditos", "Desenvolvido por", "Lucas Oliveira", "Lucas Silva", "Gabriel Almeida", "Gabriel Ferreira", "Matheus Oliveira", "Matheus Silva" };
+
     [SerializeField] private byte LoadSceneSinglePlayer;
     [SerializeField] private byte LoadSceneMultiPlayer;
 
+    [SerializeField] private GameObject[] painels;
     [SerializeField] private GameObject painelMenu;
     [SerializeField] private GameObject painelOptions;
     [SerializeField] private GameObject painelCredits;
+    [SerializeField] private GameObject painelDificuldade;
 
     void Start()
     {
-        if(!PlayerPrefs.HasKey("Language"))
+        if (!PlayerPrefs.HasKey("Dificulty"))
+        {
+            PlayerPrefs.SetInt("Dificulty", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("Language"))
         {
             PlayerPrefs.SetInt("Language", 0);
         }
@@ -44,7 +51,7 @@ public class ButtonsController : MonoBehaviour
             PlayerPrefs.SetFloat("Volume1", 0.006f);
         }
 
-        audioMusic.volume =  PlayerPrefs.GetFloat("Volume0");
+        audioMusic.volume = PlayerPrefs.GetFloat("Volume0");
         sliderVolume.value = PlayerPrefs.GetFloat("Volume0");
 
         ChangeLanguageMenu();
@@ -53,7 +60,7 @@ public class ButtonsController : MonoBehaviour
     public void ChangeVolume()
     {
         audioMusic.volume = sliderVolume.value;
-        
+
         PlayerPrefs.SetFloat("Volume0", audioMusic.volume);
     }
 
@@ -72,20 +79,20 @@ public class ButtonsController : MonoBehaviour
         painelCredits.SetActive(true);
 
         int language = PlayerPrefs.GetInt("Language");
-            if (language == 0)
+        if (language == 0)
+        {
+            for (int i = 0; i < tmpCredits.Length; i++)
             {
-                    for (int i = 0; i < tmpCredits.Length; i++)
-                    {
-                            tmpCredits[i].text = textPtCredits[i];
-                    }
+                tmpCredits[i].text = textPtCredits[i];
             }
-            else
+        }
+        else
+        {
+            for (int i = 0; i < tmpCredits.Length; i++)
             {
-                    for (int i = 0; i < tmpCredits.Length; i++)
-                    {
-                            tmpCredits[i].text = textEnCredits[i];
-                    }
+                tmpCredits[i].text = textEnCredits[i];
             }
+        }
     }
     public void CloseCredits()
     {
@@ -95,25 +102,36 @@ public class ButtonsController : MonoBehaviour
         ChangeLanguageMenu();
     }
 
-        
+
     void ChangeLanguageMenu()
     {
-         int language = PlayerPrefs.GetInt("Language");
-         
-            if (language == 0)
+        int language = PlayerPrefs.GetInt("Language");
+
+        if (language == 0)
+        {
+            for (int i = 0; i < tmpButtons.Length; i++)
             {
-                    for (int i = 0; i < tmpButtons.Length; i++)
-                    {
-                        tmpButtons[i].text = textPtMenu[i];
-                    }
+                tmpButtons[i].text = textPtMenu[i];
             }
+        }
+        else
+        {
+            for (int i = 0; i < tmpButtons.Length; i++)
+            {
+                tmpButtons[i].text = textEnMenu[i];
+            }
+        }
+    }
+
+    public void OpenPainels(int controller)
+    {
+        for (int i = 0; i < painels.Length; i++)
+        {
+            if (i == controller)
+                painels[i].SetActive(true);
             else
-            {
-                    for (int i = 0; i < tmpButtons.Length; i++)
-                    {
-                        tmpButtons[i].text = textEnMenu[i];
-                    }
-            }
+                painels[i].SetActive(false);
+        }
     }
 
     public void QuitGame()
@@ -131,20 +149,20 @@ public class ButtonsController : MonoBehaviour
         painelOptions.SetActive(true);
 
         int language = PlayerPrefs.GetInt("Language");
-            if (language == 0)
+        if (language == 0)
+        {
+            for (int i = 0; i < tmpConfig.Length; i++)
             {
-                    for (int i = 0; i < tmpConfig.Length; i++)
-                    {
-                            tmpConfig[i].text = textPtConfig[i];
-                    }
+                tmpConfig[i].text = textPtConfig[i];
             }
-            else
+        }
+        else
+        {
+            for (int i = 0; i < tmpConfig.Length; i++)
             {
-                    for (int i = 0; i < tmpConfig.Length; i++)
-                    {
-                            tmpConfig[i].text = textEnConfig[i];
-                    }
+                tmpConfig[i].text = textEnConfig[i];
             }
+        }
     }
     public void CloseOptions()
     {
@@ -175,6 +193,15 @@ public class ButtonsController : MonoBehaviour
                 Debug.Log("Language: Portuguese");
                 PlayerPrefs.SetInt("Language", 0);
                 break;
+        }
+    }
+
+    public void ChooseDificulty(int dificulty)
+    {
+        if (dificulty > 0 && dificulty <= 3)
+        {
+            PlayerPrefs.SetInt("Dificulty", dificulty);
+            StartGameSingle();
         }
     }
 }
