@@ -59,8 +59,8 @@ public class StairLogic : MonoBehaviour
 
                 //movePlayer.rb.velocity = new Vector3(movePlayer.rb.velocity.x, heightDifference, movePlayer.rb.velocity.z);
 
-                transform.position += Vector3.up * (hit1.point.y - transform.position.y + .1f);
-                print("Subindo escada: " + (hit1.point.y - transform.position.y - .1f));
+                transform.position += Vector3.up * (hit1.point.y - transform.position.y + .2f);
+                print("Subindo escada: " + (hit1.point.y - transform.position.y - .2f));
             }
 
             /*else if (hit1.normal == Vector3.up && (transform.position.y - hit1.point.y) > .35f)

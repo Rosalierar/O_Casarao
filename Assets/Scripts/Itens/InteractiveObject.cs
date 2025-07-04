@@ -163,7 +163,9 @@ public class InteractiveObject : MonoBehaviour
                 else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
                 {
                     GameObject.Find("ChaveCircular").GetComponent<Animation>().Play("GotOutKey");
-
+                    AS.clip = parent.AC[6];
+                    AS.Play();
+                    
                     parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 }
 

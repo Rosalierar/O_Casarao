@@ -15455,6 +15455,21 @@ PrefabInstance:
       propertyPath: informationAboutItem
       value: 
       objectReference: {fileID: 425882833}
+    - target: {fileID: 7526999521822481144, guid: 49ab1c63c824e424a999d25dcf30ba47,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526999521822481144, guid: 49ab1c63c824e424a999d25dcf30ba47,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 096d923c569872d468dec5c29fd40027, type: 3}
+    - target: {fileID: 7526999521822481144, guid: 49ab1c63c824e424a999d25dcf30ba47,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
