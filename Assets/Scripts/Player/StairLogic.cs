@@ -26,7 +26,7 @@ public class StairLogic : MonoBehaviour
     void CheckStairs(){
         if (isGrounded)
         {
-           // Calcular a origem dos raios 0.5 unidades à frente do jogador
+           // Calcular a origem dos raios 0.7 unidades à frente do jogador
             Vector3 forwardOffset = transform.forward * 0.7f;
             Vector3 origin1 = transform.position + forwardOffset + Vector3.up * (maxStepHight + 0.2f);
         
@@ -55,7 +55,7 @@ public class StairLogic : MonoBehaviour
             if(hit1.normal == Vector3.up && (hit1.point.y - transform.position.y) > .20f) //esse numero deve ser mudado para o mesmo tamanho colocado na altura de cada degrau
             {
                 // Calcular a diferença de altura
-                float heightDifference = hit1.point.y - transform.position.y - .1f;
+                float heightDifference = hit1.point.y - transform.position.y - .2f;
 
                 //movePlayer.rb.velocity = new Vector3(movePlayer.rb.velocity.x, heightDifference, movePlayer.rb.velocity.z);
 

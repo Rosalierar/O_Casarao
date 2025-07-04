@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Fusion;
 
 public class OptionsController : MonoBehaviour
 {
+    LoobyManager lobby;
     [SerializeField] private SongsController audioMusic;
     [SerializeField] private Slider[] sliderVolume;
 
@@ -16,7 +18,7 @@ public class OptionsController : MonoBehaviour
     [SerializeField] private GameObject painelOptions;
 
     public TextMeshProUGUI[] tmpConfig;
-    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial", "Volume Rain"};
+    string[] textEnConfig = { "Sensibility", "Language", "Portuguese", "English", "Tutorial", "Volume Rain" };
     string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial", "Volume da Chuva" };
 
     [SerializeField] private CameraTouchController cameraTouchController;
@@ -25,15 +27,15 @@ public class OptionsController : MonoBehaviour
 
     void Start()
     {
-        if (!PlayerPrefs.HasKey("Volume"+0))
+        if (!PlayerPrefs.HasKey("Volume" + 0))
         {
             PlayerPrefs.SetFloat("Volume0", 0.015f);
-            print("Saved=" + PlayerPrefs.GetFloat("Volume"+0));
+            print("Saved=" + PlayerPrefs.GetFloat("Volume" + 0));
         }
-        if (!PlayerPrefs.HasKey("Volume"+1))
+        if (!PlayerPrefs.HasKey("Volume" + 1))
         {
             PlayerPrefs.SetFloat("Volume1", 0.006f);
-            print("Saved=" + PlayerPrefs.GetFloat("Volume"+1));
+            print("Saved=" + PlayerPrefs.GetFloat("Volume" + 1));
         }
 
         audioMusic.audioSorceBackGround[0].volume = PlayerPrefs.GetFloat("Volume0");
@@ -132,5 +134,19 @@ public class OptionsController : MonoBehaviour
     {
         Time.timeScale = 1f;
         tutorial.SetActive(false);
+    }
+
+    public void GoToKoobby(int index)
+    {
+        NetworkRunner runner = FindObjectOfType<NetworkRunner>();
+
+        print("LEAVE LOBBY CLICKED");
+
+        if (runner != null)
+        {
+            runner.Shutdown();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(index);
+        }
+ 
     }
 }
