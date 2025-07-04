@@ -144,14 +144,67 @@ public class PatraoController : MonoBehaviour
         }
     }
 
-    /*float ValueSpeedPatrol()
+    private float ValueSpeedPatrol()
     {
-        if (dificulty)
-    }*/
+        float speedPl;
+
+        if (dificulty == 3)
+        {
+            speedPl = 1.7f;
+        }
+        else if (dificulty == 2)
+        {
+            speedPl = 1.5f;
+        }
+        else
+        {
+            speedPl = 1.1f;
+        }
+        return speedPl;
+    }
+
+    private float ValueSpeedPersecution()
+    {
+        float speedPn;
+
+        if (dificulty == 3)
+        {
+            speedPn = 2.4f;
+        }
+        else if (dificulty == 2)
+        {
+            speedPn = 2.1f;
+        }
+        else
+        {
+            speedPn = 1.8f;
+        }
+        return speedPn;
+    }
+    private int ValueTimePn()
+    {
+        int time;
+
+        if (dificulty == 3)
+        {
+            time = 30;
+        }
+        else if (dificulty == 2)
+        {
+            time = 20;
+        }
+        else
+        {
+            time = 10;
+        }
+        return time;
+    }
+
+
     #region RayCast
     public void ContinueGame()
     {
-        agent.speed = 1.5f;
+        agent.speed = ValueSpeedPatrol();
         animPatrao.SetBool("isWalking", false);
         animPatrao.SetBool("isRunning", false);
 
@@ -207,7 +260,7 @@ public class PatraoController : MonoBehaviour
                     animPatrao.SetBool("isRunning", true);
                     animPatrao.SetBool("isWalking", false);
 
-                    agent.speed = 1.8f;
+                    agent.speed = ValueSpeedPersecution();
                     isPatrol = false;
                     isRotate = false;
                     seePlayer = true;
@@ -387,7 +440,7 @@ public class PatraoController : MonoBehaviour
 
         if (seePlayer) yield break; // Se o patrão viu o jogador, sai do método
 
-        yield return new WaitForSeconds(timerToStopPersecution); // Aguarda 2 segundos antes de parar a perseguição
+        yield return new WaitForSeconds(ValueTimePn()); // Aguarda 2 segundos antes de parar a perseguição
 
         animPatrao.SetBool("isWalking", false);
         animPatrao.SetBool("isRunning", false);
@@ -429,7 +482,7 @@ public class PatraoController : MonoBehaviour
 
         isWalking = true; // Define que o patrão está andando
         agent.isStopped = false; // Volta a ativa o agente NavMesh
-        agent.speed = 1f; // Define a velocidade do agente NavMesh
+        agent.speed = ValueSpeedPatrol(); // Define a velocidade do agente NavMesh
         GoToPatrol(); // Chama o método para ir para o ponto de patrulha
     }
 
