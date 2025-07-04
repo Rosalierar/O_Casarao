@@ -26,7 +26,7 @@ public class NetMovePlayer : NetworkBehaviour
     //Classe
     public CharacterController ch;
     public Animator anim; //Referencia do animator do jogador
-    CapsuleCollider playerCollider; //Referencia do capsule collider do jogador
+    public CapsuleCollider playerCollider; //Referencia do capsule collider do jogador
 
     //CONTROLE DO JOGADOR
     //Gravidade
