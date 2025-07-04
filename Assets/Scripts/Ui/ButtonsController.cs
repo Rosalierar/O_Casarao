@@ -180,6 +180,9 @@ public class ButtonsController : MonoBehaviour
 
     public void ChooseDificulty(int dificulty)
     {
-
+        if (!PlayerPrefs.HasKey("Dificulty"))
+        {
+            PlayerPrefs.SetInt("Dificulty", 0);
+        }
     }
 }
