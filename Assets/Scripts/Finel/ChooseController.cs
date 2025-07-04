@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ChooseController : MonoBehaviour
 {
+    bool Choosed = false;
     [SerializeField] GameObject[] painels;
 
     int language;
@@ -17,6 +18,15 @@ public class ChooseController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI dialogueText;
     List<string> choices = new List<string>();
+    //0 empreendorismo - 1 Nova Casa --------------- PORTUGUES
+    string[] zeroTextPt = new string[2] 
+    {
+        /// 0
+        "...",  
+        
+        /// 1 
+        "..."
+    };
 
     //0 empreendorismo - 1 Nova Casa --------------- PORTUGUES
     string[] firstTextPt = new string[2] 
@@ -63,6 +73,16 @@ public class ChooseController : MonoBehaviour
     };
 
     //0 empreendorismo - 1 Nova Casa --------------- ENGLES
+
+    //0 empreendorismo - 1 Nova Casa --------------- PORTUGUES
+    string[] zeroTextEn = new string[2] 
+    {
+        /// 0
+        "...",  
+        
+        /// 1 
+        "..."
+    };
     string[] firstTextEn = new string[2]
     {
         /// 0
@@ -114,7 +134,7 @@ public class ChooseController : MonoBehaviour
 
     void Start()
     {
-         if (language == 0)
+        if (language == 0)
             {
                 for (int i = 0; i < tmpObjects.Length; i++)
                 {
@@ -139,6 +159,7 @@ public class ChooseController : MonoBehaviour
 
         if (language == 0)
         {
+            choices.Add(zeroTextPt[index]);
             choices.Add(firstTextPt[index]);
             choices.Add(secondTextPt[index]);
             choices.Add(thirdTextPt[index]);
@@ -146,6 +167,7 @@ public class ChooseController : MonoBehaviour
         }
         else
         {
+            choices.Add(zeroTextEn[index]);
             choices.Add(firstTextEn[index]);
             choices.Add(secondTextEn[index]);
             choices.Add(thirdTextEn[index]);
@@ -183,7 +205,7 @@ public class ChooseController : MonoBehaviour
             }
         }
 
-        // (Opcional) Limpar o texto no final
+        // Limpa texto no final
         dialogueText.text = "";
 
         SceneManager.LoadScene(0);
