@@ -6,9 +6,6 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-    /*Trocar no Canva
-    [SerializeField] Image image; // Referência ao script DetectionObjects
-    [SerializeField] Image painelInventario;*/
     int language;
     [SerializeField] private TextMeshProUGUI informationAboutItem;
     [SerializeField] private Sprite[] spriteItem = new Sprite[9]; // Referência ao painel de inventário

@@ -18,7 +18,7 @@ public class NetInventory : NetworkBehaviour
 
     public List<NetItem> itens = new List<NetItem>();  // Lista de itens
 
-     public void TryColetarItem(NetItem item)
+    public void TryColetarItem(NetItem item)
     {
         if (!HasInputAuthority) return;
 
@@ -126,6 +126,8 @@ public class NetInventory : NetworkBehaviour
     // Verificar se o inventário contém um item específico
     public bool TemItem(TipoDeItem tipo)
     {
+        if (!HasInputAuthority) return false;
+    
         foreach (var item in itens)
         {
             if (item.tipoDoItem == tipo)
@@ -136,11 +138,14 @@ public class NetInventory : NetworkBehaviour
     
     IEnumerator TimerForShowInformation(string textInformation)
     {
-        informationAboutItem.text = textInformation.ToString();
+        if (HasInputAuthority)
+        {
+            informationAboutItem.text = textInformation.ToString();
 
-        yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2f);
 
-        informationAboutItem.text = "";
+            informationAboutItem.text = "";
+        }
     }
 
 }

@@ -1,25 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
 public class NetUseTheObject : MonoBehaviour
 {
+    NetworkObject networkObject;
     NetParentObjectReference parent;
-    NetDetectionObjects detectionObjects;
 
     [SerializeField] private MyButton useBtn; // Bot�o de intera��o
     bool pressedButtonUse = false; // Vari�vel para verificar se o bot�o foi pressionado
     bool usePressed;
 
-    void Awake()
+    void Start()
     {
-        parent = GetComponent<NetParentObjectReference>();
-        //detectionObjects = GetComponent<DetectionObjects>();
+        networkObject = GetComponentInParent<NetworkObject>();
+
+        if(networkObject.HasInputAuthority)
+        {
+            parent = GetComponent<NetParentObjectReference>();   
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!networkObject.HasInputAuthority) return;
+
         if (parent.detectionObjects.isCollidingInteractiveObj)
         {
             GetPressedButtonUse();

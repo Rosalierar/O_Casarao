@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
 public class NetGrabTheObject : MonoBehaviour
 {
+    NetworkObject networkObject;
     NetParentObjectReference parent;
 
     [SerializeField] private MyButton interectBtn; // Bot�o de intera��o
@@ -11,12 +13,19 @@ public class NetGrabTheObject : MonoBehaviour
     public bool holdPressed, isHolding;
 
     private void Awake()
-    {
-        parent = GetComponent<NetParentObjectReference>();
+    {        
+        networkObject = GetComponentInParent<NetworkObject>();
+
+        if (networkObject.HasInputAuthority)
+        {
+            parent = GetComponent<NetParentObjectReference>();
+        }
     }
     // Update is called once per frame
     void Update()
     {
+        if (!networkObject.HasInputAuthority) return;
+        
         GetPressedButtonHold();
         GrabObject();
     }
