@@ -14,10 +14,10 @@ public class CamFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (!networkObject.HasInputAuthority) return;
 
-        transform.position = Vector3.Lerp(transform.position, view.position, 90f * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, view.position, 40f * Time.deltaTime);
     }
 }

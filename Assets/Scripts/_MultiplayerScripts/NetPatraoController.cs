@@ -123,8 +123,6 @@ public class NetPatraoController : NetworkBehaviour
     }
     void OnDrawGizmos()
     {
-        if (!networkObject.HasStateAuthority) return;
-
         if (patrolPoints == null) return;
 
         Gizmos.color = Color.green;

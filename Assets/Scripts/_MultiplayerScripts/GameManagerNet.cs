@@ -31,14 +31,14 @@ public class GameManagerNet : NetworkBehaviour
         {
             print("RUNNER IS RUNNIG: " + Runner.IsRunning);
 
-            if (netObj.tag == "Itens" || netObj.tag == "Portas")
-            {
-                if (netObj == house) continue; // Evita spawnar o pai novamente
-                if (netObj != null && !netObj.IsValid) continue;
+            if (netObj.tag == "Itens" || netObj.tag == "PortaEntrada" || netObj.tag == "Porta" || netObj.tag == "Cam" || netObj.tag == "Objetos" || netObj.tag == "LocalHide")
+                {
+                    if (netObj == house) continue; // Evita spawnar o pai novamente
+                    if (netObj != null && !netObj.IsValid) continue;
 
-                Runner.Spawn(netObj, netObj.transform.position, netObj.transform.rotation);
-                Debug.Log($"Spawnado objeto: {netObj.name}");
-            }
+                    Runner.Spawn(netObj, netObj.transform.position, netObj.transform.rotation);
+                    Debug.Log($"Spawnado objeto: {netObj.name}");
+                }
         }
     }
 }
