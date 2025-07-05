@@ -1,35 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
 public class NetDetectionObjects : MonoBehaviour
 {
+    NetworkObject networkObject;
     // Sobre os ITENS
     public NetParentObjectReference parent;
     public NetItem item;
     public NetInteractiveObjects interactiveObject; 
 
-    CameraTouchController cameraTouchController; // Referência ao script MovePlayer
+    NetCamersTouchController cameraTouchController; // Referência ao script MovePlayer
     [SerializeField] private Transform rayObjOrigin; // Origem do Raycast
     [SerializeField] LayerMask layerObject;
     [SerializeField] float distanceRay;  
 
     public bool isCollidingItem, isCollidingInteractiveObj; // Variável para verificar se o objeto está colidindo com o jogador
 
-    private void Awake()
-    {
-        parent = GetComponent<NetParentObjectReference>();
-    }
     // Start is called before the first frame update
     void Start()
     {
-        cameraTouchController = GetComponent<CameraTouchController>(); // Obtém a referência ao script MovePlayer
+        networkObject = GetComponentInParent<NetworkObject>();
+        print(networkObject.HasInputAuthority);
+
+        if (networkObject.HasInputAuthority)
+        {
+            parent = GetComponent<NetParentObjectReference>();
+            cameraTouchController = GetComponent<NetCamersTouchController>(); // Obtém a referência ao script MovePlayer
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        ActiveRayCast(); 
+        if (!networkObject.HasInputAuthority) return;
+            ActiveRayCast(); 
     }
 
     void ActiveRayCast() {

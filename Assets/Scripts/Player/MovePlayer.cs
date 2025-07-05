@@ -6,28 +6,13 @@ using UnityEngine.Playables;
 
 public class MovePlayer : MonoBehaviour
 {
-    //private bool _isFinishJumpScare;
     [SerializeField] GameObject Canva;
-    /*public bool IsFinishJumpScare
-    {
-        get => _isFinishJumpScare = false;
-        set
-        {
-            if (_isFinishJumpScare != value)
-            {
-                print("FINISH JUMPSCARE MUDADO PARA: " + value);
-                _isFinishJumpScare = value;
-                Invoke("StartCoroutineForSpawn", 0.4f); // Chama automaticamente quando mudar
-            }
-        }
-    }*/
+    
     [SerializeField] SongsController song;
     [SerializeField] PlayableDirector jumpscareDirector;
     public static event Action OnLifeLost;
     //GameObjects do player
     ControllerPlayer controllerPlayer; //Referencia do controller do jogador
-    //public MyButton crunchBtn; //Botão de agachar
-    //public JoyRoots moveJoy; //Joystick de movimento
    
     private Transform myCamera;  //Referencia da câmera
     [SerializeField]private Transform View; //Referencia da visao do jogador

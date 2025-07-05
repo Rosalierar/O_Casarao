@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
 public class NetDropTheObject : MonoBehaviour
 {
+    NetworkObject networkObject;
     NetParentObjectReference parent;
     NetDetectionObjects detectionObjects;
 
@@ -14,15 +16,23 @@ public class NetDropTheObject : MonoBehaviour
 
     private void Awake()
     {
-        parent = GetComponent<NetParentObjectReference>();
-        detectionObjects = GetComponent<NetDetectionObjects>();
+        networkObject = GetComponentInParent<NetworkObject>();
+
+        if (networkObject.HasInputAuthority)
+        {
+            parent = GetComponent<NetParentObjectReference>();
+            detectionObjects = GetComponent<NetDetectionObjects>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetPressedButtonDrop();
-        DropObjectt();
+        if (!networkObject.HasInputAuthority) return;
+        
+            GetPressedButtonDrop();
+            DropObjectt();
+        
     }
 
     void DropObjectt()

@@ -5,6 +5,7 @@ using Fusion;
 using System;
 using UnityEngine.Playables;
 using Unity.VisualScripting;
+using Cinemachine;
 
 public class NetMovePlayer : NetworkBehaviour
 {
@@ -46,33 +47,14 @@ public class NetMovePlayer : NetworkBehaviour
     {
         networkObject = GetComponentInParent<NetworkObject>();
 
-        if (!networkObject.HasInputAuthority)
-        {
-            AtivarTodosScriptsDoPaiRaiz(gameObject);
-        }
-        else if (networkObject.HasInputAuthority)
+        if (networkObject.HasInputAuthority)
         {
             anim = GetComponent<Animator>(); //pega o animator do jogador
             ch = GetComponent<CharacterController>();
             playerCollider = GetComponent<CapsuleCollider>(); //pega o capsule collider do jogador
             controllerPlayer = GetComponent<NetControllerPlayer>(); //pega o controller do jogador
 
-            Transform raiz = transform.root;
-
-            // Procura a câmera apenas dentro da prefab
-            camPlayer = raiz.GetComponentInChildren<Camera>(true); // true = inclui objetos inativos
-            camPlayer.enabled = true;
-            myCamera = camPlayer.GetComponent<Transform>();
-
-            AudioListener audioListener = camPlayer.GetComponent<AudioListener>();
-            audioListener.enabled = true;
-
-            Transform canvas = raiz.Find("Canvas").GetComponentInChildren<Transform>(true);
-            canva = canvas.gameObject;
-            canva.SetActive(true);
-
-            myCamera = camPlayer.transform;
-            print(myCamera);
+            StartController();
 
             originalSpeed = playerSpeed; //salva a velocidade original do jogador
 
@@ -82,6 +64,30 @@ public class NetMovePlayer : NetworkBehaviour
             print("PLAYER SPAWNED");
         }
     }
+    private void StartController() // Procurar scripts e ativa-los
+    {
+        Transform raiz = transform.root;
+
+        // Procura a câmera apenas dentro da prefab
+        camPlayer = raiz.GetComponentInChildren<Camera>(true); // true = inclui objetos inativos
+        GameObject cam = camPlayer.gameObject;
+        cam.SetActive(true);
+        CinemachineVirtualCamera virtualCam = raiz.GetComponentInChildren<CinemachineVirtualCamera>(true);
+        GameObject virt = virtualCam.gameObject;
+        //virt.SetActive(true);
+
+        camPlayer.enabled = true;
+
+        myCamera = camPlayer.transform;
+        print(myCamera);
+
+        AudioListener audioListener = camPlayer.GetComponent<AudioListener>();
+        audioListener.enabled = true;
+
+        Transform canvas = raiz.Find("Canvas").GetComponentInChildren<Transform>(true);
+        canva = canvas.gameObject;
+        canva.SetActive(true);
+    }
 
     Transform GetRaiz(Transform t)
     {
@@ -90,50 +96,16 @@ public class NetMovePlayer : NetworkBehaviour
         return t;
     }
 
-    void AtivarTodosScriptsDoPaiRaiz(GameObject objeto)
+    void DesativarTodosScriptsDoPaiRaiz(GameObject objeto)
     {
         Transform raiz = GetRaiz(objeto.transform);
         MonoBehaviour[] scripts = raiz.GetComponents<MonoBehaviour>();
 
         foreach (MonoBehaviour script in scripts)
         {
-            script.enabled = true;
+            script.enabled = false;
         }
     }
-
-    /*void Start()
-    {
-        networkObject = GetComponentInParent<NetworkObject>();
-
-        if (networkObject.HasInputAuthority)
-        {
-            anim = GetComponent<Animator>(); //pega o animator do jogador
-            ch = GetComponent<CharacterController>();
-            playerCollider = GetComponent<CapsuleCollider>(); //pega o capsule collider do jogador
-            controllerPlayer = GetComponent<NetControllerPlayer>(); //pega o controller do jogador
-            
-            Transform raiz = transform.root;
-
-            // Procura a câmera apenas dentro da prefab
-            camPlayer = raiz.GetComponentInChildren<Camera>(true); // true = inclui objetos inativos
-            camPlayer.enabled = true;
-
-            AudioListener audioListener = camPlayer.GetComponent<AudioListener>();
-            audioListener.enabled = true;
-            
-            canva.SetActive(true);
-
-            myCamera = camPlayer.transform;
-            print(myCamera);
-
-            originalSpeed = velocity; //salva a velocidade original do jogador
-
-            controllerPlayer.spawnPoint = transform.localPosition; //salva o ponto de spawn do jogador
-            controllerPlayer.PlayerHealth = 3; //salva a vida do jogador
-
-            print("PLAYER SPAWNED");
-        }
-    }*/
 
     // Update is called once per frame
     void Update()
@@ -155,24 +127,12 @@ public class NetMovePlayer : NetworkBehaviour
         GetPressedButtonCrunch();
     }
 
-    void FixedUpdate()
-    {
-        /*// Ajusta a rotação do jogador para alinhar com a rotação da câmera
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, myCamera.eulerAngles.y, transform.eulerAngles.z); 
-
-        //Metodo de Movimentação
-        MoveHorizontal();
-
-        //Metodo de Agachamento
-        Crunch();
-        GetPressedButtonCrunch();*/
-    }
 
     void MoveHorizontal(){
         moveH = controllerPlayer.moveJoy.inputDirection.x;
         moveV = controllerPlayer.moveJoy.inputDirection.y;
 
-        dir = new Vector3(moveH, 0, moveV) * playerSpeed; 
+        dir = new Vector3(moveH, 0, moveV); 
         Vector3 DirNormalized = dir.normalized * playerSpeed * Runner.DeltaTime;
         
         ch.Move(DirNormalized + velocity * Runner.DeltaTime);
