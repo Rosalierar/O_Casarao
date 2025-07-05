@@ -22,6 +22,7 @@ public class OptionsController : MonoBehaviour
     string[] textPtConfig = { "Sensibilidade", "Idioma", "Português", "Inglês", "Tutorial", "Volume da Chuva" };
 
     [SerializeField] private CameraTouchController cameraTouchController;
+    [SerializeField] private NetCamersTouchController netCameraTouchController;
 
     bool isOptionsOpen = false;
 
@@ -67,7 +68,14 @@ public class OptionsController : MonoBehaviour
 
     public void ChangeSensibility()
     {
-        cameraTouchController.cameraSensitivity = sliderSensibility.value;
+        if (cameraTouchController != null)
+        {
+            cameraTouchController.cameraSensitivity = sliderSensibility.value;
+        }
+        else if (netCameraTouchController != null)
+        {
+            netCameraTouchController.cameraSensitivity = sliderSensibility.value;
+        }
     }
 
     public void OptionController()

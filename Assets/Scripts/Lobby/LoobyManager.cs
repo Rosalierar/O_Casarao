@@ -147,44 +147,6 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             Debug.LogError("Falha ao entrar no Session Lobby: " + result.ShutdownReason);
         }
-
-        /*
-        Debug.Log("runnerInstance: " + runnerInstance);
-        Debug.Log("runnerPrefab: " + runnerPrefab);
-
-        string lobbyCode = lobbyCodeInputField.text.Trim().ToUpper();
-
-        if (string.IsNullOrEmpty(lobbyCode))
-        {
-            Debug.LogWarning("Código da sala está vazio.");
-            return;
-        }
-
-        await StartGame(GameMode.Client, lobbyCode);
-
-        /*string lobbyCode = lobbyCodeInputField.text.Trim().ToUpper();
-
-        if (string.IsNullOrEmpty(lobbyCode))
-        {
-            Debug.LogWarning("Codigo da sala est� vazio.");
-            return;
-        }
-
-        SetupRunnerInstance();
-
-        // Entra no lobby
-        var result = await runnerInstance.JoinSessionLobby(SessionLobby.ClientServer);
-
-        if (result.Ok)
-        {
-            Debug.Log("Entrou no lobby, aguardando lista de sessoes...");
-            pendingJoinLobbyCode = lobbyCode; // Armazena para comparar no callback
-        }
-        else
-        {
-            Debug.LogError("Erro ao entrar no lobby: " + result.ShutdownReason);
-        }
-        */
     }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
@@ -203,26 +165,6 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             Debug.Log("Sessão com código " + pendingJoinLobbyCode + " não encontrada.");
         }
-
-        /*
-            Debug.Log("runnerInstance: " + runnerInstance);
-            Debug.Log("runnerPrefab: " + runnerPrefab);
-
-            if (string.IsNullOrEmpty(pendingJoinLobbyCode)) return;
-
-            var session = sessionList.FirstOrDefault(s => s.Name == pendingJoinLobbyCode);
-
-            if (session != null)
-            {
-                Debug.Log("Sess�o encontrada, entrando: " + session.Name);
-                StartGame(GameMode.Shared, session.Name);
-                pendingJoinLobbyCode = null;
-            }
-            else
-            {
-                Debug.Log("Sessao com c�digo " + pendingJoinLobbyCode + " nao encontrada.");
-            }
-        */
     }
 
     // Bot�o: Come�ar Jogo
@@ -235,12 +177,6 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
         if (runnerInstance != null)
         {
-            // Carrega Cena 2
-            //runnerInstance.Shutdown();
-            //SceneManager.LoadScene(1); // Certifique-se de que a Cena 2 est� no Build Index 1
-            //runnerInstance.SetActiveScene(SceneRef.FromIndex(1));
-
-            //int currentSceneIndex = runnerInstance.SceneRef.FromIndex(1);
             await runnerInstance.LoadScene(SceneRef.FromIndex(indexSceneForStart));
         }
     }
@@ -253,9 +189,6 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         Debug.Log("runnerInstance: " + runnerInstance);
         Debug.Log("runnerPrefab: " + runnerPrefab);
         networkRunner = runnerInstance; 
-
-        //if (isStartingGame) return;
-        //isStartingGame = true; 
 
         SetupRunnerInstance();
 
@@ -318,10 +251,6 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, System.ArraySegment<byte> data) { }
     public void OnSceneLoadDone(NetworkRunner runner)
     {
-        //Scene fusionScene = SceneManager.GetActiveScene(); // obtém a cena ativa do Unity
-        //int buildIndex = fusionScene.SceneRef; // índice da cena ativa
-        //string sceneName = fusionScene.name; // nome da cena ativa
-
         GameObject cenaGame = GameObject.Find("CenaGame");
 
         Debug.Log("RUNNER: " + runner.IsServer);
@@ -334,8 +263,6 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
                 print("CENA DE JOGO!");
             }
             
-            PlayerRef localPlayer = runner.LocalPlayer;
-
             int playerCount = runner.ActivePlayers.Count();
             bool isFirstPlayer = playerCount > 0 && playerCount < 2;
 
@@ -343,7 +270,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             {
                 // O jogador local é o primeiro da lista, então ele pode executar lógicas exclusivas, tipo spawnar objetos
                 Debug.Log("Sou o primeiro jogador!");
-                SpawnOpbject(runner);
+                SpawnObject(runner);
             }
             else
             {
@@ -356,7 +283,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
-    private void SpawnOpbject(NetworkRunner runner)
+    private void SpawnObject(NetworkRunner runner)
     {
          // Pega todos os filhos com NetworkObject (inclusive os desativados)
         var networkObjects = HouseMultiplayer.GetComponentsInChildren<NetworkObject>(true);
@@ -367,13 +294,11 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
             if (netObj.tag == "Itens")
             {
+                if (netObj == HouseMultiplayer) continue; // Evita spawnar o pai novamente
+                if (netObj != null && !netObj.IsValid) continue;
 
-
-            if (netObj == HouseMultiplayer) continue; // Evita spawnar o pai novamente
-            if (netObj != null && !netObj.IsValid) continue;
-
-            runner.Spawn(netObj, netObj.transform.position, netObj.transform.rotation);
-            Debug.Log($"Spawnado objeto: {netObj.name}");
+                runner.Spawn(netObj, netObj.transform.position, netObj.transform.rotation);
+                Debug.Log($"Spawnado objeto: {netObj.name}");
             }
         }
     }
@@ -390,22 +315,18 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
         int playerCount = runner.ActivePlayers.Count();
         print("JOGADORES NO MOMENTEO: " + playerCount);
-            
+
         //-6.17F 7.18F 0.36F // -3.18
-        //int index = player.RawEncoded % spawnPoints.Length;
+        
         Vector3 pos = spawnPoints[playerCount- 1];
 
         if (playerCount == 1)
         {
             NetworkObject playerObj = runner.Spawn(playerPrefab1, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
-            //anim = playerObj.GetComponent<Animator>();
-            //anim.runtimeAnimatorController = animatorOverrideController[0];
         }
         else if (playerCount == 2)
         {
             NetworkObject playerObj = runner.Spawn(playerPrefab2, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
-            //anim = playerObj.GetComponent<Animator>();
-            //anim.runtimeAnimatorController = animatorOverrideController[1];
         }
 
         //Debug.Log("Player spawnado: " + playerObj.name); 

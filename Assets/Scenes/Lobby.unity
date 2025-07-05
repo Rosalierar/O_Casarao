@@ -4661,7 +4661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2097044785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4669,15 +4669,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097044784}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfed6aa3711e46040bbed5edb7c37cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   housePrefab: {fileID: 8539281159442740672, guid: 15e2b7e15aa61e04d94d4bb8a4cb6fbb,
     type: 3}
-  playerPrefab:
-    RawGuidValue: 541ce8a4b453b544fab680c5b2860657
+  patraoPrefab: {fileID: 0}
 --- !u!4 &2097044786
 Transform:
   m_ObjectHideFlags: 0

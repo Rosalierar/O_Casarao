@@ -70,16 +70,17 @@ public class NetMovePlayer : NetworkBehaviour
 
         // Procura a câmera apenas dentro da prefab
         camPlayer = raiz.GetComponentInChildren<Camera>(true); // true = inclui objetos inativos
-        GameObject cam = camPlayer.gameObject;
-        cam.SetActive(true);
-        CinemachineVirtualCamera virtualCam = raiz.GetComponentInChildren<CinemachineVirtualCamera>(true);
-        GameObject virt = virtualCam.gameObject;
-        //virt.SetActive(true);
-
+        camPlayer.gameObject.SetActive(true);
         camPlayer.enabled = true;
-
         myCamera = camPlayer.transform;
         print(myCamera);
+
+        SongsController song = raiz.GetComponentInChildren<SongsController>(true);
+        song.gameObject.SetActive(true);
+
+        PlayableDirector director = raiz.GetComponentInChildren<PlayableDirector>(true);
+        director.gameObject.SetActive(true);
+
 
         AudioListener audioListener = camPlayer.GetComponent<AudioListener>();
         audioListener.enabled = true;
@@ -133,26 +134,22 @@ public class NetMovePlayer : NetworkBehaviour
         moveV = controllerPlayer.moveJoy.inputDirection.y;
 
         dir = new Vector3(moveH, 0, moveV); 
+        dir = transform.TransformDirection(dir); 
+
         Vector3 DirNormalized = dir.normalized * playerSpeed * Runner.DeltaTime;
-        
         ch.Move(DirNormalized + velocity * Runner.DeltaTime);
 
         if (DirNormalized != Vector3.zero)
         {
             anim.SetBool("isWalking", true);
-            //dir = transform.TransformDirection(dir); 
-            //rb.velocity = new Vector3(dir.x * velocity * Runner.DeltaTime, rb.velocity.y, dir.z * velocity * Runner.DeltaTime);
-            //transform.position += dir * velocity * Runner.DeltaTime;
-            //transform.LookAt(transform.position + dir);
 
-            gameObject.transform.forward = DirNormalized;
+            //gameObject.transform.forward = DirNormalized;
 
             anim.SetFloat("Blend", 1);
         }
         else
         {
             // Se não houver movimento, mantém a velocidade vertical
-            //rb.velocity = new Vector3(0, rb.velocity.y, 0);
             anim.SetBool("isWalking", false);
         }
     }
@@ -256,10 +253,8 @@ public class NetMovePlayer : NetworkBehaviour
 
         if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
         {
-            FindAnyObjectByType<PatraoController>().ContinueGame();
+            FindAnyObjectByType<NetPatraoController>().ContinueGame();
             
-            //StartCoroutine(WaitForSpawn()); //chama a coroutine para esperar 3 segundos
-
             for (int i = 0; i < song.audioSorceBackGround.Length; i++)
             {
                 if (song.songsBackGround[i] != null && i != 3)
