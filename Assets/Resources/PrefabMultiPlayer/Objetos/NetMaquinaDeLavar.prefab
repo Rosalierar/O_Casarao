@@ -125,9 +125,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2265856631209180791}
-  - component: {fileID: 7051888541844808066}
   - component: {fileID: 5003313329586279694}
-  - component: {fileID: 6340632379417200198}
+  - component: {fileID: 4502836896355622150}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -151,26 +150,6 @@ Transform:
   - {fileID: 3608146649494476323}
   m_Father: {fileID: 6009446003093015114}
   m_LocalEulerAnglesHint: {x: 180, y: 182.03, z: 270}
---- !u!114 &7051888541844808066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896181878853774656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorTransform: {fileID: 2265856631209180791}
-  posForOpenDoor: 0
-  openAngle: -90
-  openSpeed: 2
-  isOpen: 0
-  isMoving: 0
-  closedRot: {x: 0, y: 0, z: 0, w: 0}
-  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &5003313329586279694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +167,7 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 0
   DisableSharedModeInterpolation: 1
---- !u!114 &6340632379417200198
+--- !u!114 &4502836896355622150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,16 +176,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 896181878853774656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: be07ad8c69003ea4e8a8eb2861ede32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 3113813845
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 5003313329586279694}
-  ForceRemoteRenderTimeframe: 0
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
+  doorTransform: {fileID: 2265856631209180791}
+  posForOpenDoor: 0
+  openAngle: -90
+  openSpeed: 2
+  isOpen: 0
+  isMoving: 0
+  closedRot: {x: 0, y: 0, z: 0, w: 0}
+  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1534014227157590247
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,10 +200,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5843524137529390732}
   - component: {fileID: 3632861926025205646}
-  - component: {fileID: 6113462237531230419}
   - component: {fileID: 2058934083953215183}
   - component: {fileID: 2532787497129139104}
-  - component: {fileID: 5374275656092404474}
+  - component: {fileID: 3822957991304576726}
   m_Layer: 14
   m_Name: Collider
   m_TagString: Untagged
@@ -264,29 +246,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 2.7085419}
   m_Center: {x: 0, y: 0, z: -0.70105284}
---- !u!114 &6113462237531230419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534014227157590247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 7
-  tipoDeObjeto: 7
-  doorMoviment: {fileID: 7051888541844808066}
-  drawerMoviment: {fileID: 0}
-  unlocked: 0
 --- !u!114 &2058934083953215183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +357,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5374275656092404474
+--- !u!114 &3822957991304576726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -407,15 +366,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1534014227157590247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 2408371913
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours: []
-  ForceRemoteRenderTimeframe: 0
+  AS: {fileID: 2532787497129139104}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 7
+  tipoDeObjeto: 7
+  unlocked: 0
+  doorMoviment: {fileID: 4502836896355622150}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &1604437622162841717
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,13 +556,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5428711736857762634}
+  - component: {fileID: 1115981615047447904}
   m_Layer: 0
   m_Name: NetMaquinaDeLavar
   m_TagString: Objetos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5428711736857762634
 Transform:
   m_ObjectHideFlags: 0
@@ -628,6 +594,26 @@ Transform:
   - {fileID: 6009446003093015114}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1115981615047447904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599558957453472754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 4047206978
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 5003313329586279694}
+  - {fileID: 4502836896355622150}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &3611023890605505617
 GameObject:
   m_ObjectHideFlags: 0

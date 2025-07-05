@@ -177,7 +177,8 @@ GameObject:
   - component: {fileID: 1972760133350005710}
   - component: {fileID: 6859867989871417911}
   - component: {fileID: 6582939389439029555}
-  - component: {fileID: 5812474630041680999}
+  - component: {fileID: 2641485304718668703}
+  - component: {fileID: 1715314189496256339}
   m_Layer: 0
   m_Name: PivotE
   m_TagString: Porta
@@ -216,6 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
   doorTransform: {fileID: 1972760133350005710}
   posForOpenDoor: 0
   openAngle: -90
@@ -241,7 +245,7 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 0
   DisableSharedModeInterpolation: 1
---- !u!114 &5812474630041680999
+--- !u!114 &2641485304718668703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,16 +254,116 @@ MonoBehaviour:
   m_GameObject: {fileID: 618191888017316756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: be07ad8c69003ea4e8a8eb2861ede32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 3244999957
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 6582939389439029555}
-  ForceRemoteRenderTimeframe: 0
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
+  doorTransform: {fileID: 1972760133350005710}
+  posForOpenDoor: 0
+  openAngle: -90
+  openSpeed: 2
+  isOpen: 0
+  isMoving: 0
+  closedRot: {x: 0, y: 0, z: 0, w: 0}
+  openRot: {x: 0, y: 0, z: 0, w: 0}
+--- !u!82 &1715314189496256339
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618191888017316756}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3503712016886847963
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,9 +564,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5348236935320761862}
+  - component: {fileID: 5875403762867653374}
   m_Layer: 0
   m_Name: NetArmarioPeDecabra
-  m_TagString: Untagged
+  m_TagString: Objetos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -484,6 +589,26 @@ Transform:
   - {fileID: 1972760133350005710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &5875403762867653374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859443488763746183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 175957178
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 6582939389439029555}
+  - {fileID: 2641485304718668703}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &5447779357014260103
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,8 +704,8 @@ GameObject:
   - component: {fileID: 2264042056985900460}
   - component: {fileID: 8530329545615892536}
   - component: {fileID: 95851925970821099}
-  - component: {fileID: 931983905089182144}
   - component: {fileID: 3527117605846573277}
+  - component: {fileID: 3136673585692039318}
   m_Layer: 7
   m_Name: Porta2
   m_TagString: Porta
@@ -674,19 +799,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.019999998, y: 0.019999983, z: 0.020000001}
   m_Center: {x: 0.009979774, y: 0.15121385, z: 0.013191491}
---- !u!114 &931983905089182144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6504231459878384088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f46ff20919a6884382b1e9f866a00c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCloseTheObj: 0
 --- !u!114 &3527117605846573277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,6 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AS: {fileID: 1715314189496256339}
   informationAboutItem: {fileID: 0}
   cadeado:
   - {fileID: 0}
@@ -710,6 +823,30 @@ MonoBehaviour:
   doorMoviment: {fileID: 6859867989871417911}
   drawerMoviment: {fileID: 0}
   unlocked: 0
+--- !u!114 &3136673585692039318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6504231459878384088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AS: {fileID: 0}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 5
+  tipoDeObjeto: 12
+  unlocked: 0
+  doorMoviment: {fileID: 2641485304718668703}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &7231867354603218031
 GameObject:
   m_ObjectHideFlags: 0

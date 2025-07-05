@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1598362083170093723}
-  - component: {fileID: 6797223221333582791}
   - component: {fileID: 5614814614550274150}
-  - component: {fileID: 6969734409322591733}
+  - component: {fileID: 2597960180727493528}
   m_Layer: 0
   m_Name: PivotGeladeira
   m_TagString: Untagged
@@ -35,26 +34,6 @@ Transform:
   - {fileID: 8402319661865388431}
   m_Father: {fileID: 3485798252285052929}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &6797223221333582791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412811273289696590}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorTransform: {fileID: 1598362083170093723}
-  posForOpenDoor: 0
-  openAngle: -90
-  openSpeed: 2
-  isOpen: 0
-  isMoving: 0
-  closedRot: {x: 0, y: 0, z: 0, w: 0}
-  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &5614814614550274150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +51,7 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 0
   DisableSharedModeInterpolation: 1
---- !u!114 &6969734409322591733
+--- !u!114 &2597960180727493528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,16 +60,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 412811273289696590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: be07ad8c69003ea4e8a8eb2861ede32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 1003095890
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 5614814614550274150}
-  ForceRemoteRenderTimeframe: 0
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
+  doorTransform: {fileID: 1598362083170093723}
+  posForOpenDoor: 0
+  openAngle: -90
+  openSpeed: 2
+  isOpen: 0
+  isMoving: 0
+  closedRot: {x: 0, y: 0, z: 0, w: 0}
+  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &595376821014710752
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,9 +689,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8402319661865388431}
   - component: {fileID: 5367552522134672958}
-  - component: {fileID: 3302288730563259945}
-  - component: {fileID: 1845266258125534718}
   - component: {fileID: 5854228434197145527}
+  - component: {fileID: 1379439361338980877}
   m_Layer: 7
   m_Name: Porta
   m_TagString: Untagged
@@ -754,42 +736,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3302288730563259945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6827741023100061039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f46ff20919a6884382b1e9f866a00c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCloseTheObj: 0
---- !u!114 &1845266258125534718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6827741023100061039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 11
-  tipoDeObjeto: 11
-  doorMoviment: {fileID: 6797223221333582791}
-  drawerMoviment: {fileID: 0}
-  unlocked: 0
 --- !u!82 &5854228434197145527
 AudioSource:
   m_ObjectHideFlags: 0
@@ -886,6 +832,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1379439361338980877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6827741023100061039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AS: {fileID: 5854228434197145527}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 11
+  tipoDeObjeto: 11
+  unlocked: 0
+  doorMoviment: {fileID: 2597960180727493528}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &6856410918474507439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3485798252285052929}
+  - component: {fileID: 1386633230620722454}
   m_Layer: 0
   m_Name: NetGeladeira
   m_TagString: Objetos
@@ -1207,3 +1178,23 @@ Transform:
   - {fileID: 1598362083170093723}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1386633230620722454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8848735628344645850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2195040774
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 5614814614550274150}
+  - {fileID: 2597960180727493528}
+  ForceRemoteRenderTimeframe: 0

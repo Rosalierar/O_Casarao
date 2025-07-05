@@ -175,9 +175,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8011891495226195491}
-  - component: {fileID: 5213276149082167763}
   - component: {fileID: 1607972874629769386}
   - component: {fileID: 9186338861718830861}
+  - component: {fileID: 3045397679258789164}
   m_Layer: 0
   m_Name: PortaPrincipal
   m_TagString: PortaEntrada
@@ -205,26 +205,6 @@ Transform:
   - {fileID: 856264243144957685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5213276149082167763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059521662248489569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5990e3988e4d6294da6aa240b4a75763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  doorMovimentSecond: {fileID: 8626422022659940390}
-  doorMoviment: {fileID: 4987795342879183087}
-  conclusion: 000000
-  cadeado:
-  - {fileID: 7344433488302304062}
-  - {fileID: 6155508019286628727}
-  - {fileID: 2470020650056826764}
 --- !u!65 &1607972874629769386
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -262,13 +242,33 @@ MonoBehaviour:
   ObjectInterest: 1
   Flags: 262145
   NestedObjects:
-  - {fileID: 4238156053619642049}
   - {fileID: 3779050189923553359}
-  - {fileID: 8556899480922753943}
-  - {fileID: 5346736565040173993}
-  - {fileID: 5011178790041712304}
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 1556688950981356415}
+  - {fileID: 38825239256727988}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &3045397679258789164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059521662248489569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e64b8c02a8ec8742ba29c41f545c71e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  song: {fileID: 0}
+  enemy: {fileID: 0}
+  player: {fileID: 0}
+  isOpenDoor: 0
+  doorMovimentSecond: {fileID: 38825239256727988}
+  doorMoviment: {fileID: 3842226699818427964}
+  cadeado:
+  - {fileID: 7344433488302304062}
+  - {fileID: 6155508019286628727}
+  - {fileID: 2470020650056826764}
 --- !u!1 &1136730602037731898
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,10 +362,8 @@ GameObject:
   m_Component:
   - component: {fileID: 856264243144957685}
   - component: {fileID: 1597253149191920122}
-  - component: {fileID: 483204358669304306}
-  - component: {fileID: 5360289614499332244}
   - component: {fileID: 7988789995754061758}
-  - component: {fileID: 5011178790041712304}
+  - component: {fileID: 3052974294517673084}
   m_Layer: 14
   m_Name: cadeadosG
   m_TagString: Untagged
@@ -414,42 +412,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.74, z: 0}
---- !u!114 &483204358669304306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470020650056826764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f46ff20919a6884382b1e9f866a00c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCloseTheObj: 0
---- !u!114 &5360289614499332244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470020650056826764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 2470020650056826764}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 2
-  tipoDeObjeto: 2
-  doorMoviment: {fileID: 0}
-  drawerMoviment: {fileID: 0}
-  unlocked: 0
 --- !u!82 &7988789995754061758
 AudioSource:
   m_ObjectHideFlags: 0
@@ -546,7 +508,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5011178790041712304
+--- !u!114 &3052974294517673084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -555,15 +517,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2470020650056826764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 1699192174
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours: []
-  ForceRemoteRenderTimeframe: 0
+  AS: {fileID: 7988789995754061758}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 2
+  tipoDeObjeto: 2
+  unlocked: 0
+  doorMoviment: {fileID: 0}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &3030478912478315686
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,9 +541,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304935057885044226}
-  - component: {fileID: 4987795342879183087}
   - component: {fileID: 2766426143625795893}
   - component: {fileID: 3779050189923553359}
+  - component: {fileID: 3842226699818427964}
   m_Layer: 0
   m_Name: PortaEs
   m_TagString: Untagged
@@ -599,26 +567,6 @@ Transform:
   - {fileID: 6412920630753155332}
   m_Father: {fileID: 8011891495226195491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4987795342879183087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030478912478315686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorTransform: {fileID: 304935057885044226}
-  posForOpenDoor: 0
-  openAngle: -90
-  openSpeed: 2
-  isOpen: 0
-  isMoving: 0
-  closedRot: {x: 0, y: 0, z: 0, w: 0}
-  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2766426143625795893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,7 +602,31 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2766426143625795893}
+  - {fileID: 3842226699818427964}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &3842226699818427964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030478912478315686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be07ad8c69003ea4e8a8eb2861ede32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
+  doorTransform: {fileID: 304935057885044226}
+  posForOpenDoor: 0
+  openAngle: -90
+  openSpeed: 2
+  isOpen: 0
+  isMoving: 0
+  closedRot: {x: 0, y: 0, z: 0, w: 0}
+  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3629943805555480860
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,9 +636,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8003024652762294367}
-  - component: {fileID: 8626422022659940390}
   - component: {fileID: 1556688950981356415}
-  - component: {fileID: 4238156053619642049}
+  - component: {fileID: 38825239256727988}
   m_Layer: 0
   m_Name: PortaDir
   m_TagString: Untagged
@@ -690,26 +661,6 @@ Transform:
   - {fileID: 7696264417031008940}
   m_Father: {fileID: 8011891495226195491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8626422022659940390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3629943805555480860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorTransform: {fileID: 8003024652762294367}
-  posForOpenDoor: 1
-  openAngle: -90
-  openSpeed: 2
-  isOpen: 0
-  isMoving: 0
-  closedRot: {x: 0, y: 0, z: 0, w: 0}
-  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1556688950981356415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,7 +678,7 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 0
   DisableSharedModeInterpolation: 1
---- !u!114 &4238156053619642049
+--- !u!114 &38825239256727988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -736,16 +687,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3629943805555480860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: be07ad8c69003ea4e8a8eb2861ede32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 822107260
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 1556688950981356415}
-  ForceRemoteRenderTimeframe: 0
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
+  doorTransform: {fileID: 8003024652762294367}
+  posForOpenDoor: 1
+  openAngle: -90
+  openSpeed: 2
+  isOpen: 0
+  isMoving: 0
+  closedRot: {x: 0, y: 0, z: 0, w: 0}
+  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4218056960811867498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,10 +1295,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3337721228690032747}
   - component: {fileID: 6939895582469561590}
-  - component: {fileID: 3093572205661369803}
-  - component: {fileID: 2186234098181560302}
   - component: {fileID: 5701463534871932559}
-  - component: {fileID: 5346736565040173993}
+  - component: {fileID: 6433184457917829092}
   m_Layer: 14
   m_Name: cadeadosY
   m_TagString: Untagged
@@ -1392,42 +1345,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.07, z: 0}
---- !u!114 &3093572205661369803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6155508019286628727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f46ff20919a6884382b1e9f866a00c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCloseTheObj: 0
---- !u!114 &2186234098181560302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6155508019286628727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 6155508019286628727}
-  - {fileID: 0}
-  - {fileID: 0}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 1
-  tipoDeObjeto: 1
-  doorMoviment: {fileID: 4987795342879183087}
-  drawerMoviment: {fileID: 0}
-  unlocked: 0
 --- !u!82 &5701463534871932559
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1524,7 +1441,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5346736565040173993
+--- !u!114 &6433184457917829092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1533,15 +1450,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6155508019286628727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 3799780516
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours: []
-  ForceRemoteRenderTimeframe: 0
+  AS: {fileID: 5701463534871932559}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 1
+  tipoDeObjeto: 1
+  unlocked: 0
+  doorMoviment: {fileID: 0}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &6964800098930195041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,10 +1641,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2422964056746710000}
   - component: {fileID: 3575223560102260318}
-  - component: {fileID: 4972022311272410075}
-  - component: {fileID: 8270188215924344751}
   - component: {fileID: 7428407774719356067}
-  - component: {fileID: 8556899480922753943}
+  - component: {fileID: 7985925142854792178}
   m_Layer: 14
   m_Name: cadeadosR
   m_TagString: Untagged
@@ -1770,42 +1691,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.18, z: 0}
---- !u!114 &4972022311272410075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7344433488302304062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f46ff20919a6884382b1e9f866a00c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCloseTheObj: 0
---- !u!114 &8270188215924344751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7344433488302304062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 0}
-  - {fileID: 7344433488302304062}
-  - {fileID: 0}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 0
-  tipoDeObjeto: 0
-  doorMoviment: {fileID: 0}
-  drawerMoviment: {fileID: 0}
-  unlocked: 0
 --- !u!82 &7428407774719356067
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1902,7 +1787,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8556899480922753943
+--- !u!114 &7985925142854792178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1911,15 +1796,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7344433488302304062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 1436748301
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours: []
-  ForceRemoteRenderTimeframe: 0
+  AS: {fileID: 7428407774719356067}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 0
+  tipoDeObjeto: 0
+  unlocked: 0
+  doorMoviment: {fileID: 0}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &7492476129891307734
 GameObject:
   m_ObjectHideFlags: 0

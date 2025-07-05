@@ -287,8 +287,8 @@ public class NetPatraoController : NetworkBehaviour
                 }
                 else if (tag == "Porta" && patraoHit.distance <= 0.8f)
                 {
-                    DoorMoviment doorMoviment = patraoHit.collider.GetComponentInParent<DoorMoviment>();
-                    InteractiveObject interactivedoor = doorMoviment.GetComponentInChildren<InteractiveObject>();
+                    NetDoorMoviment doorMoviment = patraoHit.collider.GetComponentInParent<NetDoorMoviment>();
+                    NetInteractiveObjects interactivedoor = doorMoviment.GetComponentInChildren<NetInteractiveObjects>();
 
                     if (!doorMoviment.isOpen && interactivedoor.unlocked)
                         doorMoviment.TryActiveDoor();
@@ -467,7 +467,7 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a direita
         while (elapsed < 1f)
         {
-            elapsed += Time.deltaTime * openSpeed;
+            elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(startRot, openRotRight, elapsed);
             yield return null;
         }
@@ -478,7 +478,7 @@ public class NetPatraoController : NetworkBehaviour
         elapsed = 0f;
         while (elapsed < 1f)
         {
-            elapsed += Time.deltaTime * openSpeed;
+            elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(openRotRight, startRot, elapsed);
             yield return null;
         }
@@ -488,7 +488,7 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a Esquerda
         while (elapsed < 1f)
         {
-            elapsed += Time.deltaTime * openSpeed;
+            elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(startRot, openRotLeft, elapsed);
             yield return null;
         }
@@ -498,7 +498,7 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a Frente
         while (elapsed < 1f)
         {
-            elapsed += Time.deltaTime * openSpeed;
+            elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(openRotLeft, startRot, elapsed);
             yield return null;
         }

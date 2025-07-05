@@ -33,11 +33,13 @@ public class NetInteractiveObjects : MonoBehaviour
    
      [Header("Controller Open/Close")]
     /// <Controle dos Objetos, Abrir, Fechar, Quebrar>
-    [SerializeField] DoorMoviment doorMoviment;
-    [SerializeField] DrawerMoviment drawerMoviment;
+    [SerializeField] NetDoorMoviment doorMoviment;
+    [SerializeField] NetDrawerMoviment drawerMoviment;
 
     public void TentarInteragir()
     {
+        informationAboutItem = GameObject.Find("ItemTextController").GetComponent<TextMeshProUGUI>();
+
         language = PlayerPrefs.GetInt("Language");
 
         Debug.Log("Usando o Objeto Resultado:");
@@ -62,10 +64,6 @@ public class NetInteractiveObjects : MonoBehaviour
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
 
                 gameObject.SetActive(false); // Desativa o objeto do mundo
-
-                /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
-                parent.useTheObject.enabled = false; // Desabilita o script de usar
-                parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
 
                 Debug.Log("Corrente Quebrada!");
             }
@@ -96,9 +94,9 @@ public class NetInteractiveObjects : MonoBehaviour
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 drawerMoviment.enabled = true;
                 drawerMoviment.TryActiveDrawer();
+
                 //doorMoviment.enabled = true;
                 //doorMoviment.TryActiveDoor();
-
                 //gameObject.SetActive(false); // Desativa o objeto do mundo
 
                 Debug.Log("Gaveta Aberta!");
@@ -112,11 +110,6 @@ public class NetInteractiveObjects : MonoBehaviour
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[0] = true;
 
-                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
-                {
-                    //  GoToWin();
-                }
-
                 StartCoroutine(ToDisableDelayed(1, 0.5f));
             }
 
@@ -128,11 +121,6 @@ public class NetInteractiveObjects : MonoBehaviour
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[1] = true;
 
-                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
-                {
-                    //GoToWin();
-                }
-
                 StartCoroutine(ToDisableDelayed(0, 0.5f));
             }
 
@@ -143,11 +131,6 @@ public class NetInteractiveObjects : MonoBehaviour
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 progressionGame[2] = true;
-
-                if (progressionGame[0] && progressionGame[1] && progressionGame[2])
-                {
-                    // GoToWin();
-                }
 
                 StartCoroutine(ToDisableDelayed(2, 0.5f));
             }
@@ -177,6 +160,7 @@ public class NetInteractiveObjects : MonoBehaviour
         
         else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
         {
+            passwordPainel = GameObject.Find("PanelGeladeira");
             passwordPainel.SetActive(true);
         }
 
@@ -233,12 +217,14 @@ public class NetInteractiveObjects : MonoBehaviour
     }
 
     IEnumerator ToDisableDelayed(int index, float delay)
-{
-    yield return new WaitForSeconds(delay);
-    cadeado[index].SetActive(false);
-}
+    {
+        yield return new WaitForSeconds(delay);
+        cadeado[index].SetActive(false);
+    }
     public void SetParentReference(NetParentObjectReference parent)
     {
+        informationAboutItem = GameObject.Find("ItemTextController").GetComponent<TextMeshProUGUI>();
+
         this.parent = parent;
     }
 

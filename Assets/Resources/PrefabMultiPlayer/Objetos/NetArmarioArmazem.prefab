@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 8263591290302766691}
   - component: {fileID: 943427508024830258}
   - component: {fileID: 3928283910717927868}
-  - component: {fileID: 693684781170843827}
-  - component: {fileID: 6610642267935774506}
   - component: {fileID: 6371221218420393508}
+  - component: {fileID: 2747294277143813367}
   m_Layer: 7
   m_Name: Cube.007
   m_TagString: Porta
@@ -110,42 +109,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0045341486, y: 0.00029999967, z: 0.010793165}
   m_Center: {x: -0.0022659427, y: -0.002614838, z: 0.006127046}
---- !u!114 &693684781170843827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487060326799022542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 3
-  tipoDeObjeto: 12
-  doorMoviment: {fileID: 6401342555978772581}
-  drawerMoviment: {fileID: 0}
-  unlocked: 1
---- !u!114 &6610642267935774506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487060326799022542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f46ff20919a6884382b1e9f866a00c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCloseTheObj: 0
 --- !u!82 &6371221218420393508
 AudioSource:
   m_ObjectHideFlags: 0
@@ -242,6 +205,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2747294277143813367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487060326799022542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AS: {fileID: 6371221218420393508}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 3
+  tipoDeObjeto: 12
+  unlocked: 1
+  doorMoviment: {fileID: 2126591145892115850}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &495251529157991688
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,9 +407,8 @@ GameObject:
   - component: {fileID: 3912770926671705600}
   - component: {fileID: 8731626583065215626}
   - component: {fileID: 8189587288260633939}
-  - component: {fileID: 5893654996299288497}
-  - component: {fileID: 5958815681916370908}
   - component: {fileID: 6119118225137312239}
+  - component: {fileID: 8295933409624849326}
   m_Layer: 7
   m_Name: Cube.005
   m_TagString: Porta
@@ -518,42 +504,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0045341467, y: 0.0002999999, z: 0.010793164}
   m_Center: {x: 0.0022780946, y: -0.002614829, z: 0.0061270455}
---- !u!114 &5893654996299288497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936189106265932673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f46ff20919a6884382b1e9f866a00c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCloseTheObj: 0
---- !u!114 &5958815681916370908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936189106265932673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 3
-  tipoDeObjeto: 12
-  doorMoviment: {fileID: 318469460014348549}
-  drawerMoviment: {fileID: 0}
-  unlocked: 1
 --- !u!82 &6119118225137312239
 AudioSource:
   m_ObjectHideFlags: 0
@@ -650,6 +600,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8295933409624849326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936189106265932673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AS: {fileID: 6119118225137312239}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 3
+  tipoDeObjeto: 12
+  unlocked: 1
+  doorMoviment: {fileID: 7690123789668345982}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &1189125165728821081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,10 +1049,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2474514265711791155}
   - component: {fileID: 6445819321708299066}
-  - component: {fileID: 5551039415901064920}
-  - component: {fileID: 336987765630367300}
-  - component: {fileID: 8380771155629394667}
   - component: {fileID: 349058470667125169}
+  - component: {fileID: 8930854943634241594}
   m_Layer: 14
   m_Name: Vitrine
   m_TagString: Untagged
@@ -1123,60 +1095,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5551039415901064920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275004919570954861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f46ff20919a6884382b1e9f866a00c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCloseTheObj: 0
---- !u!114 &336987765630367300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275004919570954861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 3
-  tipoDeObjeto: 3
-  doorMoviment: {fileID: 0}
-  drawerMoviment: {fileID: 0}
-  unlocked: 0
---- !u!114 &8380771155629394667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275004919570954861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortKey: 2879332440
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours: []
-  ForceRemoteRenderTimeframe: 0
 --- !u!82 &349058470667125169
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1273,6 +1191,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8930854943634241594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275004919570954861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AS: {fileID: 0}
+  informationAboutItem: {fileID: 0}
+  cadeado:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passwordPainel: {fileID: 0}
+  itemNecessario: 3
+  tipoDeObjeto: 3
+  unlocked: 0
+  doorMoviment: {fileID: 0}
+  drawerMoviment: {fileID: 0}
 --- !u!1 &3545312999924663270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,9 +1390,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4271318779374045296}
-  - component: {fileID: 318469460014348549}
   - component: {fileID: 2951326961160388429}
-  - component: {fileID: 9095158182988690613}
+  - component: {fileID: 7690123789668345982}
   m_Layer: 0
   m_Name: PivE
   m_TagString: Porta
@@ -1474,26 +1415,6 @@ Transform:
   - {fileID: 3798934470929329963}
   m_Father: {fileID: 7007520485808176326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &318469460014348549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4388955447873209523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorTransform: {fileID: 4271318779374045296}
-  posForOpenDoor: 0
-  openAngle: -90
-  openSpeed: 2
-  isOpen: 0
-  isMoving: 0
-  closedRot: {x: 0, y: 0, z: 0, w: 0}
-  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2951326961160388429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1511,7 +1432,7 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 0
   DisableSharedModeInterpolation: 1
---- !u!114 &9095158182988690613
+--- !u!114 &7690123789668345982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1520,16 +1441,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4388955447873209523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: be07ad8c69003ea4e8a8eb2861ede32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 430968401
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 2951326961160388429}
-  ForceRemoteRenderTimeframe: 0
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
+  doorTransform: {fileID: 4271318779374045296}
+  posForOpenDoor: 0
+  openAngle: -90
+  openSpeed: 2
+  isOpen: 0
+  isMoving: 0
+  closedRot: {x: 0, y: 0, z: 0, w: 0}
+  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4425288488234192698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7007520485808176326}
+  - component: {fileID: 4135946580741976902}
   m_Layer: 0
   m_Name: NetArmarioArmazem
   m_TagString: Objetos
@@ -1612,6 +1538,28 @@ Transform:
   - {fileID: 4271318779374045296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &4135946580741976902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430800335374541926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3654408447
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 7327424419105548003}
+  - {fileID: 2126591145892115850}
+  - {fileID: 2951326961160388429}
+  - {fileID: 7690123789668345982}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &4591717298463658514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,9 +2317,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8121203541202417407}
-  - component: {fileID: 6401342555978772581}
   - component: {fileID: 7327424419105548003}
-  - component: {fileID: 1204286622483905349}
+  - component: {fileID: 2126591145892115850}
   m_Layer: 0
   m_Name: PivD
   m_TagString: Porta
@@ -2395,26 +2342,6 @@ Transform:
   - {fileID: 5782795288930625846}
   m_Father: {fileID: 7007520485808176326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6401342555978772581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7789560486471210134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c42f31faa93f424293107ac007266fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorTransform: {fileID: 8121203541202417407}
-  posForOpenDoor: 0
-  openAngle: -90
-  openSpeed: 2
-  isOpen: 0
-  isMoving: 0
-  closedRot: {x: 0, y: 0, z: 0, w: 0}
-  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &7327424419105548003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2432,7 +2359,7 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 0
   DisableSharedModeInterpolation: 1
---- !u!114 &1204286622483905349
+--- !u!114 &2126591145892115850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2441,16 +2368,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7789560486471210134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: be07ad8c69003ea4e8a8eb2861ede32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 3977535048
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 7327424419105548003}
-  ForceRemoteRenderTimeframe: 0
+  pants: {fileID: 0}
+  boxCollider: {fileID: 0}
+  direction: 0
+  doorTransform: {fileID: 8121203541202417407}
+  posForOpenDoor: 0
+  openAngle: -90
+  openSpeed: 2
+  isOpen: 0
+  isMoving: 0
+  closedRot: {x: 0, y: 0, z: 0, w: 0}
+  openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8808449247981351412
 GameObject:
   m_ObjectHideFlags: 0

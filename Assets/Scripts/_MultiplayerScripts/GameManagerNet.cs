@@ -31,7 +31,7 @@ public class GameManagerNet : NetworkBehaviour
         {
             print("RUNNER IS RUNNIG: " + Runner.IsRunning);
 
-            if (netObj.tag == "Itens" || netObj.tag == "LocalHide")
+            if (netObj.tag == "Itens" || netObj.tag == "Portas")
             {
                 if (netObj == house) continue; // Evita spawnar o pai novamente
                 if (netObj != null && !netObj.IsValid) continue;
