@@ -16,7 +16,7 @@ public class GameManagerNet : NetworkBehaviour
 
             Debug.Log("GameManagerNet Spawned. Tem autoridade? " + HasStateAuthority);
             NetworkObject house = Runner.Spawn(housePrefab, posH, Quaternion.identity);
-            NetworkObject patrao = Runner.Spawn(patraoPrefab, posP, Quaternion.identity);
+            //NetworkObject patrao = Runner.Spawn(patraoPrefab, posP, Quaternion.identity);
 
             SpawnObjectsFromHouse(house);
         }

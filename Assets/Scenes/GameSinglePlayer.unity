@@ -16107,6 +16107,8 @@ MonoBehaviour:
   - -25
   - 45
   - -45
+  - 70
+  - -70
   distanceRayPatrao: 100
 --- !u!114 &493322098
 MonoBehaviour:
