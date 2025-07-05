@@ -46,7 +46,7 @@ public class NetPatraoController : NetworkBehaviour
     [SerializeField] Vector3[] patrolPoints; // Array de pontos de patrulha
     int currentPatrolIndex = 0; // Índice do ponto de patrulha atual
     int randomPatrolIndex = 0; // Índice aleatório para patrulha
-    //[Networked(OnChanged = nameof(OnPatrolIndexChanged))] public int PatrolIndex { get; set; }
+    [Networked] public int PatrolIndex { get; set; }
     
     /// <summary>
     /// RayCast do Patrao
@@ -59,35 +59,31 @@ public class NetPatraoController : NetworkBehaviour
     [SerializeField] float[] rayAngles = { 0f, 25f, -25f, 45f, -45f, 90f, -90f, 180f, -180f };// Ângulos em graus para disparar os raios
     [SerializeField] float distanceRayPatrao;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        dificulty = (byte)PlayerPrefs.GetInt("Dificulty");
-
-        patrolPoints = new Vector3[patrolPointsObjects.Length - ValuePointPatrolsDelete()];
-
-        print("Fase: " + (byte)PlayerPrefs.GetInt("Dificulty") + "Total Pontos de Patrulha Pontos: " + patrolPoints.Length);
-
-        for (int i = 0; i < patrolPoints.Length; i++)
-        {
-            patrolPoints[i] = patrolPointsObjects[i].position;
-        }
-
-        // Destruir os GameObjects 
-        foreach (Transform t in patrolPointsObjects)
-        {
-            Destroy(t.gameObject);
-        }
-    }
-
     void Start()
     {
         networkObject = GetComponentInParent<NetworkObject>();
 
-        print("PATRAO PODE TER HAS STATE: " + networkObject);
+        print("PATRAO PODE TER HAS STATE: " + networkObject.HasStateAuthority);
 
         if (networkObject.HasStateAuthority)
         {
+            dificulty = (byte)PlayerPrefs.GetInt("Dificulty");
+
+            patrolPoints = new Vector3[patrolPointsObjects.Length - ValuePointPatrolsDelete()];
+
+            print("Fase: " + (byte)PlayerPrefs.GetInt("Dificulty") + "Total Pontos de Patrulha Pontos: " + patrolPoints.Length);
+
+            for (int i = 0; i < patrolPoints.Length; i++)
+            {
+                patrolPoints[i] = patrolPointsObjects[i].position;
+            }
+
+            // Destruir os GameObjects 
+            foreach (Transform t in patrolPointsObjects)
+            {
+                Destroy(t.gameObject);
+            }
+
             animPatrao = GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>(); // Obtém o componente NavMeshAgent do objeto
             StartCoroutine(TimerPatrol()); // Inicia a patrulha
@@ -99,9 +95,17 @@ public class NetPatraoController : NetworkBehaviour
         return agent;
     }
 
+    public override void FixedUpdateNetwork()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
+        if (!networkObject.HasStateAuthority) return;
+
+        print("RODANDO NO NETFIXED");
+
         PatraoVision();
         Patrolling();
 
@@ -123,6 +127,8 @@ public class NetPatraoController : NetworkBehaviour
     }
     void OnDrawGizmos()
     {
+        if (!networkObject.HasStateAuthority) return;
+
         if (patrolPoints == null) return;
 
         Gizmos.color = Color.green;
@@ -390,6 +396,7 @@ public class NetPatraoController : NetworkBehaviour
 
             // Escolhe um waypoint aleatório
             randomPatrolIndex = Random.Range(0, patrolPoints.Length);
+            PatrolIndex = randomPatrolIndex
 
             while (randomPatrolIndex == currentPatrolIndex && patrolPoints.Length > 1)
             {
@@ -402,12 +409,6 @@ public class NetPatraoController : NetworkBehaviour
             Patrolling(); // Inicia a patrulha
         }
     }
-    /*static void OnPatrolIndexChanged(Changed<SeuComponente> changed)
-    {
-        var script = changed.Behaviour;
-        script.currentPatrolIndex = script.PatrolIndex;
-        script.Patrolling(); // Move para o ponto sincronizado
-    }*/
 
     void Patrolling()
     {
