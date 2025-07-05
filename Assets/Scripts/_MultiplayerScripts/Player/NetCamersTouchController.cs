@@ -6,7 +6,7 @@ using UnityEngine;
 public class NetCamersTouchController : MonoBehaviour
 {
     NetworkObject networkObject;
-     // References
+    // References
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Rigidbody rb;
 
@@ -56,7 +56,7 @@ public class NetCamersTouchController : MonoBehaviour
     void Update()
     {
         if (!networkObject.HasInputAuthority) return;
-        
+
         // Handles input
         GetTouchInput();
 
@@ -142,12 +142,13 @@ public class NetCamersTouchController : MonoBehaviour
         }
     }
 
-    void LookAround() {
+    void LookAround()
+    {
 
         // vertical (pitch) rotation
         cameraPitch = Mathf.Clamp(cameraPitch - lookInput.y, -90f, 90f);
         cameraPitch2 = cameraPitch2 + lookInput.x;
-        
+
         cameraTransform.localRotation = Quaternion.Euler(cameraPitch, cameraPitch2, 0);
 
         lookDirection = cameraTransform.forward;

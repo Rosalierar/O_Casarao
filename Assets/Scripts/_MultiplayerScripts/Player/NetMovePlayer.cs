@@ -74,7 +74,7 @@ public class NetMovePlayer : NetworkBehaviour
         cam.SetActive(true);
         CinemachineVirtualCamera virtualCam = raiz.GetComponentInChildren<CinemachineVirtualCamera>(true);
         GameObject virt = virtualCam.gameObject;
-        virt.SetActive(true);
+        //virt.SetActive(true);
 
         camPlayer.enabled = true;
 

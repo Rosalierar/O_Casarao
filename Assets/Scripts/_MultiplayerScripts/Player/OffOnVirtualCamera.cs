@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class OffOnVirtualCamera : MonoBehaviour
 {
+    [SerializeField] Transform view;
     NetworkObject networkObject;
     CinemachineVirtualCamera cinemachine;
     // Start is called before the first frame update
@@ -16,12 +17,17 @@ public class OffOnVirtualCamera : MonoBehaviour
 
         if (networkObject.HasInputAuthority)
         {
-            Invoke("OnVirtual", 0.1f);
+            //Invoke("OnVirtual", 0.1f);
         }
         else if (!networkObject.HasInputAuthority)
         {
-            Invoke("OffVirtual", 0.1f);
+            //Invoke("OffVirtual", 0.1f);
         }
+    }
+    void Update()
+    {
+        if (!networkObject.HasInputAuthority) return;
+        transform.position = view.position;
     }
 
     public void OnVirtual()
