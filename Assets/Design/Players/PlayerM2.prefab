@@ -10670,7 +10670,21 @@ MonoBehaviour:
   grabTheObject: {fileID: 2952760144499813811}
   useTheObject: {fileID: 416864175414866173}
   inventory: {fileID: 2596509404269839414}
-  AC: []
+  AC:
+  - {fileID: 8300000, guid: f35ca21f5ae1b9e43bd49b6c3e7f26f8, type: 3}
+  - {fileID: 8300000, guid: f35ca21f5ae1b9e43bd49b6c3e7f26f8, type: 3}
+  - {fileID: 8300000, guid: f35ca21f5ae1b9e43bd49b6c3e7f26f8, type: 3}
+  - {fileID: 8300000, guid: 6531942427bb3fe439ff6afefdf9ca80, type: 3}
+  - {fileID: 8300000, guid: 5983fde033cbc0d438da43e06fe71fbd, type: 3}
+  - {fileID: 8300000, guid: 8d4ae524b3ab27a49b4f5a6228a26b23, type: 3}
+  - {fileID: 8300000, guid: d611c42d6da0f1e4cbf12c1339e2a883, type: 3}
+  - {fileID: 8300000, guid: af1027843a2f22746a6efac766b12c65, type: 3}
+  - {fileID: 8300000, guid: f35ca21f5ae1b9e43bd49b6c3e7f26f8, type: 3}
+  - {fileID: 8300000, guid: f35ca21f5ae1b9e43bd49b6c3e7f26f8, type: 3}
+  - {fileID: 8300000, guid: cd4561fe792ea1e46897baa56ca5fc64, type: 3}
+  - {fileID: 8300000, guid: 8b9f492b1400bc1488e7aeb2fed34903, type: 3}
+  - {fileID: 8300000, guid: 8061b5cb372131145b14bc10166ec1af, type: 3}
+  - {fileID: 8300000, guid: 6c8a6affec5e58149954ba86e208947d, type: 3}
 --- !u!1 &8605853949150985548
 GameObject:
   m_ObjectHideFlags: 0

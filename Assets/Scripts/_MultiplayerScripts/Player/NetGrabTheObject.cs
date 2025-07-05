@@ -12,8 +12,8 @@ public class NetGrabTheObject : MonoBehaviour
     bool pressedButtonGrab = false; // Vari�vel para verificar se o bot�o foi pressionado
     public bool holdPressed, isHolding;
 
-    private void Awake()
-    {        
+    private void Start()
+    {
         networkObject = GetComponentInParent<NetworkObject>();
 
         if (networkObject.HasInputAuthority)
@@ -32,6 +32,7 @@ public class NetGrabTheObject : MonoBehaviour
 
     void GrabObject()
     {
+        print(parent);
         if (holdPressed && !isHolding && parent.detectionObjects.isCollidingItem) // Verifica se o bot�o foi pressionado e n�o est� segurando o obj
         {
             // Pegar
@@ -43,9 +44,10 @@ public class NetGrabTheObject : MonoBehaviour
             isHolding = true; // Define que o objeto est� sendo segurado
 
             Debug.Log("Pegou Objeto");
-            Debug.Log( "Grab:"+ parent.grabTheObject.enabled + "Use:"+ parent.useTheObject.enabled + "Drop:" + parent.dropTheObject.enabled);
+            Debug.Log("Grab:" + parent.grabTheObject.enabled + "Use:" + parent.useTheObject.enabled + "Drop:" + parent.dropTheObject.enabled);
         }
-        else if (holdPressed && isHolding && parent.detectionObjects.isCollidingItem){
+        else if (holdPressed && isHolding && parent.detectionObjects.isCollidingItem)
+        {
             Debug.Log("Você já está segurando um item.");
         }
 

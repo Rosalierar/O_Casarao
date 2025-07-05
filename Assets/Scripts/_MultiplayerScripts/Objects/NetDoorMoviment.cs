@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
-public class DoorMoviment : MonoBehaviour
+public class NetDoorMoviment : NetworkBehaviour
 {
+    NetworkObject networkObject;
     public GameObject pants;
     [SerializeField] BoxCollider boxCollider;
     [SerializeField] private byte direction;
@@ -22,37 +24,25 @@ public class DoorMoviment : MonoBehaviour
 
     bool IsMachine = false;
 
-    void Awake()
-    {
-        closedRot = doorTransform.rotation;
-
-        if (gameObject.tag != "Machine")
-        {
-            openRot = Quaternion.Euler(doorTransform.eulerAngles + posOpen[posForOpenDoor] * openAngle);
-        }
-        else
-        {
-            Vector3 rotationAxis = (direction == 0) ? Vector3.right : -Vector3.right;
-
-            openRot = Quaternion.Euler(doorTransform.eulerAngles + rotationAxis * openAngle);
-            
-        }
-    }
     void Start()
     {
-         closedRot = doorTransform.rotation;
+        networkObject = GetComponentInParent<NetworkObject>();
 
-        if (gameObject.tag != "Machine")
-        {
-            openRot = Quaternion.Euler(doorTransform.eulerAngles + posOpen[posForOpenDoor] * openAngle);
-        }
-        else
-        {
-            Vector3 rotationAxis = (direction == 0) ? Vector3.right : -Vector3.right;
+        print("PORTA PODE TER HAS STATE: " + networkObject.HasStateAuthority);
+       
+            closedRot = doorTransform.rotation;
 
-            openRot = Quaternion.Euler(doorTransform.eulerAngles + rotationAxis * openAngle);
-            
-        }
+            if (gameObject.tag != "Machine")
+            {
+                openRot = Quaternion.Euler(doorTransform.eulerAngles + posOpen[posForOpenDoor] * openAngle);
+            }
+            else
+            {
+                Vector3 rotationAxis = (direction == 0) ? Vector3.right : -Vector3.right;
+
+                openRot = Quaternion.Euler(doorTransform.eulerAngles + rotationAxis * openAngle);
+                
+            }
     }
 
     public void TryActiveDoor()

@@ -95,10 +95,6 @@ public class NetPatraoController : NetworkBehaviour
         return agent;
     }
 
-    public override void FixedUpdateNetwork()
-    {
-        
-    }
     // Update is called once per frame
     void Update()
     {
@@ -396,7 +392,8 @@ public class NetPatraoController : NetworkBehaviour
 
             // Escolhe um waypoint aleatório
             randomPatrolIndex = Random.Range(0, patrolPoints.Length);
-            PatrolIndex = randomPatrolIndex
+            PatrolIndex = randomPatrolIndex;
+            print("networked: " + PatrolIndex);
 
             while (randomPatrolIndex == currentPatrolIndex && patrolPoints.Length > 1)
             {

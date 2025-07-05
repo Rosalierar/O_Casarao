@@ -8,7 +8,7 @@ public class NetInteractiveObjects : MonoBehaviour
 {
 
      [Header("Sons dos Itens")]
-    AudioSource AS;
+    [SerializeField] AudioSource AS;
     
     [Header("UI Sobre Itens")]
     [SerializeField] private TextMeshProUGUI informationAboutItem;
