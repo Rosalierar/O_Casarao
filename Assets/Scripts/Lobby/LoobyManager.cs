@@ -19,8 +19,8 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     GameObject[] gameObj;
     private Vector3[] spawnPoints = new Vector3[2]
     {
-        new Vector3(-6.3f,7.18f,0.21f),
-        new Vector3(-2.95f,7.18f,0.21f),
+        new Vector3(-6.3f,7.18f,0.68f),
+        new Vector3(-2.95f,7.18f,0.68f), 
         //new Vector3(-800.55f, 65.5f, 0.8f),
         //new Vector3(-9.2f,65.5f, 0.8f)
     };

@@ -33,6 +33,14 @@ public class NetFinalController : MonoBehaviour
         {
             if (!cadeado[0].activeSelf && !cadeado[1].activeSelf && !cadeado[2].activeSelf && !isOpenDoor)
             {
+                camMain = GameObject.FindWithTag("Cam").GetComponent<Camera>();
+                animCam = GameObject.FindWithTag("Cam").GetComponent<Animator>();
+                song = FindObjectOfType<SongsController>();
+                enemy = FindObjectOfType<NetPatraoController>().gameObject;
+
+                camMain.enabled = false;
+                animCam.enabled = false;
+
                 for (int i = 0; i < song.audioSorceBackGround.Length; i++)
                 {
                     if (song.songsBackGround[i] != null && i != 3)
