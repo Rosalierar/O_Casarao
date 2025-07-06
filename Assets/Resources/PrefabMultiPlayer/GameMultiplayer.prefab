@@ -17152,6 +17152,11 @@ PrefabInstance:
       propertyPath: SortKey
       value: 417642825
       objectReference: {fileID: 0}
+    - target: {fileID: 5605928984070643708, guid: 871eda528bef7e840859ef1b5e255270,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17311,6 +17316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258733682254868411, guid: 690487eab78ba2a4c9b3dd892711fb31,
+        type: 3}
+      propertyPath: light
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8708504084078435117, guid: 690487eab78ba2a4c9b3dd892711fb31,
         type: 3}
@@ -22082,17 +22092,17 @@ PrefabInstance:
     - target: {fileID: 4063298585147219793, guid: cb655175d2d59354da63f5cdef1c9140,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.127
+      value: -4.61
       objectReference: {fileID: 0}
     - target: {fileID: 4063298585147219793, guid: cb655175d2d59354da63f5cdef1c9140,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.258
+      value: 8.171
       objectReference: {fileID: 0}
     - target: {fileID: 4063298585147219793, guid: cb655175d2d59354da63f5cdef1c9140,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -26.69
+      value: -26.11
       objectReference: {fileID: 0}
     - target: {fileID: 4063298585147219793, guid: cb655175d2d59354da63f5cdef1c9140,
         type: 3}
@@ -43817,6 +43827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 16203248268582058}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -43871,6 +43882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 961829905088387446}
   informationAboutItem: {fileID: 0}
   cadeado:
