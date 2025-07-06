@@ -51860,6 +51860,74 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.06500003, y: 0.001000002, z: 0.05}
   m_Center: {x: -0.27852166, y: 0.015499981, z: 0.10394721}
+--- !u!1001 &1939582092
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.00189
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.526
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.92115
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9955428
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.094311066
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 10.823
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8651cd54d45bcb44eb1dfbe58755e6ca,
+        type: 3}
+      propertyPath: m_Name
+      value: cachorro
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8651cd54d45bcb44eb1dfbe58755e6ca, type: 3}
 --- !u!65 &1940306740
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59676,3 +59744,4 @@ SceneRoots:
   - {fileID: 914791227}
   - {fileID: 332664152}
   - {fileID: 1041067475}
+  - {fileID: 1939582092}
