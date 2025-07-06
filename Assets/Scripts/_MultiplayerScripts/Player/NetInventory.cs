@@ -18,6 +18,14 @@ public class NetInventory : NetworkBehaviour
 
     public List<NetItem> itens = new List<NetItem>();  // Lista de itens
 
+    [Networked]public bool IsVisible { get; set; } = true;
+
+    void UpdateVisibility()
+    {
+        gameObject.SetActive(IsVisible);
+    }
+
+    // Função para adicionar itens ao inventário
     public void TryColetarItem(NetItem item)
     {
         if (!HasInputAuthority) return;
@@ -29,35 +37,17 @@ public class NetInventory : NetworkBehaviour
         }
 
         NetworkObject netObj = item.GetComponent<NetworkObject>();
-        RPC_ColetarItem(netObj);
-    }
 
-    public void TrySoltarItem()
-    {
-        if (!HasInputAuthority) return;
-
-        if (CarryItem == null)
-        {
-            StartCoroutine(TimerForShowInformation(language == 0 ? "Nenhum item para soltar." : "No item to drop."));
-            return;
-        }
-
-        RPC_SoltarItem();
-    }
-    // Função para adicionar itens ao inventário
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_ColetarItem(NetworkObject itemNet)
-    {
-        if (CarryItem != null) return;
-
-        NetItem item = itemNet.GetComponent<NetItem>();
+        NetItem itemn = netObj.GetComponent<NetItem>();
 
         itemCarregado = item;
-        CarryItem = itemNet;
-        
-        itemNet.RequestStateAuthority();
+        CarryItem = netObj;
+
+        netObj.RequestStateAuthority();
+
         itens.Add(item);
-        itemNet.gameObject.SetActive(false);
+
+        netObj.gameObject.SetActive(false);
 
         language = PlayerPrefs.GetInt("Language");
 
@@ -71,16 +61,17 @@ public class NetInventory : NetworkBehaviour
                                                         $"Item coletado: {item.tipoDoItem.ParaNomeLegivel()}" :
                                                         $"Item collected: {item.tipoDoItem.ParaNomeLegivel()}"));
         }
-        /*else
-        {
-            StartCoroutine(TimerForShowInformation("Item collected: " + ItemCarregado.tipoDoItem.ParaNomeLegivel()));
-        }*/
     }
 
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_SoltarItem()
+    public void TrySoltarItem() // funcao que solta item do inventario
     {
         if (!HasInputAuthority) return;
+
+        if (CarryItem == null)
+        {
+            StartCoroutine(TimerForShowInformation(language == 0 ? "Nenhum item para soltar." : "No item to drop."));
+            return;
+        }
 
         language = PlayerPrefs.GetInt("Language");
 
@@ -110,9 +101,31 @@ public class NetInventory : NetworkBehaviour
         itemCarregado = null;
     }
 
-    public void UsarItem()
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_ColetarItem(NetItem item)
     {
-        if (!HasInputAuthority || CarryItem == null ) return;
+        if (CarryItem != null) return;
+
+        TryColetarItem(item);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SoltarItem()
+    {
+        if (!HasInputAuthority) return;
+
+        TrySoltarItem();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_UsarItem()
+    {
+        UsarItem();
+    }
+
+    public void UsarItem() //usa item do inventario
+    {
+        if (!HasInputAuthority || CarryItem == null) return;
 
         NetItem item = CarryItem.GetComponent<NetItem>();
         itens.Remove(item);

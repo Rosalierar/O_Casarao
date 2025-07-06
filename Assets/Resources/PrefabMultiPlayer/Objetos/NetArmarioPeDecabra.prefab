@@ -565,6 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5348236935320761862}
   - component: {fileID: 5875403762867653374}
+  - component: {fileID: -4601449106126698751}
   m_Layer: 0
   m_Name: NetArmarioPeDecabra
   m_TagString: Objetos
@@ -606,9 +607,27 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: -4601449106126698751}
   - {fileID: 6582939389439029555}
   - {fileID: 2641485304718668703}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &-4601449106126698751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859443488763746183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &5447779357014260103
 GameObject:
   m_ObjectHideFlags: 0

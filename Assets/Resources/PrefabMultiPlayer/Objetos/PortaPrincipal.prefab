@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 1607972874629769386}
   - component: {fileID: 9186338861718830861}
   - component: {fileID: 3045397679258789164}
+  - component: {fileID: 6919172202747922685}
   m_Layer: 0
   m_Name: PortaPrincipal
   m_TagString: PortaEntrada
@@ -244,6 +245,7 @@ MonoBehaviour:
   NestedObjects:
   - {fileID: 3779050189923553359}
   NetworkedBehaviours:
+  - {fileID: 6919172202747922685}
   - {fileID: 1556688950981356415}
   - {fileID: 38825239256727988}
   ForceRemoteRenderTimeframe: 0
@@ -269,6 +271,23 @@ MonoBehaviour:
   - {fileID: 7344433488302304062}
   - {fileID: 6155508019286628727}
   - {fileID: 2470020650056826764}
+--- !u!114 &6919172202747922685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059521662248489569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &1136730602037731898
 GameObject:
   m_ObjectHideFlags: 0

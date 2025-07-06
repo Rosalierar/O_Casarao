@@ -1507,6 +1507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7007520485808176326}
   - component: {fileID: 4135946580741976902}
+  - component: {fileID: 6928779492021755732}
   m_Layer: 0
   m_Name: NetArmarioArmazem
   m_TagString: Objetos
@@ -1555,11 +1556,29 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 6928779492021755732}
   - {fileID: 7327424419105548003}
   - {fileID: 2126591145892115850}
   - {fileID: 2951326961160388429}
   - {fileID: 7690123789668345982}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &6928779492021755732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430800335374541926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &4591717298463658514
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,8 +15,8 @@ public class NetDoorMoviment : NetworkBehaviour
     [SerializeField] private float openAngle = -90f;
     [SerializeField] float openSpeed = 2f;
 
-    [SerializeField] public bool isOpen = false;
-    [SerializeField] private bool isMoving = false;
+    [Networked] public bool isOpen { get; set; }
+    [Networked] private bool isMoving { get; set; }
     //private bool playerNear = false;
 
     [SerializeField] private Quaternion closedRot;
@@ -86,6 +86,12 @@ public class NetDoorMoviment : NetworkBehaviour
         this.enabled = false;
 
         IsMachine = true;
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void Rpc_RequestToggleDoor()
+    {
+        TryActiveDoor(); // Apenas quem tem StateAuthority executará de fato
     }
 
     private IEnumerator ToggleDoor()

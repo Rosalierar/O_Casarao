@@ -6,6 +6,7 @@ using Fusion;
 
 public class NetInteractiveObjects : MonoBehaviour
 {
+    NetworkObject networkObject;
 
      [Header("Sons dos Itens")]
     [SerializeField] AudioSource AS;
@@ -31,13 +32,15 @@ public class NetInteractiveObjects : MonoBehaviour
     public TipoDeItem tipoDeObjeto;
     public bool unlocked; // Variável para verificar se o objeto está bloqueado
    
-     [Header("Controller Open/Close")]
+    [Header("Controller Open/Close")]
     /// <Controle dos Objetos, Abrir, Fechar, Quebrar>
     [SerializeField] NetDoorMoviment doorMoviment;
     [SerializeField] NetDrawerMoviment drawerMoviment;
 
     public void TentarInteragir()
     {
+        networkObject = GetComponentInParent<NetworkObject>();
+
         informationAboutItem = GameObject.Find("ItemTextController").GetComponent<TextMeshProUGUI>();
 
         language = PlayerPrefs.GetInt("Language");
@@ -50,7 +53,11 @@ public class NetInteractiveObjects : MonoBehaviour
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 drawerMoviment.enabled = true;
-                drawerMoviment.TryActiveDrawer();
+                
+                if (networkObject.HasStateAuthority)
+                    drawerMoviment.TryActiveDrawer();
+                else if (!networkObject.HasStateAuthority)
+                    drawerMoviment.Rpc_RequestToggleDrawer();
 
                 /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
                 parent.useTheObject.enabled = false; // Desabilita o script de usar
@@ -72,7 +79,11 @@ public class NetInteractiveObjects : MonoBehaviour
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
-                doorMoviment.TryActiveDoor();
+
+                if (networkObject.HasStateAuthority)
+                    doorMoviment.TryActiveDoor();
+                else if (!networkObject.HasStateAuthority)
+                    doorMoviment.Rpc_RequestToggleDoor();
 
                 //gameObject.SetActive(false); // Desativa o objeto do mundo
 
@@ -82,7 +93,11 @@ public class NetInteractiveObjects : MonoBehaviour
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
-                doorMoviment.TryActiveDoor();
+
+                if (networkObject.HasStateAuthority)
+                    doorMoviment.TryActiveDoor();
+                else if (!networkObject.HasStateAuthority)
+                    doorMoviment.Rpc_RequestToggleDoor();
 
                 //gameObject.SetActive(false); // Desativa o objeto do mundo
 
@@ -93,7 +108,11 @@ public class NetInteractiveObjects : MonoBehaviour
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 drawerMoviment.enabled = true;
-                drawerMoviment.TryActiveDrawer();
+
+                if (networkObject.HasStateAuthority)
+                    drawerMoviment.TryActiveDrawer();
+                else if (!networkObject.HasStateAuthority)
+                    drawerMoviment.Rpc_RequestToggleDrawer();
 
                 //doorMoviment.enabled = true;
                 //doorMoviment.TryActiveDoor();
@@ -170,28 +189,48 @@ public class NetInteractiveObjects : MonoBehaviour
             {
                 case TipoDeItem.Gaveta:
                     drawerMoviment.enabled = true; // Habilita o script de movimentação da gaveta
-                    drawerMoviment.TryActiveDrawer();
+
+                    if (networkObject.HasStateAuthority)
+                        drawerMoviment.TryActiveDrawer();
+                    else if (!networkObject.HasStateAuthority)
+                        drawerMoviment.Rpc_RequestToggleDrawer();
+
                     AS.clip = parent.AC[13];
                     AS.Play();
                     break;
 
                 case TipoDeItem.Porta:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
-                    doorMoviment.TryActiveDoor();
+
+                    if (networkObject.HasStateAuthority)
+                        doorMoviment.TryActiveDoor();
+                    else if (!networkObject.HasStateAuthority)
+                        doorMoviment.Rpc_RequestToggleDoor();
+                        
                     AS.clip = parent.AC[12];
                     AS.Play();
                     break;
 
                 case TipoDeItem.Senha:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
-                    doorMoviment.TryActiveDoor();
+
+                    if (networkObject.HasStateAuthority)
+                        doorMoviment.TryActiveDoor();
+                    else if (!networkObject.HasStateAuthority)
+                        doorMoviment.Rpc_RequestToggleDoor();
+
                     AS.clip = parent.AC[11];
                     
                     AS.Play();
                     break;
                 case TipoDeItem.Desinfetante:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
-                    doorMoviment.TryActiveDoor();
+
+                    if (networkObject.HasStateAuthority)
+                        doorMoviment.TryActiveDoor();
+                    else if (!networkObject.HasStateAuthority)
+                        doorMoviment.Rpc_RequestToggleDoor();
+
                     AS.clip = parent.AC[7];
                     AS.Play();
                     break;

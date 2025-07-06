@@ -14,7 +14,7 @@ public class NetDropTheObject : MonoBehaviour
     bool pressedButtonDrop = false; // Vari�vel para verificar se o bot�o foi pressionado
     public bool dropPressed, isDroping;
 
-    private void Awake()
+    void Start()
     {
         networkObject = GetComponentInParent<NetworkObject>();
 
@@ -41,7 +41,10 @@ public class NetDropTheObject : MonoBehaviour
         {
             if (parent.inventory.itemCarregado != null) // Se nao tiver itens, define como nulo
             {
-                parent.inventory.TrySoltarItem();
+                if(networkObject.HasStateAuthority)
+                    parent.inventory.TrySoltarItem();
+                else if(!networkObject.HasStateAuthority)
+                    parent.inventory.RPC_SoltarItem();
 
                 parent.grabTheObject.isHolding = false;
 

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
-public class NetDrawerMoviment : MonoBehaviour
+public class NetDrawerMoviment : NetworkBehaviour
 {
      [SerializeField]int indexVector;
     public Transform drawerTransform;
@@ -26,6 +27,12 @@ public class NetDrawerMoviment : MonoBehaviour
     {
         if (!isMoving)
             StartCoroutine(ToggleDoor());
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void Rpc_RequestToggleDrawer()
+    {
+        TryActiveDrawer(); // Apenas quem tem StateAuthority executará de fato
     }
 
     private System.Collections.IEnumerator ToggleDoor()

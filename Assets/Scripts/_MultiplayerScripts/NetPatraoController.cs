@@ -248,6 +248,7 @@ public class NetPatraoController : NetworkBehaviour
                 if (tag == "Player")
                 {
                     SawPlayer = true;
+                    songs = patraoHit.collider.gameObject.GetComponentInParent<SongsController>();
 
                     playerTransform = patraoHit.transform;
 

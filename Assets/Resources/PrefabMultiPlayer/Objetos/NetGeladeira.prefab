@@ -1154,6 +1154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3485798252285052929}
   - component: {fileID: 1386633230620722454}
+  - component: {fileID: 4980186480390316330}
   m_Layer: 0
   m_Name: NetGeladeira
   m_TagString: Objetos
@@ -1195,6 +1196,24 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 4980186480390316330}
   - {fileID: 5614814614550274150}
   - {fileID: 2597960180727493528}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &4980186480390316330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8848735628344645850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0

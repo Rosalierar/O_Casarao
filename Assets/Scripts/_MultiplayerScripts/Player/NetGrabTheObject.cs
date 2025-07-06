@@ -15,6 +15,7 @@ public class NetGrabTheObject : MonoBehaviour
     private void Start()
     {
         networkObject = GetComponentInParent<NetworkObject>();
+        print("PLAYER TEM STATE: " + networkObject.HasStateAuthority);
 
         if (networkObject.HasInputAuthority)
         {
@@ -36,7 +37,10 @@ public class NetGrabTheObject : MonoBehaviour
         if (holdPressed && !isHolding && parent.detectionObjects.isCollidingItem) // Verifica se o bot�o foi pressionado e n�o est� segurando o obj
         {
             // Pegar
-            parent.inventory.TryColetarItem(parent.detectionObjects.item);
+            if(networkObject.HasStateAuthority)
+                parent.inventory.TryColetarItem(parent.detectionObjects.item);
+            else if(!networkObject.HasStateAuthority)
+                 parent.inventory.RPC_ColetarItem(parent.detectionObjects.item);
 
             parent.dropTheObject.enabled = true;
 

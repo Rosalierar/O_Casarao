@@ -38,7 +38,10 @@ public class NetUseTheObject : MonoBehaviour
         if (usePressed /*&& parent.grabTheObject.isHolding*/ && parent.detectionObjects.isCollidingInteractiveObj) // Verifica se o bot�o foi pressionaso foi pressionado e est� segurando o obj
         {
             // Usar
-            parent.detectionObjects.interactiveObject.TentarInteragir();
+            if(networkObject.HasStateAuthority)
+                parent.detectionObjects.interactiveObject.TentarInteragir();
+            else if (!networkObject.HasStateAuthority)
+
 
             Debug.Log("Interagindo com o objeto: " + parent.detectionObjects.interactiveObject.gameObject.name); // Exibe o nome do objeto interagido no console
         }
