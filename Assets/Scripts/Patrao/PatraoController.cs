@@ -189,7 +189,7 @@ public class PatraoController : MonoBehaviour
         {
             pointPatrolsForDelete = 8;
         }
-        else
+        else //1
         {
             pointPatrolsForDelete = 12;
         }
