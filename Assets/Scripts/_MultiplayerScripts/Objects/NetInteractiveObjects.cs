@@ -6,6 +6,7 @@ using Fusion;
 
 public class NetInteractiveObjects : MonoBehaviour
 {
+    [SerializeField] GameObject[] prefabItem;
     NetworkObject networkObject;
 
      [Header("Sons dos Itens")]

@@ -473,6 +473,11 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             painelsHost[index].SetActive(true);
             painelsHost[1].SetActive(false);
+
+            if (isFirstPlayer)
+                changeDifficultyButton.interactable = true;
+            else
+                changeDifficultyButton.interactable = false;
         }
         else if (index == 1)
         {

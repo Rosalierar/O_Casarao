@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Fusion;
+using System;
 
 public class OptionsController : MonoBehaviour
 {
+    public static event Action OnLightRange;
     LoobyManager lobby;
     [SerializeField] private SongsController audioMusic;
     [SerializeField] private Slider[] sliderVolume;
@@ -77,6 +79,11 @@ public class OptionsController : MonoBehaviour
             netCameraTouchController.cameraSensitivity = sliderSensibility.value;
         }
     }
+
+    public void ChangeLightRange()
+    {
+        
+    } 
 
     public void OptionController()
     {
