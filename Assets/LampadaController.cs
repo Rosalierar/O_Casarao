@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LampadaController : MonoBehaviour
 {
-
+    
     private void OnEnable()
     {
         OptionsController.OnLightRange += ChangeRangeLight;
