@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LampadaController : MonoBehaviour
 {
-    
+    [SerializeField] Light light;
+
     private void OnEnable()
     {
         OptionsController.OnLightRange += ChangeRangeLight;
@@ -17,6 +18,6 @@ public class LampadaController : MonoBehaviour
 
     void ChangeRangeLight()
     {
-       
+        light.range = FindObjectOfType<OptionsController>().sliderIluminação.value;
     }
 }

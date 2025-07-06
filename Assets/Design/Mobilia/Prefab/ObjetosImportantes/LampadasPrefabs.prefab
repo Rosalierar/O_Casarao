@@ -103,6 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5581164394085753793}
+  - component: {fileID: 7258733682254868411}
   m_Layer: 0
   m_Name: LampadasPrefabs
   m_TagString: Untagged
@@ -127,6 +128,19 @@ Transform:
   - {fileID: 6083990842222710292}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7258733682254868411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708504084078435117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6e67740be36be479c129840540a2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1374986427108926534}
 --- !u!1001 &6044978670497917439
 PrefabInstance:
   m_ObjectHideFlags: 0

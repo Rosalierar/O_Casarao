@@ -16,6 +16,7 @@ public class OptionsController : MonoBehaviour
     [SerializeField] private GameObject tutorial;
 
     [SerializeField] private Slider sliderSensibility;
+    public Slider sliderIluminação;
 
     [SerializeField] private GameObject painelOptions;
 
@@ -82,7 +83,7 @@ public class OptionsController : MonoBehaviour
 
     public void ChangeLightRange()
     {
-        
+        OnLightRange?.Invoke();
     } 
 
     public void OptionController()

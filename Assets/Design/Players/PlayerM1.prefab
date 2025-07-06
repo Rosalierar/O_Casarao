@@ -1257,7 +1257,7 @@ RectTransform:
   m_Father: {fileID: 1065144882689418346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3209,7 +3209,7 @@ RectTransform:
   m_Father: {fileID: 3138796678353688475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7804,6 +7804,7 @@ MonoBehaviour:
   - {fileID: 7648082413385792201}
   tutorial: {fileID: 2476404163319852360}
   sliderSensibility: {fileID: 7975965143071086472}
+  "sliderIlumina\xE7\xE3o": {fileID: 0}
   painelOptions: {fileID: 7789801352143612701}
   tmpConfig:
   - {fileID: 1009574369095578707}
@@ -7831,7 +7832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2281667378044413749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8228,7 +8229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4582082056387618668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8845,7 +8846,7 @@ RectTransform:
   m_Father: {fileID: 8207669335055346857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
