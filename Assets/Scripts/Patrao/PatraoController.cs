@@ -45,24 +45,6 @@ public class PatraoController : MonoBehaviour
     int currentPatrolIndex = 0; // Índice do ponto de patrulha atual
     int randomPatrolIndex = 0; // Índice aleatório para patrulha
 
-    /// Cozinha 1: 42, 0, 58
-    /// Cozinha 2: 35, 0, 56.5
-    /// Sala de Jantar1: 35, 0, 49 
-    /// Sala de Jantar2: 39.5, 0, 54
-    /// Entrada Principal: 32, 0, 46
-    /// Sala: 
-    /// QuartoP: 
-    /// QuartoF: 
-    /// QuartoJ: 
-    /// QuartoV: 
-    /// Banheiro:
-    /// Sala de Estar:
-    /// Sala de Convivio 2: 
-    /// Escritorio: 52.5, 0, 55.5
-    /// Porao1: 
-    /// Porao2:
-    /// Porao3:
-
     /// <summary>
     /// RayCast do Patrao
     /// </summary>
@@ -115,7 +97,6 @@ public class PatraoController : MonoBehaviour
 
         try
         {
-
             if (FindObjectOfType<ControllerPlayer>().blackPainel.activeSelf)
             {
                 animPatrao.SetBool("isWalking", false);
@@ -172,7 +153,7 @@ public class PatraoController : MonoBehaviour
         {
             speedPn = 2.1f;
         }
-        else
+        else //1
         {
             speedPn = 1.8f;
         }
@@ -318,117 +299,7 @@ public class PatraoController : MonoBehaviour
 
             Debug.Log("Patrão não viu o jogador!");
         }
-        ///////////////////////////////////////////////////////////////////////////////////////////
-        /*    ray = new Ray(visionPos.position, transform.forward); // Cria um raio a partir da posição do objeto em direção à frente
         
-            Vector3 forwardOffset = transform.forward;
-            Vector3 origin1 = transform.position + forwardOffset + Vector3.up;
-            
-            // Aplica rotação nas origens para os raios laterais (com ângulo de 35 graus)
-            Vector3 origin2 = Quaternion.Euler(0, 25, 0) * (origin1 - visionPos.position) + visionPos.position;
-            Vector3 origin3 = Quaternion.Euler(0, -25, 0) * (origin1 - visionPos.position) + visionPos.position;
-            Vector3 origin4 = Quaternion.Euler(0, 45, 0) * (origin1 - visionPos.position) + visionPos.position;
-            Vector3 origin5 = Quaternion.Euler(0, -45, 0) * (origin1 - visionPos.position) + visionPos.position;
-
-
-            Ray rayDireita35 = new Ray(origin2, (origin2 - visionPos.position).normalized);
-            Ray rayEsquerda35 = new Ray(origin3, (origin3 - visionPos.position).normalized);
-            Ray rayDireita90 = new Ray(origin4, (origin4 - visionPos.position).normalized);
-            Ray rayEsquerda90 = new Ray(origin5, (origin5 - visionPos.position).normalized);
-
-
-            // Lançar raios nas direções certas a partir das novas origens calculadas
-            Physics.Raycast(rayDireita35, out patraoHit, distanceRayPatrao, layerPlayer);
-            Physics.Raycast(rayEsquerda35, out patraoHit, distanceRayPatrao, layerPlayer);
-            Physics.Raycast(rayDireita90, out patraoHit, distanceRayPatrao, layerPlayer);
-            Physics.Raycast(rayEsquerda90, out patraoHit, distanceRayPatrao, layerPlayer);
-
-            // Desenhar os raios para depuração
-            Debug.DrawRay(rayDireita35.origin, rayDireita35.direction * distanceRayPatrao, Color.green);
-            Debug.DrawRay(rayEsquerda35.origin, rayEsquerda35.direction  * distanceRayPatrao, Color.green);
-            Debug.DrawRay(rayDireita90.origin, rayDireita90.direction * distanceRayPatrao, Color.cyan);
-            Debug.DrawRay(rayEsquerda90.origin, rayEsquerda90.direction  * distanceRayPatrao, Color.cyan);
-
-            Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer);
-            Debug.DrawRay(visionPos.position, transform.forward * distanceRayPatrao, Color.green); // Desenha o raio na cena para visualização
-
-        if (Physics.Raycast(ray, out patraoHit, distanceRayPatrao, layerPlayer)|| Physics.Raycast(rayDireita35, out patraoHit, distanceRayPatrao, layerPlayer) || Physics.Raycast(rayEsquerda35, out patraoHit, distanceRayPatrao, layerPlayer) || Physics.Raycast(rayDireita90, out patraoHit, distanceRayPatrao, layerPlayer) || Physics.Raycast(rayEsquerda90, out patraoHit, distanceRayPatrao, layerPlayer))
-        {
-            if (patraoHit.collider.CompareTag("Player"))
-            { // Verifica se o raio atingiu algo
-                playerTransform = patraoHit.transform; // Atribui o objeto atingido à variável playerTransform
-
-                if (!isPlaySongPersecution)
-                {
-                    for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
-                    {
-                        if (songs.songsBackGround[i] != null && i != 2)
-                        {
-                            songs.audioSorceBackGround[i].Stop();
-                        }
-                        else
-                        {
-                            songs.audioSorceBackGround[i].Play();
-                        }
-                    }
-                    isPlaySongPersecution = true;
-                }
-
-                animPatrao.SetBool("isRunning", true);
-                animPatrao.SetBool("isWalking", false);
-
-                agent.speed = 2f; // Define a velocidade do agente NavMesh
-                isPatrol = false; // Define que o patrão não está patrulhando
-                isRotate = false; // Define que o patrão não está rotacionando
-                seePlayer = true; // Define que o patrão viu o jogador
-
-                PersecutionPlayer(); // Chama o método de perseguição
-
-                Debug.Log("Patrão viu o jogador!"); // Exibe mensagem de que o patrão viu o jogador
-
-                if (patraoHit.distance <= 0.2)
-                {
-                    print("Patrão pegou o jogador!"); // Exibe mensagem de que o patrão pegou o jogador
-
-                    //StartCoroutine(
-                    ///ContinueGame(); // Inicia a contagem para continuar o jogo
-                                    // Para o agente NavMesh
-                                    //isPatrol = true; // Define que o patrão está patrulhando
-
-                    //StartCoroutine(TimerPatrol()); // Inicia a patrulha
-
-                    //MovePlayer movePlayer = patraoHit.collider.GetComponent<MovePlayer>(); // Obtém o componente MovePlayer do jogador
-                    //////////  Retirar vida do jogador aqui ////////////
-                    //////////  Iniciar a posicao do jogador do jogador aqui ////////////
-                    //////////  Chamar script de controle de jogo para coisar as janelas aqui ////////////
-                }
-            }
-            else if (seePlayer && !patraoHit.collider.CompareTag("Player"))
-            {
-                seePlayer = false; // Define que o patrão não viu o jogador
-                StartCoroutine(TimerStopPersecution()); // Inicia a contagem para parar a perseguição
-            }
-            else if (!seePlayer && !agent.isStopped && !isPatrol && playerTransform != null)
-            {
-                PersecutionPlayer();
-            }
-
-            if (patraoHit.collider.CompareTag("Porta"))
-            {
-                if (patraoHit.distance <= 0.8)
-                {
-                    DoorMoviment doorMoviment = patraoHit.collider.gameObject.GetComponentInParent<DoorMoviment>();
-                    InteractiveObject interactivedoor = doorMoviment.gameObject.GetComponentInChildren<InteractiveObject>();
-
-                    if (!doorMoviment.isOpen && interactivedoor.unlocked)
-                        doorMoviment.TryActiveDoor();
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("Patrão não viu o jogador!"); // Exibe mensagem de que o patrão não viu o jogador
-        }*/
     }
     #endregion RayCast
 
@@ -441,8 +312,6 @@ public class PatraoController : MonoBehaviour
 
             agent.transform.LookAt(playerTransform.position); // Faz o patrão olhar para o jogador
             agent.SetDestination(player.position); // Define a posição de destino do agente como a posição do jogador
-
-            //isPatrol = false; // Define que o patrão não está patrulhando
 
             print("Peserguindo");
         }
@@ -574,8 +443,6 @@ public class PatraoController : MonoBehaviour
 
     private System.Collections.IEnumerator ToggleDoor()
     {
-        //print("rOTACIONANDO");
-
         isRotate = true;
 
         print("Rotacionando para a direita");
