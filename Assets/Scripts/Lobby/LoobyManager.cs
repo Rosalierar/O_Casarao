@@ -13,7 +13,7 @@ using UnityEngine.SocialPlatforms;
 
 public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 {
-    
+    bool isFirstPlayer;
     [Header("Spawnner Objects Controller")]
     private string[] tagDosObjetos = new string[] { "Itens", "Enemy" };
     GameObject[] gameObj;
@@ -39,6 +39,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
     [Header("UI")]
     [SerializeField] private GameObject[] painels = new GameObject[3];
+    [SerializeField] private GameObject[] painelsHost = new GameObject[2];
     private string pendingJoinLobbyCode;
 
     public TMP_InputField lobbyCodeInputField;
@@ -46,6 +47,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     public TMP_Text player1StatusText;
     public TMP_Text player2StatusText;
     public Button startGameButton;
+    public Button changeDifficultyButton;
 
     [Header("Runner Prefab")]
     private bool isStartingGame = false;
@@ -73,6 +75,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         Debug.Log("runnerPrefab: " + runnerPrefab);
 
         startGameButton.interactable = false;
+        changeDifficultyButton.interactable = false;
     }
     
     void OnDestroy()
@@ -115,6 +118,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         SetupRunnerInstance();
 
         currentLobbyCode = GenerateRandomLobbyCode(6);
+        
         await StartGame(GameMode.Shared, currentLobbyCode);
     }
 
@@ -264,7 +268,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
             }
             
             int playerCount = runner.ActivePlayers.Count();
-            bool isFirstPlayer = playerCount > 0 && playerCount < 2;
+            isFirstPlayer = playerCount > 0 && playerCount < 2;
 
             if (isFirstPlayer)
             {
@@ -389,12 +393,20 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         if (count >= 2)
         {
             player2StatusText.text = "Player 2: Conectado";
-            startGameButton.interactable = true;
+
+            if (isFirstPlayer)
+                changeDifficultyButton.interactable = true;
+
+            else
+                changeDifficultyButton.interactable = false;
+           
+            //startGameButton.interactable = true;
         }
         else
         {
             player2StatusText.text = "Player 2: Aguardando...";
             startGameButton.interactable = false;
+            changeDifficultyButton.interactable = true;
         }
     }
 
@@ -419,6 +431,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         player1StatusText.text = "Player 1: Aguardando...";
         player2StatusText.text = "Player 2: Aguardando...";
         startGameButton.interactable = false;
+        changeDifficultyButton.interactable = false;
     }
     
     public void CloseRunnerIfNotInLobby()
@@ -452,8 +465,29 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
                 painels[i].SetActive(false);
             }
         }
+    }
 
-        //CloseRunnerIfNotInLobby();
+    public void Open(int index)
+    {
+        if (index == 0)
+        {
+            painelsHost[index].SetActive(true);
+            painelsHost[1].SetActive(false);
+        }
+        else if (index == 1)
+        {
+            painelsHost[index].SetActive(true);
+            painelsHost[0].SetActive(false);
+        }
+    }
+
+    public void ChangeDificculty(int dificulty)
+    {
+        if (dificulty > 0 && dificulty <= 3)
+        {
+            PlayerPrefs.SetInt("Dificulty", dificulty);
+            startGameButton.interactable = true;
+        }
     }
 
     public void GoToMenu()

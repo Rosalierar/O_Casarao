@@ -33580,10 +33580,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5904631548303488446}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 525000222515834441}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
@@ -33657,7 +33653,7 @@ MonoBehaviour:
   timerToStopPersecution: 0
   player: {fileID: 0}
   rotationPatraoAngle: 90
-  openSpeed: 5
+  openSpeed: 0.5
   patraoTransform: {fileID: 4795996639542085981}
   isRotate: 0
   isWalking: 0
@@ -33702,68 +33698,6 @@ MonoBehaviour:
   - -70
   - 85
   - -85
-  distanceRayPatrao: 100
---- !u!114 &5904631548303488446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5315686975929308135}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 309cc877995b47340b5e9082842db2db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  songs: {fileID: 0}
-  seePlayer: 0
-  timerToStopPersecution: 20
-  player: {fileID: 0}
-  rotationPatraoAngle: 90
-  openSpeed: 0.5
-  patraoTransform: {fileID: 4795996639542085981}
-  isRotate: 0
-  isWalking: 0
-  isPatrol: 1
-  patrolPointsObjects:
-  - {fileID: 3917043107659772079}
-  - {fileID: 4390110748802299853}
-  - {fileID: 2221572639786107587}
-  - {fileID: 8463412359783164740}
-  - {fileID: 1219566692950708384}
-  - {fileID: 2706211938226363882}
-  - {fileID: 6062192752930792275}
-  - {fileID: 4092972210580618619}
-  - {fileID: 6660938090649522486}
-  - {fileID: 5844026600439647502}
-  - {fileID: 4676886945032903946}
-  - {fileID: 3401955742997730584}
-  - {fileID: 6763236993360823424}
-  - {fileID: 2894928573560287794}
-  - {fileID: 6021049539714111750}
-  - {fileID: 4453445417135953876}
-  - {fileID: 7114797222480116116}
-  - {fileID: 1113785065449827774}
-  - {fileID: 786817311335002771}
-  - {fileID: 1725317944913552192}
-  - {fileID: 3235869918309109685}
-  - {fileID: 7676620131412803029}
-  - {fileID: 8501425537965812804}
-  patrolPoints: []
-  layerPlayer:
-    serializedVersion: 2
-    m_Bits: 3328
-  visionPos: {fileID: 7711596150581563869}
-  rayAngles:
-  - 0
-  - 25
-  - -25
-  - 45
-  - -45
-  - 90
-  - -90
-  - 180
-  - -180
   distanceRayPatrao: 100
 --- !u!114 &525000222515834441
 MonoBehaviour:
