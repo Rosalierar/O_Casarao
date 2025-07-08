@@ -140,6 +140,7 @@ MonoBehaviour:
   - {fileID: 3116885197930772039}
   - {fileID: 5009899893292667895}
   - {fileID: 660887143548625328}
+  - {fileID: 7048365364163421961}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &3116885197930772039
 MonoBehaviour:
@@ -5095,6 +5096,7 @@ GameObject:
   - component: {fileID: 5207574218543523432}
   - component: {fileID: 396725886082604315}
   - component: {fileID: 660887143548625328}
+  - component: {fileID: 7048365364163421961}
   m_Layer: 7
   m_Name: NetAlicateCor
   m_TagString: Untagged
@@ -5154,3 +5156,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoDoItem: 3
+--- !u!114 &7048365364163421961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7816158495493884751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1

@@ -8,6 +8,7 @@ using System.Collections;
 
 public class NetInventory : NetworkBehaviour
 {
+    VisibleController visible;
     NetworkObject networkObject;
     int language;
     [SerializeField] private TextMeshProUGUI informationAboutItem;
@@ -34,27 +35,27 @@ public class NetInventory : NetworkBehaviour
         }
 
         NetworkObject netObj = item.GetComponentInParent<NetworkObject>();
-        //VisibleController visible = item.GetComponentInParent<VisibleController>();
+        visible = item.GetComponentInParent<VisibleController>();
 
         itemCarregado = item;
         CarryItem = netObj;
 
         itens.Add(item);
 
-        if (networkObject.HasStateAuthority)
+        if (visible.Object.HasStateAuthority)
         {
-            Runner.Despawn(CarryItem);
-            //visible.IsVisible = false;
-            print("INVENTORY PODE STATE:  SIM CHAMANDO NORMAL");
+            //Runner.Despawn(CarryItem);
+            visible.IsVisible = false;
+            print(gameObject.name + "INVENTORY PODE STATE:  SIM CHAMANDO NORMAL");
         }
-        else if (!networkObject.HasStateAuthority)
+        else if (!visible.Object.HasStateAuthority)
         {
-            Runner.Despawn(CarryItem);
-            //visible.RPC_SetVisibility(false);
-            print("INVENTORY PODE STATE: NÃO CHAMANDO RPC? " );
+            //Runner.Despawn(CarryItem);
+            visible.RPC_SetVisibility(false);
+            print(gameObject.name + "INVENTORY PODE STATE: NÃO CHAMANDO RPC? " );
         }
-            
-        //netObj.gameObject.SetActive(itemCarregado.IsVisible);
+
+        //netObj.gameObject.SetActive(visible.IsVisible);
 
         language = PlayerPrefs.GetInt("Language");
 
@@ -83,35 +84,33 @@ public class NetInventory : NetworkBehaviour
         language = PlayerPrefs.GetInt("Language");
 
         NetItem item = itemCarregado.GetComponent<NetItem>();
-        //VisibleController visible = itemCarregado.GetComponentInParent<VisibleController>();
 
-        //visible.transform.position = localDeDrop.position;
-        //visible.MovePos(localDeDrop);
+        Vector3 pos = localDeDrop.position;
+        Quaternion rot = localDeDrop.rotation;
 
-        //itemCarregado.gameObject.SetActive(true);
-        if (HasStateAuthority)
+        if (visible.Object.HasStateAuthority)
         {
-            Runner.Spawn(CarryItem, localDeDrop.position, CarryItem.transform.rotation);
-            //visible.IsVisible = true;
-            print("INVENTORY PODE STATE:  SIM CHAMANDO NORMAL");
+            //Runner.Spawn(CarryItem, localDeDrop.position, CarryItem.transform.rotation);
+            visible.IsVisible = true;
+            visible.MovePos(pos, rot);
+
+            print(gameObject.name + "INVENTORY PODE STATE:  SIM CHAMANDO NORMAL");
         }
-        else if (!HasStateAuthority)
+        else if (!visible.Object.HasStateAuthority)
         {
-            Runner.Spawn(CarryItem, localDeDrop.position, CarryItem.transform.rotation);
-            //visible.RPC_SetVisibility(true);
-            print("INVENTORY PODE STATE: NÃO CHAMANDO RPC? ");
-        }
-            
-        if (itemCarregado.TryGetComponent<Rigidbody>(out var rb))
-        {
-            rb.useGravity = true;
-            rb.velocity = Vector3.zero;
+            //Runner.Spawn(CarryItem, localDeDrop.position, CarryItem.transform.rotation);
+            visible.RPC_SetVisibility(true);
+            visible.RPC_SetLocalToDropItem(pos, rot);
+
+            print(gameObject.name + "INVENTORY PODE STATE: NÃO CHAMANDO RPC ");
         }
 
         if (imagePainelItem != null)
             imagePainelItem.sprite = null;
 
         imagePainelItem.sprite = null; // Limpa o sprite do painel de inventário
+
+        
 
         itens.Remove(item);
         StartCoroutine(TimerForShowInformation(language == 0 ?
@@ -120,6 +119,7 @@ public class NetInventory : NetworkBehaviour
 
         CarryItem = null;
         itemCarregado = null;
+        visible = null;
     }
 
     /*[Rpc(RpcSources.All, RpcTargets.StateAuthority)]

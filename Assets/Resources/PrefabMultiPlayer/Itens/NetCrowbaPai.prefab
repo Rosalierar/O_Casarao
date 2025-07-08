@@ -4843,7 +4843,7 @@ GameObject:
   - component: {fileID: 1510529878170019244}
   - component: {fileID: 2063629682986972607}
   - component: {fileID: 9035906653860620927}
-  - component: {fileID: 3545821125604711442}
+  - component: {fileID: 6795167401931150158}
   m_Layer: 7
   m_Name: NetCrowbar
   m_TagString: Untagged
@@ -4952,7 +4952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoDoItem: 4
---- !u!114 &3545821125604711442
+--- !u!114 &6795167401931150158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4961,11 +4961,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2817394349709595897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Guid:
-    RawGuidValue: 66d7dbf9658131a42aeace33dc87e175
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!1 &7411874712652392265
 GameObject:
   m_ObjectHideFlags: 0
@@ -5021,6 +5024,7 @@ MonoBehaviour:
   - {fileID: 6091606855682246967}
   - {fileID: -3771561400814242096}
   - {fileID: 9035906653860620927}
+  - {fileID: 6795167401931150158}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6091606855682246967
 MonoBehaviour:
@@ -5037,8 +5041,8 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   SyncScale: 0
   SyncParent: 0
-  _autoAOIOverride: 1
-  DisableSharedModeInterpolation: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!114 &-3771561400814242096
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7600050549434972189}
   - component: {fileID: 547829012979291195}
   - component: {fileID: 2013938488435979409}
+  - component: {fileID: 1937988371715552639}
   m_Layer: 7
   m_Name: NetChave_Amarelo
   m_TagString: Untagged
@@ -120,6 +121,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoDoItem: 1
+--- !u!114 &1937988371715552639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752008904092114366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!1 &6865153504283742754
 GameObject:
   m_ObjectHideFlags: 0
@@ -5006,6 +5024,7 @@ MonoBehaviour:
   - {fileID: 8669507158837843723}
   - {fileID: -8694923316376214224}
   - {fileID: 2013938488435979409}
+  - {fileID: 1937988371715552639}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &8669507158837843723
 MonoBehaviour:
@@ -5022,8 +5041,8 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   SyncScale: 0
   SyncParent: 0
-  _autoAOIOverride: 1
-  DisableSharedModeInterpolation: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!111 &7239701713459704292
 Animation:
   m_ObjectHideFlags: 0

@@ -23,6 +23,12 @@ public class VisibleController : NetworkBehaviour
         IsVisible = visible;
     }
 
+    [Rpc(RpcSources.All, RpcTargets.InputAuthority)]
+    public void RPC_SetLocalToDropItem(Vector3 positionForDrop, Quaternion rotationForDrop)
+    {
+        MovePos(positionForDrop, rotationForDrop);
+    }
+
 
     public void ApplyVisibility()
     {
@@ -30,9 +36,9 @@ public class VisibleController : NetworkBehaviour
         item.gameObject.SetActive(IsVisible);
     }
 
-    public void MovePos(Transform position)
+    public void MovePos(Vector3 positionForDrop, Quaternion rotationForDrop)
     {
-
-        
+        transform.position = positionForDrop;
+        transform.rotation = rotationForDrop;
     }
 }

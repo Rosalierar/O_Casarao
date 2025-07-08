@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 2840646298413960757}
   - {fileID: 1394659100171595816}
   - {fileID: 6337059903652703715}
+  - {fileID: 4742717678575885558}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &2840646298413960757
 MonoBehaviour:
@@ -71,8 +72,8 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   SyncScale: 0
   SyncParent: 0
-  _autoAOIOverride: 1
-  DisableSharedModeInterpolation: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!114 &1394659100171595816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +100,7 @@ GameObject:
   - component: {fileID: 2559212105584875788}
   - component: {fileID: 7876034118865752039}
   - component: {fileID: 6337059903652703715}
-  - component: {fileID: 4181344035559446575}
+  - component: {fileID: 4742717678575885558}
   m_Layer: 7
   m_Name: NetChave_Quadrada
   m_TagString: Untagged
@@ -208,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoDoItem: 9
---- !u!114 &4181344035559446575
+--- !u!114 &4742717678575885558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,11 +218,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4358349414041873040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Guid:
-    RawGuidValue: 40c385503a949924fb7138690a04b866
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!1 &8828036734081023524
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6927721246227739303}
   - component: {fileID: 7576064597582039105}
   - component: {fileID: 6881997594985600132}
-  - component: {fileID: 6906094278830928851}
+  - component: {fileID: 7242622608864380127}
   m_Layer: 7
   m_Name: NetDesinfetante
   m_TagString: Untagged
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoDoItem: 7
---- !u!114 &6906094278830928851
+--- !u!114 &7242622608864380127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,11 +131,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3766814772634582995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Guid:
-    RawGuidValue: 6833f34cedfdc77408ba9ea4f90bfdbd
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!1 &4783278984638407576
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,7 +4981,6 @@ GameObject:
   - component: {fileID: 5537719781766709141}
   - component: {fileID: 8788638506861380104}
   - component: {fileID: 7486926354361207716}
-  - component: {fileID: 6243918925693618544}
   m_Layer: 7
   m_Name: NetDesinfetantePai
   m_TagString: Itens
@@ -5022,6 +5024,7 @@ MonoBehaviour:
   - {fileID: 8788638506861380104}
   - {fileID: 7486926354361207716}
   - {fileID: 6881997594985600132}
+  - {fileID: 7242622608864380127}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &8788638506861380104
 MonoBehaviour:
@@ -5038,8 +5041,8 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   SyncScale: 0
   SyncParent: 0
-  _autoAOIOverride: 1
-  DisableSharedModeInterpolation: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!114 &7486926354361207716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5053,17 +5056,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _IsVisible: 1
---- !u!114 &6243918925693618544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5605928984070643708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Guid:
-    RawGuidValue: 871eda528bef7e840859ef1b5e255270

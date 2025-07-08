@@ -4886,6 +4886,7 @@ MonoBehaviour:
   - {fileID: 4902754842305146849}
   - {fileID: 4408630894911763673}
   - {fileID: 2052661255469909045}
+  - {fileID: 7960722316142212325}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &4902754842305146849
 MonoBehaviour:
@@ -4902,8 +4903,8 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   SyncScale: 0
   SyncParent: 0
-  _autoAOIOverride: 1
-  DisableSharedModeInterpolation: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
 --- !u!111 &980266337881846894
 Animation:
   m_ObjectHideFlags: 0
@@ -4947,6 +4948,7 @@ GameObject:
   - component: {fileID: 5271741802464474797}
   - component: {fileID: 1494013105887466215}
   - component: {fileID: 2052661255469909045}
+  - component: {fileID: 7960722316142212325}
   m_Layer: 7
   m_Name: NetChave_Circular
   m_TagString: Untagged
@@ -5071,3 +5073,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoDoItem: 8
+--- !u!114 &7960722316142212325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253588801228638558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 0
+  DisableSharedModeInterpolation: 1
