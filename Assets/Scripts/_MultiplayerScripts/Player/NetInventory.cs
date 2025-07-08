@@ -85,14 +85,12 @@ public class NetInventory : NetworkBehaviour
 
         NetItem item = itemCarregado.GetComponent<NetItem>();
 
-        Vector3 pos = localDeDrop.position;
-        Quaternion rot = localDeDrop.rotation;
 
         if (visible.Object.HasStateAuthority)
         {
             //Runner.Spawn(CarryItem, localDeDrop.position, CarryItem.transform.rotation);
             visible.IsVisible = true;
-            visible.MovePos(pos, rot);
+            visible.MovePos(localDeDrop.position, localDeDrop.rotation);
 
             print(gameObject.name + "INVENTORY PODE STATE:  SIM CHAMANDO NORMAL");
         }
@@ -100,7 +98,7 @@ public class NetInventory : NetworkBehaviour
         {
             //Runner.Spawn(CarryItem, localDeDrop.position, CarryItem.transform.rotation);
             visible.RPC_SetVisibility(true);
-            visible.RPC_SetLocalToDropItem(pos, rot);
+            visible.RPC_SetLocalToDropItem(localDeDrop.position, localDeDrop.rotation);
 
             print(gameObject.name + "INVENTORY PODE STATE: NÃO CHAMANDO RPC ");
         }

@@ -23,10 +23,13 @@ public class VisibleController : NetworkBehaviour
         IsVisible = visible;
     }
 
-    [Rpc(RpcSources.All, RpcTargets.InputAuthority)]
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_SetLocalToDropItem(Vector3 positionForDrop, Quaternion rotationForDrop)
     {
-        MovePos(positionForDrop, rotationForDrop);
+         Debug.Log($"[RPC] Posicionando item em {positionForDrop}");
+
+        // Move o objeto que tem o NetworkObject (geralmente o pai)
+        MovePos(positionForDrop,rotationForDrop);
     }
 
 
