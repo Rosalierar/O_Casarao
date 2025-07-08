@@ -320,7 +320,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         int playerCount = runner.ActivePlayers.Count();
         print("JOGADORES NO MOMENTEO: " + playerCount);
 
-        //-6.17F 7.18F 0.36F // -3.18
+        //-6.17F 7.18F 0.36F //-3.18
         
         Vector3 pos = spawnPoints[playerCount- 1];
 

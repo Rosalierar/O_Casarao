@@ -48,16 +48,12 @@ public class InteractiveObject : MonoBehaviour
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 drawerMoviment.enabled = true;
                 drawerMoviment.TryActiveDrawer();
-                
-                /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
-                parent.useTheObject.enabled = false; // Desabilita o script de usar
-                parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
-
                 Debug.Log("Porta Aberta!");
             }
+            
             if (itemNecessario == TipoDeItem.GrampoDeCabelo) /////////////////////////////////////////// GRAMPO DE CABELO
             {
-                
+
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
                 doorMoviment.TryActiveDoor();
@@ -66,14 +62,8 @@ public class InteractiveObject : MonoBehaviour
             if (itemNecessario == TipoDeItem.Alicate)
                 {
                     parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
-
                     gameObject.SetActive(false); // Desativa o objeto do mund
-
-                    /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
-                    parent.useTheObject.enabled = false; // Desabilita o script de usar
-                    parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
                     Debug.Log("Corrente Quebrada!");
-
                 }
 
                 else if (itemNecessario == TipoDeItem.PeDeCabra) /////////////////////////////////////////// PE DE CABRA
@@ -81,9 +71,6 @@ public class InteractiveObject : MonoBehaviour
                     parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                     doorMoviment.enabled = true;
                     doorMoviment.TryActiveDoor();
-
-                    //gameObject.SetActive(false); // Desativa o objeto do mundo
-
                     Debug.Log("Porta Aberta!");
                 }
                 else if (itemNecessario == TipoDeItem.Crucifixo)
@@ -91,22 +78,14 @@ public class InteractiveObject : MonoBehaviour
                     parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                     doorMoviment.enabled = true;
                     doorMoviment.TryActiveDoor();
-
-                    //gameObject.SetActive(false); // Desativa o objeto do mundo
-
                     Debug.Log("Porta Aberta!");
                 }
 
                 else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
                 {
-                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                                                 //drawerMoviment.enabled = true;
-                                                 //drawerMoviment.TryActiveDrawer();
+                    parent.inventory.UsarItem(); 
                     doorMoviment.enabled = true;
                     doorMoviment.TryActiveDoor();
-
-                    //gameObject.SetActive(false); // Desativa o objeto do mundo
-
                     Debug.Log("Gaveta Aberta!");
                 }
 
@@ -117,11 +96,6 @@ public class InteractiveObject : MonoBehaviour
 
                     parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                     progressionGame[0] = true;
-
-                    if (progressionGame[0] && progressionGame[1] && progressionGame[2])
-                    {
-                        //  GoToWin();
-                    }
 
                     StartCoroutine(ToDisableDelayed(1, 0.5f));
                 }
@@ -134,11 +108,6 @@ public class InteractiveObject : MonoBehaviour
                     parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                     progressionGame[1] = true;
 
-                    if (progressionGame[0] && progressionGame[1] && progressionGame[2])
-                    {
-                        //GoToWin();
-                    }
-
                     StartCoroutine(ToDisableDelayed(0, 0.5f));
                 }
 
@@ -149,11 +118,6 @@ public class InteractiveObject : MonoBehaviour
 
                     parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                     progressionGame[2] = true;
-
-                    if (progressionGame[0] && progressionGame[1] && progressionGame[2])
-                    {
-                        // GoToWin();
-                    }
 
                     StartCoroutine(ToDisableDelayed(2, 0.5f));
                 }
@@ -200,11 +164,6 @@ public class InteractiveObject : MonoBehaviour
                     AS.Play();
                     break;
 
-                /*case TipoDeItem.ChaveQuadrada:
-                    doorMoviment.enabled = true; // Habilita o script de movimentação da gaveta
-                    doorMoviment.TryActiveDoor();
-                    break;*/
-
                 case TipoDeItem.Porta:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
@@ -212,10 +171,6 @@ public class InteractiveObject : MonoBehaviour
                     AS.Play();
                     break;
 
-                /*case TipoDeItem.Crucifixo:
-                    doorMoviment.enabled = true; // Habilita o script de movimentação da porta
-                    doorMoviment.TryActiveDoor();
-                    break;*/
                 case TipoDeItem.Senha:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
@@ -223,6 +178,7 @@ public class InteractiveObject : MonoBehaviour
                     
                     AS.Play();
                     break;
+
                 case TipoDeItem.Desinfetante:
                     doorMoviment.enabled = true; // Habilita o script de movimentação da porta
                     doorMoviment.TryActiveDoor();
@@ -250,19 +206,6 @@ public class InteractiveObject : MonoBehaviour
         }
     }
 
-   /* void GoToWin()
-    {
-        GameObject portaEntrada = GameObject.FindWithTag("PortaEntrada");
-                    
-        BoxCollider collider = portaEntrada.GetComponent<BoxCollider>();
-        FinalController finalController = portaEntrada.GetComponent<FinalController>();
-
-        collider.enabled = true;
-        finalController.enabled = true;
-
-        finalController.DesableCams();
-    }*/
-
     IEnumerator ToDisableDelayed(int index, float delay)
 {
     yield return new WaitForSeconds(delay);
@@ -281,29 +224,4 @@ public class InteractiveObject : MonoBehaviour
 
         informationAboutItem.text = "";
     }
-
-    /*void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            parent = other.GetComponentInChildren<ParentObjectReference>(); // Obtém a referência do ParentObjectReference do jogador
-            
-            //if (parent.grabTheObject.isHolding) // Verifica se o objeto que colidiu tem a tag "Player"
-    
-            parent.useTheObject.enabled = true; // Desabilita o script grabTheObject se o objeto estiver sendo segurado para usar apenas o script de interação
-            parent.grabTheObject.enabled = false; // Desabilita o script grabTheObject se o objeto estiver sendo segurado para usar apenas o script de interação
-           
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player")) // Verifica se o objeto que saiu da colisão tem a tag "Player"
-        {
-            parent.grabTheObject.enabled = false; // Desabilita o script grabTheObject se o objeto estiver sendo segurado para usar apenas o script de interação
-            parent.useTheObject.enabled = true; // Habilita o script de usar
-            parent.detectionObjects.isCollidingInteractiveObj = false; // Desabilita a detecção de colisão
-         
-        }
-    }*/
 }

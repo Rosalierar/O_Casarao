@@ -237,7 +237,7 @@ public class PatraoController : MonoBehaviour
 
                 if (tag == "Player")
                 {
-                    SawPlayer = true;
+                    SawPlayer = true; // eu estava vendo
 
                     playerTransform = patraoHit.transform;
 
@@ -260,7 +260,7 @@ public class PatraoController : MonoBehaviour
                     agent.speed = ValueSpeedPersecution();
                     isPatrol = false;
                     isRotate = false;
-                    seePlayer = true;
+                    seePlayer = true;  // eu vi
 
                     PersecutionPlayer();
 
@@ -403,7 +403,6 @@ public class PatraoController : MonoBehaviour
             if (Vector3.Distance(patraoTransform.position, patrolPoints[currentPatrolIndex]) <= 1f) // Verifica se o patrão chegou ao ponto de patrulha
             {
                 print("Cheguei no Ponto");
-                //currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // Atualiza o índice do ponto de patrulha atual
                 StopAndRotate();
             }
         }
