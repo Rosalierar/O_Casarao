@@ -104,12 +104,12 @@ public class NetInteractiveObjects : NetworkBehaviour
             else if (itemNecessario == TipoDeItem.ChaveQuadrada) /////////////////////////////////////////// CHAVE QUADRADA
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                drawerMoviment.enabled = true;
+                doorMoviment.enabled = true;
 
                 if (networkObject.HasStateAuthority)
-                    drawerMoviment.TryActiveDrawer();
+                    doorMoviment.TryActiveDoor();
                 else if (!networkObject.HasStateAuthority)
-                    drawerMoviment.Rpc_RequestToggleDrawer();
+                    doorMoviment.Rpc_RequestToggleDoor();
 
                 Debug.Log("Gaveta Aberta!");
             }
