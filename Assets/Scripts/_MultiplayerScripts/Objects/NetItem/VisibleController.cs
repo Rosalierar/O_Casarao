@@ -26,7 +26,7 @@ public class VisibleController : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_SetLocalToDropItem(Vector3 positionForDrop, Quaternion rotationForDrop)
     {
-         Debug.Log($"[RPC] Posicionando item em {positionForDrop}");
+        Debug.Log($"[RPC] Posicionando item em {positionForDrop}");
 
         // Move o objeto que tem o NetworkObject (geralmente o pai)
         MovePos(positionForDrop,rotationForDrop);

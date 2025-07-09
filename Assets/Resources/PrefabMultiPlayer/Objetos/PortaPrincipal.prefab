@@ -248,6 +248,9 @@ MonoBehaviour:
   - {fileID: 6919172202747922685}
   - {fileID: 1556688950981356415}
   - {fileID: 38825239256727988}
+  - {fileID: 7985925142854792178}
+  - {fileID: 6433184457917829092}
+  - {fileID: 3052974294517673084}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &3045397679258789164
 MonoBehaviour:
@@ -539,6 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 7988789995754061758}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -642,8 +646,7 @@ MonoBehaviour:
   posForOpenDoor: 0
   openAngle: -90
   openSpeed: 2
-  isOpen: 0
-  isMoving: 0
+  _isOpen: 0
   closedRot: {x: 0, y: 0, z: 0, w: 0}
   openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3629943805555480860
@@ -716,8 +719,7 @@ MonoBehaviour:
   posForOpenDoor: 1
   openAngle: -90
   openSpeed: 2
-  isOpen: 0
-  isMoving: 0
+  _isOpen: 0
   closedRot: {x: 0, y: 0, z: 0, w: 0}
   openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4218056960811867498
@@ -1472,6 +1474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 5701463534871932559}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -1818,6 +1821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 7428407774719356067}
   informationAboutItem: {fileID: 0}
   cadeado:

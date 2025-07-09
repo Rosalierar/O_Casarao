@@ -53,6 +53,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2687389869119940998}
+  - {fileID: 9111513092829142389}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &2687389869119940998
 MonoBehaviour:
@@ -138,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 2648903954808373119}
   informationAboutItem: {fileID: 0}
   cadeado:

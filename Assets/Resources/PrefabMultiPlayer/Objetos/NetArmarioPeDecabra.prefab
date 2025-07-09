@@ -264,8 +264,7 @@ MonoBehaviour:
   posForOpenDoor: 0
   openAngle: -90
   openSpeed: 2
-  isOpen: 0
-  isMoving: 0
+  _isOpen: 0
   closedRot: {x: 0, y: 0, z: 0, w: 0}
   openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!82 &1715314189496256339
@@ -610,6 +609,7 @@ MonoBehaviour:
   - {fileID: -4601449106126698751}
   - {fileID: 6582939389439029555}
   - {fileID: 2641485304718668703}
+  - {fileID: 3136673585692039318}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &-4601449106126698751
 MonoBehaviour:
@@ -854,6 +854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 0}
   informationAboutItem: {fileID: 0}
   cadeado:

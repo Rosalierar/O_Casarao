@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Fusion;
 
-public class NetInteractiveObjects : MonoBehaviour
+public class NetInteractiveObjects : NetworkBehaviour
 {
     [SerializeField] GameObject[] prefabItem;
     NetworkObject networkObject;
@@ -28,10 +28,9 @@ public class NetInteractiveObjects : MonoBehaviour
     private NetParentObjectReference parent;
 
     [Header("Item Controller")]
-    bool[] progressionGame = new bool[3];
     public TipoDeItem itemNecessario;  // Tipo de item necessário para interagir com o objeto
     public TipoDeItem tipoDeObjeto;
-    public bool unlocked; // Variável para verificar se o objeto está bloqueado
+    [Networked] public bool unlocked { get; set; } // Variável para verificar se o objeto está bloqueado
    
     [Header("Controller Open/Close")]
     /// <Controle dos Objetos, Abrir, Fechar, Quebrar>
@@ -60,18 +59,18 @@ public class NetInteractiveObjects : MonoBehaviour
                 else if (!networkObject.HasStateAuthority)
                     drawerMoviment.Rpc_RequestToggleDrawer();
 
-                /*parent.grabTheObject.enabled = true; // Habilita o script de pegar
-                parent.useTheObject.enabled = false; // Desabilita o script de usar
-                parent.dropTheObject.enabled = false; // Desabilita o script de soltar*/
-
                 Debug.Log("Porta Aberta!");
             }
 
             if (itemNecessario == TipoDeItem.Alicate)
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
+                NetDesableController netDesable = GetComponentInParent<NetDesableController>();
 
-                gameObject.SetActive(false); // Desativa o objeto do mundo
+                if (networkObject.HasStateAuthority)
+                    netDesable.IsActive = false;
+                else
+                    netDesable.RPC_SetVisibilityObj(false);
 
                 Debug.Log("Corrente Quebrada!");
             }
@@ -86,8 +85,6 @@ public class NetInteractiveObjects : MonoBehaviour
                 else if (!networkObject.HasStateAuthority)
                     doorMoviment.Rpc_RequestToggleDoor();
 
-                //gameObject.SetActive(false); // Desativa o objeto do mundo
-
                 Debug.Log("Porta Aberta!");
             }
             else if (itemNecessario == TipoDeItem.Crucifixo)
@@ -99,8 +96,6 @@ public class NetInteractiveObjects : MonoBehaviour
                     doorMoviment.TryActiveDoor();
                 else if (!networkObject.HasStateAuthority)
                     doorMoviment.Rpc_RequestToggleDoor();
-
-                //gameObject.SetActive(false); // Desativa o objeto do mundo
 
                 Debug.Log("Porta Aberta!");
             }
@@ -115,10 +110,6 @@ public class NetInteractiveObjects : MonoBehaviour
                 else if (!networkObject.HasStateAuthority)
                     drawerMoviment.Rpc_RequestToggleDrawer();
 
-                //doorMoviment.enabled = true;
-                //doorMoviment.TryActiveDoor();
-                //gameObject.SetActive(false); // Desativa o objeto do mundo
-
                 Debug.Log("Gaveta Aberta!");
             }
 
@@ -128,7 +119,6 @@ public class NetInteractiveObjects : MonoBehaviour
                 audioSource.Play();
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                progressionGame[0] = true;
 
                 StartCoroutine(ToDisableDelayed(1, 0.5f));
             }
@@ -139,7 +129,6 @@ public class NetInteractiveObjects : MonoBehaviour
                 audioSource.Play();
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                progressionGame[1] = true;
 
                 StartCoroutine(ToDisableDelayed(0, 0.5f));
             }
@@ -150,7 +139,6 @@ public class NetInteractiveObjects : MonoBehaviour
                 audioSource.Play();
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                progressionGame[2] = true;
 
                 StartCoroutine(ToDisableDelayed(2, 0.5f));
             }
@@ -164,7 +152,7 @@ public class NetInteractiveObjects : MonoBehaviour
 
             else if (itemNecessario == TipoDeItem.Desinfetante) /////////////////////////////////////////// MAQUINA DE LAVAR
             {
-                GetComponent<WashingMachineController>().StartTime();
+                GetComponent<NetWashingMachineController>().StartTime();
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
             }
@@ -175,7 +163,16 @@ public class NetInteractiveObjects : MonoBehaviour
             parent.grabTheObject.isHolding = false; // Define que o objeto n�o est� mais sendo segurado
 
             if (itemNecessario != TipoDeItem.Desinfetante)
-                unlocked = true; // Define que o objeto foi desbloqueado
+            {
+                if (networkObject.HasStateAuthority)
+                {
+                    UnlockedController(true); // Define que o objeto foi desbloqueado
+                }
+                else if (!networkObject.HasStateAuthority)
+                {
+                    RPC_SetUnlockedController(true);
+                }
+            }
         }
         
         else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
@@ -256,10 +253,52 @@ public class NetInteractiveObjects : MonoBehaviour
         }
     }
 
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetUnlockedController(bool booleana)
+    {
+        UnlockedController(booleana);
+    }
+
+    public void UnlockedController(bool booleana)
+    {
+        unlocked = booleana;
+    }
+
     IEnumerator ToDisableDelayed(int index, float delay)
     {
         yield return new WaitForSeconds(delay);
+
+        if (networkObject.HasStateAuthority)
+        {
+            DisablePadlock(index);
+        }
+        else
+        {
+            RPC_SetDisablePadlock(index);
+        }
         cadeado[index].SetActive(false);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]    
+    public void RPC_SetDisablePadlock(int index)
+    {
+        DisablePadlock(index);
+    }
+
+    public void DisablePadlock(int index)
+    {
+        NetDesableController netDesable = GetComponentInParent<NetDesableController>();
+        netDesable.object4Disable = cadeado[index];
+
+        if (networkObject.HasStateAuthority)
+        {
+            netDesable.IsActive = false;
+        }
+        else
+        {
+            netDesable.RPC_SetVisibilityObj(false);
+        }
+
     }
     public void SetParentReference(NetParentObjectReference parent)
     {

@@ -56,6 +56,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 6818143258861054642}
   - {fileID: 5789264732166113054}
+  - {fileID: 2757001001944787084}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6818143258861054642
 MonoBehaviour:
@@ -607,6 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 3332923635914455656}
   informationAboutItem: {fileID: 0}
   cadeado:

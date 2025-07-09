@@ -11,7 +11,7 @@ public class NetDoorMoviment : NetworkBehaviour
     [SerializeField] private byte direction;
     public Transform doorTransform;
     [SerializeField] byte posForOpenDoor;
-    Vector3[] posOpen = new Vector3[3] { Vector3.up , Vector3.down, Vector3.forward};
+    Vector3[] posOpen = new Vector3[3] { Vector3.up, Vector3.down, Vector3.forward };
     [SerializeField] private float openAngle = -90f;
     [SerializeField] float openSpeed = 2f;
 
@@ -29,20 +29,20 @@ public class NetDoorMoviment : NetworkBehaviour
         networkObject = GetComponentInParent<NetworkObject>();
 
         print("PORTA PODE TER HAS STATE: " + networkObject.HasStateAuthority);
-       
-            closedRot = doorTransform.rotation;
 
-            if (gameObject.tag != "Machine")
-            {
-                openRot = Quaternion.Euler(doorTransform.eulerAngles + posOpen[posForOpenDoor] * openAngle);
-            }
-            else
-            {
-                Vector3 rotationAxis = (direction == 0) ? Vector3.right : -Vector3.right;
+        closedRot = doorTransform.rotation;
 
-                openRot = Quaternion.Euler(doorTransform.eulerAngles + rotationAxis * openAngle);
-                
-            }
+        if (gameObject.tag != "Machine")
+        {
+            openRot = Quaternion.Euler(doorTransform.eulerAngles + posOpen[posForOpenDoor] * openAngle);
+        }
+        else
+        {
+            Vector3 rotationAxis = (direction == 0) ? Vector3.right : -Vector3.right;
+
+            openRot = Quaternion.Euler(doorTransform.eulerAngles + rotationAxis * openAngle);
+
+        }
     }
 
     public void TryActiveDoor()
@@ -63,10 +63,16 @@ public class NetDoorMoviment : NetworkBehaviour
     {
         if (boxCollider != null)
         {
-            boxCollider.size = new Vector3(0f, 0.7866557f, 0f);
-            boxCollider.center = new Vector3(0f, -0.1066722f, 0f);
-            pants.SetActive(false);
+            if (networkObject.HasStateAuthority)
+            {
+                ChangeSizeCollider();
+            }
+            else
+            {
+                RPC_SetChangeSizeCollider();
+            }
         }
+        
         isMoving = true;
         Quaternion startRot = doorTransform.rotation;
         Quaternion targetRot = isOpen ? closedRot : openRot;
@@ -113,5 +119,18 @@ public class NetDoorMoviment : NetworkBehaviour
         isOpen = !isOpen;
         isMoving = false;
         this.enabled = false; // Disable the script after opening/closing the door
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetChangeSizeCollider()
+    {
+        ChangeSizeCollider();
+    }
+
+    public void ChangeSizeCollider()
+    {
+        boxCollider.size = new Vector3(0f, 0.7866557f, 0f);
+        boxCollider.center = new Vector3(0f, -0.1066722f, 0f);
+        pants.SetActive(false);
     }
 }

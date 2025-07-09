@@ -63,7 +63,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5428711736857762634}
+  m_Father: {fileID: 7074078335895604530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7059059360325030472
 MeshFilter:
@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 2532787497129139104}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -377,7 +378,7 @@ MonoBehaviour:
   passwordPainel: {fileID: 0}
   itemNecessario: 7
   tipoDeObjeto: 7
-  unlocked: 0
+  _unlocked: 0
   doorMoviment: {fileID: 4502836896355622150}
   drawerMoviment: {fileID: 0}
 --- !u!1 &1604437622162841717
@@ -546,6 +547,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2267584189284579397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7074078335895604530}
+  m_Layer: 0
+  m_Name: pants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7074078335895604530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267584189284579397}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9035256350078073286}
+  - {fileID: 8790702967262620478}
+  m_Father: {fileID: 5428711736857762634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2599558957453472754
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +591,7 @@ GameObject:
   - component: {fileID: 5428711736857762634}
   - component: {fileID: 1115981615047447904}
   - component: {fileID: 3684059550394232249}
+  - component: {fileID: 4723016824885182247}
   m_Layer: 0
   m_Name: NetMaquinaDeLavar
   m_TagString: Objetos
@@ -585,8 +620,7 @@ Transform:
   - {fileID: 1943846032271362698}
   - {fileID: 7030450220818429583}
   - {fileID: 2636698048541945044}
-  - {fileID: 9035256350078073286}
-  - {fileID: 8790702967262620478}
+  - {fileID: 7074078335895604530}
   - {fileID: 4960256101332975702}
   - {fileID: 4244734074843080349}
   - {fileID: 6346377228034630421}
@@ -612,6 +646,8 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 3684059550394232249}
+  - {fileID: 4723016824885182247}
+  - {fileID: 3822957991304576726}
   - {fileID: 5003313329586279694}
   - {fileID: 4502836896355622150}
   ForceRemoteRenderTimeframe: 0
@@ -632,6 +668,20 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &4723016824885182247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599558957453472754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2a5b866ad44d646bbfaec24125dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  object4Disable: {fileID: 2267584189284579397}
+  _IsActive: 1
 --- !u!1 &3611023890605505617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1379,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5428711736857762634}
+  m_Father: {fileID: 7074078335895604530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7398736073130058300
 MeshFilter:

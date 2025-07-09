@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 6548232398921910981}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -367,8 +368,7 @@ MonoBehaviour:
   posForOpenDoor: 0
   openAngle: -90
   openSpeed: 2
-  isOpen: 0
-  isMoving: 0
+  _isOpen: 0
   closedRot: {x: 0, y: 0, z: 0, w: 0}
   openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &5227404190953559733
@@ -407,6 +407,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 689878518813169206}
   - {fileID: 5227404190953559733}
+  - {fileID: 4970507731939629890}
   ForceRemoteRenderTimeframe: 0
 --- !u!82 &6548232398921910981
 AudioSource:

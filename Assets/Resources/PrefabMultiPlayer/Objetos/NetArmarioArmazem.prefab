@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 6371221218420393508}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -612,6 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 6119118225137312239}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -1203,6 +1205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3bfef32d9b2db49aad8198493774ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabItem: []
   AS: {fileID: 0}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -1451,8 +1454,7 @@ MonoBehaviour:
   posForOpenDoor: 0
   openAngle: -90
   openSpeed: 2
-  isOpen: 0
-  isMoving: 0
+  _isOpen: 0
   closedRot: {x: 0, y: 0, z: 0, w: 0}
   openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4425288488234192698
@@ -1508,6 +1510,7 @@ GameObject:
   - component: {fileID: 7007520485808176326}
   - component: {fileID: 4135946580741976902}
   - component: {fileID: 6928779492021755732}
+  - component: {fileID: 3775474572963871694}
   m_Layer: 0
   m_Name: NetArmarioArmazem
   m_TagString: Objetos
@@ -1557,10 +1560,14 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6928779492021755732}
+  - {fileID: 3775474572963871694}
+  - {fileID: 8930854943634241594}
   - {fileID: 7327424419105548003}
   - {fileID: 2126591145892115850}
+  - {fileID: 2747294277143813367}
   - {fileID: 2951326961160388429}
   - {fileID: 7690123789668345982}
+  - {fileID: 8295933409624849326}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6928779492021755732
 MonoBehaviour:
@@ -1579,6 +1586,20 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &3775474572963871694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430800335374541926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2a5b866ad44d646bbfaec24125dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  object4Disable: {fileID: 3275004919570954861}
+  _IsActive: 1
 --- !u!1 &4591717298463658514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,8 +2418,7 @@ MonoBehaviour:
   posForOpenDoor: 0
   openAngle: -90
   openSpeed: 2
-  isOpen: 0
-  isMoving: 0
+  _isOpen: 0
   closedRot: {x: 0, y: 0, z: 0, w: 0}
   openRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8808449247981351412
