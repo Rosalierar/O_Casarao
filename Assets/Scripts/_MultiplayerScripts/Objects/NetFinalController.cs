@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class NetFinalController : MonoBehaviour
 {
+    NetworkObject networkObject;
     [SerializeField] SongsController song;
     [SerializeField] GameObject enemy;
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject[] player;
     Animator animCam;
+
+    GameObject objCam;
     Camera camMain;
     [SerializeField] bool isOpenDoor = false;
     [SerializeField] NetDoorMoviment doorMovimentSecond;
@@ -18,13 +22,18 @@ public class NetFinalController : MonoBehaviour
 
     void Start()
     {
+        networkObject = GetComponent<NetworkObject>();
+
         camMain = GameObject.FindWithTag("Cam").GetComponent<Camera>();
         animCam = GameObject.FindWithTag("Cam").GetComponent<Animator>();
-        song = FindObjectOfType<SongsController>();
+
+        song = FindAnyObjectByType<SongsController>();
         enemy = FindObjectOfType<NetPatraoController>().gameObject;
 
         camMain.enabled = false;
         animCam.enabled = false;
+        
+        print("FINAL CAM PEGOU OS COMPONENTES");
     }
 
     void Update()
@@ -33,14 +42,6 @@ public class NetFinalController : MonoBehaviour
         {
             if (!cadeado[0].activeSelf && !cadeado[1].activeSelf && !cadeado[2].activeSelf && !isOpenDoor)
             {
-                camMain = GameObject.FindWithTag("Cam").GetComponent<Camera>();
-                animCam = GameObject.FindWithTag("Cam").GetComponent<Animator>();
-                song = FindObjectOfType<SongsController>();
-                enemy = FindObjectOfType<NetPatraoController>().gameObject;
-
-                camMain.enabled = false;
-                animCam.enabled = false;
-
                 for (int i = 0; i < song.audioSorceBackGround.Length; i++)
                 {
                     if (song.songsBackGround[i] != null && i != 3)
@@ -66,7 +67,7 @@ public class NetFinalController : MonoBehaviour
                 }
 
                 animCam.enabled = true;
-                player.SetActive(false);
+                player[0].SetActive(false);
                 enemy.SetActive(false);
 
                 DesableCams();
@@ -117,9 +118,18 @@ public class NetFinalController : MonoBehaviour
         }
 
         doorMoviment.enabled = true;
-        doorMoviment.TryActiveDoor();
         doorMovimentSecond.enabled = true;
-        doorMovimentSecond.TryActiveDoor();
+
+        if (networkObject.HasStateAuthority)
+        {
+            doorMoviment.TryActiveDoor();
+            doorMovimentSecond.TryActiveDoor();
+        }
+        else if (!networkObject.HasStateAuthority)
+        {
+            doorMoviment.Rpc_RequestToggleDoor();
+            doorMovimentSecond.Rpc_RequestToggleDoor();
+        }
 
         NavMeshAgent agentEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<NetPatraoController>().Agent();
         agentEnemy.isStopped = true;

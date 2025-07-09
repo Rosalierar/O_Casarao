@@ -39,6 +39,7 @@ public class NetInteractiveObjects : NetworkBehaviour
 
     public void TentarInteragir()
     {
+        print("A BOLEANA UNLOCKED ESTÁ:" + unlocked);
         networkObject = GetComponentInParent<NetworkObject>();
 
         informationAboutItem = GameObject.Find("ItemTextController").GetComponent<TextMeshProUGUI>();
@@ -261,7 +262,9 @@ public class NetInteractiveObjects : NetworkBehaviour
 
     public void UnlockedController(bool booleana)
     {
+        Debug.Log("UnlockedController chamado! Valor: " + booleana);
         unlocked = booleana;
+        print("Valor " + unlocked);
     }
 
     IEnumerator ToDisableDelayed(int index, float delay)
@@ -276,7 +279,6 @@ public class NetInteractiveObjects : NetworkBehaviour
         {
             RPC_SetDisablePadlock(index);
         }
-        cadeado[index].SetActive(false);
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]    

@@ -289,7 +289,7 @@ public class NetPatraoController : NetworkBehaviour
                     NetDoorMoviment doorMoviment = patraoHit.collider.GetComponentInParent<NetDoorMoviment>();
                     NetInteractiveObjects interactivedoor = doorMoviment.GetComponentInChildren<NetInteractiveObjects>();
 
-                    if (!doorMoviment.isOpen && interactivedoor.unlocked)
+                    if (!doorMoviment.isOpen && interactivedoor.unlocked == true)
                         doorMoviment.TryActiveDoor();
                 }
             }
