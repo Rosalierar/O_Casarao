@@ -324,7 +324,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         
         Vector3 pos = spawnPoints[playerCount- 1];
 
-        if (playerCount == 1)
+        if (playerCount == 1 || isFirstPlayer)
         {
             NetworkObject playerObj = runner.Spawn(playerPrefab1, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
         }
