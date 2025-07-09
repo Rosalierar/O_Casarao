@@ -118,7 +118,8 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         SetupRunnerInstance();
 
         currentLobbyCode = GenerateRandomLobbyCode(6);
-        
+        changeDifficultyButton.interactable = true;
+
         await StartGame(GameMode.Shared, currentLobbyCode);
     }
 
@@ -151,6 +152,8 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             Debug.LogError("Falha ao entrar no Session Lobby: " + result.ShutdownReason);
         }
+
+        changeDifficultyButton.interactable = false;
     }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
