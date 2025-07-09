@@ -179,11 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be07ad8c69003ea4e8a8eb2861ede32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pants: {fileID: 0}
-  boxCollider: {fileID: 0}
+  pants: {fileID: 2267584189284579397}
+  boxCollider: {fileID: 3632861926025205646}
   direction: 0
   doorTransform: {fileID: 2265856631209180791}
-  posForOpenDoor: 0
+  posForOpenDoor: 1
   openAngle: -90
   openSpeed: 2
   _isOpen: 0

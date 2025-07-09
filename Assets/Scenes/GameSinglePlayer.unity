@@ -50269,6 +50269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2640432132282999495, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
         type: 3}
+      propertyPath: posForOpenDoor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640432132282999495, guid: 6d630e8b0f0ecae41ac84bdd118fcc84,
+        type: 3}
       propertyPath: tampa.Array.size
       value: 2
       objectReference: {fileID: 0}
