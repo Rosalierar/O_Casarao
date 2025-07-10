@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class NetDoorMoviment : NetworkBehaviour
 {
+    [Networked] private Vector3 boxSize { get; set; }
+    [Networked] private Vector3 boxCenter { get; set; }
+
     NetworkObject networkObject;
     public GameObject pants;
     [SerializeField] BoxCollider boxCollider;
@@ -41,8 +44,31 @@ public class NetDoorMoviment : NetworkBehaviour
             Vector3 rotationAxis = (direction == 0) ? Vector3.right : -Vector3.right;
 
             openRot = Quaternion.Euler(doorTransform.eulerAngles + rotationAxis * openAngle);
-
         }
+        
+        if (networkObject.HasStateAuthority)
+        {
+            if (boxCollider != null && gameObject.tag == "Machine")
+            {
+                boxSize = new Vector3(1.807f,1.85f,1.438f);
+                boxCenter = new Vector3(0.046f, 0.425f, -0.11f);
+            }
+        }
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        print("Size: " + boxSize + "Center: " + boxCenter);
+        if (boxCollider != null && gameObject.tag == "Machine")
+        {
+            ApplyColliderChanges();
+        }
+    }
+
+    private void ApplyColliderChanges()
+    {
+        boxCollider.size = boxSize;
+        boxCollider.center = boxCenter;
     }
 
     public void TryActiveDoor()
@@ -131,8 +157,8 @@ public class NetDoorMoviment : NetworkBehaviour
 
     public void ChangeSizeCollider()
     {
-        boxCollider.size = new Vector3(0.873699188f,0.801640391f,2.70854187f);
-        boxCollider.center = new Vector3(0.0631504059f,-0.103902623f,-0.701052845f);
+        boxSize = new Vector3(0.87f, 0.80f, 2.70f);
+        boxCenter = new Vector3(0.06f, -0.10f, -0.70f);
         pants.SetActive(false);
     }
 }

@@ -17,6 +17,7 @@ TagManager:
   - VirtualCamera
   - jumpscare
   - Fridge
+  - CircleKey
   layers:
   - Default
   - TransparentFX

@@ -116,7 +116,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         SetupRunnerInstance();
 
         currentLobbyCode = GenerateRandomLobbyCode(6);
-        changeDifficultyButton.interactable = true;
+        //changeDifficultyButton.interactable = true;
 
         await StartGame(GameMode.Shared, currentLobbyCode);
     }
@@ -415,7 +415,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             player2StatusText.text = "Player 2: Aguardando...";
             startGameButton.interactable = false;
-            changeDifficultyButton.interactable = true;
+            //changeDifficultyButton.interactable = true;
         }
     }
 

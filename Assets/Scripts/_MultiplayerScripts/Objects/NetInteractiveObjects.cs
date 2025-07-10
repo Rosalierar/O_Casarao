@@ -157,6 +157,11 @@ public class NetInteractiveObjects : NetworkBehaviour
 
             else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
             {
+                GameObject.FindWithTag("CircleKey").GetComponentInParent<Animation>().Play("GotOutKey");
+                AS.clip = parent.AC[6];
+                AS.Play();
+                    
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 GetComponent<Animation>().Play("GotOutKey");
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
@@ -232,7 +237,6 @@ public class NetInteractiveObjects : NetworkBehaviour
                         doorMoviment.Rpc_RequestToggleDoor();
 
                     AS.clip = parent.AC[11];
-                    
                     AS.Play();
                     break;
                 case TipoDeItem.Desinfetante:
