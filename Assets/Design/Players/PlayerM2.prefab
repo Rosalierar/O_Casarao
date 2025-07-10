@@ -4727,7 +4727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPassword: {fileID: 590619967102355077}
-  correctPassword: 1234
+  correctPassword: 5459
 --- !u!82 &1084276469007659261
 AudioSource:
   m_ObjectHideFlags: 0

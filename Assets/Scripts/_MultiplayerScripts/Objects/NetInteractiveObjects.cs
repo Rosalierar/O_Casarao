@@ -7,7 +7,7 @@ using Fusion;
 public class NetInteractiveObjects : NetworkBehaviour
 {
     [SerializeField] GameObject[] prefabItem;
-    NetworkObject networkObject;
+    public NetworkObject networkObject;
 
      [Header("Sons dos Itens")]
     [SerializeField] AudioSource AS;
@@ -61,6 +61,17 @@ public class NetInteractiveObjects : NetworkBehaviour
                     drawerMoviment.Rpc_RequestToggleDrawer();
 
                 Debug.Log("Porta Aberta!");
+            }
+
+            if (itemNecessario == TipoDeItem.GrampoDeCabelo) /////////////////////////////////////////// GRAMPO DE CABELO
+            {
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                doorMoviment.enabled = true;
+                
+                if (networkObject.HasStateAuthority)
+                    doorMoviment.TryActiveDoor();
+                else if (!networkObject.HasStateAuthority)
+                    doorMoviment.Rpc_RequestToggleDoor();
             }
 
             if (itemNecessario == TipoDeItem.Alicate) //////////////////////////////////////// ALICATE

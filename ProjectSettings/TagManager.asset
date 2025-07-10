@@ -16,6 +16,7 @@ TagManager:
   - Machine
   - VirtualCamera
   - jumpscare
+  - Fridge
   layers:
   - Default
   - TransparentFX
