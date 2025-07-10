@@ -65,10 +65,12 @@ public class NetDoorMoviment : NetworkBehaviour
         {
             if (networkObject.HasStateAuthority)
             {
+                print("PORTA DA MAQUINA TEM STATE, MUDANDO COLLIDER");
                 ChangeSizeCollider();
             }
             else
             {
+                print("PORTA DA MAQUINA NÃO TEM STATE, PEDINDO PARA MUDAR O COLLIDER");
                 RPC_SetChangeSizeCollider();
             }
         }
@@ -129,8 +131,8 @@ public class NetDoorMoviment : NetworkBehaviour
 
     public void ChangeSizeCollider()
     {
-        boxCollider.size = new Vector3(0f, 0.7866557f, 0f);
-        boxCollider.center = new Vector3(0f, -0.1066722f, 0f);
+        boxCollider.size = new Vector3(0.873699188f,0.801640391f,2.70854187f);
+        boxCollider.center = new Vector3(0.0631504059f,-0.103902623f,-0.701052845f);
         pants.SetActive(false);
     }
 }

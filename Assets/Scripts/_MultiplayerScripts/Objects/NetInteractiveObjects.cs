@@ -63,7 +63,7 @@ public class NetInteractiveObjects : NetworkBehaviour
                 Debug.Log("Porta Aberta!");
             }
 
-            if (itemNecessario == TipoDeItem.Alicate)
+            if (itemNecessario == TipoDeItem.Alicate) //////////////////////////////////////// ALICATE
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
                 NetDesableController netDesable = GetComponentInParent<NetDesableController>();
@@ -88,7 +88,7 @@ public class NetInteractiveObjects : NetworkBehaviour
 
                 Debug.Log("Porta Aberta!");
             }
-            else if (itemNecessario == TipoDeItem.Crucifixo)
+            else if (itemNecessario == TipoDeItem.Crucifixo) ///////////////////////////////////////// crucifixo
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
@@ -178,7 +178,9 @@ public class NetInteractiveObjects : NetworkBehaviour
         
         else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
         {
-            passwordPainel = GameObject.Find("PanelGeladeira");
+            GameObject painel = GameObject.Find("PanelGeladeira");
+            Transform primeiroFilho = painel.transform.GetChild(0);
+            passwordPainel = primeiroFilho.gameObject;
             passwordPainel.SetActive(true);
         }
 

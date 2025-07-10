@@ -8,8 +8,6 @@ using TMPro;
 using Fusion;
 using Fusion.Sockets;
 using System;
-using WebSocketSharp;
-using UnityEngine.SocialPlatforms;
 
 public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 {
@@ -226,12 +224,23 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         Debug.Log("runnerInstance: " + runnerInstance);
         Debug.Log("runnerPrefab: " + runnerPrefab);
 
-        Debug.Log("Player entrou: " + player.PlayerId);
+        Debug.Log("/Player entrou: " + player.PlayerId);
 
         if (!connectedPlayers.Contains(player))
         {
             connectedPlayers.Add(player);
             print("ADICIONADO PLAYER ALISTA COM SUCESSO");
+        }
+
+        // Detecta se o jogador local é o primeiro a entrar
+        if (runner.LocalPlayer == player && player.PlayerId == 1)
+        {
+            isFirstPlayer = true;
+            Debug.Log("Sou o primeiro jogador (Host Lógico).");
+        }
+        else
+        {
+            print("não sou o primeiro não sou o Host");
         }
 
         OpenPainels(1);
@@ -270,12 +279,10 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
                 print("CENA DE JOGO!");
             }
             
-            int playerCount = runner.ActivePlayers.Count();
-            isFirstPlayer = playerCount > 0 && playerCount < 2;
+            //isFirstPlayer = playerCount > 0 && playerCount < 2;
 
             if (isFirstPlayer)
             {
-                // O jogador local é o primeiro da lista, então ele pode executar lógicas exclusivas, tipo spawnar objetos
                 Debug.Log("Sou o primeiro jogador!");
                 SpawnObject(runner);
             }
@@ -292,8 +299,8 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void SpawnObject(NetworkRunner runner)
     {
-         // Pega todos os filhos com NetworkObject (inclusive os desativados)
-        var networkObjects = HouseMultiplayer.GetComponentsInChildren<NetworkObject>(true);
+        // Pega todos os filhos com NetworkObject (inclusive os desativados)
+        /*var networkObjects = HouseMultiplayer.GetComponentsInChildren<NetworkObject>(true);
 
         foreach (var netObj in networkObjects)
         {
@@ -307,7 +314,7 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
                 runner.Spawn(netObj, netObj.transform.position, netObj.transform.rotation);
                 Debug.Log($"Spawnado objeto: {netObj.name}");
             }
-        }
+        }*/
     }
 
     private void SpawnPlayer(NetworkRunner runner, PlayerRef player)
@@ -322,16 +329,15 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
         int playerCount = runner.ActivePlayers.Count();
         print("JOGADORES NO MOMENTEO: " + playerCount);
-
         //-6.17F 7.18F 0.36F //-3.18
         
-        Vector3 pos = spawnPoints[playerCount- 1];
+        Vector3 pos = spawnPoints[player.PlayerId - 1];
 
-        if (playerCount == 1 || isFirstPlayer)
+        if (runner.LocalPlayer == player && player.PlayerId == 1)
         {
             NetworkObject playerObj = runner.Spawn(playerPrefab1, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
         }
-        else if (playerCount == 2)
+        else 
         {
             NetworkObject playerObj = runner.Spawn(playerPrefab2, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
         }
@@ -397,11 +403,11 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             player2StatusText.text = "Player 2: Conectado";
 
-            if (isFirstPlayer)
-                changeDifficultyButton.interactable = true;
+            // Apenas o "host lógico" pode alterar dificuldade
+            changeDifficultyButton.interactable = isFirstPlayer;
 
-            else
-                changeDifficultyButton.interactable = false;
+            /*else
+                changeDifficultyButton.interactable = false;*/
            
             //startGameButton.interactable = true;
         }
@@ -491,6 +497,9 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void ChangeDificculty(int dificulty)
     {
+        if (!isFirstPlayer)
+        return;
+
         if (dificulty > 0 && dificulty <= 3)
         {
             PlayerPrefs.SetInt("Dificulty", dificulty);

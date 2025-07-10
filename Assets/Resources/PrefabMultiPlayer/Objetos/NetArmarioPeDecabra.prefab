@@ -261,7 +261,7 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   direction: 0
   doorTransform: {fileID: 1972760133350005710}
-  posForOpenDoor: 0
+  posForOpenDoor: 1
   openAngle: -90
   openSpeed: 2
   _isOpen: 0
@@ -723,7 +723,6 @@ GameObject:
   - component: {fileID: 2264042056985900460}
   - component: {fileID: 8530329545615892536}
   - component: {fileID: 95851925970821099}
-  - component: {fileID: 3527117605846573277}
   - component: {fileID: 3136673585692039318}
   m_Layer: 7
   m_Name: Porta2
@@ -818,30 +817,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.019999998, y: 0.019999983, z: 0.020000001}
   m_Center: {x: 0.009979774, y: 0.15121385, z: 0.013191491}
---- !u!114 &3527117605846573277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6504231459878384088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466a5066f6122c5439978e1ad6efb611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AS: {fileID: 1715314189496256339}
-  informationAboutItem: {fileID: 0}
-  cadeado:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  passwordPainel: {fileID: 0}
-  itemNecessario: 5
-  tipoDeObjeto: 12
-  doorMoviment: {fileID: 6859867989871417911}
-  drawerMoviment: {fileID: 0}
-  unlocked: 0
 --- !u!114 &3136673585692039318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,7 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabItem: []
-  AS: {fileID: 0}
+  AS: {fileID: 1715314189496256339}
   informationAboutItem: {fileID: 0}
   cadeado:
   - {fileID: 0}
@@ -864,7 +839,7 @@ MonoBehaviour:
   passwordPainel: {fileID: 0}
   itemNecessario: 5
   tipoDeObjeto: 12
-  unlocked: 0
+  _unlocked: 0
   doorMoviment: {fileID: 2641485304718668703}
   drawerMoviment: {fileID: 0}
 --- !u!1 &7231867354603218031
