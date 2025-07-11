@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class NetDoorMoviment : NetworkBehaviour
 {
-    [Networked] private Vector3 boxSize { get; set; }
-    [Networked] private Vector3 boxCenter { get; set; }
-
     NetworkObject networkObject;
     public GameObject pants;
     [SerializeField] BoxCollider boxCollider;
@@ -45,30 +42,6 @@ public class NetDoorMoviment : NetworkBehaviour
 
             openRot = Quaternion.Euler(doorTransform.eulerAngles + rotationAxis * openAngle);
         }
-        
-        if (networkObject.HasStateAuthority)
-        {
-            if (boxCollider != null && gameObject.tag == "Machine")
-            {
-                boxSize = new Vector3(1.807f,1.85f,1.438f);
-                boxCenter = new Vector3(0.046f, 0.425f, -0.11f);
-            }
-        }
-    }
-
-    public override void FixedUpdateNetwork()
-    {
-        print("Size: " + boxSize + "Center: " + boxCenter);
-        if (boxCollider != null && gameObject.tag == "Machine")
-        {
-            ApplyColliderChanges();
-        }
-    }
-
-    private void ApplyColliderChanges()
-    {
-        boxCollider.size = boxSize;
-        boxCollider.center = boxCenter;
     }
 
     public void TryActiveDoor()
@@ -86,21 +59,7 @@ public class NetDoorMoviment : NetworkBehaviour
     }
 
     private IEnumerator ToggleMachine()
-    {
-        if (boxCollider != null)
-        {
-            if (networkObject.HasStateAuthority)
-            {
-                print("PORTA DA MAQUINA TEM STATE, MUDANDO COLLIDER");
-                ChangeSizeCollider();
-            }
-            else
-            {
-                print("PORTA DA MAQUINA NÃO TEM STATE, PEDINDO PARA MUDAR O COLLIDER");
-                RPC_SetChangeSizeCollider();
-            }
-        }
-        
+    {        
         isMoving = true;
         Quaternion startRot = doorTransform.rotation;
         Quaternion targetRot = isOpen ? closedRot : openRot;
@@ -147,18 +106,5 @@ public class NetDoorMoviment : NetworkBehaviour
         isOpen = !isOpen;
         isMoving = false;
         this.enabled = false; // Disable the script after opening/closing the door
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_SetChangeSizeCollider()
-    {
-        ChangeSizeCollider();
-    }
-
-    public void ChangeSizeCollider()
-    {
-        boxSize = new Vector3(0.87f, 0.80f, 2.70f);
-        boxCenter = new Vector3(0.06f, -0.10f, -0.70f);
-        pants.SetActive(false);
     }
 }
