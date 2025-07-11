@@ -28,20 +28,13 @@ public class NetLineController : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Invoke("GetTextsameObj", 10f );
+
         if (isPatrão)
             InvokeRepeating("RandomLine", 100, timeForShow);
     }
 
-    void RandomLine()
-    {
-        byte i = (byte)Random.Range(0, totalLinePt.Length);
-
-        StopCoroutine(ClearText(i));
-
-        ShowTheLine(i);
-    }
-
-    void ShowTheLine(byte index)
+    void GetTextsameObj()
     {
         if (textForShow[0] == null || textForShow[1] == null)
         {
@@ -65,6 +58,41 @@ public class NetLineController : NetworkBehaviour
                 }
             }
         }
+    }
+
+    void RandomLine()
+    {
+        byte i = (byte)Random.Range(0, totalLinePt.Length);
+
+        StopCoroutine(ClearText(i));
+
+        ShowTheLine(i);
+    }
+
+    void ShowTheLine(byte index)
+    {
+        /*if (textForShow[0] == null || textForShow[1] == null)
+        {
+            GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>(true);
+            HashSet<GameObject> usedObjects = new HashSet<GameObject>();
+
+            foreach (GameObject obj in allObjects)
+            {
+                if (obj.name == "TextForCharacters" && !usedObjects.Contains(obj))
+                {
+                    TextMeshProUGUI tmp = obj.GetComponentInChildren<TextMeshProUGUI>();
+                    if (tmp != null)
+                    {
+                        if (index < textForShow.Length)
+                        {
+                            textForShow[index] = tmp;
+                            usedObjects.Add(obj);
+                            index++;
+                        }
+                    }
+                }
+            }
+        }*/
 
         language = PlayerPrefs.GetInt("Language");
 

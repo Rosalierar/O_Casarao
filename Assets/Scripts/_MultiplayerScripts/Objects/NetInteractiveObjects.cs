@@ -125,17 +125,7 @@ public class NetInteractiveObjects : NetworkBehaviour
                 Debug.Log("Gaveta Aberta!");
             }
 
-            else if (itemNecessario == TipoDeItem.ChaveVermelha) /////////////////////////////////////////// CHAVE VERMELHA
-            {
-                audioSource = GetComponent<AudioSource>();
-                audioSource.Play();
-
-                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-
-                StartCoroutine(ToDisableDelayed(1, 0.5f));
-            }
-
-            else if (itemNecessario == TipoDeItem.ChaveAmarela) /////////////////////////////////////////// CHAVE AMARELA
+            else if (itemNecessario == TipoDeItem.ChaveVermelha) /////////////////////////////////////////// CHAVE VERMELHA R
             {
                 audioSource = GetComponent<AudioSource>();
                 audioSource.Play();
@@ -145,7 +135,17 @@ public class NetInteractiveObjects : NetworkBehaviour
                 StartCoroutine(ToDisableDelayed(0, 0.5f));
             }
 
-            else if (itemNecessario == TipoDeItem.ChaveVerde) /////////////////////////////////////////// CHAVE VERDE
+            else if (itemNecessario == TipoDeItem.ChaveAmarela) /////////////////////////////////////////// CHAVE AMARELA Y
+            {
+                audioSource = GetComponent<AudioSource>();
+                audioSource.Play();
+
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+
+                StartCoroutine(ToDisableDelayed(1, 0.5f));
+            }
+
+            else if (itemNecessario == TipoDeItem.ChaveVerde) /////////////////////////////////////////// CHAVE VERDE G
             {
                 audioSource = GetComponent<AudioSource>();
                 audioSource.Play();
@@ -162,7 +162,7 @@ public class NetInteractiveObjects : NetworkBehaviour
                 AS.Play();
                     
                     parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                GetComponent<Animation>().Play("GotOutKey");
+                //GetComponent<Animation>().Play("GotOutKey");
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
             }
@@ -247,8 +247,20 @@ public class NetInteractiveObjects : NetworkBehaviour
                     else if (!networkObject.HasStateAuthority)
                         doorMoviment.Rpc_RequestToggleDoor();
 
+                    NetDesableController netDesable = GetComponentInParent<NetDesableController>();
+
+                    if (networkObject.HasStateAuthority)
+                    {
+                        netDesable.IsActive = false;
+                    }
+                    else
+                    {
+                        netDesable.RPC_SetVisibilityObj(false);
+                    }
+
                     AS.clip = parent.AC[7];
                     AS.Play();
+
                     break;
                 default:
                     break;
@@ -284,40 +296,31 @@ public class NetInteractiveObjects : NetworkBehaviour
         print("Valor " + unlocked);
     }
 
-    IEnumerator ToDisableDelayed(int index, float delay)
+    IEnumerator ToDisableDelayed(byte index, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        if (networkObject.HasStateAuthority)
-        {
-            DisablePadlock(index);
-        }
-        else
-        {
-            RPC_SetDisablePadlock(index);
-        }
+        DisablePadlock(index);
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]    
-    public void RPC_SetDisablePadlock(int index)
+    public void RPC_SetDisablePadlock(byte index)
     {
         DisablePadlock(index);
     }
 
-    public void DisablePadlock(int index)
+    public void DisablePadlock(byte index)
     {
         NetDesableController netDesable = GetComponentInParent<NetDesableController>();
-        netDesable.object4Disable = cadeado[index];
 
         if (networkObject.HasStateAuthority)
         {
-            netDesable.IsActive = false;
+            netDesable.CanDisablePadLock(false, index);
         }
         else
         {
-            netDesable.RPC_SetVisibilityObj(false);
+            netDesable.RPC_SetCanDisablePadLock(false, index);
         }
-
     }
     public void SetParentReference(NetParentObjectReference parent)
     {
