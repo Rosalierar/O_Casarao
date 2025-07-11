@@ -49,15 +49,7 @@ public class OptionsController : MonoBehaviour
         print("Slider=" + sliderVolume[0].value + " | Saved=" + PlayerPrefs.GetFloat("Volume" + 0));
         print("Slider=" + sliderVolume[1].value + " | Saved=" + PlayerPrefs.GetFloat("Volume" + 1));
 
-        if (tutorial.activeSelf)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-
-            Time.timeScale = 1f;
-        }
+        
     }
 
     public void ChangeVolume(int index)
@@ -140,17 +132,6 @@ public class OptionsController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(index);
     }
 
-    public void OpenTutorial()
-    {
-        Time.timeScale = 0f;
-        tutorial.SetActive(true);
-    }
-
-    public void CloseTutorial()
-    {
-        Time.timeScale = 1f;
-        tutorial.SetActive(false);
-    }
 
     public void GoToKoobby(int index)
     {
