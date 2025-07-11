@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NetWashingMachineController : NetworkBehaviour
 {
-    public GameObject pants;
-    [SerializeField] BoxCollider boxCollider;
-    [Networked] private Vector3 boxSize { get; set; }
-    [Networked] private Vector3 boxCenter { get; set; }
+    //public GameObject pants;
+   // [SerializeField] BoxCollider boxCollider;
+    //[Networked] private Vector3 boxSize { get; set; }
+    //[Networked] private Vector3 boxCenter { get; set; }
 
     NetworkObject net;
     [SerializeField] AudioClip[] audios;
@@ -15,29 +15,29 @@ public class NetWashingMachineController : NetworkBehaviour
 
     void Start()
     {
-        if (net.HasStateAuthority)
+        /*if (net.HasStateAuthority)
         {
             if (boxCollider != null && gameObject.tag == "Machine")
             {
                 boxSize = new Vector3(1.807f,1.85f,1.438f);
                 boxCenter = new Vector3(0.046f, 0.425f, -0.11f);
             }
-        }
+        }*/
     }
 
     public override void FixedUpdateNetwork()
     {
-        print("Size: " + boxSize + "Center: " + boxCenter);
+        /*print("Size: " + boxSize + "Center: " + boxCenter);
         if (boxCollider != null && gameObject.tag == "Machine")
         {
             ApplyColliderChanges();
-        }
+        }*/
     }
     
     private void ApplyColliderChanges()
     {
-        boxCollider.size = boxSize;
-        boxCollider.center = boxCenter;
+        //boxCollider.size = boxSize;
+        //boxCollider.center = boxCenter;
     }
 
 
@@ -49,21 +49,22 @@ public class NetWashingMachineController : NetworkBehaviour
 
     public void ChangeSizeCollider()
     {
-        boxSize = new Vector3(0.87f, 0.80f, 2.70f);
-        boxCenter = new Vector3(0.06f, -0.10f, -0.70f);
-        pants.SetActive(false);
+        //boxSize = new Vector3(0.87f, 0.80f, 2.70f);
+        //boxCenter = new Vector3(0.06f, -0.10f, -0.70f);
+        //pants.SetActive(false);
     }
 
     public void StartTime()
     {
-        NetDesableController netDesable = GetComponentInParent<NetDesableController>();
+        StartCoroutine(TimerWashingClothes());
+
+        /*NetDesableController netDesable = GetComponentInParent<NetDesableController>();
         net = GetComponentInParent<NetworkObject>();
 
         if (net.HasStateAuthority)
             netDesable.IsActive = false;
         else
             netDesable.RPC_SetVisibilityObj(false);
-        StartCoroutine(TimerWashingClothes());
 
         if (boxCollider != null)
         {
@@ -77,7 +78,7 @@ public class NetWashingMachineController : NetworkBehaviour
                 print("PORTA DA MAQUINA NÃO TEM STATE, PEDINDO PARA MUDAR O COLLIDER");
                 RPC_SetChangeSizeCollider();
             }
-        }
+        }*/
     }
 
     IEnumerator TimerWashingClothes()
@@ -92,6 +93,7 @@ public class NetWashingMachineController : NetworkBehaviour
         audioSource.clip = audios[1];
         audioSource.Play();
 
+        net = GetComponentInParent<NetworkObject>();
         NetInteractiveObjects interactive = GetComponent<NetInteractiveObjects>();
 
         if (net.HasStateAuthority)

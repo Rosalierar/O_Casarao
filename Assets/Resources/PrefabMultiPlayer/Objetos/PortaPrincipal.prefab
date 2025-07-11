@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 9186338861718830861}
   - component: {fileID: 3045397679258789164}
   - component: {fileID: 6919172202747922685}
+  - component: {fileID: 7475799633718722934}
   m_Layer: 0
   m_Name: PortaPrincipal
   m_TagString: PortaEntrada
@@ -246,6 +247,7 @@ MonoBehaviour:
   - {fileID: 3779050189923553359}
   NetworkedBehaviours:
   - {fileID: 6919172202747922685}
+  - {fileID: 7475799633718722934}
   - {fileID: 1556688950981356415}
   - {fileID: 38825239256727988}
   - {fileID: 7985925142854792178}
@@ -266,7 +268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   song: {fileID: 0}
   enemy: {fileID: 0}
-  player: {fileID: 0}
+  player:
+  - {fileID: 0}
   isOpenDoor: 0
   doorMovimentSecond: {fileID: 38825239256727988}
   doorMoviment: {fileID: 3842226699818427964}
@@ -291,6 +294,28 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &7475799633718722934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059521662248489569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2a5b866ad44d646bbfaec24125dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  object4Disable: {fileID: 0}
+  other4Disable: {fileID: 0}
+  _CanDisablePdLock0: 0
+  _CanDisablePdLock1: 0
+  _CanDisablePdLock2: 0
+  padLock:
+  - {fileID: 7344433488302304062}
+  - {fileID: 6155508019286628727}
+  - {fileID: 2470020650056826764}
+  _IsActive: 1
 --- !u!1 &1136730602037731898
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,16 +568,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabItem: []
+  networkObject: {fileID: 0}
   AS: {fileID: 7988789995754061758}
   informationAboutItem: {fileID: 0}
   cadeado:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2470020650056826764}
   passwordPainel: {fileID: 0}
   itemNecessario: 2
   tipoDeObjeto: 2
-  unlocked: 0
+  _unlocked: 0
   doorMoviment: {fileID: 0}
   drawerMoviment: {fileID: 0}
 --- !u!1 &3030478912478315686
@@ -1475,16 +1501,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabItem: []
+  networkObject: {fileID: 0}
   AS: {fileID: 5701463534871932559}
   informationAboutItem: {fileID: 0}
   cadeado:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6155508019286628727}
   - {fileID: 0}
   passwordPainel: {fileID: 0}
   itemNecessario: 1
   tipoDeObjeto: 1
-  unlocked: 0
+  _unlocked: 0
   doorMoviment: {fileID: 0}
   drawerMoviment: {fileID: 0}
 --- !u!1 &6964800098930195041
@@ -1822,16 +1849,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabItem: []
+  networkObject: {fileID: 0}
   AS: {fileID: 7428407774719356067}
   informationAboutItem: {fileID: 0}
   cadeado:
-  - {fileID: 0}
+  - {fileID: 7344433488302304062}
   - {fileID: 0}
   - {fileID: 0}
   passwordPainel: {fileID: 0}
   itemNecessario: 0
   tipoDeObjeto: 0
-  unlocked: 0
+  _unlocked: 0
   doorMoviment: {fileID: 0}
   drawerMoviment: {fileID: 0}
 --- !u!1 &7492476129891307734
