@@ -28,7 +28,21 @@ public class PasswordController : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
             audioSource.Play();
 
-            GameObject.Find("Geladeira").GetComponentInChildren<InteractiveObject>().unlocked = true;
+            if (GameObject.Find("Geladeira") != null)
+            {
+                GameObject.Find("Geladeira").GetComponentInChildren<InteractiveObject>().unlocked = true;
+            }
+            else
+            {
+                if (GameObject.FindWithTag("Fridge").GetComponent<NetInteractiveObjects>().networkObject.HasStateAuthority)
+                {
+                    GameObject.FindWithTag("Fridge").GetComponent<NetInteractiveObjects>().UnlockedController(true);
+                }
+                else
+                {
+                    GameObject.FindWithTag("Fridge").GetComponent<NetInteractiveObjects>().RPC_SetUnlockedController(true);
+                }
+            }
 
             Invoke("ClosePainel", 0.7f);
 

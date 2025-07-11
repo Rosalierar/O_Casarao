@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 1379439361338980877}
   m_Layer: 7
   m_Name: Porta
-  m_TagString: Untagged
+  m_TagString: Fridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -844,6 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabItem: []
+  networkObject: {fileID: 0}
   AS: {fileID: 5854228434197145527}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -853,7 +854,7 @@ MonoBehaviour:
   passwordPainel: {fileID: 0}
   itemNecessario: 11
   tipoDeObjeto: 11
-  unlocked: 0
+  _unlocked: 0
   doorMoviment: {fileID: 2597960180727493528}
   drawerMoviment: {fileID: 0}
 --- !u!1 &6856410918474507439

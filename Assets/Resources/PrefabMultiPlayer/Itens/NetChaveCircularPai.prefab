@@ -4951,7 +4951,7 @@ GameObject:
   - component: {fileID: 7960722316142212325}
   m_Layer: 7
   m_Name: NetChave_Circular
-  m_TagString: Untagged
+  m_TagString: CircleKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5051,7 +5051,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8253588801228638558}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: f6c5dce2d970dc446a3f831b8261cdcc, type: 2}
   m_Animations:

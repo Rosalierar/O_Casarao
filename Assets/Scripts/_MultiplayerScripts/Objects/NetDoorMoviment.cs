@@ -41,7 +41,6 @@ public class NetDoorMoviment : NetworkBehaviour
             Vector3 rotationAxis = (direction == 0) ? Vector3.right : -Vector3.right;
 
             openRot = Quaternion.Euler(doorTransform.eulerAngles + rotationAxis * openAngle);
-
         }
     }
 
@@ -60,19 +59,7 @@ public class NetDoorMoviment : NetworkBehaviour
     }
 
     private IEnumerator ToggleMachine()
-    {
-        if (boxCollider != null)
-        {
-            if (networkObject.HasStateAuthority)
-            {
-                ChangeSizeCollider();
-            }
-            else
-            {
-                RPC_SetChangeSizeCollider();
-            }
-        }
-        
+    {        
         isMoving = true;
         Quaternion startRot = doorTransform.rotation;
         Quaternion targetRot = isOpen ? closedRot : openRot;
@@ -119,18 +106,5 @@ public class NetDoorMoviment : NetworkBehaviour
         isOpen = !isOpen;
         isMoving = false;
         this.enabled = false; // Disable the script after opening/closing the door
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_SetChangeSizeCollider()
-    {
-        ChangeSizeCollider();
-    }
-
-    public void ChangeSizeCollider()
-    {
-        boxCollider.size = new Vector3(0f, 0.7866557f, 0f);
-        boxCollider.center = new Vector3(0f, -0.1066722f, 0f);
-        pants.SetActive(false);
     }
 }

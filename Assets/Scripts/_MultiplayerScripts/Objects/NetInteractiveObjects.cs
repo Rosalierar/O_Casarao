@@ -7,7 +7,7 @@ using Fusion;
 public class NetInteractiveObjects : NetworkBehaviour
 {
     [SerializeField] GameObject[] prefabItem;
-    NetworkObject networkObject;
+    public NetworkObject networkObject;
 
      [Header("Sons dos Itens")]
     [SerializeField] AudioSource AS;
@@ -63,7 +63,18 @@ public class NetInteractiveObjects : NetworkBehaviour
                 Debug.Log("Porta Aberta!");
             }
 
-            if (itemNecessario == TipoDeItem.Alicate)
+            if (itemNecessario == TipoDeItem.GrampoDeCabelo) /////////////////////////////////////////// GRAMPO DE CABELO
+            {
+                parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
+                doorMoviment.enabled = true;
+                
+                if (networkObject.HasStateAuthority)
+                    doorMoviment.TryActiveDoor();
+                else if (!networkObject.HasStateAuthority)
+                    doorMoviment.Rpc_RequestToggleDoor();
+            }
+
+            if (itemNecessario == TipoDeItem.Alicate) //////////////////////////////////////// ALICATE
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}  
                 NetDesableController netDesable = GetComponentInParent<NetDesableController>();
@@ -88,7 +99,7 @@ public class NetInteractiveObjects : NetworkBehaviour
 
                 Debug.Log("Porta Aberta!");
             }
-            else if (itemNecessario == TipoDeItem.Crucifixo)
+            else if (itemNecessario == TipoDeItem.Crucifixo) ///////////////////////////////////////// crucifixo
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
@@ -146,6 +157,11 @@ public class NetInteractiveObjects : NetworkBehaviour
 
             else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
             {
+                GameObject.FindWithTag("CircleKey").GetComponentInParent<Animation>().Play("GotOutKey");
+                AS.clip = parent.AC[6];
+                AS.Play();
+                    
+                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 GetComponent<Animation>().Play("GotOutKey");
 
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
@@ -178,7 +194,9 @@ public class NetInteractiveObjects : NetworkBehaviour
         
         else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
         {
-            passwordPainel = GameObject.Find("PanelGeladeira");
+            GameObject painel = GameObject.Find("PanelGeladeira");
+            Transform primeiroFilho = painel.transform.GetChild(0);
+            passwordPainel = primeiroFilho.gameObject;
             passwordPainel.SetActive(true);
         }
 
@@ -219,7 +237,6 @@ public class NetInteractiveObjects : NetworkBehaviour
                         doorMoviment.Rpc_RequestToggleDoor();
 
                     AS.clip = parent.AC[11];
-                    
                     AS.Play();
                     break;
                 case TipoDeItem.Desinfetante:
