@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class PausaJogo : MonoBehaviour
 {
-    bool InConf = false;
+    [SerializeField]GameObject Conf, Tuto;
     void Update()
     {
-        if (InConf)
+        if (Conf.activeSelf || Tuto.activeSelf)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 0f;
+        }else {
+            Time.timeScale = 1f;
         }
     }
 }
