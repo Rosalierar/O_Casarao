@@ -7,7 +7,7 @@ public class NetDrawerMoviment : NetworkBehaviour
 {
      [SerializeField]int indexVector;
     public Transform drawerTransform;
-    public float openDistance = 0.5f;
+    public float openDistance = 0.3f;
     public float openSpeed = 2f;
 
     private bool isOpen = false;
@@ -44,7 +44,7 @@ public class NetDrawerMoviment : NetworkBehaviour
         float elapsed = 0f;
         while (elapsed < 1f)
         {
-            elapsed += Time.deltaTime * openSpeed;
+            elapsed += Runner.DeltaTime * openSpeed;
             drawerTransform.position = Vector3.Lerp(startPos, targetPos, elapsed);
             yield return null;
         }

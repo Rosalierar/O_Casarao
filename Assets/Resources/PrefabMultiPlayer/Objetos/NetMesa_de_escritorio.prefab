@@ -596,7 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexVector: 0
   drawerTransform: {fileID: 8383174950962967784}
-  openDistance: 0.3
+  openDistance: 0.1
   openSpeed: 2
 --- !u!114 &2757001001944787084
 MonoBehaviour:
