@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabItem: []
+  networkObject: {fileID: 0}
   AS: {fileID: 2648903954808373119}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -149,7 +150,7 @@ MonoBehaviour:
   passwordPainel: {fileID: 0}
   itemNecessario: 6
   tipoDeObjeto: 6
-  unlocked: 0
+  _unlocked: 0
   doorMoviment: {fileID: 0}
   drawerMoviment: {fileID: 0}
 --- !u!82 &2648903954808373119

@@ -4843,6 +4843,7 @@ GameObject:
   - component: {fileID: 4902754842305146849}
   - component: {fileID: 980266337881846894}
   - component: {fileID: 4408630894911763673}
+  - component: {fileID: 4613773318566120695}
   m_Layer: 7
   m_Name: NetChaveCircularPai
   m_TagString: Itens
@@ -4885,6 +4886,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 4902754842305146849}
   - {fileID: 4408630894911763673}
+  - {fileID: 4613773318566120695}
   - {fileID: 2052661255469909045}
   - {fileID: 7960722316142212325}
   ForceRemoteRenderTimeframe: 0
@@ -4914,9 +4916,9 @@ Animation:
   m_GameObject: {fileID: 2617228549843625733}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: f6c5dce2d970dc446a3f831b8261cdcc, type: 2}
+  m_Animation: {fileID: 7400000, guid: c003e77a2fb36394aa7c43699bfd7e8b, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: f6c5dce2d970dc446a3f831b8261cdcc, type: 2}
+  - {fileID: 7400000, guid: c003e77a2fb36394aa7c43699bfd7e8b, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -4934,6 +4936,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _IsVisible: 1
+--- !u!114 &4613773318566120695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617228549843625733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2a128e06de9f842a01c7bbfb989097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AnimStart: 0
+  _anim: {fileID: 980266337881846894}
 --- !u!1 &8253588801228638558
 GameObject:
   m_ObjectHideFlags: 0
@@ -4946,7 +4962,6 @@ GameObject:
   - component: {fileID: 5832990052536494133}
   - component: {fileID: 6136522438089970674}
   - component: {fileID: 5271741802464474797}
-  - component: {fileID: 1494013105887466215}
   - component: {fileID: 2052661255469909045}
   - component: {fileID: 7960722316142212325}
   m_Layer: 7
@@ -5044,22 +5059,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.10252889, y: 0.06721878, z: 0.027571041}
   m_Center: {x: -0.013564428, y: 0.0013049295, z: 0.004593922}
---- !u!111 &1494013105887466215
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8253588801228638558}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: f6c5dce2d970dc446a3f831b8261cdcc, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: f6c5dce2d970dc446a3f831b8261cdcc, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &2052661255469909045
 MonoBehaviour:
   m_ObjectHideFlags: 0

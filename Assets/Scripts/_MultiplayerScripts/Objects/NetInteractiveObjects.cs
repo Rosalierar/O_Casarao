@@ -60,7 +60,7 @@ public class NetInteractiveObjects : NetworkBehaviour
                 else if (!networkObject.HasStateAuthority)
                     drawerMoviment.Rpc_RequestToggleDrawer();
 
-                Debug.Log("Porta Aberta!");
+                Debug.Log("Gaveta Aberta!");
             }
 
             if (itemNecessario == TipoDeItem.GrampoDeCabelo) /////////////////////////////////////////// GRAMPO DE CABELO
@@ -157,13 +157,20 @@ public class NetInteractiveObjects : NetworkBehaviour
 
             else if (itemNecessario == TipoDeItem.Carne) /////////////////////////////////////////// CACHORRO
             {
-                GameObject.FindWithTag("CircleKey").GetComponentInParent<Animation>().Play("GotOutKey");
+                AnimSyncController animSync = GameObject.FindWithTag("CircleKey").GetComponentInParent<AnimSyncController>();
+
+                if (networkObject.HasStateAuthority)
+                {
+                    animSync.SetStartAnimKey(true);
+                }
+                else
+                {
+                    animSync.RPC_SetStartAnimKey(true);
+                }
+
                 AS.clip = parent.AC[6];
                 AS.Play();
-                    
-                    parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
-                //GetComponent<Animation>().Play("GotOutKey");
-
+            
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
             }
 

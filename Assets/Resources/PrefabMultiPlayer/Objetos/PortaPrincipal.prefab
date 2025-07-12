@@ -308,9 +308,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   object4Disable: {fileID: 0}
   other4Disable: {fileID: 0}
-  _CanDisablePdLock0: 0
-  _CanDisablePdLock1: 0
-  _CanDisablePdLock2: 0
+  _IsActivePdLock0: 1
+  _IsActivePdLock1: 1
+  _IsActivePdLock2: 1
   padLock:
   - {fileID: 7344433488302304062}
   - {fileID: 6155508019286628727}

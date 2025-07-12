@@ -106,8 +106,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.11, y: 0.08, z: 0.05}
-  m_Center: {x: -0.0171916, y: -0.00051387947, z: 0.0009999999}
+  m_Size: {x: 0.11, y: 0.06461967, z: 0.050000004}
+  m_Center: {x: -0.0171916, y: 0.007176347, z: 0.0009999996}
 --- !u!114 &2013938488435979409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4979,7 +4979,6 @@ GameObject:
   - component: {fileID: 9056300639424978476}
   - component: {fileID: 5119180859349107846}
   - component: {fileID: 8669507158837843723}
-  - component: {fileID: 7239701713459704292}
   - component: {fileID: -8694923316376214224}
   m_Layer: 7
   m_Name: NetChaveAmarelaPai
@@ -5043,22 +5042,6 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 0
   DisableSharedModeInterpolation: 1
---- !u!111 &7239701713459704292
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8094922678017218334}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: f6c5dce2d970dc446a3f831b8261cdcc, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: f6c5dce2d970dc446a3f831b8261cdcc, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &-8694923316376214224
 MonoBehaviour:
   m_ObjectHideFlags: 0

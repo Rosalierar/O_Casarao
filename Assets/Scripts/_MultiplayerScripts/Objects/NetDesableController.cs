@@ -38,12 +38,12 @@ public class NetDesableController : NetworkBehaviour
             other4Disable.gameObject.SetActive(IsActive);
         }
 
-
+        print(gameObject.name + "Is Visible PL: " + IsActivePdLock0 + IsActivePdLock1 + IsActivePdLock2 + "Possui State: " + HasStateAuthority);
         bool[] canDisableArray = { IsActivePdLock0, IsActivePdLock1, IsActivePdLock2 };
 
         for (int i = 0; i < padLock.Length; i++)
         {
-            if (padLock[i] != null && canDisableArray[i] == true)
+            if (padLock[i] != null && canDisableArray[i] == false)
             {
                 print(canDisableArray[i] + " Cadeado");
                 padLock[i].gameObject.SetActive(canDisableArray[i]);
