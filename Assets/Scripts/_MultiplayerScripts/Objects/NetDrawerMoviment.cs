@@ -17,7 +17,7 @@ public class NetDrawerMoviment : NetworkBehaviour
     private Vector3 closedPos;
     private Vector3 openPos;
 
-    void Awake()
+    void Start()
     {
         closedPos = drawerTransform.position;
         openPos = closedPos + drawerTransform.up * openDistance;

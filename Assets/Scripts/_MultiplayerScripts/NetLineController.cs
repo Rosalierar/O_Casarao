@@ -71,29 +71,6 @@ public class NetLineController : NetworkBehaviour
 
     void ShowTheLine(byte index)
     {
-        /*if (textForShow[0] == null || textForShow[1] == null)
-        {
-            GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>(true);
-            HashSet<GameObject> usedObjects = new HashSet<GameObject>();
-
-            foreach (GameObject obj in allObjects)
-            {
-                if (obj.name == "TextForCharacters" && !usedObjects.Contains(obj))
-                {
-                    TextMeshProUGUI tmp = obj.GetComponentInChildren<TextMeshProUGUI>();
-                    if (tmp != null)
-                    {
-                        if (index < textForShow.Length)
-                        {
-                            textForShow[index] = tmp;
-                            usedObjects.Add(obj);
-                            index++;
-                        }
-                    }
-                }
-            }
-        }*/
-
         language = PlayerPrefs.GetInt("Language");
 
         switch (language)
@@ -101,21 +78,24 @@ public class NetLineController : NetworkBehaviour
             case 0:
                 foreach (TextMeshProUGUI text4AllPlayerSee in textForShow)
                 {
-                    text4AllPlayerSee.text = totalLinePt[index];
+                    if (text4AllPlayerSee != null)
+                        text4AllPlayerSee.text = totalLinePt[index];
                 }
                 break;
 
             case 1:
                 foreach (TextMeshProUGUI text4AllPlayerSee in textForShow)
                 {
-                    text4AllPlayerSee.text = totalLineEn[index];
+                    if (text4AllPlayerSee != null)
+                        text4AllPlayerSee.text = totalLineEn[index];
                 }
                 break;
 
             default:
                 foreach (TextMeshProUGUI text4AllPlayerSee in textForShow)
                 {
-                    text4AllPlayerSee.text = totalLinePt[index];
+                    if (text4AllPlayerSee != null)
+                        text4AllPlayerSee.text = totalLinePt[index];
                 }
                 break;
         }
@@ -129,7 +109,8 @@ public class NetLineController : NetworkBehaviour
 
         foreach (TextMeshProUGUI text4AllPlayerSee in textForShow)
         {
-            text4AllPlayerSee.text = "";
+            if (text4AllPlayerSee != null)
+                text4AllPlayerSee.text = "";
         }
     }
 
