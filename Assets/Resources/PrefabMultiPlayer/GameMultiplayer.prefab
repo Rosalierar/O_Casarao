@@ -6368,7 +6368,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2393863112824961611}
   - component: {fileID: 1253222149888193378}
-  - component: {fileID: 4035361781476418473}
   - component: {fileID: 6612910014514638188}
   m_Layer: 0
   m_Name: "Detec\xE7\xE3oFilha"
@@ -6413,32 +6412,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.87, y: 1.89, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4035361781476418473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7901184277264815042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9473033eb99b91f4a956a8bcbcdbf1d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeForShow: 200
-  "isPatr\xE3o": 0
-  textForShow:
-  - {fileID: 0}
-  - {fileID: 0}
-  totalLinePt:
-  - "Eu n\xE3o sei como voc\xEA aguenta trabalhar tanto assim, deve ser da sua natureza,
-    n\xE9?\r\n"
-  - "Eu confio em voc\xEA, mas s\xF3 porque voc\xEA \xE9 diferente dos outros negros."
-  totalLineEn:
-  - 'I don''t know how you manage to work so hard, it must be in your nature, right?
-
-'
-  - I trust you, but only because you're different from other black people.
 --- !u!114 &6612910014514638188
 MonoBehaviour:
   m_ObjectHideFlags: 0

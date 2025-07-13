@@ -7795,7 +7795,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 488903261672924623}
         m_TargetAssemblyTypeName: OptionsController, Assembly-CSharp
         m_MethodName: ChangeLightRange
         m_Mode: 1
@@ -8016,7 +8016,7 @@ Transform:
   m_GameObject: {fileID: 6604379187347473392}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.394, y: 0.289, z: 0.23}
+  m_LocalPosition: {x: 0.265, y: 0.122, z: 0.422}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

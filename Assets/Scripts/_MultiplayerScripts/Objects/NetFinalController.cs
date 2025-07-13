@@ -32,7 +32,7 @@ public class NetFinalController : MonoBehaviour
 
         camMain.enabled = false;
         animCam.enabled = false;
-        
+
         print("FINAL CAM PEGOU OS COMPONENTES");
     }
 
@@ -67,10 +67,10 @@ public class NetFinalController : MonoBehaviour
                 }
 
                 animCam.enabled = true;
-                player[0].SetActive(false);
-                enemy.SetActive(false);
-
+                //player[0].SetActive(false);
                 DesableCams();
+
+                enemy.SetActive(false);
 
                 print("FINAL CONTROLLER");
             }
@@ -93,28 +93,27 @@ public class NetFinalController : MonoBehaviour
     {
         GetComponent<BoxCollider>().enabled = true;
 
-        GameObject[] camObjects = GameObject.FindGameObjectsWithTag("MainCamera");
 
-        foreach (GameObject obj in camObjects)
+        GameObject camObjects = GameObject.FindGameObjectWithTag("MainCamera");
+
+        Camera cam = camObjects.GetComponent<Camera>();
+
+        if (cam != null)
         {
-            Camera cam = obj.GetComponent<Camera>();
-            if (cam != null)
-            {
-                cam.enabled = false; // desativa a câmera
-            }
+            cam.enabled = false; // desativa a câmera
         }
+
+        NetworkObject[] playersNetwork = GameObject.FindGameObjectsWithTag("Player").GetComponentInParent<NetworkObject>();
 
         camMain.enabled = true;
 
-        GameObject[] canvaObjects = GameObject.FindGameObjectsWithTag("Canva");
+        GameObject canvaObjects = GameObject.FindGameObjectWithTag("Canva");
 
-        foreach (GameObject obj in canvaObjects)
+        GameObject canva = canvaObjects.GetComponent<GameObject>();
+
+        if (canva != null)
         {
-            GameObject canva = obj.GetComponent<GameObject>();
-            if (canva != null)
-            {
-                canva.SetActive(false); // desativa os Canvas
-            }
+            canva.SetActive(false); // desativa os Canvas
         }
 
         doorMoviment.enabled = true;
@@ -139,7 +138,13 @@ public class NetFinalController : MonoBehaviour
     {
         if (other.CompareTag("PortaEntrada"))
         {
-            SceneManager.LoadScene(6);
+            NetworkRunner runner = FindObjectOfType<NetworkRunner>();
+            StartGameMultiplayer(runner);
         }
+    }
+    
+    private async void StartGameMultiplayer(NetworkRunner runner)
+    {
+        await runner.LoadScene(SceneRef.FromIndex(5));
     }
 }
