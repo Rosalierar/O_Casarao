@@ -230,9 +230,13 @@ public class NetMovePlayer : NetworkBehaviour
         ch.enabled = true;
         controllerPlayer.blackPainel.SetActive(false); //ativa o painel pretos
     }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     private void RPC_AskPatraoToHandleHit(NetworkObject patraoNetObj, PlayerRef playerWhoHit)
     {
-        var patraoScript = patraoNetObj.GetComponent<NetPatraoController>();
+        print("CHAMANDO RPC PARA PEDI QUE PATRAO CONTINUE SEU FUNCIONAMENTO");
+
+        NetPatraoController patraoScript = patraoNetObj.GetComponent<NetPatraoController>();
         if (patraoScript != null)
         {
             patraoScript.RPC_PlayerCaught(playerWhoHit);
@@ -241,24 +245,24 @@ public class NetMovePlayer : NetworkBehaviour
 
     void OnTriggerEnter(Collider collision) //verifica se o jogador colidiu com algo
     {
-        if (networkObject.HasInputAuthority)
+        if (!networkObject.HasInputAuthority) return;
+        
+        if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
         {
-            if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
-                {
-                    gameObject.layer = LayerMask.NameToLayer("Hide"); //define a layer do jogador como "Hide"
+            gameObject.layer = LayerMask.NameToLayer("Hide"); //define a layer do jogador como "Hide"
 
-                    for (int i = 0; i < song.audioSorceBackGround.Length; i++)
-                    {
-                        if (song.songsBackGround[i] != null && i != 3)
-                        {
-                            song.audioSorceBackGround[i].Stop();
-                        }
-                        else
-                        {
-                            song.audioSorceBackGround[i].Play();
-                        }
-                    }
+            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+            {
+                if (song.songsBackGround[i] != null && i != 3)
+                {
+                    song.audioSorceBackGround[i].Stop();
                 }
+                else
+                {
+                    song.audioSorceBackGround[i].Play();
+                }
+            }
+        }
 
             if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
             {
@@ -269,10 +273,12 @@ public class NetMovePlayer : NetworkBehaviour
                     // Envia pedido para o patrão tomar uma ação
                     if (patrao.HasStateAuthority)
                     {
+                        print("No move player patrao tem state chamando continue game normal");
                         patrao.GetComponentInChildren<NetPatraoController>().ContinueGame();
                     }
                     else
                     {
+                        print("No move player patrao nao tem state chamando rpc");
                         RPC_AskPatraoToHandleHit(patrao, Runner.LocalPlayer);
                     }
                 }
@@ -293,7 +299,6 @@ public class NetMovePlayer : NetworkBehaviour
                 jumpscareDirector.Play();
                 print("Touch Enemy");
             }
-        }
     }
 
     void OnTriggerExit(Collider collision)

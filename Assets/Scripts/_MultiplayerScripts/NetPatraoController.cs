@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using Fusion;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -83,11 +81,6 @@ public class NetPatraoController : NetworkBehaviour
                 Destroy(patrolPointsObjects[i].gameObject);
             }
 
-            /*foreach (Transform t in patrolPointsObjects)
-            {
-                Destroy(t.gameObject);
-            }*/
-
             animPatrao = GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>(); // Obtém o componente NavMeshAgent do objeto
             StartCoroutine(TimerPatrol()); // Inicia a patrulha
@@ -137,11 +130,6 @@ public class NetPatraoController : NetworkBehaviour
         {
             Gizmos.DrawSphere(patrolPoints[i], 0.2f);
         }
-
-        /*foreach (Vector3 point in patrolPoints)
-        {
-            Gizmos.DrawSphere(point, 0.2f);
-        }*/
     }
 
     private float ValueSpeedPatrol()
@@ -227,26 +215,19 @@ public class NetPatraoController : NetworkBehaviour
     {
         Debug.Log("Jogador encostou no patrão, StateAuthority vai lidar com isso");
 
-        // Envia outro RPC de volta apenas para o jogador atingido
-        ContinueGame();
+        if (!networkObject.HasStateAuthority) return;
+            ContinueGame();
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    public void RPC_CallWaitForSpawn([RpcTarget] PlayerRef target)
-    {
-        if (Runner.LocalPlayer == target)
-        {
-        }
-    }
     public void ContinueGame()
     {
         seePlayer = false;
+        agent.isStopped = true;
 
         agent.speed = ValueSpeedPatrol();
         animPatrao.SetBool("isWalking", false);
         animPatrao.SetBool("isRunning", false);
 
-        agent.isStopped = true;
 
         print("Continue Game foi chamado" + agent.isStopped);
         isPatrol = true; // Define que o patrão está patrulhando
@@ -256,8 +237,6 @@ public class NetPatraoController : NetworkBehaviour
         agent.Warp(new Vector3(-11.42f, 7.13f, -7.51f));
 
         StartCoroutine(TimerStopPersecution()); // Inicia a contagem para parar a perseguição
-
-        //playerTransform = null; //zera as informações
     }
 
     void PatraoVision()
