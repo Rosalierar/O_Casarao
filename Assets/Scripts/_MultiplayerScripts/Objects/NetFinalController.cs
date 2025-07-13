@@ -103,7 +103,13 @@ public class NetFinalController : MonoBehaviour
             cam.enabled = false; // desativa a câmera
         }
 
-        NetworkObject[] playersNetwork = GameObject.FindGameObjectsWithTag("Player").GetComponentInParent<NetworkObject>();
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        NetworkObject[] playersNetwork = new NetworkObject[players.Length];
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            playersNetwork[i] = players[i].GetComponentInParent<NetworkObject>();
+        }
 
         camMain.enabled = true;
 
