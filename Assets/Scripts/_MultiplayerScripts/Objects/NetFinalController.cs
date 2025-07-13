@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class NetFinalController : MonoBehaviour
 {
+    LoobyManager lobby;
+    NetworkRunner runner;
     NetworkObject networkObject;
     [SerializeField] SongsController song;
     [SerializeField] GameObject enemy;
@@ -33,6 +33,8 @@ public class NetFinalController : MonoBehaviour
         camMain.enabled = false;
         animCam.enabled = false;
 
+        lobby = FindObjectOfType<LoobyManager>();
+        runner = FindObjectOfType<NetworkRunner>();
         print("FINAL CAM PEGOU OS COMPONENTES");
     }
 
@@ -67,7 +69,7 @@ public class NetFinalController : MonoBehaviour
                 }
 
                 animCam.enabled = true;
-                //player[0].SetActive(false);
+
                 DesableCams();
 
                 enemy.SetActive(false);
@@ -85,14 +87,13 @@ public class NetFinalController : MonoBehaviour
 
         if (stateInfo.IsName("SeeAround") && stateInfo.normalizedTime >= 1f)
         {
-            SceneManager.LoadScene(6);
+            StartGameMultiplayer(runner);
         }
     }
 
     public void DesableCams()
     {
         GetComponent<BoxCollider>().enabled = true;
-
 
         GameObject camObjects = GameObject.FindGameObjectWithTag("MainCamera");
 
@@ -103,40 +104,15 @@ public class NetFinalController : MonoBehaviour
             cam.enabled = false; // desativa a câmera
         }
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        NetworkObject[] playersNetwork = new NetworkObject[players.Length];
-        
-
-        for (int i = 0; i < players.Length; i++)
+        foreach (var kvp in lobby.playerObjects)
         {
-            print(playersNetwork[i] + "Player no for para pegar: " + players[i]);
-            playersNetwork[i] = players[i].GetComponentInParent<NetworkObject>();
-        }
-
-        NetDesableController netDesable = GetComponent<NetDesableController>();
-        netDesable.object4Disable = playersNetwork[0].gameObject;
-        netDesable.other4Disable = playersNetwork[1].gameObject;
-
-        if (networkObject.HasStateAuthority)
-        {
-            netDesable.IsActive = false;
-        }
-        else
-        {
-            netDesable.RPC_SetVisibilityObj(false);
+            if (kvp.Value != null && kvp.Value.HasStateAuthority)
+            {
+                runner.Despawn(kvp.Value);
+            }
         }
 
         camMain.enabled = true;
-
-        GameObject canvaObjects = GameObject.Find("Canvas");
-        print(canvaObjects.name);
-
-        GameObject canva = canvaObjects.GetComponent<GameObject>();
-
-        if (canva != null)
-        {
-            canva.SetActive(false); // desativa os Canvas
-        }
 
         doorMoviment.enabled = true;
         doorMovimentSecond.enabled = true;
@@ -160,13 +136,12 @@ public class NetFinalController : MonoBehaviour
     {
         if (other.CompareTag("PortaEntrada"))
         {
-            NetworkRunner runner = FindObjectOfType<NetworkRunner>();
             StartGameMultiplayer(runner);
         }
     }
     
     private async void StartGameMultiplayer(NetworkRunner runner)
     {
-        await runner.LoadScene(SceneRef.FromIndex(5));
+        await runner.LoadScene(SceneRef.FromIndex(6));
     }
 }

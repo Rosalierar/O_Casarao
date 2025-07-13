@@ -33,7 +33,8 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] private NetworkObject playerPrefab1, playerPrefab2;
     [SerializeField] private NetworkObject HouseMultiplayer;
 
-    private List<PlayerRef> connectedPlayers = new List<PlayerRef>();
+    public List<PlayerRef> connectedPlayers = new List<PlayerRef>();
+    public Dictionary<PlayerRef, NetworkObject> playerObjects = new Dictionary<PlayerRef, NetworkObject>();
 
     [Header("UI")]
     [SerializeField] private GameObject[] painels = new GameObject[3];
@@ -336,10 +337,12 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         if (runner.LocalPlayer == player && player.PlayerId == 1)
         {
             NetworkObject playerObj = runner.Spawn(playerPrefab1, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
+            playerObjects.Add(player, playerObj);
         }
-        else 
+        else
         {
             NetworkObject playerObj = runner.Spawn(playerPrefab2, pos, Quaternion.identity, inputAuthority: runner.LocalPlayer);
+            playerObjects.Add(player, playerObj);
         }
 
         //Debug.Log("Player spawnado: " + playerObj.name); 
