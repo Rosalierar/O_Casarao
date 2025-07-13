@@ -18093,6 +18093,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2713376860942113215, guid: 49ab1c63c824e424a999d25dcf30ba47,
+        type: 3}
+      propertyPath: m_TagString
+      value: cachorro
+      objectReference: {fileID: 0}
     - target: {fileID: 3782126913508014162, guid: 49ab1c63c824e424a999d25dcf30ba47,
         type: 3}
       propertyPath: m_Name

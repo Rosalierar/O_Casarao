@@ -19,6 +19,7 @@ TagManager:
   - Fridge
   - CircleKey
   - HidingPlace
+  - cachorro
   layers:
   - Default
   - TransparentFX
