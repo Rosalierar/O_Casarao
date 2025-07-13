@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6476487787947407067}
   m_Layer: 0
   m_Name: NetArmarioEsconde
-  m_TagString: LocalHide
+  m_TagString: HidingPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabItem: []
+  networkObject: {fileID: 0}
   AS: {fileID: 7124219746441582893}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -273,7 +274,7 @@ MonoBehaviour:
   passwordPainel: {fileID: 0}
   itemNecessario: 12
   tipoDeObjeto: 12
-  unlocked: 1
+  _unlocked: 1
   doorMoviment: {fileID: 8579981720289623671}
   drawerMoviment: {fileID: 0}
 --- !u!1 &1631219872798771612
@@ -291,7 +292,7 @@ GameObject:
   - component: {fileID: 3834887267730632025}
   m_Layer: 0
   m_Name: Armario
-  m_TagString: Untagged
+  m_TagString: LocalHide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1114,6 +1115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabItem: []
+  networkObject: {fileID: 0}
   AS: {fileID: 8052114982963043569}
   informationAboutItem: {fileID: 0}
   cadeado:
@@ -1123,7 +1125,7 @@ MonoBehaviour:
   passwordPainel: {fileID: 0}
   itemNecessario: 12
   tipoDeObjeto: 12
-  unlocked: 1
+  _unlocked: 1
   doorMoviment: {fileID: 4391008044338065009}
   drawerMoviment: {fileID: 0}
 --- !u!1 &7259023683855089354

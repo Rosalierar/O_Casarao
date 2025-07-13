@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class NetPatraoController : NetworkBehaviour
 {
-    NetworkObject networkObject;
+    public NetworkObject networkObject;
     byte dificulty;
     [SerializeField] SongsController songs;
     bool isPlaySongPersecution= false;
@@ -21,7 +21,6 @@ public class NetPatraoController : NetworkBehaviour
     [SerializeField] private bool seePlayer = false; // Verifica se o patrão viu o jogador
     [SerializeField] float timerToStopPersecution;
 
-    [SerializeField] private Transform player; // Referência ao jogador
     /// <summary>
     /// Rotacao de Patrulha
     /// </summary>
@@ -30,7 +29,7 @@ public class NetPatraoController : NetworkBehaviour
     public float openSpeed = 5f;
 
     [SerializeField] Transform patraoTransform;
-    Transform playerTransform;
+    [SerializeField] Transform playerTransform;
 
     //[SerializeField] private bool isFinishRot = false;
     [SerializeField] private bool isRotate = false, isWalking;
@@ -79,14 +78,21 @@ public class NetPatraoController : NetworkBehaviour
             }
 
             // Destruir os GameObjects 
-            foreach (Transform t in patrolPointsObjects)
+            for (int i = 0; i < patrolPointsObjects.Length; i++)
+            {
+                Destroy(patrolPointsObjects[i].gameObject);
+            }
+
+            /*foreach (Transform t in patrolPointsObjects)
             {
                 Destroy(t.gameObject);
-            }
+            }*/
 
             animPatrao = GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>(); // Obtém o componente NavMeshAgent do objeto
             StartCoroutine(TimerPatrol()); // Inicia a patrulha
+
+            print("PATRAO PODE TER HAS STATE: " + networkObject.HasStateAuthority);
         }
     }
 
@@ -126,10 +132,16 @@ public class NetPatraoController : NetworkBehaviour
         if (patrolPoints == null) return;
 
         Gizmos.color = Color.green;
-        foreach (Vector3 point in patrolPoints)
+
+        for (int i = 0; i < patrolPoints.Length; i++)
+        {
+            Gizmos.DrawSphere(patrolPoints[i], 0.2f);
+        }
+
+        /*foreach (Vector3 point in patrolPoints)
         {
             Gizmos.DrawSphere(point, 0.2f);
-        }
+        }*/
     }
 
     private float ValueSpeedPatrol()
@@ -209,8 +221,17 @@ public class NetPatraoController : NetworkBehaviour
 
 
     #region RayCast
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_GetContinueGame()
+    {
+        ContinueGame();
+    }
+
     public void ContinueGame()
     {
+        seePlayer = false;
+
         agent.speed = ValueSpeedPatrol();
         animPatrao.SetBool("isWalking", false);
         animPatrao.SetBool("isRunning", false);
@@ -225,7 +246,8 @@ public class NetPatraoController : NetworkBehaviour
         agent.Warp(new Vector3(-11.42f, 7.13f, -7.51f));
 
         StartCoroutine(TimerStopPersecution()); // Inicia a contagem para parar a perseguição
-        //StartCoroutine(TimerPatrol()); // Inicia a patrulha
+
+        playerTransform = null; //zera as informações
     }
 
     void PatraoVision()
@@ -248,22 +270,18 @@ public class NetPatraoController : NetworkBehaviour
                 if (tag == "Player")
                 {
                     SawPlayer = true;
-                    songs = patraoHit.collider.gameObject.GetComponentInParent<SongsController>();
 
                     playerTransform = patraoHit.transform;
+                    NetworkObject targetNetObj = playerTransform.GetComponentInParent<NetworkObject>();
+                    print("Network Player:" +targetNetObj.name);
 
-                    if (!isPlaySongPersecution)
+                    //songs = targetNetObj.GetComponentInChildren<SongsController>(true); // true = inclui objetos inativos
+
+                    if (targetNetObj != null)
                     {
-                        for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
-                        {
-                            if (songs.songsBackGround[i] != null && i != 2)
-                                songs.audioSorceBackGround[i].Stop();
-                            else
-                                songs.audioSorceBackGround[i].Play();
-                        }
-
-                        isPlaySongPersecution = true;
+                        RPC_SetChangeMusic(targetNetObj.InputAuthority, 1);
                     }
+                    //ChangeMusic(); //Metodo para trocar de  musica para perseguição
 
                     animPatrao.SetBool("isRunning", true);
                     animPatrao.SetBool("isWalking", false);
@@ -311,6 +329,54 @@ public class NetPatraoController : NetworkBehaviour
             Debug.Log("Patrão não viu o jogador!");
         }
     }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_SetChangeMusic([RpcTarget] PlayerRef target, byte whatMusic)
+    {
+        if (Runner.LocalPlayer == target)
+        {
+            print("RPC DE STATE AUTHORITY PARA: Input Authority");
+            ChangeMusic(whatMusic);
+        }
+    }
+
+    public void ChangeMusic(byte whatMusic)
+    {
+        songs = FindObjectOfType<SongsController>();
+
+        if (whatMusic == 1)
+        {
+            if (!isPlaySongPersecution)
+            {
+                for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
+                {
+                    if (songs.songsBackGround[i] != null && i != 2)
+                        songs.audioSorceBackGround[i].Stop();
+                    else
+                        songs.audioSorceBackGround[i].Play();
+                }
+                isPlaySongPersecution = true;
+            }
+        }
+        else if (whatMusic == 2)
+        {
+            if (isPlaySongPersecution)
+            {
+                for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
+                {
+                    if (songs.songsBackGround[i] != null && i < 2)
+                    {
+                        songs.audioSorceBackGround[i].Play();
+                    }
+                    else
+                    {
+                        songs.audioSorceBackGround[i].Stop();
+                    }
+                }
+                isPlaySongPersecution = false;
+            }
+        }
+    }
     #endregion RayCast
 
     #region Perseguicao
@@ -321,7 +387,7 @@ public class NetPatraoController : NetworkBehaviour
             print("player: " + playerTransform.position);
 
             agent.transform.LookAt(playerTransform.position); // Faz o patrão olhar para o jogador
-            agent.SetDestination(player.position); // Define a posição de destino do agente como a posição do jogador
+            agent.SetDestination(playerTransform.position); // Define a posição de destino do agente como a posição do jogador
 
             //isPatrol = false; // Define que o patrão não está patrulhando
 
@@ -331,8 +397,6 @@ public class NetPatraoController : NetworkBehaviour
 
     IEnumerator TimerStopPersecution()
     {
-        //StopCoroutine(ContinueGame());
-
         print("Contagem iniciada para parar a perseguição pois parou de ver o player");
 
         if (seePlayer) yield break; // Se o patrão viu o jogador, sai do método
@@ -345,20 +409,10 @@ public class NetPatraoController : NetworkBehaviour
         agent.isStopped = true; // Para o agente NavMesh
         isPatrol = true; // Define que o patrão está patrulhando
 
-        if (isPlaySongPersecution)
+        NetworkObject targetNetObj = playerTransform.GetComponentInParent<NetworkObject>();
+        if (targetNetObj != null)
         {
-            for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
-            {
-                if (songs.songsBackGround[i] != null && i < 2)
-                {
-                    songs.audioSorceBackGround[i].Play();
-                }
-                else
-                {
-                    songs.audioSorceBackGround[i].Stop();
-                }
-            }
-            isPlaySongPersecution = false;
+            RPC_SetChangeMusic(targetNetObj.InputAuthority, 2);
         }
 
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
@@ -512,5 +566,4 @@ public class NetPatraoController : NetworkBehaviour
     }
 
     #endregion Rotacao da Patrulha
-
 }

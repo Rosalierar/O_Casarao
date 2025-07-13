@@ -233,61 +233,75 @@ public class NetMovePlayer : NetworkBehaviour
 
     void OnTriggerEnter(Collider collision) //verifica se o jogador colidiu com algo
     {
-        if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
+        if (networkObject.HasInputAuthority)
         {
-            gameObject.layer = LayerMask.NameToLayer("Hide"); //define a layer do jogador como "Hide"
-
-            
-            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
-            {
-                if (song.songsBackGround[i] != null && i != 3)
+            if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
                 {
-                    song.audioSorceBackGround[i].Stop();
+                    gameObject.layer = LayerMask.NameToLayer("Hide"); //define a layer do jogador como "Hide"
+
+                    for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+                    {
+                        if (song.songsBackGround[i] != null && i != 3)
+                        {
+                            song.audioSorceBackGround[i].Stop();
+                        }
+                        else
+                        {
+                            song.audioSorceBackGround[i].Play();
+                        }
+                    }
+                }
+
+            if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
+            {
+                NetPatraoController patraoController = FindAnyObjectByType<NetPatraoController>();
+                
+                if (patraoController.networkObject.HasStateAuthority)
+                {
+                    patraoController.ContinueGame();
                 }
                 else
                 {
-                    song.audioSorceBackGround[i].Play();
+                    patraoController.RPC_GetContinueGame();
                 }
-            }
-        }
-
-        if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
-        {
-            FindAnyObjectByType<NetPatraoController>().ContinueGame();
-            
-            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
-            {
-                if (song.songsBackGround[i] != null && i != 3)
+                
+                for (int i = 0; i < song.audioSorceBackGround.Length; i++)
                 {
-                    song.audioSorceBackGround[i].Stop();
+                    if (song.songsBackGround[i] != null && i != 3)
+                    {
+                        song.audioSorceBackGround[i].Stop();
+                    }
+                    else
+                    {
+                        song.audioSorceBackGround[i].Play();
+                    }
                 }
-                else
-                {
-                    song.audioSorceBackGround[i].Play();
-                }
-            }
 
-            canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0,0,0);
-            jumpscareDirector.Play();
-            print("Touch Enemy");
+                canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0,0,0);
+                jumpscareDirector.Play();
+                print("Touch Enemy");
+            }
         }
     }
 
     void OnTriggerExit(Collider collision)
     {
-        if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
+        if (networkObject.HasInputAuthority)
         {
-            gameObject.layer = LayerMask.NameToLayer("Player"); //define a layer do jogador como "Player"
-
-            for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+            if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
             {
-                if (song.songsBackGround[i] != null && i < 2)
+                gameObject.layer = LayerMask.NameToLayer("Player"); //define a layer do jogador como "Player"
+
+                for (int i = 0; i < song.audioSorceBackGround.Length; i++)
                 {
-                    song.audioSorceBackGround[i].Play();
-                }
-                else
-                {
-                    song.audioSorceBackGround[i].Stop();
+                    if (song.songsBackGround[i] != null && i < 2)
+                    {
+                        song.audioSorceBackGround[i].Play();
+                    }
+                    else
+                    {
+                        song.audioSorceBackGround[i].Stop();
+                    }
                 }
             }
         }

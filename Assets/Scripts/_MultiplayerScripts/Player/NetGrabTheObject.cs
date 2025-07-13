@@ -15,7 +15,7 @@ public class NetGrabTheObject : MonoBehaviour
     private void Start()
     {
         networkObject = GetComponentInParent<NetworkObject>();
-        print("PLAYER TEM STATE: " + networkObject.HasStateAuthority);
+        print(networkObject.name+ "PLAYER DO NET GRAB TEM STATE: " + networkObject.HasStateAuthority);
 
         if (networkObject.HasInputAuthority)
         {

@@ -18,6 +18,7 @@ TagManager:
   - jumpscare
   - Fridge
   - CircleKey
+  - HidingPlace
   layers:
   - Default
   - TransparentFX
