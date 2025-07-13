@@ -23,6 +23,13 @@ public class SongsController : MonoBehaviour
             audioSorceBackGround[i].loop = true;
             audioSorceBackGround[i].clip = songsBackGround[i];
 
+            OptionsController OP = FindObjectOfType<OptionsController>();
+
+            if (OP.sliderVolume[0].value > OP.sliderVolume[1].value)
+            AS.volume = OP.sliderVolume[0].value;
+            else
+            AS.volume = OP.sliderVolume[1].value;
+            
             if (songsBackGround[i] != null && i < 2)
             {
                 audioSorceBackGround[i].Play();

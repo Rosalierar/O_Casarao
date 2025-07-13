@@ -11,7 +11,7 @@ public class OptionsController : MonoBehaviour
     public static event Action OnLightRange;
     LoobyManager lobby;
     [SerializeField] private SongsController audioMusic;
-    [SerializeField] private Slider[] sliderVolume;
+    [SerializeField] public Slider[] sliderVolume;
 
     [SerializeField] private GameObject tutorial;
 
