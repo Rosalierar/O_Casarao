@@ -5052,7 +5052,7 @@ Transform:
   m_GameObject: {fileID: 6134282463826983966}
   serializedVersion: 2
   m_LocalRotation: {x: 0.005792908, y: 0.67766404, z: 0.005368343, w: -0.7353293}
-  m_LocalPosition: {x: -17.85476, y: -10.34, z: -4.712684}
+  m_LocalPosition: {x: -17.85476, y: -2.44, z: -6.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46880,37 +46880,37 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.83675045
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.0085667875
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0.547517
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.000694068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 0.865
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 66.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 0.471
       objectReference: {fileID: 0}
     - target: {fileID: -8021001004253913084, guid: 7386606ef75697b438d87fc249631cab,
         type: 3}

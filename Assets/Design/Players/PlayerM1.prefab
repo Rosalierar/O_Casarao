@@ -561,6 +561,14 @@ PlayableDirector:
     value: {fileID: 3299127050776087632}
   - key: {fileID: -2823260477687282772, guid: 901fff9f973ea7141b1ce69d5e466559, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -7489951164718553261, guid: 3193b3aba2f47924db6a2c98e7e6e5e9, type: 2}
+    value: {fileID: 6835939173655344572}
+  - key: {fileID: 7680691519092450291, guid: 3193b3aba2f47924db6a2c98e7e6e5e9, type: 2}
+    value: {fileID: 8881115424201460200}
+  - key: {fileID: 3974451870823092670, guid: 3193b3aba2f47924db6a2c98e7e6e5e9, type: 2}
+    value: {fileID: 8672187253335793043}
+  - key: {fileID: -421517524651229273, guid: 3193b3aba2f47924db6a2c98e7e6e5e9, type: 2}
+    value: {fileID: 3821388208092017263}
   m_ExposedReferences:
     m_References:
     - fbfa73f07ca505549b03b0d816329a56: {fileID: 2657008749084084518}
@@ -9731,6 +9739,7 @@ GameObject:
   - component: {fileID: 8493648547314865836}
   - component: {fileID: 3348838728595277313}
   - component: {fileID: 2026429646824054737}
+  - component: {fileID: 6835939173655344572}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9763,7 +9772,7 @@ Camera:
   m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -9885,6 +9894,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 8352971927734584725}
+--- !u!114 &6835939173655344572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881115424201460200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: ad0acede2cd4f4c428defd962115c537, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2394040014065248191}
+          m_TargetAssemblyTypeName: NetMovePlayer, Assembly-CSharp
+          m_MethodName: ChangeTheCamForJumpScare
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &8973251947824704415
 GameObject:
   m_ObjectHideFlags: 0
@@ -10930,6 +10969,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7933539224409487111}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61470e15dcad9c4468aed38cf97b7b70,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8672187253335793043}
   m_SourcePrefab: {fileID: 100100000, guid: 61470e15dcad9c4468aed38cf97b7b70, type: 3}
 --- !u!1 &3821388208092017263 stripped
 GameObject:
@@ -11149,6 +11192,36 @@ MonoBehaviour:
   StateHashes: 00000000f29c17f0c12f32c752f6b98561459cb212390cd4218a29e38a18fce4b9abd9d355a310444f322aae
   TriggerHashes: 00000000
   TotalWords: 2
+--- !u!114 &8672187253335793043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821388208092017263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: f6c4477038b78124fb4dadbe46cbdc3d, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2394040014065248191}
+          m_TargetAssemblyTypeName: NetMovePlayer, Assembly-CSharp
+          m_MethodName: CallWaitForSpawn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!4 &4486602245953071317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61470e15dcad9c4468aed38cf97b7b70,

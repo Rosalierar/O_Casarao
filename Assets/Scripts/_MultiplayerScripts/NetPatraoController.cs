@@ -211,12 +211,20 @@ public class NetPatraoController : NetworkBehaviour
     #region RayCast
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_NotifyPlayerCollision([RpcTarget] PlayerRef player)
+    {
+        // Aqui é chamado no patrão REAL (StateAuthority)
+        if (!networkObject.HasStateAuthority) return;
+        Debug.Log("Jogador tocou no patrão - confirmado no StateAuthority");
+        RPC_PlayerCaught(player); //  patrão chama seu método para lidar com a captura
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.StateAuthority)]
     public void RPC_PlayerCaught([RpcTarget] PlayerRef target)
     {
         Debug.Log("Jogador encostou no patrão, StateAuthority vai lidar com isso");
 
-        if (!networkObject.HasStateAuthority) return;
-            ContinueGame();
+        ContinueGame();
     }
 
     public void ContinueGame()
@@ -268,14 +276,18 @@ public class NetPatraoController : NetworkBehaviour
 
                     if (targetNetObj != null)
                     {
-                        if (networkObject.HasStateAuthority)
+                        print($"No patrao controller que tem Sate: {networkObject.HasStateAuthority} O player {targetNetObj.name} tem state:  {targetNetObj.HasStateAuthority}");
+
+                        if (targetNetObj.HasStateAuthority) //caso pare de funcionar trocar target por networkobject e tirar os ifs
                         {
                             ChangeMusic(targetNetObj.InputAuthority, 1);
                         }
                         else
                         {
-                            RPC_SetChangeMusic(targetNetObj.InputAuthority, 1); 
+                            RPC_SetChangeMusic(targetNetObj.InputAuthority, 1);
                         }
+                        
+                        //RPC_SetChangeMusic(targetNetObj.InputAuthority, 1);  //Caso pare de funcionar a musica de perseguição basta tira essa barra barra
                     }
                     //ChangeMusic(); //Metodo para trocar de  musica para perseguição
 
@@ -407,10 +419,11 @@ public class NetPatraoController : NetworkBehaviour
         isPatrol = true; // Define que o patrão está patrulhando
 
         NetworkObject targetNetObj = playerTransform.GetComponentInParent<NetworkObject>();
-        
+        print($"No patrao controller que tem Sate: {networkObject.HasStateAuthority} O player {targetNetObj.name} tem state:  {targetNetObj.HasStateAuthority}");
+
         if (targetNetObj != null)
         {
-            if (networkObject.HasStateAuthority)
+            if (targetNetObj.HasStateAuthority)
             {
                 ChangeMusic(targetNetObj.InputAuthority, 2);
             }
@@ -419,6 +432,8 @@ public class NetPatraoController : NetworkBehaviour
                 RPC_SetChangeMusic(targetNetObj.InputAuthority, 2);
             }
         }
+
+        //RPC_SetChangeMusic(targetNetObj.InputAuthority, 2); //Caso pare de funcionar a musica de sair da perseguição basta tira essa barra barra
 
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
@@ -525,6 +540,9 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a direita
         while (elapsed < 1f)
         {
+            if (seePlayer)
+                yield break;
+                
             elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(startRot, openRotRight, elapsed);
             yield return null;
@@ -536,6 +554,9 @@ public class NetPatraoController : NetworkBehaviour
         elapsed = 0f;
         while (elapsed < 1f)
         {
+            if (seePlayer)
+                yield break;
+            
             elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(openRotRight, startRot, elapsed);
             yield return null;
@@ -546,6 +567,9 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a Esquerda
         while (elapsed < 1f)
         {
+            if (seePlayer)
+                yield break;
+
             elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(startRot, openRotLeft, elapsed);
             yield return null;
@@ -556,6 +580,9 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a Frente
         while (elapsed < 1f)
         {
+            if (seePlayer)
+                yield break;
+
             elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(openRotLeft, startRot, elapsed);
             yield return null;

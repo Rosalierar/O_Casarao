@@ -14,6 +14,7 @@ public class FinalController : MonoBehaviour
     [SerializeField] DoorMoviment doorMovimentSecond;
     [SerializeField] DoorMoviment doorMoviment;
     [SerializeField] private GameObject[] cadeado = new GameObject[3];
+    string tagdog = "cachorro";
 
     void Awake()
     {
@@ -62,6 +63,17 @@ public class FinalController : MonoBehaviour
                 animCam.enabled = true;
                 player.SetActive(false);
                 enemy.SetActive(false);
+
+                GameObject objetoParaDesativar = GameObject.FindWithTag(tagdog);
+
+                if (objetoParaDesativar != null)
+                {
+                    objetoParaDesativar.SetActive(false);
+                }
+                else
+                {
+                    Debug.LogWarning("Nenhum GameObject encontrado com a tag");
+                }
 
                 DesableCams();
 
@@ -117,6 +129,8 @@ public class FinalController : MonoBehaviour
 
         NavMeshAgent agentEnemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<PatraoController>().Agent();
         agentEnemy.isStopped = true;
+
+       
     }
 
     void OnTriggerEnter(Collider other)
