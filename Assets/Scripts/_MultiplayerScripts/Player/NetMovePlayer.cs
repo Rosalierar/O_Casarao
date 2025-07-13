@@ -206,9 +206,33 @@ public class NetMovePlayer : NetworkBehaviour
             pressedButton = false; //define que o botão não foi pressionado
         }
     }
+    public void ChangeTheCamForJumpScare()
+    {
+        camPlayer.enabled = false;
+        camPlayer.gameObject.transform.localPosition = new Vector3(-23.78f, 10f, -10.87f);
+        camPlayer.gameObject.transform.localRotation = Quaternion.Euler(0f, -108.49f, 0f);
+    }
+
+    public void CallWaitForSpawn()
+    {
+        //IsFinishJumpScare = true;
+
+        Invoke("CWACFS", 0.35f);
+
+        for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+        {
+            if (song.songsBackGround[i] != null && i == 0)
+            {
+                song.audioSorceBackGround[i].Play();
+            }
+        }
+
+        //print("METODO DE JUMPSCARE MUDADO PARA: " + _isFinishJumpScare);
+    }
+
     void CWACFS()
     {
-        StartCoroutine(WaitForSpawn()); 
+        StartCoroutine(WaitForSpawn());
     }
 
     IEnumerator WaitForSpawn()
@@ -221,6 +245,9 @@ public class NetMovePlayer : NetworkBehaviour
 
         ch.enabled = false;
         transform.position = controllerPlayer.spawnPoint;
+
+        camPlayer.enabled = true;
+        camPlayer.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
         //transform.localPosition = controllerPlayer.spawnPoint;
@@ -279,7 +306,7 @@ public class NetMovePlayer : NetworkBehaviour
                     else
                     {
                         print("No move player patrao nao tem state chamando rpc");
-                        RPC_AskPatraoToHandleHit(patrao, Runner.LocalPlayer);
+                        patrao.GetComponentInChildren<NetPatraoController>().RPC_NotifyPlayerCollision(Runner.LocalPlayer);
                     }
                 }
                 

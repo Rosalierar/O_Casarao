@@ -3593,6 +3593,7 @@ GameObject:
   - component: {fileID: 2508187798621772626}
   - component: {fileID: 8611283070864097352}
   - component: {fileID: 5140427323037532057}
+  - component: {fileID: 8159177008682249749}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3625,7 +3626,7 @@ Camera:
   m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3747,6 +3748,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 6994086271998036773}
+--- !u!114 &8159177008682249749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3108095835541500440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: ad0acede2cd4f4c428defd962115c537, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6728163259456886106}
+          m_TargetAssemblyTypeName: NetMovePlayer, Assembly-CSharp
+          m_MethodName: ChangeTheCamForJumpScare
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &3122738678647147552
 GameObject:
   m_ObjectHideFlags: 0
@@ -12911,6 +12942,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2495155560915552814}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5297cacbe4e349e41b97849a1daa770e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5054117614404046906}
   m_SourcePrefab: {fileID: 100100000, guid: 5297cacbe4e349e41b97849a1daa770e, type: 3}
 --- !u!4 &37448997384050101 stripped
 Transform:
@@ -13118,3 +13153,48 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: -0.07, y: 1, z: 0.18526793}
+--- !u!114 &5054117614404046906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850858201404739343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: f6c4477038b78124fb4dadbe46cbdc3d, type: 2}
+    - {fileID: 11400000, guid: ad0acede2cd4f4c428defd962115c537, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6728163259456886106}
+          m_TargetAssemblyTypeName: NetMovePlayer, Assembly-CSharp
+          m_MethodName: CallWaitForSpawn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6728163259456886106}
+          m_TargetAssemblyTypeName: NetMovePlayer, Assembly-CSharp
+          m_MethodName: ChangeTheCamForJumpScare
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
