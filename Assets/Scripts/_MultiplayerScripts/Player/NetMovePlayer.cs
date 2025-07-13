@@ -108,10 +108,6 @@ public class NetMovePlayer : NetworkBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
     public override void FixedUpdateNetwork()
     {
         if (!networkObject.HasInputAuthority) return;
@@ -223,12 +219,24 @@ public class NetMovePlayer : NetworkBehaviour
         // Disparar o evento para as janelas ligarem a grade
         OnLifeLost?.Invoke();
 
+        ch.enabled = false;
+        transform.position = controllerPlayer.spawnPoint;
+
         print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
-        transform.localPosition = controllerPlayer.spawnPoint;
+        //transform.localPosition = controllerPlayer.spawnPoint;
 
         yield return new WaitForSeconds(6f);
 
+        ch.enabled = true;
         controllerPlayer.blackPainel.SetActive(false); //ativa o painel pretos
+    }
+    private void RPC_AskPatraoToHandleHit(NetworkObject patraoNetObj, PlayerRef playerWhoHit)
+    {
+        var patraoScript = patraoNetObj.GetComponent<NetPatraoController>();
+        if (patraoScript != null)
+        {
+            patraoScript.RPC_PlayerCaught(playerWhoHit);
+        }
     }
 
     void OnTriggerEnter(Collider collision) //verifica se o jogador colidiu com algo
@@ -254,15 +262,19 @@ public class NetMovePlayer : NetworkBehaviour
 
             if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
             {
-                NetPatraoController patraoController = FindAnyObjectByType<NetPatraoController>();
-                
-                if (patraoController.networkObject.HasStateAuthority)
+                NetworkObject patrao = collision.GetComponentInParent<NetworkObject>();
+
+                if (patrao != null)
                 {
-                    patraoController.ContinueGame();
-                }
-                else
-                {
-                    patraoController.RPC_GetContinueGame();
+                    // Envia pedido para o patrão tomar uma ação
+                    if (patrao.HasStateAuthority)
+                    {
+                        patrao.GetComponentInChildren<NetPatraoController>().ContinueGame();
+                    }
+                    else
+                    {
+                        RPC_AskPatraoToHandleHit(patrao, Runner.LocalPlayer);
+                    }
                 }
                 
                 for (int i = 0; i < song.audioSorceBackGround.Length; i++)

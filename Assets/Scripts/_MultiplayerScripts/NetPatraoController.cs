@@ -223,11 +223,21 @@ public class NetPatraoController : NetworkBehaviour
     #region RayCast
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_GetContinueGame()
+    public void RPC_PlayerCaught([RpcTarget] PlayerRef target)
     {
+        Debug.Log("Jogador encostou no patrão, StateAuthority vai lidar com isso");
+
+        // Envia outro RPC de volta apenas para o jogador atingido
         ContinueGame();
     }
 
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_CallWaitForSpawn([RpcTarget] PlayerRef target)
+    {
+        if (Runner.LocalPlayer == target)
+        {
+        }
+    }
     public void ContinueGame()
     {
         seePlayer = false;
@@ -247,7 +257,7 @@ public class NetPatraoController : NetworkBehaviour
 
         StartCoroutine(TimerStopPersecution()); // Inicia a contagem para parar a perseguição
 
-        playerTransform = null; //zera as informações
+        //playerTransform = null; //zera as informações
     }
 
     void PatraoVision()
@@ -279,7 +289,14 @@ public class NetPatraoController : NetworkBehaviour
 
                     if (targetNetObj != null)
                     {
-                        RPC_SetChangeMusic(targetNetObj.InputAuthority, 1);
+                        if (networkObject.HasStateAuthority)
+                        {
+                            ChangeMusic(targetNetObj.InputAuthority, 1);
+                        }
+                        else
+                        {
+                            RPC_SetChangeMusic(targetNetObj.InputAuthority, 1); 
+                        }
                     }
                     //ChangeMusic(); //Metodo para trocar de  musica para perseguição
 
@@ -333,50 +350,51 @@ public class NetPatraoController : NetworkBehaviour
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     public void RPC_SetChangeMusic([RpcTarget] PlayerRef target, byte whatMusic)
     {
+        print("RPC DE STATE AUTHORITY PARA: Input Authority");
+        ChangeMusic(target, whatMusic);
+    }
+
+    public void ChangeMusic([RpcTarget] PlayerRef target, byte whatMusic)
+    {
         if (Runner.LocalPlayer == target)
         {
-            print("RPC DE STATE AUTHORITY PARA: Input Authority");
-            ChangeMusic(whatMusic);
-        }
-    }
+            songs = FindObjectOfType<SongsController>();
 
-    public void ChangeMusic(byte whatMusic)
-    {
-        songs = FindObjectOfType<SongsController>();
-
-        if (whatMusic == 1)
-        {
-            if (!isPlaySongPersecution)
+            if (whatMusic == 1)
             {
-                for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
+                if (!isPlaySongPersecution)
                 {
-                    if (songs.songsBackGround[i] != null && i != 2)
-                        songs.audioSorceBackGround[i].Stop();
-                    else
-                        songs.audioSorceBackGround[i].Play();
+                    for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
+                    {
+                        if (songs.songsBackGround[i] != null && i != 2)
+                            songs.audioSorceBackGround[i].Stop();
+                        else
+                            songs.audioSorceBackGround[i].Play();
+                    }
+                    isPlaySongPersecution = true;
                 }
-                isPlaySongPersecution = true;
             }
-        }
-        else if (whatMusic == 2)
-        {
-            if (isPlaySongPersecution)
+            else if (whatMusic == 2)
             {
-                for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
+                if (isPlaySongPersecution)
                 {
-                    if (songs.songsBackGround[i] != null && i < 2)
+                    for (int i = 0; i < songs.audioSorceBackGround.Length; i++)
                     {
-                        songs.audioSorceBackGround[i].Play();
+                        if (songs.songsBackGround[i] != null && i < 2)
+                        {
+                            songs.audioSorceBackGround[i].Play();
+                        }
+                        else
+                        {
+                            songs.audioSorceBackGround[i].Stop();
+                        }
                     }
-                    else
-                    {
-                        songs.audioSorceBackGround[i].Stop();
-                    }
+                    isPlaySongPersecution = false;
                 }
-                isPlaySongPersecution = false;
             }
         }
     }
+
     #endregion RayCast
 
     #region Perseguicao
@@ -410,9 +428,17 @@ public class NetPatraoController : NetworkBehaviour
         isPatrol = true; // Define que o patrão está patrulhando
 
         NetworkObject targetNetObj = playerTransform.GetComponentInParent<NetworkObject>();
+        
         if (targetNetObj != null)
         {
-            RPC_SetChangeMusic(targetNetObj.InputAuthority, 2);
+            if (networkObject.HasStateAuthority)
+            {
+                ChangeMusic(targetNetObj.InputAuthority, 2);
+            }
+            else
+            {
+                RPC_SetChangeMusic(targetNetObj.InputAuthority, 2);
+            }
         }
 
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
