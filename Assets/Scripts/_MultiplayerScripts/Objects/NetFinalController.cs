@@ -105,15 +105,31 @@ public class NetFinalController : MonoBehaviour
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         NetworkObject[] playersNetwork = new NetworkObject[players.Length];
+        
 
         for (int i = 0; i < players.Length; i++)
         {
+            print(playersNetwork[i] + "Player no for para pegar: " + players[i]);
             playersNetwork[i] = players[i].GetComponentInParent<NetworkObject>();
+        }
+
+        NetDesableController netDesable = GetComponent<NetDesableController>();
+        netDesable.object4Disable = playersNetwork[0].gameObject;
+        netDesable.other4Disable = playersNetwork[1].gameObject;
+
+        if (networkObject.HasStateAuthority)
+        {
+            netDesable.IsActive = false;
+        }
+        else
+        {
+            netDesable.RPC_SetVisibilityObj(false);
         }
 
         camMain.enabled = true;
 
-        GameObject canvaObjects = GameObject.FindGameObjectWithTag("Canva");
+        GameObject canvaObjects = GameObject.Find("Canvas");
+        print(canvaObjects.name);
 
         GameObject canva = canvaObjects.GetComponent<GameObject>();
 
