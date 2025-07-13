@@ -11,7 +11,6 @@ public class NetControllerPlayer : NetworkBehaviour
     public MyButton crunchBtn;
     public MyButton interectBtn;
     public JoyRoots moveJoy;
-
     int playerHealth;
     public int PlayerHealth
     {
@@ -21,7 +20,7 @@ public class NetControllerPlayer : NetworkBehaviour
             playerHealth = value;
 
             languageText = PlayerPrefs.GetInt("Language");
-            
+
             if (languageText == 0)
             {
                 if (playerHealth >= 0 && playerHealth < 3)
