@@ -19,6 +19,7 @@ public class NetFinalController : MonoBehaviour
     [SerializeField] NetDoorMoviment doorMovimentSecond;
     [SerializeField] NetDoorMoviment doorMoviment;
     [SerializeField] private GameObject[] cadeado = new GameObject[3];
+    string tagdog = "cachorro";
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class NetFinalController : MonoBehaviour
         lobby = FindObjectOfType<LoobyManager>();
         runner = FindObjectOfType<NetworkRunner>();
         print("FINAL CAM PEGOU OS COMPONENTES");
+        
     }
 
     void Update()
@@ -69,6 +71,17 @@ public class NetFinalController : MonoBehaviour
                 }
 
                 animCam.enabled = true;
+
+                GameObject objetoParaDesativar = GameObject.FindWithTag(tagdog);
+
+                if (objetoParaDesativar != null)
+                {
+                    objetoParaDesativar.SetActive(false);
+                }
+                else
+                {
+                    Debug.LogWarning("Nenhum GameObject encontrado com a tag");
+                }
 
                 DesableCams();
 

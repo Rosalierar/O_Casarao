@@ -171,6 +171,7 @@ public class MovePlayer : MonoBehaviour
 
     IEnumerator WaitForSpawn()
     {
+
         controllerPlayer.blackPainel.SetActive(true); //ativa o painel preto
         controllerPlayer.PlayerHealth -= 1; //diminui a vida do jogador
         transform.localPosition = controllerPlayer.spawnPoint;
