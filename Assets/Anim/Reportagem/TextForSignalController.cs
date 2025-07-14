@@ -48,12 +48,13 @@ public class TextForSignalController : MonoBehaviour
                 playerObj.SetActive(false);
             }
             print("Multiplayer");
-            
+
             IsMultiPLayer();
         }
         else
         {
             print("Não Multiplayer");
+            NotMultplayer();
         }
     }
 
@@ -106,6 +107,21 @@ public class TextForSignalController : MonoBehaviour
         for (int i = 0; i < ParaDesativar.Length; i++)
         {
             ParaDesativar[i].SetActive(false);
+        }
+    }
+
+    public void NotMultplayer()
+    {
+        player2.SetActive(false);
+        
+        for (int i = 0; i < ParaAtivar.Length; i++)
+        {
+            ParaAtivar[i].SetActive(false);
+        }
+
+        for (int i = 0; i < ParaDesativar.Length; i++)
+        {
+            ParaDesativar[i].SetActive(true);
         }
     }
 
