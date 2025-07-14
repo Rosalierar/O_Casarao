@@ -5,6 +5,8 @@ using Fusion;
 
 public class NetControllerPlayer : NetworkBehaviour
 {
+    bool wasCatch;
+    [Networked] byte totalPlayersCatch { get; set; }
     public Vector3 spawnPoint;
     public GameObject blackPainel;
     public TextMeshProUGUI tmpSpeaks;

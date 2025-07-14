@@ -263,7 +263,7 @@ public class NetMovePlayer : NetworkBehaviour
 
         // Disparar o evento para as janelas ligarem a grade
         OnLifeLost?.Invoke();
-        RPC_ForceRespawn(new Vector3(40.90f, 300.68f, -15.30f));
+        RPC_ForceRespawn(new Vector3(45.27f,-0.0f,-16.22f));
         canva.SetActive(true);
 
         //transform.position = controllerPlayer.spawnPoint;
@@ -294,14 +294,14 @@ public class NetMovePlayer : NetworkBehaviour
         if (!networkObject.HasInputAuthority) return;
 
         print("RPC ForceRespawn Chamado");
-        //StartCoroutine(DoRespawn(position));
+        StartCoroutine(DoRespawn(position));
     }
 
     IEnumerator DoRespawn(Vector3 pos)
     {
         ch.enabled = false;
         //networkObject.gameObject.transform.SetPositionAndRotation(pos, Quaternion.identity);
-        transform.root.position = pos;
+        transform.localPosition = pos;
         yield return null; // aguarda um frame
         ch.enabled = true;
     }
@@ -333,6 +333,7 @@ public class NetMovePlayer : NetworkBehaviour
 
         canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0, 0, 0);
         canva.SetActive(false);
+        RPC_ForceRespawn(new Vector3(45.27f,-0.0f,-16.22f));
         print(jumpscareDirector.gameObject.name);
         jumpscareDirector.Play();
     }

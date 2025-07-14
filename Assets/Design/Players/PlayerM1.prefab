@@ -325,8 +325,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7500927942117540321}
         m_TargetAssemblyTypeName: OptionsController, Assembly-CSharp
-        m_MethodName: CloseTutorial
-        m_Mode: 1
+        m_MethodName: OptionTutorialOpen
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1962,8 +1962,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7500927942117540321}
         m_TargetAssemblyTypeName: OptionsController, Assembly-CSharp
-        m_MethodName: OpenTutorial
-        m_Mode: 1
+        m_MethodName: OptionTutorialOpen
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

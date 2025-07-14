@@ -92,6 +92,18 @@ public class OptionsController : MonoBehaviour
         }
     }
 
+    public void OptionTutorialOpen(int index)
+    {
+        if (index == 0)
+        {
+            painelOptions.SetActive(false);
+        }
+        else if (index == 1)
+        {
+            painelOptions.SetActive(true);
+        }
+    }
+
     public void ChangeLanguage(int language)
     {
         switch (language)

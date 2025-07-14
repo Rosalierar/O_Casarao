@@ -11,7 +11,9 @@ public class TextForSignalController : MonoBehaviour
 {
     private bool isMultiplayer = false;
     private NetworkRunner runner;
-    GameObject player2;
+    public GameObject player2;
+    public GameObject[] ParaAtivar;
+    public GameObject[] ParaDesativar;
     [SerializeField] int playerCount = 1;
 
     int language;
@@ -94,8 +96,17 @@ public class TextForSignalController : MonoBehaviour
 
     public void IsMultiPLayer()
     {
-        if (playerCount == 2)
-            player2.SetActive(true);
+        player2.SetActive(true);
+        
+        for (int i = 0; i < ParaAtivar.Length; i++)
+        {
+            ParaAtivar[i].SetActive(true);
+        }
+
+        for (int i = 0; i < ParaDesativar.Length; i++)
+        {
+            ParaDesativar[i].SetActive(false);
+        }
     }
 
     public void LoadScene()
