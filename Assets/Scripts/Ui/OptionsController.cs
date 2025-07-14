@@ -140,6 +140,8 @@ public class OptionsController : MonoBehaviour
         print("LEAVE LOBBY CLICKED");
 
         runner.Shutdown();
+        runner = null;
+        DestroyImmediate(FindObjectOfType<LoobyManager>().gameObject);
         UnityEngine.SceneManagement.SceneManager.LoadScene(index);
     }
 }

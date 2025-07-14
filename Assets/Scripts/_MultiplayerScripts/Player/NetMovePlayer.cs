@@ -274,6 +274,18 @@ public class NetMovePlayer : NetworkBehaviour
         yield return new WaitForSeconds(6f);
 
         controllerPlayer.blackPainel.SetActive(false); //ativa o painel pretos
+
+        for (int i = 0; i < song.audioSorceBackGround.Length; i++)
+        {
+            if (song.songsBackGround[i] != null && i < 2)
+            {
+                song.audioSorceBackGround[i].Play();
+            }
+            else
+            {
+                song.audioSorceBackGround[i].Stop();
+            }
+        }
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
@@ -287,11 +299,11 @@ public class NetMovePlayer : NetworkBehaviour
 
     IEnumerator DoRespawn(Vector3 pos)
     {
-        //ch.enabled = false;
+        ch.enabled = false;
         //networkObject.gameObject.transform.SetPositionAndRotation(pos, Quaternion.identity);
-        gameObject.transform.position = pos;
+        transform.root.position = pos;
         yield return null; // aguarda um frame
-        //ch.enabled = true;
+        ch.enabled = true;
     }
 
     void OnTriggerEnter(Collider collision) //verifica se o jogador colidiu com algo
@@ -324,30 +336,6 @@ public class NetMovePlayer : NetworkBehaviour
         print(jumpscareDirector.gameObject.name);
         jumpscareDirector.Play();
     }
-
-    /*[Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
-    public void RPC_CallJumpScare([RpcTarget] PlayerRef target)
-    {
-        print("RPC PARA JUMP SCARE CHAMADA");
-        print("CHAMANDO METODO JUMP SCARE DO RPC");
-
-        CallJumpScare(target);
-    }
-
-
-    public void CallJumpScare([RpcTarget] PlayerRef target)
-    {
-        if (Runner.LocalPlayer == target)
-        {
-            print("METODO JUMP SCARE CHAMADO");
-
-            canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0, 0, 0);
-            print(jumpscareDirector.gameObject.name);
-            jumpscareDirector.Play();
-
-            print("Touch Enemy");
-        }
-    }*/
 
     void OnTriggerExit(Collider collision)
     {
