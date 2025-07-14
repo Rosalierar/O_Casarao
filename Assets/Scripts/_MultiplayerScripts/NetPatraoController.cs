@@ -8,7 +8,7 @@ public class NetPatraoController : NetworkBehaviour
     public NetworkObject networkObject;
     byte dificulty;
     [SerializeField] SongsController songs;
-    bool isPlaySongPersecution= false;
+    bool isPlaySongPersecution = false;
     Animator animPatrao;
     NavMeshAgent agent; // Referência ao agente NavMesh
 
@@ -44,7 +44,7 @@ public class NetPatraoController : NetworkBehaviour
     int currentPatrolIndex = 0; // Índice do ponto de patrulha atual
     int randomPatrolIndex = 0; // Índice aleatório para patrulha
     [Networked] public int PatrolIndex { get; set; }
-    
+
     /// <summary>
     /// RayCast do Patrao
     /// </summary>
@@ -64,6 +64,9 @@ public class NetPatraoController : NetworkBehaviour
 
         if (networkObject.HasStateAuthority)
         {
+            agent = GetComponent<NavMeshAgent>(); // Obtém o componente NavMeshAgent do objeto
+            animPatrao = GetComponent<Animator>();
+
             dificulty = (byte)PlayerPrefs.GetInt("Dificulty");
 
             patrolPoints = new Vector3[patrolPointsObjects.Length - ValuePointPatrolsDelete()];
@@ -81,8 +84,6 @@ public class NetPatraoController : NetworkBehaviour
                 Destroy(patrolPointsObjects[i].gameObject);
             }
 
-            animPatrao = GetComponent<Animator>();
-            agent = GetComponent<NavMeshAgent>(); // Obtém o componente NavMeshAgent do objeto
             StartCoroutine(TimerPatrol()); // Inicia a patrulha
 
             print("PATRAO PODE TER HAS STATE: " + networkObject.HasStateAuthority);
@@ -209,18 +210,26 @@ public class NetPatraoController : NetworkBehaviour
 
 
     #region RayCast
-
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_NotifyPlayerCollision([RpcTarget] PlayerRef player)
+    public void ParaChamarMetdos(Transform player)
     {
-        // Aqui é chamado no patrão REAL (StateAuthority)
-        if (!networkObject.HasStateAuthority) return;
-        Debug.Log("Jogador tocou no patrão - confirmado no StateAuthority");
-        RPC_PlayerCaught(player); //  patrão chama seu método para lidar com a captura
+        NetworkObject targetNetObj = player.GetComponentInParent<NetworkObject>();
+        print($"No patrao controller Para Chamar ContineGame que tem Sate: {networkObject.HasStateAuthority} O player {targetNetObj.name} tem state:  {targetNetObj.HasStateAuthority}");
+
+        if (targetNetObj != null)
+        {
+            if (targetNetObj.HasStateAuthority)
+            {
+                ContinueGame();
+            }
+            else
+            {
+                RPC_PlayerCaught();
+            }
+        }
     }
 
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_PlayerCaught([RpcTarget] PlayerRef target)
+    [Rpc(RpcSources.StateAuthority, RpcTargets.StateAuthority)]
+    public void RPC_PlayerCaught()
     {
         Debug.Log("Jogador encostou no patrão, StateAuthority vai lidar com isso");
 
@@ -238,7 +247,7 @@ public class NetPatraoController : NetworkBehaviour
 
 
         print("Continue Game foi chamado" + agent.isStopped);
-        isPatrol = true; // Define que o patrão está patrulhando
+        isPatrol = false; // Define que o patrão está patrulhando
         isRotate = false;
         isWalking = false;
 
@@ -270,7 +279,7 @@ public class NetPatraoController : NetworkBehaviour
 
                     playerTransform = patraoHit.transform;
                     NetworkObject targetNetObj = playerTransform.GetComponentInParent<NetworkObject>();
-                    print("Network Player:" +targetNetObj.name);
+                    print("Network Player:" + targetNetObj.name);
 
                     //songs = targetNetObj.GetComponentInChildren<SongsController>(true); // true = inclui objetos inativos
 
@@ -286,7 +295,7 @@ public class NetPatraoController : NetworkBehaviour
                         {
                             RPC_SetChangeMusic(targetNetObj.InputAuthority, 1);
                         }
-                        
+
                         //RPC_SetChangeMusic(targetNetObj.InputAuthority, 1);  //Caso pare de funcionar a musica de perseguição basta tira essa barra barra
                     }
                     //ChangeMusic(); //Metodo para trocar de  musica para perseguição
@@ -406,19 +415,21 @@ public class NetPatraoController : NetworkBehaviour
 
     IEnumerator TimerStopPersecution()
     {
+        Transform transformPlayer = playerTransform;
         print("Contagem iniciada para parar a perseguição pois parou de ver o player");
 
         if (seePlayer) yield break; // Se o patrão viu o jogador, sai do método
+        playerTransform = null;
 
         yield return new WaitForSeconds(ValueTimePn()); // Aguarda 2 segundos antes de parar a perseguição
 
         animPatrao.SetBool("isWalking", false);
         animPatrao.SetBool("isRunning", false);
-        
+
         agent.isStopped = true; // Para o agente NavMesh
         isPatrol = true; // Define que o patrão está patrulhando
 
-        NetworkObject targetNetObj = playerTransform.GetComponentInParent<NetworkObject>();
+        NetworkObject targetNetObj = transformPlayer.GetComponentInParent<NetworkObject>();
         print($"No patrao controller que tem Sate: {networkObject.HasStateAuthority} O player {targetNetObj.name} tem state:  {targetNetObj.HasStateAuthority}");
 
         if (targetNetObj != null)
@@ -540,9 +551,6 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a direita
         while (elapsed < 1f)
         {
-            if (seePlayer)
-                yield break;
-                
             elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(startRot, openRotRight, elapsed);
             yield return null;
@@ -554,9 +562,6 @@ public class NetPatraoController : NetworkBehaviour
         elapsed = 0f;
         while (elapsed < 1f)
         {
-            if (seePlayer)
-                yield break;
-            
             elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(openRotRight, startRot, elapsed);
             yield return null;
@@ -567,9 +572,6 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a Esquerda
         while (elapsed < 1f)
         {
-            if (seePlayer)
-                yield break;
-
             elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(startRot, openRotLeft, elapsed);
             yield return null;
@@ -580,9 +582,6 @@ public class NetPatraoController : NetworkBehaviour
         // Rotaciona para a Frente
         while (elapsed < 1f)
         {
-            if (seePlayer)
-                yield break;
-
             elapsed += Runner.DeltaTime * openSpeed;
             patraoTransform.rotation = Quaternion.Slerp(openRotLeft, startRot, elapsed);
             yield return null;
@@ -596,6 +595,47 @@ public class NetPatraoController : NetworkBehaviour
         print("Rotaciao Finalizada");
         StartCoroutine(TimerPatrol()); // Inicia a patrulha
     }
-
     #endregion Rotacao da Patrulha
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (networkObject.HasStateAuthority)
+        {
+            if (other.CompareTag("Player") && other.gameObject.layer != LayerMask.NameToLayer("Hide"))
+            {
+                NetworkObject otherNetObj = other.GetComponentInParent<NetworkObject>();
+                NetMovePlayer movePlayer = other.GetComponentInParent<NetMovePlayer>();
+                // Envia pedido para o patrão tomar uma ação
+
+                if (otherNetObj.HasStateAuthority)
+                {
+                    print("No patrao tem state chamando continue game normal");
+                    ContinueGame();
+                    movePlayer.CallJumpScare();
+                }
+                else
+                {
+                    print("No patrao nao tem state chamando rpc");
+                    RPC_PlayerCaught();
+                    movePlayer.RPC_CallJumpScare(movePlayer.Object.InputAuthority);
+                }
+
+                for (int i = 0; i < movePlayer.song.audioSorceBackGround.Length; i++)
+                {
+                    if (movePlayer.song.songsBackGround[i] != null && i != 3)
+                    {
+                        movePlayer.song.audioSorceBackGround[i].Stop();
+                    }
+                    else
+                    {
+                        movePlayer.song.audioSorceBackGround[i].Play();
+                    }
+                }
+
+                /*movePlayer.canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0, 0, 0);
+                movePlayer.jumpscareDirector.Play();
+                print("Touch Enemy");*/
+            }
+        }
+    }
 }

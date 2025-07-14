@@ -139,11 +139,7 @@ public class OptionsController : MonoBehaviour
 
         print("LEAVE LOBBY CLICKED");
 
-        if (runner != null)
-        {
-            runner.Shutdown();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(index);
-        }
- 
+        runner.Shutdown();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(index);
     }
 }

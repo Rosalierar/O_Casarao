@@ -9,11 +9,11 @@ using Cinemachine;
 
 public class NetMovePlayer : NetworkBehaviour
 {
-    [SerializeField] SongsController song;
-    [SerializeField] PlayableDirector jumpscareDirector;
+    public SongsController song;
+    public PlayableDirector jumpscareDirector;
     NetworkObject networkObject;
     Camera camPlayer;
-    [SerializeField] GameObject canva;
+    public GameObject canva;
 
     public static event Action OnLifeLost;
     //GameObjects do player
@@ -230,50 +230,54 @@ public class NetMovePlayer : NetworkBehaviour
                 song.audioSorceBackGround[i].Play();
             }
         }
-
-        //print("METODO DE JUMPSCARE MUDADO PARA: " + _isFinishJumpScare);
     }
 
-    void CWACFS()
+    [Rpc(RpcSources.All, RpcTargets.InputAuthority)]
+    public void RPC_CallWaitForSpawn()
     {
         StartCoroutine(WaitForSpawn());
     }
 
+    void CWACFS()
+    {
+        RPC_CallWaitForSpawn();
+    }
+
     IEnumerator WaitForSpawn()
     {
+        CamFollow following = camPlayer.gameObject.GetComponent<CamFollow>();
+        following.enabled = true;
+        camPlayer.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
         controllerPlayer.blackPainel.SetActive(true); //ativa o painel preto
-        controllerPlayer.PlayerHealth -= 1; //diminui a vida do jogador
+        //controllerPlayer.PlayerHealth -= 1; //diminui a vida do jogador
 
         // Disparar o evento para as janelas ligarem a grade
         OnLifeLost?.Invoke();
 
         //transform.position = controllerPlayer.spawnPoint;
         print("SPAWN" + controllerPlayer.spawnPoint);
-        ch.enabled = false;
-
-        CamFollow following = camPlayer.gameObject.GetComponent<CamFollow>();
-        following.enabled = true;
-        camPlayer.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-
+      
         print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
 
         yield return new WaitForSeconds(6f);
 
-        transform.SetPositionAndRotation(controllerPlayer.spawnPoint, Quaternion.identity);
-        ch.enabled = true;
+        RPC_ForceRespawn(controllerPlayer.spawnPoint);
         controllerPlayer.blackPainel.SetActive(false); //ativa o painel pretos
     }
 
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    private void RPC_AskPatraoToHandleHit(NetworkObject patraoNetObj, PlayerRef playerWhoHit)
+    [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
+    public void RPC_ForceRespawn(Vector3 position)
     {
-        print("CHAMANDO RPC PARA PEDI QUE PATRAO CONTINUE SEU FUNCIONAMENTO");
+        StartCoroutine(DoRespawn(position));
+    }
 
-        NetPatraoController patraoScript = patraoNetObj.GetComponent<NetPatraoController>();
-        if (patraoScript != null)
-        {
-            patraoScript.RPC_PlayerCaught(playerWhoHit);
-        }
+    IEnumerator DoRespawn(Vector3 pos)
+    {
+        ch.enabled = false;
+        transform.SetPositionAndRotation(pos, Quaternion.identity);
+        yield return null; // aguarda um frame
+        ch.enabled = true;
     }
 
     void OnTriggerEnter(Collider collision) //verifica se o jogador colidiu com algo
@@ -296,42 +300,26 @@ public class NetMovePlayer : NetworkBehaviour
                 }
             }
         }
+    }
 
-            if (collision.CompareTag("Enemy") && gameObject.layer != LayerMask.NameToLayer("Hide")) //verifica se o objeto colidido tem a tag "Enemy"
-            {
-                NetworkObject patrao = collision.GetComponentInParent<NetworkObject>();
+    [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
+    public void RPC_CallJumpScare([RpcTarget] PlayerRef target)
+    {
+        print("RPC PARA JUMP SCARE CHAMADA");
+        if (Runner.LocalPlayer == target)
+        {
+            print("CHAMANDO METODO JUMP SCARE DO RPC");
+            CallJumpScare();
+        }
+    }
 
-                if (patrao != null)
-                {
-                    // Envia pedido para o patrão tomar uma ação
-                    if (patrao.HasStateAuthority)
-                    {
-                        print("No move player patrao tem state chamando continue game normal");
-                        patrao.GetComponentInChildren<NetPatraoController>().ContinueGame();
-                    }
-                    else
-                    {
-                        print("No move player patrao nao tem state chamando rpc");
-                        patrao.GetComponentInChildren<NetPatraoController>().RPC_NotifyPlayerCollision(Runner.LocalPlayer);
-                    }
-                }
-                
-                for (int i = 0; i < song.audioSorceBackGround.Length; i++)
-                {
-                    if (song.songsBackGround[i] != null && i != 3)
-                    {
-                        song.audioSorceBackGround[i].Stop();
-                    }
-                    else
-                    {
-                        song.audioSorceBackGround[i].Play();
-                    }
-                }
+    public void CallJumpScare()
+    {
+         print("METODO JUMP SCARE CHAMADO");
+        canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0, 0, 0);
+        jumpscareDirector.Play();
 
-                canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0,0,0);
-                jumpscareDirector.Play();
-                print("Touch Enemy");
-            }
+        print("Touch Enemy");
     }
 
     void OnTriggerExit(Collider collision)

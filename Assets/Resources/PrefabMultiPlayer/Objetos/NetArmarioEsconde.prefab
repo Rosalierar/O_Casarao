@@ -973,7 +973,7 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   direction: 0
   doorTransform: {fileID: 854788799720898469}
-  posForOpenDoor: 0
+  posForOpenDoor: 1
   openAngle: -90
   openSpeed: 2
   _isOpen: 0
