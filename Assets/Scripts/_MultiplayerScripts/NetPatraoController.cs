@@ -210,24 +210,6 @@ public class NetPatraoController : NetworkBehaviour
 
 
     #region RayCast
-    public void ParaChamarMetdos(Transform player)
-    {
-        NetworkObject targetNetObj = player.GetComponentInParent<NetworkObject>();
-        print($"No patrao controller Para Chamar ContineGame que tem Sate: {networkObject.HasStateAuthority} O player {targetNetObj.name} tem state:  {targetNetObj.HasStateAuthority}");
-
-        if (targetNetObj != null)
-        {
-            if (targetNetObj.HasStateAuthority)
-            {
-                ContinueGame();
-            }
-            else
-            {
-                RPC_PlayerCaught();
-            }
-        }
-    }
-
     [Rpc(RpcSources.StateAuthority, RpcTargets.StateAuthority)]
     public void RPC_PlayerCaught()
     {
@@ -281,8 +263,6 @@ public class NetPatraoController : NetworkBehaviour
                     NetworkObject targetNetObj = playerTransform.GetComponentInParent<NetworkObject>();
                     print("Network Player:" + targetNetObj.name);
 
-                    //songs = targetNetObj.GetComponentInChildren<SongsController>(true); // true = inclui objetos inativos
-
                     if (targetNetObj != null)
                     {
                         print($"No patrao controller que tem Sate: {networkObject.HasStateAuthority} O player {targetNetObj.name} tem state:  {targetNetObj.HasStateAuthority}");
@@ -298,7 +278,6 @@ public class NetPatraoController : NetworkBehaviour
 
                         //RPC_SetChangeMusic(targetNetObj.InputAuthority, 1);  //Caso pare de funcionar a musica de perseguição basta tira essa barra barra
                     }
-                    //ChangeMusic(); //Metodo para trocar de  musica para perseguição
 
                     animPatrao.SetBool("isRunning", true);
                     animPatrao.SetBool("isWalking", false);
@@ -597,6 +576,27 @@ public class NetPatraoController : NetworkBehaviour
     }
     #endregion Rotacao da Patrulha
 
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_CallJumpScare([RpcTarget] PlayerRef target, NetworkObject other)
+    {
+        print("RPC PARA JUMP SCARE CHAMADA");
+
+        print("CHAMANDO METODO JUMP SCARE DO RPC");
+
+        CallJumpScare(target, other);
+    }
+
+    public void CallJumpScare([RpcTarget] PlayerRef target, NetworkObject other)
+    {
+
+        if (Runner.LocalPlayer == target)
+        {
+            print("METODO JUMP SCARE CHAMADO");
+            NetMovePlayer player = other.GetComponentInChildren<NetMovePlayer>();
+            player.AcionarJumpScare();
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (networkObject.HasStateAuthority)
@@ -611,13 +611,14 @@ public class NetPatraoController : NetworkBehaviour
                 {
                     print("No patrao tem state chamando continue game normal");
                     ContinueGame();
-                    movePlayer.CallJumpScare();
+                    CallJumpScare(movePlayer.Object.InputAuthority, otherNetObj);
                 }
                 else
                 {
                     print("No patrao nao tem state chamando rpc");
                     RPC_PlayerCaught();
-                    movePlayer.RPC_CallJumpScare(movePlayer.Object.InputAuthority);
+                    //movePlayer.RPC_CallJumpScare(movePlayer.Object.InputAuthority);
+                    RPC_CallJumpScare(movePlayer.Object.InputAuthority, otherNetObj);
                 }
 
                 for (int i = 0; i < movePlayer.song.audioSorceBackGround.Length; i++)
@@ -631,10 +632,6 @@ public class NetPatraoController : NetworkBehaviour
                         movePlayer.song.audioSorceBackGround[i].Play();
                     }
                 }
-
-                /*movePlayer.canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0, 0, 0);
-                movePlayer.jumpscareDirector.Play();
-                print("Touch Enemy");*/
             }
         }
     }

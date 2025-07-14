@@ -18,11 +18,11 @@ public class NetMovePlayer : NetworkBehaviour
     public static event Action OnLifeLost;
     //GameObjects do player
     NetControllerPlayer controllerPlayer; //Referencia do controller do jogador
-    //public MyButton crunchBtn; //Botão de agachar
-    //public JoyRoots moveJoy; //Joystick de movimento
-   
+                                          //public MyButton crunchBtn; //Botão de agachar
+                                          //public JoyRoots moveJoy; //Joystick de movimento
+
     private Transform myCamera;  //Referencia da câmera
-    [SerializeField]private Transform View; //Referencia da visao do jogador
+    [SerializeField] private Transform View; //Referencia da visao do jogador
 
     //Classe
     public CharacterController ch;
@@ -33,12 +33,12 @@ public class NetMovePlayer : NetworkBehaviour
     //Gravidade
     float gravity = -9.91f;
     Vector3 velocity;
-    
+
     //movimento do jogador
     [SerializeField] private float playerSpeed, moveH, moveV; //velocidade do jogador e input horizontal e vertical
     Vector3 dir; //direção do movimento
     [SerializeField] private float originalSpeed; //velocidade original do jogador
-        //Agachamento do jogador
+                                                  //Agachamento do jogador
     [SerializeField] private float crounchVelocity; //multiplicador de velocidade para o botão de correr
     bool isCrounching = false, crounchPressed; //verifica se o jogador está agachado ou não
     bool pressedButton = false;
@@ -116,7 +116,7 @@ public class NetMovePlayer : NetworkBehaviour
         velocity.y += gravity * Runner.DeltaTime;
 
         // Ajusta a rotação do jogador para alinhar com a rotação da câmera
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, myCamera.eulerAngles.y, transform.eulerAngles.z); 
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, myCamera.eulerAngles.y, transform.eulerAngles.z);
         //Metodo de Movimentação
         MoveHorizontal();
         //Metodo de Agachamento
@@ -125,14 +125,19 @@ public class NetMovePlayer : NetworkBehaviour
     }
 
 
-    void MoveHorizontal(){
+    void MoveHorizontal()
+    {
         moveH = controllerPlayer.moveJoy.inputDirection.x;
         moveV = controllerPlayer.moveJoy.inputDirection.y;
 
-        dir = new Vector3(moveH, 0, moveV); 
-        dir = transform.TransformDirection(dir); 
+        dir = new Vector3(moveH, 0, moveV);
+        dir = transform.TransformDirection(dir);
 
         Vector3 DirNormalized = dir.normalized * playerSpeed * Runner.DeltaTime;
+
+        if (!ch.enabled)
+            ch.enabled = true;
+
         ch.Move(DirNormalized + velocity * Runner.DeltaTime);
 
         if (DirNormalized != Vector3.zero)
@@ -150,9 +155,11 @@ public class NetMovePlayer : NetworkBehaviour
         }
     }
 
-    void Crunch(){
+    void Crunch()
+    {
         //Verifica se o botão de agachar foi pressionado e se o jogador não está agachado
-        if (crounchPressed && !isCrounching) {
+        if (crounchPressed && !isCrounching)
+        {
             anim.SetBool("isCrounch", true);
 
             playerCollider.height = 1.56f; //muda a altura do capsule collider para o tamanho do jogador agachado
@@ -162,16 +169,17 @@ public class NetMovePlayer : NetworkBehaviour
             ch.height = 1.56f;
             ch.radius = 0.57f; //muda o raio do capsule collider para o tamanho do jogador agachado
             ch.center = new Vector3(0.1f, 0.79f, 0.41f); //muda o centro do capsule collider para o meio do jogador
- 
+
             View.localPosition = new Vector3(0.28f, 1.039f, 0.87f); //muda a posição da câmera para o meio do jogador
 
             playerSpeed = crounchVelocity;
-            
+
             crounchPressed = false; // Reseta o estado do botão de agachar
-            isCrounching = true; 
+            isCrounching = true;
         }
         //Verifica se o botão de agachar foi pressionado e se o jogador está agachado
-        else if (crounchPressed && isCrounching) {
+        else if (crounchPressed && isCrounching)
+        {
             anim.SetBool("isCrounch", false); //desativa a animação de agachar
 
             playerCollider.height = 2f; //muda a altura do capsule collider para o tamanho do jogador agachado
@@ -182,12 +190,12 @@ public class NetMovePlayer : NetworkBehaviour
             ch.radius = 0.35f; //muda o raio do capsule collider para o tamanho do jogador agachado
             ch.center = new Vector3(-0.07f, 1f, 0.129f);
 
-            View.localPosition = new Vector3(-0.05497f,1.352f,0.451f); 
+            View.localPosition = new Vector3(-0.05497f, 1.352f, 0.451f);
 
             playerSpeed = originalSpeed;
 
             crounchPressed = false; // Reseta o estado do botão de agachar
-            isCrounching = false; 
+            isCrounching = false;
         }
     }
 
@@ -201,7 +209,7 @@ public class NetMovePlayer : NetworkBehaviour
                 crounchPressed = true; //define que o botão de agachar foi pressionado
             }
         }
-        else 
+        else
         {
             pressedButton = false; //define que o botão não foi pressionado
         }
@@ -213,7 +221,8 @@ public class NetMovePlayer : NetworkBehaviour
         CamFollow following = camPlayer.gameObject.GetComponent<CamFollow>();
 
         following.enabled = false;
-        camPlayer.gameObject.transform.localPosition = new Vector3(-20.32f, 10f, -10.79f);
+        
+        camPlayer.gameObject.transform.localPosition = new Vector3(200.95f,174.34f,-8.68f);
         camPlayer.gameObject.transform.localRotation = Quaternion.Euler(0f, -101.7f, 0f);
     }
 
@@ -250,40 +259,45 @@ public class NetMovePlayer : NetworkBehaviour
         camPlayer.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         controllerPlayer.blackPainel.SetActive(true); //ativa o painel preto
-        //controllerPlayer.PlayerHealth -= 1; //diminui a vida do jogador
+        controllerPlayer.PlayerHealth -= 1; //diminui a vida do jogador
 
         // Disparar o evento para as janelas ligarem a grade
         OnLifeLost?.Invoke();
+        RPC_ForceRespawn(new Vector3(40.90f, 300.68f, -15.30f));
+        canva.SetActive(true);
 
         //transform.position = controllerPlayer.spawnPoint;
         print("SPAWN" + controllerPlayer.spawnPoint);
-      
+
         print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
 
         yield return new WaitForSeconds(6f);
 
-        RPC_ForceRespawn(controllerPlayer.spawnPoint);
         controllerPlayer.blackPainel.SetActive(false); //ativa o painel pretos
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
     public void RPC_ForceRespawn(Vector3 position)
     {
-        StartCoroutine(DoRespawn(position));
+        if (!networkObject.HasInputAuthority) return;
+
+        print("RPC ForceRespawn Chamado");
+        //StartCoroutine(DoRespawn(position));
     }
 
     IEnumerator DoRespawn(Vector3 pos)
     {
-        ch.enabled = false;
-        transform.SetPositionAndRotation(pos, Quaternion.identity);
+        //ch.enabled = false;
+        //networkObject.gameObject.transform.SetPositionAndRotation(pos, Quaternion.identity);
+        gameObject.transform.position = pos;
         yield return null; // aguarda um frame
-        ch.enabled = true;
+        //ch.enabled = true;
     }
 
     void OnTriggerEnter(Collider collision) //verifica se o jogador colidiu com algo
     {
         if (!networkObject.HasInputAuthority) return;
-        
+
         if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
         {
             gameObject.layer = LayerMask.NameToLayer("Hide"); //define a layer do jogador como "Hide"
@@ -301,26 +315,39 @@ public class NetMovePlayer : NetworkBehaviour
             }
         }
     }
+    public void AcionarJumpScare()
+    {
+        if (!networkObject.HasInputAuthority) return;
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
+        canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0, 0, 0);
+        canva.SetActive(false);
+        print(jumpscareDirector.gameObject.name);
+        jumpscareDirector.Play();
+    }
+
+    /*[Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
     public void RPC_CallJumpScare([RpcTarget] PlayerRef target)
     {
         print("RPC PARA JUMP SCARE CHAMADA");
+        print("CHAMANDO METODO JUMP SCARE DO RPC");
+
+        CallJumpScare(target);
+    }
+
+
+    public void CallJumpScare([RpcTarget] PlayerRef target)
+    {
         if (Runner.LocalPlayer == target)
         {
-            print("CHAMANDO METODO JUMP SCARE DO RPC");
-            CallJumpScare();
+            print("METODO JUMP SCARE CHAMADO");
+
+            canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0, 0, 0);
+            print(jumpscareDirector.gameObject.name);
+            jumpscareDirector.Play();
+
+            print("Touch Enemy");
         }
-    }
-
-    public void CallJumpScare()
-    {
-         print("METODO JUMP SCARE CHAMADO");
-        canva.GetComponentInChildren<JoyRoots>().inputDirection = new Vector3(0, 0, 0);
-        jumpscareDirector.Play();
-
-        print("Touch Enemy");
-    }
+    }*/
 
     void OnTriggerExit(Collider collision)
     {
@@ -329,7 +356,6 @@ public class NetMovePlayer : NetworkBehaviour
             if (collision.CompareTag("LocalHide")) //verifica se o objeto colidido tem a tag "Esconderijo"
             {
                 gameObject.layer = LayerMask.NameToLayer("Player"); //define a layer do jogador como "Player"
-
                 for (int i = 0; i < song.audioSorceBackGround.Length; i++)
                 {
                     if (song.songsBackGround[i] != null && i < 2)
