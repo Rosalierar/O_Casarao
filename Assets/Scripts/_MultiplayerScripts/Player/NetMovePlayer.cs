@@ -208,14 +208,18 @@ public class NetMovePlayer : NetworkBehaviour
     }
     public void ChangeTheCamForJumpScare()
     {
-        camPlayer.enabled = false;
-        camPlayer.gameObject.transform.localPosition = new Vector3(-23.78f, 10f, -10.87f);
-        camPlayer.gameObject.transform.localRotation = Quaternion.Euler(0f, -108.49f, 0f);
+        if (!networkObject.HasInputAuthority) return;
+
+        CamFollow following = camPlayer.gameObject.GetComponent<CamFollow>();
+
+        following.enabled = false;
+        camPlayer.gameObject.transform.localPosition = new Vector3(-20.32f, 10f, -10.79f);
+        camPlayer.gameObject.transform.localRotation = Quaternion.Euler(0f, -101.7f, 0f);
     }
 
     public void CallWaitForSpawn()
     {
-        //IsFinishJumpScare = true;
+        if (!networkObject.HasInputAuthority) return;
 
         Invoke("CWACFS", 0.35f);
 
@@ -243,17 +247,19 @@ public class NetMovePlayer : NetworkBehaviour
         // Disparar o evento para as janelas ligarem a grade
         OnLifeLost?.Invoke();
 
+        //transform.position = controllerPlayer.spawnPoint;
+        print("SPAWN" + controllerPlayer.spawnPoint);
         ch.enabled = false;
-        transform.position = controllerPlayer.spawnPoint;
 
-        camPlayer.enabled = true;
+        CamFollow following = camPlayer.gameObject.GetComponent<CamFollow>();
+        following.enabled = true;
         camPlayer.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
-        //transform.localPosition = controllerPlayer.spawnPoint;
 
         yield return new WaitForSeconds(6f);
 
+        transform.SetPositionAndRotation(controllerPlayer.spawnPoint, Quaternion.identity);
         ch.enabled = true;
         controllerPlayer.blackPainel.SetActive(false); //ativa o painel pretos
     }

@@ -219,7 +219,7 @@ public class NetPatraoController : NetworkBehaviour
         RPC_PlayerCaught(player); //  patrão chama seu método para lidar com a captura
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.StateAuthority)]
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_PlayerCaught([RpcTarget] PlayerRef target)
     {
         Debug.Log("Jogador encostou no patrão, StateAuthority vai lidar com isso");

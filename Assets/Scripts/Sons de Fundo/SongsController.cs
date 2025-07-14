@@ -13,7 +13,8 @@ public class SongsController : MonoBehaviour
     [SerializeField] private AudioSource AS;
     private Coroutine Loop;
 
-    void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
         AS.loop = false;
         AS.clip = null;
@@ -26,6 +27,7 @@ public class SongsController : MonoBehaviour
             OptionsController OP = FindObjectOfType<OptionsController>();
 
             if (OP.sliderVolume[0].value > OP.sliderVolume[1].value)
+            
             AS.volume = OP.sliderVolume[0].value;
             else
             AS.volume = OP.sliderVolume[1].value;
@@ -35,11 +37,7 @@ public class SongsController : MonoBehaviour
                 audioSorceBackGround[i].Play();
             }
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         if (sonsAleatorios.Length > 0)
         {
             Loop = StartCoroutine(TocarAleatorios());
