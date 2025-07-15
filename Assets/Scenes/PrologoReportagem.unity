@@ -96,7 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 13b83498d9a89fb4d8deac7c8c6c64cb,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -13866,6 +13867,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1993028133}
     m_Modifications:
+    - target: {fileID: 1374986427108926534, guid: 690487eab78ba2a4c9b3dd892711fb31,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 203.99992
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374986427108926534, guid: 690487eab78ba2a4c9b3dd892711fb31,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374986427108926534, guid: 690487eab78ba2a4c9b3dd892711fb31,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0.0390625
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374986427108926534, guid: 690487eab78ba2a4c9b3dd892711fb31,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0.10546875
+      objectReference: {fileID: 0}
     - target: {fileID: 5581164394085753793, guid: 690487eab78ba2a4c9b3dd892711fb31,
         type: 3}
       propertyPath: m_LocalPosition.x
