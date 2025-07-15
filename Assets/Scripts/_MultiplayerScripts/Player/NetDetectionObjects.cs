@@ -38,9 +38,14 @@ public class NetDetectionObjects : MonoBehaviour
     {
         if (!networkObject.HasInputAuthority) return;
 
+        /*if (playerController.wasCatch == true)
+        {
+            playerController.GetBoolWasCatch();
+        }*/
+
         if (!playerController.wasCatch)
         {
-            ActiveRayCast(); 
+            ActiveRayCast();
         }
     }
 

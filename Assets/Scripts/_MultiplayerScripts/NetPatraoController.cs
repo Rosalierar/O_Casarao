@@ -1,10 +1,14 @@
 using System.Collections;
 using Fusion;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NetPatraoController : NetworkBehaviour
 {
+    [Networked] public bool wasCatchHost { get; set; }
+    [Networked] public bool wasCatchClient { get; set; }
+    [Networked] public byte totalPlayersCatch { get; set; }
     public NetworkObject networkObject;
     byte dificulty;
     [SerializeField] SongsController songs;
@@ -208,6 +212,110 @@ public class NetPatraoController : NetworkBehaviour
         return pointPatrolsForDelete;
     }
 
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetTotalCatch()
+    {
+        TotalCatch();
+    }
+    public void TotalCatch()
+    {
+        totalPlayersCatch++;
+
+        if (totalPlayersCatch >= 2)
+        {
+            if (GameObject.FindObjectOfType<NetPatraoController>().networkObject.HasStateAuthority)
+                GameOverScene();
+            else
+                RPC_SetGameOverScene();
+        }
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetGameOverScene()
+    {
+        GameOverScene();
+    }
+
+    private void GameOverScene()
+    {
+        NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
+        runner.LoadScene(SceneRef.FromIndex(1));
+    }
+
+    public void ChangeBoolWasCatchTrue(NetworkObject player)
+    {
+        Debug.Log("Tentando mudar wasCatch...");
+
+        if (networkObject.HasStateAuthority)
+        {
+            ChangeHostClientCatchTrue(0, player);
+            Debug.Log("Sou o Host - Atualizando wasCatchHost local");
+        }
+        else
+        {
+            Debug.Log("Sou o Cliente - Enviando RPC ao Host para mudar wasCatchClient");
+            RPC_ChangeHostClientCatchTrue(1, player);
+        }
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_ChangeHostClientCatchTrue(byte number, NetworkObject player)
+    {
+        Debug.Log("RPC_ChangeHostClientCatchTrue chamado no Host! Number: " + number);
+        ChangeHostClientCatchTrue(number, player);
+    }
+
+    public void ChangeHostClientCatchTrue(byte number, NetworkObject player)
+    {
+        NetControllerPlayer netControlPlayer = player.GetComponentInChildren<NetControllerPlayer>();
+
+        if (number == 0) //Host
+        {
+            wasCatchHost = true;
+        }
+        else if (number == 1) // Client
+        {
+            wasCatchClient = true;
+        }
+
+        netControlPlayer.GetBoolWasCatch();
+    }
+
+    public void ChangeBoolWasCatchFalse(NetworkObject player)
+    {
+        if (networkObject.HasStateAuthority)
+        {
+            ChangeHostClientCatchFalse(0, player);
+        }
+        else
+        {
+            RPC_ChangeHostClientCatchFalse(1, player);
+        }
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_ChangeHostClientCatchFalse(byte number, NetworkObject player)
+    {
+        ChangeHostClientCatchFalse(number, player);
+    }
+
+    public void ChangeHostClientCatchFalse(byte number, NetworkObject player)
+    {
+        NetControllerPlayer netControlPlayer = player.GetComponentInChildren<NetControllerPlayer>();
+
+        if (number == 0) //Host
+        {
+            wasCatchClient = false;
+        }
+        else if (number == 1) // Client
+        {
+            wasCatchHost = false;
+        }
+
+        netControlPlayer.GetBoolWasCatch();
+    }
+
+
 
     #region RayCast
     [Rpc(RpcSources.StateAuthority, RpcTargets.StateAuthority)]
@@ -216,6 +324,16 @@ public class NetPatraoController : NetworkBehaviour
         Debug.Log("Jogador encostou no patrão, StateAuthority vai lidar com isso");
 
         ContinueGame();
+    }
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_RequestUpdateCatch(bool isClient)
+    {
+        if (isClient)
+            wasCatchClient = true;
+        else
+            wasCatchHost = true;
+
+        Debug.Log("Catch atualizado no Host: wasCatchClient = " + wasCatchClient + " | wasCatchHost = " + wasCatchHost);
     }
 
     public void ContinueGame()

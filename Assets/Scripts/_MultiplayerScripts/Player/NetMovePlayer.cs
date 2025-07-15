@@ -1,11 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using System;
 using UnityEngine.Playables;
-using Unity.VisualScripting;
-using Cinemachine;
 
 public class NetMovePlayer : NetworkBehaviour
 {
@@ -254,12 +251,16 @@ public class NetMovePlayer : NetworkBehaviour
 
     IEnumerator WaitForSpawn()
     {
+        NetPatraoController patrao = GameObject.FindObjectOfType<NetPatraoController>().GetComponent<NetPatraoController>();
+
         CamFollow following = camPlayer.gameObject.GetComponent<CamFollow>();
         following.enabled = true;
         camPlayer.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         controllerPlayer.blackPainel.SetActive(true); //ativa o painel preto
-        controllerPlayer.wasCatch = true;
+
+        patrao.ChangeBoolWasCatchTrue(networkObject);
+        controllerPlayer.GetBoolWasCatch();
 
         if (FindObjectOfType<NetPatraoController>().networkObject.HasStateAuthority)
         {

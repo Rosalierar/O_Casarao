@@ -6,7 +6,6 @@ using Fusion;
 public class NetControllerPlayer : NetworkBehaviour
 {
     public bool wasCatch;
-    [Networked] public byte totalPlayersCatch { get; set; }
     public Vector3 spawnPoint;
     public GameObject blackPainel;
     public TextMeshProUGUI tmpSpeaks;
@@ -14,11 +13,39 @@ public class NetControllerPlayer : NetworkBehaviour
     public MyButton interectBtn;
     public JoyRoots moveJoy;
 
-    public bool ChangeBoolWasCatch(byte number)
+
+    public bool GetBoolWasCatch()
     {
-        wasCatch = number != 0;
-        return wasCatch;
+        NetPatraoController patrao = GameObject.FindObjectOfType<NetPatraoController>().GetComponent<NetPatraoController>();
+
+        if (patrao.networkObject.HasStateAuthority)
+        {
+            if (!patrao.wasCatchHost)
+            {
+                wasCatch = false;
+            }
+            else if (patrao.wasCatchHost)
+            {
+                wasCatch = true;
+            }
+
+            return wasCatch;
+        }
+        else
+        {
+            if (!patrao.wasCatchClient)
+            {
+                wasCatch = false;
+            }
+            else if (patrao.wasCatchClient)
+            {
+                wasCatch = true;
+            }
+
+            return wasCatch;
+        }
     }
+
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_SetCatch(NetworkObject network)
@@ -28,19 +55,16 @@ public class NetControllerPlayer : NetworkBehaviour
 
     public void Catch(NetworkObject network)
     {
+        NetPatraoController patrao = GameObject.FindObjectOfType<NetPatraoController>().GetComponent<NetPatraoController>();
+
         Transform rootPortaPorao = GameObject.FindWithTag("Porao").transform.root;
         print("rootPortaPorao" + rootPortaPorao);
         NetDoorMoviment NetDoorMoviment = rootPortaPorao.GetComponentInChildren<NetDoorMoviment>();
         print("NetDoorMoviment" + NetDoorMoviment);
         NetInteractiveObjects netInteractive = rootPortaPorao.GetComponentInChildren<NetInteractiveObjects>();
-        print("netInteractive" +netInteractive);
+        print("netInteractive" + netInteractive);
 
-        if (network.HasInputAuthority)
-        {
-            netInteractive.GetPlayer(this);
-        }
-
-        if (FindFirstObjectByType<NetPatraoController>().networkObject.HasStateAuthority)
+        if (GameObject.FindObjectOfType<NetPatraoController>().networkObject.HasStateAuthority)
             netInteractive.UnlockedController(false);
         else
             netInteractive.RPC_SetUnlockedController(false);
@@ -55,15 +79,10 @@ public class NetControllerPlayer : NetworkBehaviour
                 NetDoorMoviment.Rpc_RequestToggleDoor();
         }
 
-        if (totalPlayersCatch + 1 >= 2)
-        {
-            if (FindFirstObjectByType<NetPatraoController>().networkObject.HasStateAuthority)
-                GameOverScene();
-            else
-                RPC_SetGameOverScene();
-        }
-
-        totalPlayersCatch++;
+        if (patrao.networkObject.HasStateAuthority)
+            patrao.TotalCatch();
+        else
+            patrao.RPC_SetTotalCatch();
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -74,21 +93,10 @@ public class NetControllerPlayer : NetworkBehaviour
 
     public void UnlockedPlayer()
     {
-        totalPlayersCatch = 0;
-    }
+        NetPatraoController patrao = GameObject.FindObjectOfType<NetPatraoController>().GetComponent<NetPatraoController>();
 
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_SetGameOverScene()
-    {
-        GameOverScene();
+        patrao.totalPlayersCatch = 0;
     }
-
-    private void GameOverScene()
-    {
-        NetworkRunner runner = FindObjectOfType<NetworkRunner>();
-        runner.LoadScene(SceneRef.FromIndex(1));
-    }
-
     int languageText;
     [SerializeField] private string[] textLostLifePt = 
     {
