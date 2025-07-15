@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class NetDetectionObjects : MonoBehaviour
 {
+    NetControllerPlayer playerController;
     NetworkObject networkObject;
     // Sobre os ITENS
     public NetParentObjectReference parent;
@@ -26,6 +27,7 @@ public class NetDetectionObjects : MonoBehaviour
 
         if (networkObject.HasInputAuthority)
         {
+            playerController = GetComponentInParent<NetControllerPlayer>();
             parent = GetComponent<NetParentObjectReference>();
             cameraTouchController = GetComponent<NetCamersTouchController>(); // Obtém a referência ao script MovePlayer
         }
@@ -35,7 +37,11 @@ public class NetDetectionObjects : MonoBehaviour
     void Update()
     {
         if (!networkObject.HasInputAuthority) return;
+
+        if (!playerController.wasCatch)
+        {
             ActiveRayCast(); 
+        }
     }
 
     void ActiveRayCast() {
@@ -45,7 +51,7 @@ public class NetDetectionObjects : MonoBehaviour
         RaycastHit hitObject; // Variável para armazenar o resultado do Raycast
         Physics.Raycast(rayObjOrigin.position,  cameraTouchController.lookDirection, out hitObject, distanceRay, layerObject);
         Debug.DrawRay(rayObjOrigin.position, cameraTouchController.lookDirection /** 10*/, Color.blue);
-
+        
         if (hitObject.collider !=null)
         {
             print(hitObject.collider.name);
@@ -87,7 +93,8 @@ public class NetDetectionObjects : MonoBehaviour
                 parent.useTheObject.enabled = false;
             }
         }
-        else{
+        else
+        {
             isCollidingInteractiveObj = false; // Se o Raycast não atingir nada, define como false
             isCollidingItem = false; // Se o Raycast não atingir nada, define como false
             

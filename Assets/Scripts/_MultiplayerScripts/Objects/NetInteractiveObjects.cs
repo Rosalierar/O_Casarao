@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Fusion;
+using Unity.VisualScripting;
 
 public class NetInteractiveObjects : NetworkBehaviour
 {
+    NetControllerPlayer controllerPlayer;
     [SerializeField] GameObject[] prefabItem;
     public NetworkObject networkObject;
 
-     [Header("Sons dos Itens")]
+    [Header("Sons dos Itens")]
     [SerializeField] AudioSource AS;
-    
+
     [Header("UI Sobre Itens")]
     [SerializeField] private TextMeshProUGUI informationAboutItem;
     int language;
@@ -31,7 +33,7 @@ public class NetInteractiveObjects : NetworkBehaviour
     public TipoDeItem itemNecessario;  // Tipo de item necessário para interagir com o objeto
     public TipoDeItem tipoDeObjeto;
     [Networked] public bool unlocked { get; set; } // Variável para verificar se o objeto está bloqueado
-   
+
     [Header("Controller Open/Close")]
     /// <Controle dos Objetos, Abrir, Fechar, Quebrar>
     [SerializeField] NetDoorMoviment doorMoviment;
@@ -54,7 +56,7 @@ public class NetInteractiveObjects : NetworkBehaviour
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 drawerMoviment.enabled = true;
-                
+
                 if (networkObject.HasStateAuthority)
                     drawerMoviment.TryActiveDrawer();
                 else if (!networkObject.HasStateAuthority)
@@ -67,7 +69,7 @@ public class NetInteractiveObjects : NetworkBehaviour
             {
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
                 doorMoviment.enabled = true;
-                
+
                 if (networkObject.HasStateAuthority)
                     doorMoviment.TryActiveDoor();
                 else if (!networkObject.HasStateAuthority)
@@ -170,7 +172,7 @@ public class NetInteractiveObjects : NetworkBehaviour
 
                 AS.clip = parent.AC[6];
                 AS.Play();
-            
+
                 parent.inventory.UsarItem(); // Chama o método de usar item do inventário}
             }
 
@@ -198,7 +200,26 @@ public class NetInteractiveObjects : NetworkBehaviour
                 }
             }
         }
-        
+        else if (tipoDeObjeto == TipoDeItem.Nada  && !unlocked)
+        {
+            controllerPlayer.wasCatch = false;
+            print("Controller player do: " + controllerPlayer.gameObject.name);
+            
+            doorMoviment.enabled = true;
+            if (networkObject.HasStateAuthority)
+            {
+                doorMoviment.TryActiveDoor();
+                UnlockedController(true);
+            }
+            else if (!networkObject.HasStateAuthority)
+            {
+                doorMoviment.Rpc_RequestToggleDoor();
+                RPC_SetUnlockedController(true);
+            }
+            
+            controllerPlayer = null;
+        }
+
         else if (tipoDeObjeto == TipoDeItem.Senha && !unlocked) /////////////////////////////////////////// GELADEIRA
         {
             GameObject painel = GameObject.Find("PanelGeladeira");
@@ -230,7 +251,7 @@ public class NetInteractiveObjects : NetworkBehaviour
                         doorMoviment.TryActiveDoor();
                     else if (!networkObject.HasStateAuthority)
                         doorMoviment.Rpc_RequestToggleDoor();
-                        
+
                     AS.clip = parent.AC[12];
                     AS.Play();
                     break;
@@ -310,7 +331,7 @@ public class NetInteractiveObjects : NetworkBehaviour
         DisablePadlock(index);
     }
 
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]    
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_SetDisablePadlock(byte index)
     {
         DisablePadlock(index);
@@ -343,5 +364,10 @@ public class NetInteractiveObjects : NetworkBehaviour
         yield return new WaitForSeconds(2f);
 
         informationAboutItem.text = "";
+    }
+
+    public void GetPlayer(NetControllerPlayer player)
+    {
+        controllerPlayer = player;
     }
 }

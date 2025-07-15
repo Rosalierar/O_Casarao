@@ -5,54 +5,88 @@ using Fusion;
 
 public class NetControllerPlayer : NetworkBehaviour
 {
-    bool wasCatch;
-    [Networked] byte totalPlayersCatch { get; set; }
+    public bool wasCatch;
+    [Networked] public byte totalPlayersCatch { get; set; }
     public Vector3 spawnPoint;
     public GameObject blackPainel;
     public TextMeshProUGUI tmpSpeaks;
     public MyButton crunchBtn;
     public MyButton interectBtn;
     public JoyRoots moveJoy;
-    int playerHealth;
-    public int PlayerHealth
+
+    public bool ChangeBoolWasCatch(byte number)
     {
-        get { return playerHealth; }
-        set
+        wasCatch = number != 0;
+        return wasCatch;
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetCatch(NetworkObject network)
+    {
+        Catch(network);
+    }
+
+    public void Catch(NetworkObject network)
+    {
+        Transform rootPortaPorao = GameObject.FindWithTag("Porao").transform.root;
+        print("rootPortaPorao" + rootPortaPorao);
+        NetDoorMoviment NetDoorMoviment = rootPortaPorao.GetComponentInChildren<NetDoorMoviment>();
+        print("NetDoorMoviment" + NetDoorMoviment);
+        NetInteractiveObjects netInteractive = rootPortaPorao.GetComponentInChildren<NetInteractiveObjects>();
+        print("netInteractive" +netInteractive);
+
+        if (network.HasInputAuthority)
         {
-            playerHealth = value;
-
-            languageText = PlayerPrefs.GetInt("Language");
-
-            if (languageText == 0)
-            {
-                if (playerHealth >= 0 && playerHealth < 3)
-                    tmpSpeaks.text = textLostLifePt[playerHealth];
-            }
-            else if (languageText == 1)
-            {
-                if (playerHealth >= 0 && playerHealth < 3)
-                    tmpSpeaks.text = textLostLifePt[playerHealth];
-            }
-
-            if (playerHealth < 0)
-            {
-                if (languageText == 0)
-                {
-                    tmpSpeaks.text = textPtLost;
-                }
-                else if (languageText == 1)
-                {
-                    tmpSpeaks.text = textEnLost;
-                }
-
-                Invoke("GameOverScene", 6f);
-            }
+            netInteractive.GetPlayer(this);
         }
+
+        if (FindFirstObjectByType<NetPatraoController>().networkObject.HasStateAuthority)
+            netInteractive.UnlockedController(false);
+        else
+            netInteractive.RPC_SetUnlockedController(false);
+
+        if (NetDoorMoviment.isOpen)
+        {
+            NetDoorMoviment.enabled = true;
+
+            if (NetDoorMoviment.networkObject.HasStateAuthority)
+                NetDoorMoviment.TryActiveDoor();
+            else if (!NetDoorMoviment.networkObject.HasStateAuthority)
+                NetDoorMoviment.Rpc_RequestToggleDoor();
+        }
+
+        if (totalPlayersCatch + 1 >= 2)
+        {
+            if (FindFirstObjectByType<NetPatraoController>().networkObject.HasStateAuthority)
+                GameOverScene();
+            else
+                RPC_SetGameOverScene();
+        }
+
+        totalPlayersCatch++;
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetUnlockedPlayer()
+    {
+        UnlockedPlayer();
+    }
+
+    public void UnlockedPlayer()
+    {
+        totalPlayersCatch = 0;
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_SetGameOverScene()
+    {
+        GameOverScene();
     }
 
     private void GameOverScene()
     {
-        SceneManager.LoadScene(1); // Load Scene Game Over
+        NetworkRunner runner = FindObjectOfType<NetworkRunner>();
+        runner.LoadScene(SceneRef.FromIndex(1));
     }
 
     int languageText;

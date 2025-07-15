@@ -14,5 +14,6 @@ public enum TipoDeItem : byte
     Senha,//11
     Porta,//12
     Gaveta,//13
+    Nada,
 }
 

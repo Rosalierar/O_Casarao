@@ -76,9 +76,14 @@ public class LoobyManager : MonoBehaviour, INetworkRunnerCallbacks
         startGameButton.interactable = false;
         changeDifficultyButton.interactable = false;
     }
-    
+
     void OnDestroy()
     {
+        runnerInstance.LoadScene(SceneRef.FromIndex(0));
+        runnerInstance.Shutdown();
+        runnerInstance = null;
+        
+        DestroyImmediate(gameObject);
         Debug.LogWarning("LobbyManager foi destruído!");
     }
 

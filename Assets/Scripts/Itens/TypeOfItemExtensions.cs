@@ -18,7 +18,8 @@ public static class TypeOfItemExtensions
         { TipoDeItem.Crucifixo, "Crucifixo" },
         { TipoDeItem.ChaveQuadrada, "Chave Quadrada" },
         { TipoDeItem.Gaveta, "Gaveta" },
-        { TipoDeItem.Senha, "Senha" }
+        { TipoDeItem.Senha, "Senha" },
+        { TipoDeItem.Nada, "Nada" }
         
     };
 
@@ -37,7 +38,8 @@ public static class TypeOfItemExtensions
         { TipoDeItem.Crucifixo, "Crucifix" },
         { TipoDeItem.ChaveQuadrada, "Square Hey" },
         { TipoDeItem.Gaveta, "Drawer" },
-        { TipoDeItem.Senha, "Password" }
+        { TipoDeItem.Senha, "Password" },
+        { TipoDeItem.Nada, "Nothing" }
     };
 
     public static string ParaNomeLegivel(this TipoDeItem tipo)

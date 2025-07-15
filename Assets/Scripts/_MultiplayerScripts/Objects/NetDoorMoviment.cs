@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NetDoorMoviment : NetworkBehaviour
 {
-    NetworkObject networkObject;
+    public NetworkObject networkObject;
     public GameObject pants;
     [SerializeField] BoxCollider boxCollider;
     [SerializeField] private byte direction;

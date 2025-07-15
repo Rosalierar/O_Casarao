@@ -58,8 +58,8 @@ public class NetMovePlayer : NetworkBehaviour
 
             originalSpeed = playerSpeed; //salva a velocidade original do jogador
 
-            controllerPlayer.spawnPoint = transform.localPosition; //salva o ponto de spawn do jogador
-            controllerPlayer.PlayerHealth = 3; //salva a vida do jogador
+            //controllerPlayer.spawnPoint = transform.localPosition; //salva o ponto de spawn do jogador
+            //controllerPlayer.PlayerHealth = 3; //salva a vida do jogador
 
             print("PLAYER SPAWNED");
         }
@@ -259,17 +259,24 @@ public class NetMovePlayer : NetworkBehaviour
         camPlayer.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         controllerPlayer.blackPainel.SetActive(true); //ativa o painel preto
-        controllerPlayer.PlayerHealth -= 1; //diminui a vida do jogador
+        controllerPlayer.wasCatch = true;
+
+        if (FindObjectOfType<NetPatraoController>().networkObject.HasStateAuthority)
+        {
+            controllerPlayer.Catch(networkObject);
+        }
+        else
+        {
+            controllerPlayer.RPC_SetCatch(networkObject);
+        }
 
         // Disparar o evento para as janelas ligarem a grade
-        OnLifeLost?.Invoke();
+            OnLifeLost?.Invoke();
         RPC_ForceRespawn(new Vector3(45.27f,-0.0f,-16.22f));
         canva.SetActive(true);
 
-        //transform.position = controllerPlayer.spawnPoint;
         print("SPAWN" + controllerPlayer.spawnPoint);
 
-        print("Player Life: " + controllerPlayer.PlayerHealth); //imprime a vida do jogador
 
         yield return new WaitForSeconds(6f);
 
