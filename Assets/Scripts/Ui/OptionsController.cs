@@ -96,11 +96,11 @@ public class OptionsController : MonoBehaviour
     {
         if (index == 0)
         {
-            painelOptions.SetActive(false);
+            tutorial.SetActive(false);
         }
         else if (index == 1)
         {
-            painelOptions.SetActive(true);
+            tutorial.SetActive(true);
         }
     }
 
