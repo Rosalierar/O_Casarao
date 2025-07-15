@@ -278,7 +278,7 @@ public class NetPatraoController : NetworkBehaviour
             wasCatchClient = true;
         }
 
-        netControlPlayer.GetBoolWasCatch();
+        //netControlPlayer.GetBoolWasCatch();
     }
 
     public void ChangeBoolWasCatchFalse(NetworkObject player)
@@ -312,7 +312,7 @@ public class NetPatraoController : NetworkBehaviour
             wasCatchHost = false;
         }
 
-        netControlPlayer.GetBoolWasCatch();
+        //netControlPlayer.GetBoolWasCatch();
     }
 
 
