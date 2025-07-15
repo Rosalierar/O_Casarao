@@ -202,7 +202,12 @@ public class NetInteractiveObjects : NetworkBehaviour
         }
         else if (tipoDeObjeto == TipoDeItem.Nada  && !unlocked)
         {
-            controllerPlayer.wasCatch = false;
+            NetPatraoController patrao = GameObject.FindObjectOfType<NetPatraoController>().GetComponent<NetPatraoController>();
+            NetworkObject obj = parent.GetComponentInParent<NetworkObject>(); 
+
+            patrao.ChangeBoolWasCatchFalse(obj);
+            controllerPlayer.GetBoolWasCatch();
+
             print("Controller player do: " + controllerPlayer.gameObject.name);
             
             doorMoviment.enabled = true;

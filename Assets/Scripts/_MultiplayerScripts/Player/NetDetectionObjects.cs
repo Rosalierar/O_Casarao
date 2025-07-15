@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class NetDetectionObjects : MonoBehaviour
 {
+    NetPatraoController netPatrao;
     NetControllerPlayer playerController;
     NetworkObject networkObject;
     // Sobre os ITENS
@@ -30,17 +31,39 @@ public class NetDetectionObjects : MonoBehaviour
             playerController = GetComponentInParent<NetControllerPlayer>();
             parent = GetComponent<NetParentObjectReference>();
             cameraTouchController = GetComponent<NetCamersTouchController>(); // Obtém a referência ao script MovePlayer
+
+            Invoke("CallPatrao", 3);
+            print("patrao: "+netPatrao);
         }
+    }
+    private void CallPatrao()
+    {
+        netPatrao = FindObjectOfType<NetPatraoController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!networkObject.HasInputAuthority) return;
+        
+        if (netPatrao.networkObject.HasStateAuthority)
+        {
+            if (netPatrao.wasCatchHost)
+                playerController.wasCatch = true;
+            else if (!netPatrao.wasCatchHost)
+                playerController.wasCatch = false;
+        }
+        else
+        {
+             if (netPatrao.wasCatchClient)
+                playerController.wasCatch = true;
+            else if (!netPatrao.wasCatchClient)
+                playerController.wasCatch = false;
+        }
 
         if (!playerController.wasCatch)
         {
-            ActiveRayCast(); 
+            ActiveRayCast();
         }
     }
 
